@@ -1,0 +1,2 @@
+import abcde
+abcde.b()

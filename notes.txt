@@ -1,0 +1,11 @@
+Programs to put on the web
+
+24.py: done
+
+dict.py
+	spelling bee (NT times puzzle)
+	license plate game
+
+source code for
+	space slalom
+	sphere_collide
