@@ -1,5 +1,8 @@
-from football2 import *
+import football2 as fb
 import pickle
+import math
+
+ratings = []
 
 def r():
     w = []
@@ -11,6 +14,7 @@ def r():
     return w
 
 def get_teams():
+    fb.teams = []
     f = r()
     for l in f:
         x = True
@@ -21,7 +25,7 @@ def get_teams():
             
         if x == False:
             l = l.split(' (')
-            teams.append(l[0])
+            fb.teams.append(l[0])
 
 #ts = teams()            
 #for t in ts:
@@ -37,54 +41,70 @@ def int_check(c):
 # parse the data file, create teams and games global variables
 #
 def get_games():
+    fb.games = []
     get_teams()
     f = r()
     for line in f:
         words = line.split('\t')
         if len(words) >= 7:
-            #print(line)
-            t2 = words[3].replace('*', '')
-            if t1 > t2:
-                continue
-            if  t2 not in teams:
-                continue
             if not int_check(words[5]):
                 continue
             if not int_check(words[6]):
                 continue
-            d = [
-                teams.index(t1), teams.index(t2),
-                int(words[5]), int(words[6])
+            week += 1
+           #print(line)
+            t2 = words[3].replace('*', '')
+            if t1 > t2:
+                continue
+            if  t2 not in fb.teams:
+                #print(t2, ' not found; skipping ', line)
+                continue
+            game = [
+                fb.teams.index(t1), fb.teams.index(t2),
+                int(words[5]), int(words[6]),
+                week
                 ]
-            games.append(d)
+            fb.games.append(game)
         else:
              words = line.split(' (')
              t1 = words[0]
+             week = 0
 
-def create_info_file():
+def create_info_files():
     get_games()
-    ratings = predict()
-    x = [teams, games, ratings]
+    x = [fb.teams, fb.games]
     f = open('data.pickle', 'wb')
     pickle.dump(x, f)
     f.close()
-    print('done')
+#    for i in range(1,14):
+    for i in range(1,2):
+        ratings = fb.compute_ratings(i)
+        f = open('ratings_2%d.pickle'%i, 'wb')
+        pickle.dump(ratings, f)
+        f.close()
+        print('finished week %d'%i)
 
 def read_info_file():
     global teams, games
     f = open('data.pickle', 'rb')
     x = pickle.load(f);
     f.close();
-    teams = x[0]
-    games = x[1]
-    return x[2]
+    fb.teams = x[0]
+    fb.games = x[1]
 
-def rankings():
+def read_ratings_file(week):
+    f = open('ratings_2%d.pickle'%week, 'rb')
+    x = pickle.load(f)
+    f.close()
+    return x
+
+def rankings(week):
     count = 0
-    ratings = read_info_file()
+    #ratings = read_ratings_file(week)
+    read_info_file()
     pairs = {}
     totals = []
-    for team in teams:
+    for team in fb.teams:
         r = ratings[count * 2] / ratings[count*2+1]
         pairs[r] = team
         totals.append(r)
@@ -94,15 +114,60 @@ def rankings():
     for t in totals:
         print(128-count, t, pairs[t])
         count += 1
-        
 
 def test():
     get_games()
     print(games)
     print(len(games))
-    ratings = predict()
-    predict_score(9, 6, ratings)
 
-rankings()
- 
+def test_predict():
+    ratings = read_info_file()
+
+    input1 = 'Oklahoma'
+    input2 = 'Clemson'
+    t1 = fb.teams.index(input1)
+    t2 = fb.teams.index(input2)
+
+    p = fb.predict_score(t1, t2, ratings)
+    print(input1, p[0], input2, p[1])
     
+def wk_error(wk):
+    sum = 0
+    get_games()
+    ratings = read_ratings_file(wk)
+    wk_games = []
+    print('week ', wk)
+    print(len(fb.games), ' total games')
+    for game in fb.games:
+        if game[4] == wk + 1:
+            wk_games.append(game)
+    print(len(wk_games), ' games')
+    nwin = 0
+    for game in wk_games:
+        p_score = fb.predict_score(game[0], game[1], ratings)
+        p_spread = p_score[0] - p_score[1]
+        r_spread = game[2] - game[3]
+        if p_spread < 0 and r_spread < 0:
+            nwin += 1
+        if p_spread > 0 and r_spread > 0:
+            nwin += 1
+        diff = (p_spread - r_spread)
+        #print(p_spread, r_spread, diff)
+        sum += diff*diff
+    #print(sum, len(wk_games))
+    ave = sum/len(wk_games)
+    ave = math.sqrt(ave)
+    print('points off per game:', ave)
+    per = 100 * nwin/len(wk_games)
+    print("predict right winner ", nwin, " out of ", len(wk_games), per)
+    #return ave
+    
+for i in range(1, 11):
+    pass
+    #wk_error(i)
+create_info_files()
+
+#wk_error(1)
+
+#test_predict()
+

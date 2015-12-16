@@ -1,4 +1,5 @@
 Air Force (MWC)
+
 9/5	Sat	vs.	Morgan State	W	63	7
 9/12	Sat	vs.	*San Jose State	W	37	16
 9/19	Sat	@	Michigan State	L	21	35
@@ -9,15 +10,16 @@ Air Force (MWC)
 10/31	Sat	@	*Hawaii	W	58	7
 11/7	Sat	vs.	Army	W	20	3
 11/14	Sat	vs.	*Utah State	W	35	28
-11/20	Fri	@	*Boise State			
-11/28	Sat	@	*New Mexico			
+11/20	Fri	@	*Boise State	W	37	30
+11/28	Sat	@	*New Mexico	L	35	47
+12/5	Sat	vs.	*San Diego State	L	24	27	@ San Diego, CA	MWC Championship
  	
+8-5
 
-7-3
-	 	341	198
+ 	437	302
  
-
 Akron (MAC)
+
 9/5	Sat	@	Oklahoma	L	3	41
 9/12	Sat	vs.	Pittsburgh	L	7	24
 9/19	Sat	vs.	Savannah State	W	52	9
@@ -28,15 +30,15 @@ Akron (MAC)
 10/31	Sat	vs.	*Central Michigan	L	6	14
 11/7	Sat	@	*Massachusetts	W	17	13
 11/14	Sat	@	*Miami (Ohio)	W	37	28
-11/21	Sat	vs.	*Buffalo			
-11/27	Fri	vs.	*Kent			
+11/21	Sat	vs.	*Buffalo	W	42	21
+11/27	Fri	vs.	*Kent	W	20	0
  	
+7-5
 
-5-5
-	 	226	237
+ 	288	258
  
-
 Alabama (SEC)
+
 9/5	Sat	vs.	Wisconsin	W	35	17	@ Arlington, TX
 9/12	Sat	vs.	Middle Tennessee State	W	37	10
 9/19	Sat	vs.	*Mississippi	L	37	43
@@ -47,15 +49,16 @@ Alabama (SEC)
 10/24	Sat	vs.	*Tennessee	W	19	14
 11/7	Sat	vs.	*Louisiana State	W	30	16
 11/14	Sat	@	*Mississippi State	W	31	6
-11/21	Sat	vs.	Charleston Southern			
-11/28	Sat	@	*Auburn			
+11/21	Sat	vs.	Charleston Southern	W	56	6
+11/28	Sat	@	*Auburn	W	29	13
+12/5	Sat	vs.	*Florida	W	29	15	@ Atlanta, GA	SEC Championship
  	
+12-1
 
-9-1
-	 	329	153
+ 	443	187
  
-
 Appalachian State (Sun Belt)
+
 9/5	Sat	vs.	Howard	W	49	0
 9/12	Sat	@	Clemson	L	10	41
 9/26	Sat	@	Old Dominion	W	49	0
@@ -66,15 +69,15 @@ Appalachian State (Sun Belt)
 10/31	Sat	vs.	*Troy	W	44	41
 11/5	Thu	vs.	*Arkansas State	L	27	40
 11/14	Sat	@	*Idaho	W	47	20
-11/28	Sat	vs.	*Louisiana-Lafayette			
-12/5	Sat	@	*South Alabama			
+11/28	Sat	vs.	*Louisiana-Lafayette	W	28	7
+12/5	Sat	@	*South Alabama	W	34	27
  	
+10-2
 
-8-2
-	 	384	185
+ 	446	219
  
-
 Arizona (Pac 12)
+
 9/3	Thu	vs.	Texas-San Antonio	W	42	32
 9/12	Sat	@	Nevada	W	44	20
 9/19	Sat	vs.	Northern Arizona	W	77	13
@@ -86,14 +89,14 @@ Arizona (Pac 12)
 10/31	Sat	@	*Washington	L	3	49
 11/7	Sat	@	*Southern California	L	30	38
 11/14	Sat	vs.	*Utah	W	37	30
-11/21	Sat	@	*Arizona State			
+11/21	Sat	@	*Arizona State	L	37	52
  	
+6-6
 
-6-5
-	 	404	376
+ 	441	428
  
-
 Arizona State (Pac 12)
+
 9/5	Sat	vs.	Texas A&M	L	17	38	@ Houston, TX
 9/12	Sat	vs.	Cal Poly	W	35	21
 9/18	Fri	vs.	New Mexico	W	34	10
@@ -104,15 +107,15 @@ Arizona State (Pac 12)
 10/29	Thu	vs.	*Oregon	L	55	61
 11/7	Sat	@	*Washington State	L	24	38
 11/14	Sat	vs.	*Washington	W	27	17
-11/21	Sat	vs.	*Arizona			
-11/28	Sat	@	*California			
+11/21	Sat	vs.	*Arizona	W	52	37
+11/28	Sat	@	*California	L	46	48
  	
+6-6
 
-5-5
-	 	310	307
+ 	408	392
  
-
 Arkansas (SEC)
+
 9/5	Sat	vs.	Texas-El Paso	W	48	13
 9/12	Sat	vs.	Toledo	L	12	16	@ Little Rock, AR
 9/19	Sat	vs.	Texas Tech	L	24	35
@@ -123,15 +126,15 @@ Arkansas (SEC)
 10/31	Sat	vs.	Tennessee-Martin	W	63	28
 11/7	Sat	@	*Mississippi	W	53	52
 11/14	Sat	@	*Louisiana State	W	31	14
-11/21	Sat	vs.	*Mississippi State			
-11/28	Sat	vs.	*Missouri			
+11/21	Sat	vs.	*Mississippi State	L	50	51
+11/27	Fri	vs.	*Missouri	W	28	3
  	
+7-5
 
-6-4
-	 	344	279
+ 	422	333
  
-
 Arkansas State (Sun Belt)
+
 9/5	Sat	@	Southern California	L	6	55
 9/12	Sat	vs.	Missouri	L	20	27
 9/19	Sat	vs.	Missouri State	W	70	7
@@ -142,15 +145,15 @@ Arkansas State (Sun Belt)
 10/31	Sat	vs.	*Georgia State	W	48	34
 11/5	Thu	@	*Appalachian State	W	40	27
 11/14	Sat	@	*Louisiana-Monroe	W	59	21
-11/28	Sat	@	*New Mexico State			
-12/5	Sat	vs.	*Texas State			
+11/28	Sat	@	*New Mexico State	W	52	28
+12/5	Sat	vs.	*Texas State	W	55	17
  	
+9-3
 
-7-3
-	 	385	301
+ 	492	346
  
-
 Army (Independent)
+
 9/4	Fri	vs.	Fordham	L	35	37
 9/12	Sat	@	Connecticut	L	17	22
 9/19	Sat	vs.	Wake Forest	L	14	17
@@ -161,15 +164,15 @@ Army (Independent)
 10/24	Sat	@	Rice	L	31	38
 11/7	Sat	@	Air Force	L	3	20
 11/14	Sat	vs.	Tulane	L	31	34
-11/21	Sat	vs.	Rutgers				@ Bronx, NY
+11/21	Sat	vs.	Rutgers	L	21	31	@ Bronx, NY
 12/12	Sat	vs.	Navy				@ Philadelphia, PA
  	
+2-9
 
-2-8
-	 	227	282
+ 	248	313
  
-
 Auburn (SEC)
+
 9/5	Sat	vs.	Louisville	W	31	24	@ Atlanta, GA
 9/12	Sat	vs.	Jacksonville State	W	27	20
 9/19	Sat	@	*Louisiana State	L	21	45
@@ -180,15 +183,15 @@ Auburn (SEC)
 10/31	Sat	vs.	*Mississippi	L	19	27
 11/7	Sat	@	*Texas A&M	W	26	10
 11/14	Sat	vs.	*Georgia	L	13	20
-11/21	Sat	vs.	Idaho			
-11/28	Sat	vs.	*Alabama			
+11/21	Sat	vs.	Idaho	W	56	34
+11/28	Sat	vs.	*Alabama	L	13	29
  	
+6-6
 
-5-5
-	 	257	265
+ 	326	328
  
-
 Ball State (MAC)
+
 9/3	Thu	vs.	Virginia Military Institute	W	48	36
 9/12	Sat	@	Texas A&M	L	23	56
 9/19	Sat	@	*Eastern Michigan	W	28	17
@@ -199,15 +202,15 @@ Ball State (MAC)
 10/24	Sat	vs.	*Central Michigan	L	21	23
 10/31	Sat	vs.	*Massachusetts	W	20	10
 11/5	Thu	@	*Western Michigan	L	7	54
-11/17	Tue	@	*Ohio			
-11/24	Tue	vs.	*Bowling Green State			
+11/17	Tue	@	*Ohio	L	31	48
+11/24	Tue	vs.	*Bowling Green State	L	10	48
  	
+3-9
 
-3-7
-	 	236	334
+ 	277	430
  
-
 Baylor (Big 12)
+
 9/4	Fri	@	Southern Methodist	W	56	21
 9/12	Sat	vs.	Lamar	W	66	31
 9/26	Sat	vs.	Rice	W	70	17
@@ -217,16 +220,16 @@ Baylor (Big 12)
 10/24	Sat	vs.	*Iowa State	W	45	27
 11/5	Thu	@	*Kansas State	W	31	24
 11/14	Sat	vs.	*Oklahoma	L	34	44
-11/21	Sat	@	*Oklahoma State			
-11/27	Fri	@	*Texas Christian			
-12/5	Sat	vs.	*Texas			
+11/21	Sat	@	*Oklahoma State	W	45	35
+11/27	Fri	@	*Texas Christian	L	21	28
+12/5	Sat	vs.	*Texas	L	17	23
  	
+9-3
 
-8-1
-	 	493	244
+ 	576	330
  
-
 Boise State (MWC)
+
 9/4	Fri	vs.	Washington	W	16	13
 9/12	Sat	@	Brigham Young	L	24	35
 9/18	Fri	vs.	Idaho State	W	52	0
@@ -237,15 +240,15 @@ Boise State (MWC)
 10/24	Sat	vs.	*Wyoming	W	34	14
 10/31	Sat	@	*Nevada-Las Vegas	W	55	27
 11/14	Sat	vs.	*New Mexico	L	24	31
-11/20	Fri	vs.	*Air Force			
-11/28	Sat	@	*San Jose State			
+11/20	Fri	vs.	*Air Force	L	30	37
+11/27	Fri	@	*San Jose State	W	40	23
  	
+8-4
 
-7-3
-	 	383	196
+ 	453	256
  
-
 Boston College (ACC)
+
 9/5	Sat	vs.	Maine	W	24	3
 9/12	Sat	vs.	Howard	W	76	0
 9/18	Fri	vs.	*Florida State	L	0	14
@@ -256,15 +259,15 @@ Boston College (ACC)
 10/24	Sat	@	*Louisville	L	14	17
 10/31	Sat	vs.	*Virginia Tech	L	10	26
 11/7	Sat	vs.	*North Carolina State	L	8	24
-11/21	Sat	vs.	Notre Dame				@ Boston, MA
-11/28	Sat	@	*Syracuse			
+11/21	Sat	vs.	Notre Dame	L	16	19	@ Boston, MA
+11/28	Sat	@	*Syracuse	L	17	20
  	
+3-9
 
-3-7
-	 	173	144
+ 	206	183
  
-
 Bowling Green State (MAC)
+
 9/5	Sat	vs.	Tennessee	L	30	59	@ Nashville, TN
 9/12	Sat	@	Maryland	W	48	27
 9/19	Sat	vs.	Memphis	L	41	44
@@ -275,15 +278,16 @@ Bowling Green State (MAC)
 10/24	Sat	@	*Kent	W	48	0
 11/4	Wed	vs.	*Ohio	W	62	24
 11/11	Wed	@	*Western Michigan	W	41	27
-11/17	Tue	vs.	*Toledo			
-11/24	Tue	@	*Ball State			
+11/17	Tue	vs.	*Toledo	L	28	44
+11/24	Tue	@	*Ball State	W	48	10
+12/4	Fri	vs.	*Northern Illinois	W	34	14	@ Detroit, MI	MAC Championship
  	
+10-3
 
-8-2
-	 	454	279
+ 	564	347
  
-
 Brigham Young (Independent)
+
 9/5	Sat	@	Nebraska	W	33	28
 9/12	Sat	vs.	Boise State	W	35	24
 9/19	Sat	@	UCLA	L	23	24
@@ -294,15 +298,15 @@ Brigham Young (Independent)
 10/24	Sat	vs.	Wagner	W	70	6
 11/6	Fri	@	San Jose State	W	17	16
 11/14	Sat	vs.	Missouri	L	16	20	@ Kansas City, MO
-11/21	Sat	vs.	Fresno State			
-11/28	Sat	@	Utah State			
+11/21	Sat	vs.	Fresno State	W	52	10
+11/28	Sat	@	Utah State	W	51	28
  	
+9-3
 
-7-3
-	 	307	224
+ 	410	262
  
-
 Buffalo (MAC)
+
 9/5	Sat	vs.	Albany	W	51	14
 9/12	Sat	@	Penn State	L	14	27
 9/19	Sat	@	Florida Atlantic	W	33	15
@@ -313,15 +317,15 @@ Buffalo (MAC)
 10/29	Thu	@	*Miami (Ohio)	W	29	24
 11/5	Thu	@	*Kent	W	18	17
 11/11	Wed	vs.	*Northern Illinois	L	30	41
-11/21	Sat	@	*Akron			
-11/27	Fri	vs.	*Massachusetts			
+11/21	Sat	@	*Akron	L	21	42
+11/27	Fri	vs.	*Massachusetts	L	26	31
  	
+5-7
 
-5-5
-	 	273	258
+ 	320	331
  
-
 California (Pac 12)
+
 9/5	Sat	vs.	Grambling State	W	73	14
 9/12	Sat	vs.	San Diego State	W	35	7
 9/19	Sat	@	Texas	W	45	44
@@ -332,15 +336,15 @@ California (Pac 12)
 10/31	Sat	vs.	*Southern California	L	21	27
 11/7	Sat	@	*Oregon	L	28	44
 11/14	Sat	vs.	*Oregon State	W	54	24
-11/21	Sat	@	*Stanford			
-11/28	Sat	vs.	*Arizona State			
+11/21	Sat	@	*Stanford	L	22	35
+11/28	Sat	vs.	*Arizona State	W	48	46
  	
+7-5
 
-6-4
-	 	368	282
+ 	438	363
  
-
 Central Florida (American)
+
 9/3	Thu	vs.	Florida International	L	14	15
 9/12	Sat	@	Stanford	L	7	31
 9/19	Sat	vs.	Furman	L	15	16
@@ -351,15 +355,15 @@ Central Florida (American)
 10/24	Sat	vs.	*Houston	L	10	59
 10/31	Sat	@	*Cincinnati	L	7	52
 11/7	Sat	@	*Tulsa	L	30	45
-11/19	Thu	vs.	*East Carolina			
-11/27	Fri	vs.	*South Florida			
+11/19	Thu	vs.	*East Carolina	L	7	44
+11/26	Thu	vs.	*South Florida	L	3	44
  	
+0-12
 
-0-10
-	 	157	364
+ 	167	452
  
-
 Central Michigan (MAC)
+
 9/3	Thu	vs.	Oklahoma State	L	13	24
 9/12	Sat	vs.	Monmouth	W	31	10
 9/19	Sat	@	Syracuse	L	27	30
@@ -370,15 +374,15 @@ Central Michigan (MAC)
 10/24	Sat	@	*Ball State	W	23	21
 10/31	Sat	@	*Akron	W	14	6
 11/10	Tue	vs.	*Toledo	L	23	28
-11/18	Wed	@	*Kent			
-11/27	Fri	vs.	*Eastern Michigan			
+11/18	Wed	@	*Kent	W	27	14
+11/27	Fri	vs.	*Eastern Michigan	W	35	28
  	
+7-5
 
-5-5
-	 	260	223
+ 	322	265
  
-
 Charlotte (CUSA)
+
 9/4	Fri	@	Georgia State	W	23	20
 9/12	Sat	vs.	Presbyterian	W	34	10
 9/19	Sat	@	*Middle Tennessee State	L	14	73
@@ -389,15 +393,15 @@ Charlotte (CUSA)
 10/31	Sat	vs.	*Marshall	L	10	34
 11/7	Sat	@	*Florida International	L	31	48
 11/14	Sat	vs.	*Texas-San Antonio	L	27	30
-11/21	Sat	@	Kentucky			
-11/28	Sat	@	*Rice			
+11/21	Sat	@	Kentucky	L	10	58
+11/28	Sat	@	*Rice	L	7	27
  	
+2-10
 
-2-8
-	 	193	350
+ 	210	435
  
-
 Cincinnati (American)
+
 9/5	Sat	vs.	Alabama A&M	W	52	10
 9/12	Sat	vs.	*Temple	L	26	34
 9/19	Sat	@	Miami (Ohio)	W	37	33
@@ -408,15 +412,15 @@ Cincinnati (American)
 10/31	Sat	vs.	*Central Florida	W	52	7
 11/7	Sat	@	*Houston	L	30	33
 11/14	Sat	vs.	*Tulsa	W	49	38
-11/20	Fri	@	*South Florida			
-11/28	Sat	@	*East Carolina			
+11/20	Fri	@	*South Florida	L	27	65
+11/28	Sat	@	*East Carolina	W	19	16
  	
+7-5
 
-6-4
-	 	387	282
+ 	433	363
  
-
 Clemson (ACC)
+
 9/5	Sat	vs.	Wofford	W	49	10
 9/12	Sat	vs.	Appalachian State	W	41	10
 9/17	Thu	@	*Louisville	W	20	17
@@ -427,15 +431,16 @@ Clemson (ACC)
 10/31	Sat	@	*North Carolina State	W	56	41
 11/7	Sat	vs.	*Florida State	W	23	13
 11/14	Sat	@	*Syracuse	W	37	27
-11/21	Sat	vs.	*Wake Forest			
-11/28	Sat	@	South Carolina			
+11/21	Sat	vs.	*Wake Forest	W	33	13
+11/28	Sat	@	South Carolina	W	37	32
+12/5	Sat	vs.	*North Carolina	W	45	37	@ Charlotte, NC	ACC Championship
  	
+13-0
 
-10-0
-	 	385	181
+ 	500	263
  
-
 Colorado (Pac 12)
+
 9/3	Thu	@	Hawaii	L	20	28
 9/12	Sat	vs.	Massachusetts	W	48	14
 9/19	Sat	vs.	Colorado State	W	27	24	@ Denver, CO
@@ -447,15 +452,15 @@ Colorado (Pac 12)
 10/31	Sat	@	*UCLA	L	31	35
 11/7	Sat	vs.	*Stanford	L	10	42
 11/13	Fri	vs.	*Southern California	L	24	27
-11/21	Sat	@	*Washington State			
-11/28	Sat	@	*Utah			
+11/21	Sat	@	*Washington State	L	3	27
+11/28	Sat	@	*Utah	L	14	20
  	
+4-9
 
-4-7
-	 	303	310
+ 	320	357
  
-
 Colorado State (MWC)
+
 9/5	Sat	vs.	Savannah State	W	65	13
 9/12	Sat	vs.	Minnesota	L	20	23
 9/19	Sat	vs.	Colorado	L	24	27	@ Denver, CO
@@ -466,15 +471,15 @@ Colorado State (MWC)
 10/31	Sat	vs.	*San Diego State	L	17	41
 11/7	Sat	@	*Wyoming	W	26	7
 11/14	Sat	vs.	*Nevada-Las Vegas	W	49	35
-11/21	Sat	@	*New Mexico			
-11/28	Sat	@	*Fresno State			
+11/21	Sat	@	*New Mexico	W	28	21
+11/28	Sat	@	*Fresno State	W	34	31
  	
+7-5
 
-5-5
-	 	300	274
+ 	362	326
  
-
 Connecticut (American)
+
 9/3	Thu	vs.	Villanova	W	20	15
 9/12	Sat	vs.	Army	W	22	17
 9/19	Sat	@	Missouri	L	6	9
@@ -485,15 +490,15 @@ Connecticut (American)
 10/24	Sat	@	*Cincinnati	L	13	37
 10/30	Fri	vs.	*East Carolina	W	31	13
 11/7	Sat	@	*Tulane	W	7	3
-11/21	Sat	vs.	*Houston			
-11/28	Sat	@	*Temple			
+11/21	Sat	vs.	*Houston	W	20	17
+11/28	Sat	@	*Temple	L	3	27
  	
+6-6
 
-5-5
-	 	190	193
+ 	213	237
  
-
 Duke (ACC)
+
 9/3	Thu	@	Tulane	W	37	7
 9/12	Sat	vs.	North Carolina Central	W	55	0
 9/19	Sat	vs.	Northwestern	L	10	19
@@ -504,15 +509,15 @@ Duke (ACC)
 10/31	Sat	vs.	*Miami (Florida)	L	27	30
 11/7	Sat	@	*North Carolina	L	31	66
 11/14	Sat	vs.	*Pittsburgh	L	13	31
-11/21	Sat	@	*Virginia			
-11/28	Sat	@	*Wake Forest			
+11/21	Sat	@	*Virginia	L	34	42
+11/28	Sat	@	*Wake Forest	W	27	21
  	
+7-5
 
-6-4
-	 	305	226
+ 	366	289
  
-
 East Carolina (American)
+
 9/5	Sat	vs.	Towson	W	28	20
 9/12	Sat	@	Florida	L	24	31
 9/19	Sat	@	*Navy	L	21	45
@@ -523,15 +528,15 @@ East Carolina (American)
 10/22	Thu	vs.	*Temple	L	14	24
 10/30	Fri	@	*Connecticut	L	13	31
 11/7	Sat	vs.	*South Florida	L	17	22
-11/19	Thu	@	*Central Florida			
-11/28	Sat	vs.	*Cincinnati			
+11/19	Thu	@	*Central Florida	W	44	7
+11/28	Sat	vs.	*Cincinnati	L	16	19
  	
+5-7
 
-4-6
-	 	269	286
+ 	329	312
  
-
 Eastern Michigan (MAC)
+
 9/5	Sat	vs.	Old Dominion	L	34	38
 9/12	Sat	@	Wyoming	W	48	29
 9/19	Sat	vs.	*Ball State	L	17	28
@@ -543,14 +548,14 @@ Eastern Michigan (MAC)
 10/29	Thu	vs.	*Western Michigan	L	28	58
 11/7	Sat	@	*Miami (Ohio)	L	13	28
 11/14	Sat	vs.	*Massachusetts	L	17	28
-11/27	Fri	@	*Central Michigan			
+11/27	Fri	@	*Central Michigan	L	28	35
  	
+1-11
 
-1-10
-	 	277	470
+ 	305	505
  
-
 Florida (SEC)
+
 9/5	Sat	vs.	New Mexico State	W	61	13
 9/12	Sat	vs.	East Carolina	W	31	24
 9/19	Sat	@	*Kentucky	W	14	9
@@ -561,15 +566,16 @@ Florida (SEC)
 10/31	Sat	vs.	*Georgia	W	27	3	@ Jacksonville, FL
 11/7	Sat	vs.	*Vanderbilt	W	9	7
 11/14	Sat	@	*South Carolina	W	24	14
-11/21	Sat	vs.	Florida Atlantic			
-11/28	Sat	vs.	Florida State			
+11/21	Sat	vs.	Florida Atlantic	W	20	14
+11/28	Sat	vs.	Florida State	L	2	27
+12/5	Sat	vs.	*Alabama	L	15	29	@ Atlanta, GA	SEC Championship
  	
+10-3
 
-9-1
-	 	281	145
+ 	318	215
  
-
 Florida Atlantic (CUSA)
+
 9/5	Sat	@	Tulsa	L	44	47
 9/12	Sat	vs.	Miami (Florida)	L	20	44
 9/19	Sat	vs.	Buffalo	L	15	33
@@ -580,15 +586,15 @@ Florida Atlantic (CUSA)
 10/31	Sat	vs.	*Florida International	W	31	17
 11/7	Sat	@	*Western Kentucky	L	19	35
 11/14	Sat	vs.	*Middle Tennessee State	L	17	24
-11/21	Sat	@	Florida			
-11/28	Sat	@	*Old Dominion			
+11/21	Sat	@	Florida	L	14	20
+11/28	Sat	@	*Old Dominion	W	33	31
  	
+3-9
 
-2-8
-	 	223	294
+ 	270	345
  
-
 Florida International (CUSA)
+
 9/3	Thu	@	Central Florida	W	15	14
 9/12	Sat	@	Indiana	L	22	36
 9/19	Sat	vs.	North Carolina Central	W	39	14
@@ -600,14 +606,14 @@ Florida International (CUSA)
 10/31	Sat	@	*Florida Atlantic	L	17	31
 11/7	Sat	vs.	*Charlotte	W	48	31
 11/14	Sat	@	*Marshall	L	0	52
-11/21	Sat	vs.	*Western Kentucky			
+11/21	Sat	vs.	*Western Kentucky	L	7	63
  	
+5-7
 
-5-6
-	 	299	295
+ 	306	358
  
-
 Florida State (ACC)
+
 9/5	Sat	vs.	Texas State	W	59	16
 9/12	Sat	vs.	South Florida	W	34	14
 9/18	Fri	@	*Boston College	W	14	0
@@ -618,15 +624,15 @@ Florida State (ACC)
 10/31	Sat	vs.	*Syracuse	W	45	21
 11/7	Sat	@	*Clemson	L	13	23
 11/14	Sat	vs.	*North Carolina State	W	34	17
-11/21	Sat	vs.	Tennessee-Chattanooga			
-11/28	Sat	@	Florida			
+11/21	Sat	vs.	Tennessee-Chattanooga	W	52	13
+11/28	Sat	@	Florida	W	27	2
  	
+10-2
 
-8-2
-	 	309	174
+ 	388	189
  
-
 Fresno State (MWC)
+
 9/3	Thu	vs.	Abilene Christian	W	34	13
 9/12	Sat	@	Mississippi	L	21	73
 9/19	Sat	vs.	Utah	L	24	45
@@ -637,15 +643,15 @@ Fresno State (MWC)
 10/24	Sat	@	*Air Force	L	14	42
 11/5	Thu	vs.	*Nevada	L	16	30
 11/14	Sat	@	*Hawaii	W	42	14
-11/21	Sat	@	Brigham Young			
-11/28	Sat	vs.	*Colorado State			
+11/21	Sat	@	Brigham Young	L	10	52
+11/28	Sat	vs.	*Colorado State	L	31	34
  	
+3-9
 
-3-7
-	 	226	371
+ 	267	457
  
-
 Georgia (SEC)
+
 9/5	Sat	vs.	Louisiana-Monroe	W	51	14
 9/12	Sat	@	*Vanderbilt	W	31	14
 9/19	Sat	vs.	*South Carolina	W	52	20
@@ -656,15 +662,15 @@ Georgia (SEC)
 10/31	Sat	vs.	*Florida	L	3	27	@ Jacksonville, FL
 11/7	Sat	vs.	*Kentucky	W	27	3
 11/14	Sat	@	*Auburn	W	20	13
-11/21	Sat	vs.	Georgia Southern			
-11/28	Sat	@	Georgia Tech			
+11/21	Sat	vs.	Georgia Southern	W	23	17
+11/28	Sat	@	Georgia Tech	W	13	7
  	
+9-3
 
-7-3
-	 	282	179
+ 	318	203
  
-
 Georgia Southern (Sun Belt)
+
 9/5	Sat	@	West Virginia	L	0	44
 9/12	Sat	vs.	Western Michigan	W	43	17
 9/19	Sat	vs.	Citadel	W	48	13
@@ -674,16 +680,16 @@ Georgia Southern (Sun Belt)
 10/22	Thu	@	*Appalachian State	L	13	31
 10/29	Thu	vs.	*Texas State	W	37	13
 11/14	Sat	@	*Troy	W	45	10
-11/21	Sat	@	Georgia			
-11/28	Sat	vs.	*South Alabama			
-12/5	Sat	vs.	*Georgia State			
+11/21	Sat	@	Georgia	L	17	23
+11/28	Sat	vs.	*South Alabama	W	55	17
+12/5	Sat	vs.	*Georgia State	L	7	34
  	
+8-4
 
-7-2
-	 	337	205
+ 	416	279
  
-
 Georgia State (Sun Belt)
+
 9/4	Fri	vs.	Charlotte	L	20	23
 9/12	Sat	@	*New Mexico State	W	34	32
 9/19	Sat	@	Oregon	L	28	61
@@ -693,16 +699,16 @@ Georgia State (Sun Belt)
 10/31	Sat	@	*Arkansas State	L	34	48
 11/7	Sat	vs.	*Louisiana-Lafayette	L	21	23
 11/14	Sat	@	*Texas State	W	41	19
-11/21	Sat	vs.	*South Alabama			
-11/28	Sat	vs.	*Troy			
-12/5	Sat	@	*Georgia Southern			
+11/21	Sat	vs.	*South Alabama	W	24	10
+11/27	Fri	vs.	*Troy	W	31	21
+12/5	Sat	@	*Georgia Southern	W	34	7
  	
+6-6
 
-3-6
-	 	245	303
+ 	334	341
  
-
 Georgia Tech (ACC)
+
 9/3	Thu	vs.	Alcorn State	W	69	6
 9/12	Sat	vs.	Tulane	W	65	10
 9/19	Sat	@	Notre Dame	L	22	30
@@ -713,15 +719,15 @@ Georgia Tech (ACC)
 10/24	Sat	vs.	*Florida State	W	22	16
 10/31	Sat	@	*Virginia	L	21	27
 11/12	Thu	vs.	*Virginia Tech	L	21	23
-11/21	Sat	@	*Miami (Florida)			
-11/28	Sat	vs.	Georgia			
+11/21	Sat	@	*Miami (Florida)	L	21	38
+11/28	Sat	vs.	Georgia	L	7	13
  	
+3-9
 
-3-7
-	 	323	258
+ 	351	309
  
-
 Hawaii (MWC)
+
 9/3	Thu	vs.	Colorado	W	28	20
 9/12	Sat	@	Ohio State	L	0	38
 9/19	Sat	vs.	California-Davis	W	47	27
@@ -733,15 +739,15 @@ Hawaii (MWC)
 10/31	Sat	vs.	*Air Force	L	7	58
 11/7	Sat	@	*Nevada-Las Vegas	L	21	41
 11/14	Sat	vs.	*Fresno State	L	14	42
-11/21	Sat	vs.	*San Jose State			
-11/28	Sat	vs.	Louisiana-Monroe			
+11/21	Sat	vs.	*San Jose State	L	23	42
+11/28	Sat	vs.	Louisiana-Monroe	W	28	26
  	
+3-10
 
-2-9
-	 	178	395
+ 	229	463
  
-
 Houston (American)
+
 9/5	Sat	vs.	Tennessee Tech	W	52	24
 9/12	Sat	@	Louisville	W	34	31
 9/26	Sat	vs.	Texas State	W	59	14
@@ -752,15 +758,16 @@ Houston (American)
 10/31	Sat	vs.	Vanderbilt	W	34	0
 11/7	Sat	vs.	*Cincinnati	W	33	30
 11/14	Sat	vs.	*Memphis	W	35	34
-11/21	Sat	@	*Connecticut			
-11/27	Fri	vs.	*Navy			
+11/21	Sat	@	*Connecticut	L	17	20
+11/27	Fri	vs.	*Navy	W	52	31
+12/5	Sat	vs.	*Temple	W	24	13	@ Houston, TX	American Conference Championship
  	
+12-1
 
-10-0
-	 	435	202
+ 	528	266
  
-
 Idaho (Sun Belt)
+
 9/3	Thu	vs.	Ohio	L	28	45
 9/12	Sat	@	Southern California	L	9	59
 9/19	Sat	vs.	Wofford	W	41	38
@@ -771,15 +778,15 @@ Idaho (Sun Belt)
 10/31	Sat	@	*New Mexico State	L	48	55
 11/7	Sat	@	*South Alabama	L	45	52
 11/14	Sat	vs.	*Appalachian State	L	20	47
-11/21	Sat	@	Auburn			
-11/28	Sat	vs.	*Texas State			
+11/21	Sat	@	Auburn	L	34	56
+11/28	Sat	vs.	*Texas State	W	38	31
  	
+4-8
 
-3-7
-	 	292	418
+ 	364	505
  
-
 Illinois (Big Ten)
+
 9/5	Sat	vs.	Kent	W	52	3
 9/12	Sat	vs.	Western Illinois	W	44	0
 9/19	Sat	@	North Carolina	L	14	48
@@ -790,15 +797,15 @@ Illinois (Big Ten)
 10/31	Sat	@	*Penn State	L	0	39
 11/7	Sat	@	*Purdue	W	48	14
 11/14	Sat	vs.	*Ohio State	L	3	28
-11/21	Sat	@	*Minnesota			
-11/28	Sat	vs.	*Northwestern			
+11/21	Sat	@	*Minnesota	L	23	32
+11/28	Sat	vs.	*Northwestern	L	14	24
  	
+5-7
 
-5-5
-	 	235	223
+ 	272	279
  
-
 Indiana (Big Ten)
+
 9/5	Sat	vs.	Southern Illinois	W	48	47
 9/12	Sat	vs.	Florida International	W	36	22
 9/19	Sat	vs.	Western Kentucky	W	38	35
@@ -809,15 +816,15 @@ Indiana (Big Ten)
 10/24	Sat	@	*Michigan State	L	26	52
 11/7	Sat	vs.	*Iowa	L	27	35
 11/14	Sat	vs.	*Michigan	L	41	48
-11/21	Sat	@	*Maryland			
-11/28	Sat	@	*Purdue			
+11/21	Sat	@	*Maryland	W	47	28
+11/28	Sat	@	*Purdue	W	54	36
  	
+6-6
 
-4-6
-	 	333	381
+ 	434	445
  
-
 Iowa (Big Ten)
+
 9/5	Sat	vs.	Illinois State	W	31	14
 9/12	Sat	@	Iowa State	W	31	17
 9/19	Sat	vs.	Pittsburgh	W	27	24
@@ -828,15 +835,16 @@ Iowa (Big Ten)
 10/31	Sat	vs.	*Maryland	W	31	15
 11/7	Sat	@	*Indiana	W	35	27
 11/14	Sat	vs.	*Minnesota	W	40	35
-11/21	Sat	vs.	*Purdue			
-11/27	Fri	@	*Nebraska			
+11/21	Sat	vs.	*Purdue	W	40	20
+11/27	Fri	@	*Nebraska	W	28	20
+12/5	Sat	vs.	*Michigan State	L	13	16	@ Indianapolis, IN	Big Ten Championship
  	
+12-1
 
-10-0
-	 	336	184
+ 	417	240
  
-
 Iowa State (Big 12)
+
 9/5	Sat	vs.	Northern Iowa	W	31	7
 9/12	Sat	vs.	Iowa	L	17	31
 9/19	Sat	@	Toledo	L	23	30
@@ -847,15 +855,15 @@ Iowa State (Big 12)
 10/31	Sat	vs.	*Texas	W	24	0
 11/7	Sat	@	*Oklahoma	L	16	52
 11/14	Sat	vs.	*Oklahoma State	L	31	35
-11/21	Sat	@	*Kansas State			
-11/28	Sat	@	*West Virginia			
+11/21	Sat	@	*Kansas State	L	35	38
+11/28	Sat	@	*West Virginia	L	6	30
  	
+3-9
 
-3-7
-	 	259	324
+ 	300	392
  
-
 Kansas (Big 12)
+
 9/5	Sat	vs.	South Dakota State	L	38	41
 9/12	Sat	vs.	Memphis	L	23	55
 9/26	Sat	@	Rutgers	L	14	27
@@ -866,15 +874,15 @@ Kansas (Big 12)
 10/31	Sat	vs.	*Oklahoma	L	7	62
 11/7	Sat	@	*Texas	L	20	59
 11/14	Sat	@	*Texas Christian	L	17	23
-11/21	Sat	vs.	*West Virginia			
-11/28	Sat	vs.	*Kansas State			
+11/21	Sat	vs.	*West Virginia	L	0	49
+11/28	Sat	vs.	*Kansas State	L	14	45
  	
+0-12
 
-0-10
-	 	169	459
+ 	183	553
  
-
 Kansas State (Big 12)
+
 9/5	Sat	vs.	South Dakota	W	34	0
 9/12	Sat	@	Texas-San Antonio	W	30	3
 9/19	Sat	vs.	Louisiana Tech	W	39	33
@@ -884,16 +892,16 @@ Kansas State (Big 12)
 10/24	Sat	@	*Texas	L	9	23
 11/5	Thu	vs.	*Baylor	L	24	31
 11/14	Sat	@	*Texas Tech	L	44	59
-11/21	Sat	vs.	*Iowa State			
-11/28	Sat	@	*Kansas			
-12/5	Sat	vs.	*West Virginia			
+11/21	Sat	vs.	*Iowa State	W	38	35
+11/28	Sat	@	*Kansas	W	45	14
+12/5	Sat	vs.	*West Virginia	W	24	23
  	
+6-6
 
-3-6
-	 	259	292
+ 	366	364
  
-
 Kent (MAC)
+
 9/5	Sat	@	Illinois	L	3	52
 9/12	Sat	vs.	Delaware State	W	45	13
 9/19	Sat	@	Minnesota	L	7	10
@@ -904,15 +912,15 @@ Kent (MAC)
 10/24	Sat	vs.	*Bowling Green State	L	0	48
 11/5	Thu	vs.	*Buffalo	L	17	18
 11/10	Tue	@	*Ohio	L	0	27
-11/18	Wed	vs.	*Central Michigan			
-11/27	Fri	@	*Akron			
+11/18	Wed	vs.	*Central Michigan	L	14	27
+11/27	Fri	@	*Akron	L	0	20
  	
+3-9
 
-3-7
-	 	143	266
+ 	157	313
  
-
 Kentucky (SEC)
+
 9/5	Sat	vs.	Louisiana-Lafayette	W	40	33
 9/12	Sat	@	*South Carolina	W	26	22
 9/19	Sat	vs.	*Florida	L	9	14
@@ -923,15 +931,15 @@ Kentucky (SEC)
 10/31	Sat	vs.	*Tennessee	L	21	52
 11/7	Sat	@	*Georgia	L	3	27
 11/14	Sat	@	*Vanderbilt	L	17	21
-11/21	Sat	vs.	Charlotte			
-11/28	Sat	vs.	Louisville			
+11/21	Sat	vs.	Charlotte	W	58	10
+11/28	Sat	vs.	Louisville	L	24	38
  	
+5-7
 
-4-6
-	 	214	281
+ 	296	329
  
-
 Louisiana State (SEC)
+
 9/12	Sat	@	*Mississippi State	W	21	19
 9/19	Sat	vs.	*Auburn	W	45	21
 9/26	Sat	@	Syracuse	W	34	24
@@ -941,15 +949,15 @@ Louisiana State (SEC)
 10/24	Sat	vs.	Western Kentucky	W	48	20
 11/7	Sat	@	*Alabama	L	16	30
 11/14	Sat	vs.	*Arkansas	L	14	31
-11/21	Sat	@	*Mississippi			
-11/28	Sat	vs.	*Texas A&M			
+11/21	Sat	@	*Mississippi	L	17	38
+11/28	Sat	vs.	*Texas A&M	W	19	7
  	
+8-3
 
-7-2
-	 	302	219
+ 	338	264
  
-
 Louisiana Tech (CUSA)
+
 9/5	Sat	vs.	Southern	W	62	15
 9/10	Thu	@	*Western Kentucky	L	38	41
 9/19	Sat	@	Kansas State	L	33	39
@@ -960,15 +968,15 @@ Louisiana Tech (CUSA)
 10/24	Sat	vs.	*Middle Tennessee State	W	45	16
 10/30	Fri	@	*Rice	W	42	17
 11/7	Sat	vs.	*North Texas	W	56	13
-11/21	Sat	@	*Texas-El Paso			
-11/28	Sat	vs.	*Southern Mississippi			
+11/21	Sat	@	*Texas-El Paso	W	17	15
+11/28	Sat	vs.	*Southern Mississippi	L	24	58
  	
+8-4
 
-7-3
-	 	400	248
+ 	441	321
  
-
 Louisiana-Lafayette (Sun Belt)
+
 9/5	Sat	@	Kentucky	L	33	40
 9/12	Sat	vs.	Northwestern State	W	44	17
 9/26	Sat	vs.	Akron	L	14	35
@@ -978,16 +986,16 @@ Louisiana-Lafayette (Sun Belt)
 10/31	Sat	vs.	*Louisiana-Monroe	W	30	24
 11/7	Sat	@	*Georgia State	W	23	21
 11/12	Thu	@	*South Alabama	L	25	32
-11/21	Sat	vs.	*New Mexico State			
-11/28	Sat	@	*Appalachian State			
-12/5	Sat	vs.	*Troy			
+11/21	Sat	vs.	*New Mexico State	L	34	37
+11/28	Sat	@	*Appalachian State	L	7	28
+12/5	Sat	vs.	*Troy	L	17	41
  	
+4-8
 
-4-5
-	 	259	276
+ 	317	382
  
-
 Louisiana-Monroe (Sun Belt)
+
 9/5	Sat	@	Georgia	L	14	51
 9/12	Sat	vs.	Nicholls State	W	47	0
 9/26	Sat	@	Alabama	L	0	34
@@ -998,16 +1006,16 @@ Louisiana-Monroe (Sun Belt)
 10/31	Sat	@	*Louisiana-Lafayette	L	24	30
 11/7	Sat	@	*Troy	L	14	51
 11/14	Sat	vs.	*Arkansas State	L	21	59
-11/19	Thu	@	*Texas State			
-11/28	Sat	@	Hawaii			
-12/5	Sat	vs.	*New Mexico State			
+11/19	Thu	@	*Texas State	L	3	16
+11/28	Sat	@	Hawaii	L	26	28
+12/5	Sat	vs.	*New Mexico State	W	42	35
  	
+2-11
 
-1-9
-	 	202	396
+ 	273	475
  
-
 Louisville (ACC)
+
 9/5	Sat	vs.	Auburn	L	24	31	@ Atlanta, GA
 9/12	Sat	vs.	Houston	L	31	34
 9/17	Thu	vs.	*Clemson	L	17	20
@@ -1018,15 +1026,15 @@ Louisville (ACC)
 10/30	Fri	@	*Wake Forest	W	20	19
 11/7	Sat	vs.	*Syracuse	W	41	17
 11/14	Sat	vs.	*Virginia	W	38	31
-11/21	Sat	@	*Pittsburgh			
-11/28	Sat	@	Kentucky			
+11/21	Sat	@	*Pittsburgh	L	34	45
+11/28	Sat	@	Kentucky	W	38	24
  	
+7-5
 
-6-4
-	 	274	223
+ 	346	292
  
-
 Marshall (CUSA)
+
 9/6	Sun	vs.	Purdue	W	41	31
 9/12	Sat	@	Ohio	L	10	21
 9/19	Sat	vs.	Norfolk State	W	45	7
@@ -1038,14 +1046,14 @@ Marshall (CUSA)
 10/31	Sat	@	*Charlotte	W	34	10
 11/7	Sat	@	*Middle Tennessee State	L	24	27
 11/14	Sat	vs.	*Florida International	W	52	0
-11/28	Sat	@	*Western Kentucky			
+11/27	Fri	@	*Western Kentucky	L	28	49
  	
+9-3
 
-9-2
-	 	363	172
+ 	391	221
  
-
 Maryland (Big Ten)
+
 9/5	Sat	vs.	Richmond	W	50	21
 9/12	Sat	vs.	Bowling Green State	L	27	48
 9/19	Sat	vs.	South Florida	W	35	17
@@ -1056,15 +1064,15 @@ Maryland (Big Ten)
 10/31	Sat	@	*Iowa	L	15	31
 11/7	Sat	vs.	*Wisconsin	L	24	31
 11/14	Sat	@	*Michigan State	L	7	24
-11/21	Sat	vs.	*Indiana			
-11/28	Sat	@	*Rutgers			
+11/21	Sat	vs.	*Indiana	L	28	47
+11/28	Sat	@	*Rutgers	W	46	41
  	
+3-9
 
-2-8
-	 	222	325
+ 	296	413
  
-
 Massachusetts (MAC)
+
 9/12	Sat	@	Colorado	L	14	48
 9/19	Sat	vs.	Temple	L	23	25
 9/26	Sat	@	Notre Dame	L	27	62
@@ -1075,15 +1083,15 @@ Massachusetts (MAC)
 10/31	Sat	@	*Ball State	L	10	20
 11/7	Sat	vs.	*Akron	L	13	17
 11/14	Sat	@	*Eastern Michigan	W	28	17
-11/21	Sat	vs.	*Miami (Ohio)			
-11/27	Fri	@	*Buffalo			
+11/21	Sat	vs.	*Miami (Ohio)	L	13	20
+11/27	Fri	@	*Buffalo	W	31	26
  	
+3-9
 
-2-8
-	 	222	331
+ 	266	377
  
-
 Memphis (American)
+
 9/5	Sat	vs.	Missouri State	W	63	7
 9/12	Sat	@	Kansas	W	55	23
 9/19	Sat	@	Bowling Green State	W	44	41
@@ -1094,15 +1102,15 @@ Memphis (American)
 10/31	Sat	vs.	*Tulane	W	41	13
 11/7	Sat	vs.	*Navy	L	20	45
 11/14	Sat	@	*Houston	L	34	35
-11/21	Sat	@	*Temple			
-11/28	Sat	vs.	*Southern Methodist			
+11/21	Sat	@	*Temple	L	12	31
+11/28	Sat	vs.	*Southern Methodist	W	63	0
  	
+9-3
 
-8-2
-	 	437	293
+ 	512	324
  
-
 Miami (Florida) (ACC)
+
 9/5	Sat	vs.	Bethune-Cookman	W	45	0
 9/11	Fri	@	Florida Atlantic	W	44	20
 9/19	Sat	vs.	Nebraska	W	36	33
@@ -1113,15 +1121,15 @@ Miami (Florida) (ACC)
 10/31	Sat	@	*Duke	W	30	27
 11/7	Sat	vs.	*Virginia	W	27	21
 11/14	Sat	@	*North Carolina	L	21	59
-11/21	Sat	vs.	*Georgia Tech			
-11/27	Fri	@	*Pittsburgh			
+11/21	Sat	vs.	*Georgia Tech	W	38	21
+11/27	Fri	@	*Pittsburgh	W	29	24
  	
+8-4
 
-6-4
-	 	280	301
+ 	347	346
  
-
 Miami (Ohio) (MAC)
+
 9/5	Sat	vs.	Presbyterian	W	26	7
 9/12	Sat	@	Wisconsin	L	0	58
 9/19	Sat	vs.	Cincinnati	L	33	37
@@ -1133,14 +1141,14 @@ Miami (Ohio) (MAC)
 10/29	Thu	vs.	*Buffalo	L	24	29
 11/7	Sat	vs.	*Eastern Michigan	W	28	13
 11/14	Sat	vs.	*Akron	L	28	37
-11/21	Sat	@	*Massachusetts			
+11/21	Sat	@	*Massachusetts	W	20	13
  	
+3-9
 
-2-9
-	 	195	371
+ 	215	384
  
-
 Michigan (Big Ten)
+
 9/3	Thu	@	Utah	L	17	24
 9/12	Sat	vs.	Oregon State	W	35	7
 9/19	Sat	vs.	Nevada-Las Vegas	W	28	7
@@ -1151,15 +1159,15 @@ Michigan (Big Ten)
 10/31	Sat	@	*Minnesota	W	29	26
 11/7	Sat	vs.	*Rutgers	W	49	16
 11/14	Sat	@	*Indiana	W	48	41
-11/21	Sat	@	*Penn State			
-11/28	Sat	vs.	*Ohio State			
+11/21	Sat	@	*Penn State	W	28	16
+11/28	Sat	vs.	*Ohio State	L	13	42
  	
+9-3
 
-8-2
-	 	326	148
+ 	367	206
  
-
 Michigan State (Big Ten)
+
 9/4	Fri	@	Western Michigan	W	37	24
 9/12	Sat	vs.	Oregon	W	31	28
 9/19	Sat	vs.	Air Force	W	35	21
@@ -1170,15 +1178,16 @@ Michigan State (Big Ten)
 10/24	Sat	vs.	*Indiana	W	52	26
 11/7	Sat	@	*Nebraska	L	38	39
 11/14	Sat	vs.	*Maryland	W	24	7
-11/21	Sat	@	*Ohio State			
-11/28	Sat	vs.	*Penn State			
+11/21	Sat	@	*Ohio State	W	17	14
+11/28	Sat	vs.	*Penn State	W	55	16
+12/5	Sat	vs.	*Iowa	W	16	13	@ Indianapolis, IN	Big Ten Championship
  	
+12-1
 
-9-1
-	 	329	223
+ 	417	266
  
-
 Middle Tennessee State (CUSA)
+
 9/5	Sat	vs.	Jackson State	W	70	14
 9/12	Sat	@	Alabama	L	10	37
 9/19	Sat	vs.	*Charlotte	W	73	14
@@ -1189,15 +1198,16 @@ Middle Tennessee State (CUSA)
 10/24	Sat	@	*Louisiana Tech	L	16	45
 11/7	Sat	vs.	*Marshall	W	27	24
 11/14	Sat	@	*Florida Atlantic	W	24	17
-11/21	Sat	vs.	*North Texas			
-11/28	Sat	@	*Texas-San Antonio			
+11/21	Sat	vs.	*North Texas	W	41	7
+11/28	Sat	@	*Texas-San Antonio	W	42	7
+12/24	Thu	vs.	Western Michigan				@ Nassau, Bahamas	Bahamas Bowl
  	
+7-5
 
-5-5
-	 	328	287
+ 	411	301
  
-
 Minnesota (Big Ten)
+
 9/3	Thu	vs.	Texas Christian	L	17	23
 9/12	Sat	@	Colorado State	W	23	20
 9/19	Sat	vs.	Kent	W	10	7
@@ -1208,15 +1218,15 @@ Minnesota (Big Ten)
 10/31	Sat	vs.	*Michigan	L	26	29
 11/7	Sat	@	*Ohio State	L	14	28
 11/14	Sat	@	*Iowa	L	35	40
-11/21	Sat	vs.	*Illinois			
-11/28	Sat	vs.	*Wisconsin			
+11/21	Sat	vs.	*Illinois	W	32	23
+11/28	Sat	vs.	*Wisconsin	L	21	31
  	
+5-7
 
-4-6
-	 	218	259
+ 	271	313
  
-
 Mississippi (SEC)
+
 9/5	Sat	vs.	Tennessee-Martin	W	76	3
 9/12	Sat	vs.	Fresno State	W	73	21
 9/19	Sat	@	*Alabama	W	43	37
@@ -1227,15 +1237,15 @@ Mississippi (SEC)
 10/24	Sat	vs.	*Texas A&M	W	23	3
 10/31	Sat	@	*Auburn	W	27	19
 11/7	Sat	vs.	*Arkansas	L	52	53
-11/21	Sat	vs.	*Louisiana State			
-11/28	Sat	@	*Mississippi State			
+11/21	Sat	vs.	*Louisiana State	W	38	17
+11/28	Sat	@	*Mississippi State	W	38	27
  	
+9-3
 
-7-3
-	 	407	230
+ 	483	274
  
-
 Mississippi State (SEC)
+
 9/5	Sat	@	Southern Mississippi	W	34	16
 9/12	Sat	vs.	*Louisiana State	L	19	21
 9/19	Sat	vs.	Northwestern State	W	62	13
@@ -1246,15 +1256,15 @@ Mississippi State (SEC)
 10/24	Sat	vs.	*Kentucky	W	42	16
 11/5	Thu	@	*Missouri	W	31	13
 11/14	Sat	vs.	*Alabama	L	6	31
-11/21	Sat	@	*Arkansas			
-11/28	Sat	vs.	*Mississippi			
+11/21	Sat	@	*Arkansas	W	51	50
+11/28	Sat	vs.	*Mississippi	L	27	38
  	
+8-4
 
-7-3
-	 	318	186
+ 	396	274
  
-
 Missouri (SEC)
+
 9/5	Sat	vs.	Southeast Missouri State	W	34	3
 9/12	Sat	@	Arkansas State	W	27	20
 9/19	Sat	vs.	Connecticut	W	9	6
@@ -1265,15 +1275,15 @@ Missouri (SEC)
 10/24	Sat	@	*Vanderbilt	L	3	10
 11/5	Thu	vs.	*Mississippi State	L	13	31
 11/14	Sat	vs.	Brigham Young	W	20	16	@ Kansas City, MO
-11/21	Sat	vs.	*Tennessee			
-11/28	Sat	@	*Arkansas			
+11/21	Sat	vs.	*Tennessee	L	8	19
+11/27	Fri	@	*Arkansas	L	3	28
  	
+5-7
 
-5-5
-	 	152	147
+ 	163	194
  
-
 Navy (American)
+
 9/5	Sat	vs.	Colgate	W	48	10
 9/19	Sat	vs.	*East Carolina	W	45	21
 9/26	Sat	@	*Connecticut	W	28	18
@@ -1283,16 +1293,16 @@ Navy (American)
 10/31	Sat	vs.	*South Florida	W	29	17
 11/7	Sat	@	*Memphis	W	45	20
 11/14	Sat	vs.	*Southern Methodist	W	55	14
-11/21	Sat	@	*Tulsa			
-11/27	Fri	@	*Houston			
+11/21	Sat	@	*Tulsa	W	44	21
+11/27	Fri	@	*Houston	L	31	52
 12/12	Sat	vs.	Army				@ Philadelphia, PA
  	
+9-2
 
-8-1
-	 	338	166
+ 	413	239
  
-
 Nebraska (Big Ten)
+
 9/5	Sat	vs.	Brigham Young	L	28	33
 9/12	Sat	vs.	South Alabama	W	48	9
 9/19	Sat	@	Miami (Florida)	L	33	36
@@ -1304,14 +1314,14 @@ Nebraska (Big Ten)
 10/31	Sat	@	*Purdue	L	45	55
 11/7	Sat	vs.	*Michigan State	W	39	38
 11/14	Sat	@	*Rutgers	W	31	14
-11/27	Fri	vs.	*Iowa			
+11/27	Fri	vs.	*Iowa	L	20	28
  	
+5-7
 
-5-6
-	 	370	305
+ 	390	333
  
-
 Nevada (MWC)
+
 9/3	Thu	vs.	California-Davis	W	31	17
 9/12	Sat	vs.	Arizona	L	20	44
 9/19	Sat	@	Texas A&M	L	27	44
@@ -1322,15 +1332,15 @@ Nevada (MWC)
 10/24	Sat	vs.	*Hawaii	W	30	20
 11/5	Thu	@	*Fresno State	W	30	16
 11/14	Sat	vs.	*San Jose State	W	37	34
-11/21	Sat	@	*Utah State			
-11/28	Sat	@	*San Diego State			
+11/21	Sat	@	*Utah State	L	27	31
+11/28	Sat	@	*San Diego State	L	14	31
  	
+6-6
 
-6-4
-	 	272	264
+ 	313	326
  
-
 Nevada-Las Vegas (MWC)
+
 9/5	Sat	@	Northern Illinois	L	30	38
 9/12	Sat	vs.	UCLA	L	3	37
 9/19	Sat	@	Michigan	L	7	28
@@ -1341,15 +1351,15 @@ Nevada-Las Vegas (MWC)
 10/31	Sat	vs.	*Boise State	L	27	55
 11/7	Sat	vs.	*Hawaii	W	41	21
 11/14	Sat	@	*Colorado State	L	35	49
-11/21	Sat	vs.	*San Diego State			
-11/28	Sat	@	*Wyoming			
+11/21	Sat	vs.	*San Diego State	L	14	52
+11/28	Sat	@	*Wyoming	L	28	35
  	
+3-9
 
-3-7
-	 	301	317
+ 	343	404
  
-
 New Mexico (MWC)
+
 9/5	Sat	vs.	Mississippi Valley State	W	66	0
 9/12	Sat	vs.	Tulsa	L	21	40
 9/18	Fri	@	Arizona State	L	10	34
@@ -1360,15 +1370,15 @@ New Mexico (MWC)
 10/24	Sat	@	*San Jose State	L	21	31
 11/7	Sat	vs.	*Utah State	W	14	13
 11/14	Sat	@	*Boise State	W	31	24
-11/21	Sat	vs.	*Colorado State			
-11/28	Sat	vs.	*Air Force			
+11/21	Sat	vs.	*Colorado State	L	21	28
+11/28	Sat	vs.	*Air Force	W	47	35
  	
+7-5
 
-6-4
-	 	284	261
+ 	352	324
  
-
 New Mexico State (Sun Belt)
+
 9/5	Sat	@	Florida	L	13	61
 9/12	Sat	vs.	*Georgia State	L	32	34
 9/19	Sat	vs.	Texas-El Paso	L	47	50
@@ -1378,16 +1388,16 @@ New Mexico State (Sun Belt)
 10/24	Sat	vs.	*Troy	L	7	52
 10/31	Sat	vs.	*Idaho	W	55	48
 11/7	Sat	@	*Texas State	W	31	21
-11/21	Sat	@	*Louisiana-Lafayette			
-11/28	Sat	vs.	*Arkansas State			
-12/5	Sat	@	*Louisiana-Monroe			
+11/21	Sat	@	*Louisiana-Lafayette	W	37	34
+11/28	Sat	vs.	*Arkansas State	L	28	52
+12/5	Sat	@	*Louisiana-Monroe	L	35	42
  	
+3-9
 
-2-7
-	 	243	412
+ 	343	540
  
-
 North Carolina (ACC)
+
 9/3	Thu	vs.	South Carolina	L	13	17	@ Charlotte, NC
 9/12	Sat	vs.	North Carolina A&T	W	53	14
 9/19	Sat	vs.	Illinois	W	48	14
@@ -1398,15 +1408,16 @@ North Carolina (ACC)
 10/29	Thu	@	*Pittsburgh	W	26	19
 11/7	Sat	vs.	*Duke	W	66	31
 11/14	Sat	vs.	*Miami (Florida)	W	59	21
-11/21	Sat	@	*Virginia Tech			
-11/28	Sat	@	*North Carolina State			
+11/21	Sat	@	*Virginia Tech	W	30	27
+11/28	Sat	@	*North Carolina State	W	45	34
+12/5	Sat	vs.	*Clemson	L	37	45	@ Charlotte, NC	ACC Championship
  	
+11-2
 
-9-1
-	 	420	188
+ 	532	294
  
-
 North Carolina State (ACC)
+
 9/5	Sat	vs.	Troy	W	49	21
 9/12	Sat	vs.	Eastern Kentucky	W	35	0
 9/19	Sat	@	Old Dominion	W	38	14
@@ -1417,15 +1428,15 @@ North Carolina State (ACC)
 10/31	Sat	vs.	*Clemson	L	41	56
 11/7	Sat	@	*Boston College	W	24	8
 11/14	Sat	@	*Florida State	L	17	34
-11/21	Sat	vs.	*Syracuse			
-11/28	Sat	vs.	*North Carolina			
+11/21	Sat	vs.	*Syracuse	W	42	29
+11/28	Sat	vs.	*North Carolina	L	34	45
  	
+7-5
 
-6-4
-	 	328	211
+ 	404	285
  
-
 North Texas (CUSA)
+
 9/12	Sat	@	Southern Methodist	L	13	31
 9/19	Sat	vs.	*Rice	L	24	38
 9/26	Sat	@	Iowa	L	16	62
@@ -1436,15 +1447,15 @@ North Texas (CUSA)
 10/31	Sat	vs.	*Texas-San Antonio	W	30	23
 11/7	Sat	@	*Louisiana Tech	L	13	56
 11/14	Sat	@	Tennessee	L	0	24
-11/21	Sat	@	*Middle Tennessee State			
-11/28	Sat	vs.	*Texas-El Paso			
+11/21	Sat	@	*Middle Tennessee State	L	7	41
+11/28	Sat	vs.	*Texas-El Paso	L	17	20
  	
+1-11
 
-1-9
-	 	158	434
+ 	182	495
  
-
 Northern Illinois (MAC)
+
 9/5	Sat	vs.	Nevada-Las Vegas	W	38	30
 9/12	Sat	vs.	Murray State	W	57	26
 9/19	Sat	@	Ohio State	L	13	20
@@ -1455,15 +1466,16 @@ Northern Illinois (MAC)
 10/24	Sat	vs.	*Eastern Michigan	W	49	21
 11/3	Tue	@	*Toledo	W	32	27
 11/11	Wed	@	*Buffalo	W	41	30
-11/18	Wed	vs.	*Western Michigan			
-11/24	Tue	vs.	*Ohio			
+11/18	Wed	vs.	*Western Michigan	W	27	19
+11/24	Tue	vs.	*Ohio	L	21	26
+12/4	Fri	vs.	*Bowling Green State	L	14	34	@ Detroit, MI	MAC Championship
  	
+8-5
 
-7-3
-	 	367	253
+ 	429	332
  
-
 Northwestern (Big Ten)
+
 9/5	Sat	vs.	Stanford	W	16	6
 9/12	Sat	vs.	Eastern Illinois	W	41	0
 9/19	Sat	@	Duke	W	19	10
@@ -1474,15 +1486,15 @@ Northwestern (Big Ten)
 10/24	Sat	@	*Nebraska	W	30	28
 11/7	Sat	vs.	*Penn State	W	23	21
 11/14	Sat	vs.	*Purdue	W	21	14
-11/21	Sat	@	*Wisconsin			
-11/28	Sat	@	*Illinois			
+11/21	Sat	@	*Wisconsin	W	13	7
+11/28	Sat	@	*Illinois	W	24	14
  	
+10-2
 
-8-2
-	 	211	176
+ 	248	197
  
-
 Notre Dame (Independent)
+
 9/5	Sat	vs.	Texas	W	38	3
 9/12	Sat	@	Virginia	W	34	27
 9/19	Sat	vs.	Georgia Tech	W	30	22
@@ -1493,15 +1505,15 @@ Notre Dame (Independent)
 10/31	Sat	@	Temple	W	24	20
 11/7	Sat	@	Pittsburgh	W	42	30
 11/14	Sat	vs.	Wake Forest	W	28	7
-11/21	Sat	vs.	Boston College				@ Boston, MA
-11/28	Sat	@	Stanford			
+11/21	Sat	vs.	Boston College	W	19	16	@ Boston, MA
+11/28	Sat	@	Stanford	L	36	38
  	
+10-2
 
-9-1
-	 	362	215
+ 	417	269
  
-
 Ohio (MAC)
+
 9/3	Thu	@	Idaho	W	45	28
 9/12	Sat	vs.	Marshall	W	21	10
 9/19	Sat	vs.	Southeastern Louisiana	W	35	14
@@ -1512,15 +1524,15 @@ Ohio (MAC)
 10/24	Sat	@	*Buffalo	L	17	41
 11/4	Wed	@	*Bowling Green State	L	24	62
 11/10	Tue	vs.	*Kent	W	27	0
-11/17	Tue	vs.	*Ball State			
-11/24	Tue	@	*Northern Illinois			
+11/17	Tue	vs.	*Ball State	W	48	31
+11/24	Tue	@	*Northern Illinois	W	26	21
  	
+8-4
 
-6-4
-	 	255	246
+ 	329	298
  
-
 Ohio State (Big Ten)
+
 9/7	Mon	@	Virginia Tech	W	42	24
 9/12	Sat	vs.	Hawaii	W	38	0
 9/19	Sat	vs.	Northern Illinois	W	20	13
@@ -1531,15 +1543,15 @@ Ohio State (Big Ten)
 10/24	Sat	@	*Rutgers	W	49	7
 11/7	Sat	vs.	*Minnesota	W	28	14
 11/14	Sat	@	*Illinois	W	28	3
-11/21	Sat	vs.	*Michigan State			
-11/28	Sat	@	*Michigan			
+11/21	Sat	vs.	*Michigan State	L	14	17
+11/28	Sat	@	*Michigan	W	42	13
  	
+11-1
 
-10-0
-	 	364	138
+ 	420	168
  
-
 Oklahoma (Big 12)
+
 9/5	Sat	vs.	Akron	W	41	3
 9/12	Sat	@	Tennessee	W	31	24
 9/19	Sat	vs.	Tulsa	W	52	38
@@ -1550,15 +1562,15 @@ Oklahoma (Big 12)
 10/31	Sat	@	*Kansas	W	62	7
 11/7	Sat	vs.	*Iowa State	W	52	16
 11/14	Sat	@	*Baylor	W	44	34
-11/21	Sat	vs.	*Texas Christian			
-11/28	Sat	@	*Oklahoma State			
+11/21	Sat	vs.	*Texas Christian	W	30	29
+11/28	Sat	@	*Oklahoma State	W	58	23
  	
+11-1
 
-9-1
-	 	461	197
+ 	549	249
  
-
 Oklahoma State (Big 12)
+
 9/3	Thu	@	Central Michigan	W	24	13
 9/12	Sat	vs.	Central Arkansas	W	32	8
 9/19	Sat	vs.	Texas-San Antonio	W	69	14
@@ -1569,15 +1581,15 @@ Oklahoma State (Big 12)
 10/31	Sat	@	*Texas Tech	W	70	53
 11/7	Sat	vs.	*Texas Christian	W	49	29
 11/14	Sat	@	*Iowa State	W	35	31
-11/21	Sat	vs.	*Baylor			
-11/28	Sat	vs.	*Oklahoma			
+11/21	Sat	vs.	*Baylor	L	35	45
+11/28	Sat	vs.	*Oklahoma	L	23	58
  	
+10-2
 
-10-0
-	 	436	245
+ 	494	348
  
-
 Old Dominion (CUSA)
+
 9/5	Sat	@	Eastern Michigan	W	38	34
 9/12	Sat	vs.	Norfolk State	W	24	10
 9/19	Sat	vs.	North Carolina State	L	14	38
@@ -1588,15 +1600,15 @@ Old Dominion (CUSA)
 10/31	Sat	vs.	*Western Kentucky	L	30	55
 11/7	Sat	@	*Texas-San Antonio	W	36	31
 11/14	Sat	vs.	*Texas-El Paso	W	31	21
-11/21	Sat	@	*Southern Mississippi			
-11/28	Sat	vs.	*Florida Atlantic			
+11/21	Sat	@	*Southern Mississippi	L	31	56
+11/28	Sat	vs.	*Florida Atlantic	L	31	33
  	
+5-7
 
-5-5
-	 	229	340
+ 	291	429
  
-
 Oregon (Pac 12)
+
 9/5	Sat	vs.	Eastern Washington	W	61	42
 9/12	Sat	@	Michigan State	L	28	31
 9/19	Sat	vs.	Georgia State	W	61	28
@@ -1607,15 +1619,15 @@ Oregon (Pac 12)
 10/29	Thu	@	*Arizona State	W	61	55
 11/7	Sat	vs.	*California	W	44	28
 11/14	Sat	@	*Stanford	W	38	36
-11/21	Sat	vs.	*Southern California			
-11/27	Fri	vs.	*Oregon State			
+11/21	Sat	vs.	*Southern California	W	48	28
+11/27	Fri	vs.	*Oregon State	W	52	42
  	
+9-3
 
-7-3
-	 	418	371
+ 	518	441
  
-
 Oregon State (Pac 12)
+
 9/4	Fri	vs.	Weber State	W	26	7
 9/12	Sat	@	Michigan	L	7	35
 9/19	Sat	vs.	San Jose State	W	35	21
@@ -1626,15 +1638,15 @@ Oregon State (Pac 12)
 10/31	Sat	@	*Utah	L	12	27
 11/7	Sat	vs.	*UCLA	L	0	41
 11/14	Sat	@	*California	L	24	54
-11/21	Sat	vs.	*Washington			
-11/27	Fri	@	*Oregon			
+11/21	Sat	vs.	*Washington	L	7	52
+11/27	Fri	@	*Oregon	L	42	52
  	
+2-10
 
-2-8
-	 	179	340
+ 	228	444
  
-
 Penn State (Big Ten)
+
 9/5	Sat	@	Temple	L	10	27
 9/12	Sat	vs.	Buffalo	W	27	14
 9/19	Sat	vs.	*Rutgers	W	28	3
@@ -1645,15 +1657,15 @@ Penn State (Big Ten)
 10/24	Sat	vs.	*Maryland	W	31	30	@ Baltimore, MD
 10/31	Sat	vs.	*Illinois	W	39	0
 11/7	Sat	@	*Northwestern	L	21	23
-11/21	Sat	vs.	*Michigan			
-11/28	Sat	@	*Michigan State			
+11/21	Sat	vs.	*Michigan	L	16	28
+11/28	Sat	@	*Michigan State	L	16	55
  	
+7-5
 
-7-3
-	 	252	177
+ 	284	260
  
-
 Pittsburgh (ACC)
+
 9/5	Sat	vs.	Youngstown State	W	45	37
 9/12	Sat	@	Akron	W	24	7
 9/19	Sat	@	Iowa	L	24	27
@@ -1664,15 +1676,15 @@ Pittsburgh (ACC)
 10/29	Thu	vs.	*North Carolina	L	19	26
 11/7	Sat	vs.	Notre Dame	L	30	42
 11/14	Sat	@	*Duke	W	31	13
-11/21	Sat	vs.	*Louisville			
-11/27	Fri	vs.	*Miami (Florida)			
+11/21	Sat	vs.	*Louisville	W	45	34
+11/27	Fri	vs.	*Miami (Florida)	L	24	29
  	
+8-4
 
-7-3
-	 	270	232
+ 	339	295
  
-
 Purdue (Big Ten)
+
 9/6	Sun	@	Marshall	L	31	41
 9/12	Sat	vs.	Indiana State	W	38	14
 9/19	Sat	vs.	Virginia Tech	L	24	51
@@ -1683,15 +1695,15 @@ Purdue (Big Ten)
 10/31	Sat	vs.	*Nebraska	W	55	45
 11/7	Sat	vs.	*Illinois	L	14	48
 11/14	Sat	@	*Northwestern	L	14	21
-11/21	Sat	@	*Iowa			
-11/28	Sat	vs.	*Indiana			
+11/21	Sat	@	*Iowa	L	20	40
+11/28	Sat	vs.	*Indiana	L	36	54
  	
+2-10
 
-2-8
-	 	245	344
+ 	301	438
  
-
 Rice (CUSA)
+
 9/5	Sat	vs.	Wagner	W	56	16
 9/12	Sat	@	Texas	L	28	42
 9/19	Sat	@	*North Texas	W	38	24
@@ -1702,15 +1714,15 @@ Rice (CUSA)
 10/30	Fri	vs.	*Louisiana Tech	L	17	42
 11/6	Fri	@	*Texas-El Paso	L	21	24
 11/14	Sat	vs.	*Southern Mississippi	L	10	65
-11/21	Sat	@	*Texas-San Antonio			
-11/28	Sat	vs.	*Charlotte			
+11/21	Sat	@	*Texas-San Antonio	L	24	34
+11/28	Sat	vs.	*Charlotte	W	27	7
  	
+5-7
 
-4-6
-	 	262	389
+ 	313	430
  
-
 Rutgers (Big Ten)
+
 9/5	Sat	vs.	Norfolk State	W	63	13
 9/12	Sat	vs.	Washington State	L	34	37
 9/19	Sat	@	*Penn State	L	3	28
@@ -1721,15 +1733,15 @@ Rutgers (Big Ten)
 10/31	Sat	@	*Wisconsin	L	10	48
 11/7	Sat	@	*Michigan	L	16	49
 11/14	Sat	vs.	*Nebraska	L	14	31
-11/21	Sat	vs.	Army				@ Bronx, NY
-11/28	Sat	vs.	*Maryland			
+11/21	Sat	vs.	Army	W	31	21	@ Bronx, NY
+11/28	Sat	vs.	*Maryland	L	41	46
  	
+4-8
 
-3-7
-	 	253	352
+ 	325	419
  
-
 San Diego State (MWC)
+
 9/5	Sat	vs.	San Diego	W	37	3
 9/12	Sat	@	California	L	7	35
 9/19	Sat	vs.	South Alabama	L	27	34
@@ -1740,15 +1752,16 @@ San Diego State (MWC)
 10/23	Fri	vs.	*Utah State	W	48	14
 10/31	Sat	@	*Colorado State	W	41	17
 11/14	Sat	vs.	*Wyoming	W	38	3
-11/21	Sat	@	*Nevada-Las Vegas			
-11/28	Sat	vs.	*Nevada			
+11/21	Sat	@	*Nevada-Las Vegas	W	52	14
+11/28	Sat	vs.	*Nevada	W	31	14
+12/5	Sat	vs.	*Air Force	W	27	24	@ San Diego, CA	MWC Championship
  	
+10-3
 
-7-3
-	 	298	171
+ 	408	223
  
-
 San Jose State (MWC)
+
 9/3	Thu	vs.	New Hampshire	W	43	13
 9/12	Sat	@	*Air Force	L	16	37
 9/19	Sat	@	Oregon State	L	21	35
@@ -1759,15 +1772,15 @@ San Jose State (MWC)
 10/24	Sat	vs.	*New Mexico	W	31	21
 11/6	Fri	vs.	Brigham Young	L	16	17
 11/14	Sat	@	*Nevada	L	34	37
-11/21	Sat	@	*Hawaii			
-11/28	Sat	vs.	*Boise State			
+11/21	Sat	@	*Hawaii	W	42	23
+11/27	Fri	vs.	*Boise State	L	23	40
  	
+5-7
 
-4-6
-	 	271	275
+ 	336	338
  
-
 South Alabama (Sun Belt)
+
 9/5	Sat	vs.	Gardner-Webb	W	33	23
 9/12	Sat	@	Nebraska	L	9	48
 9/19	Sat	@	San Diego State	W	34	27
@@ -1777,16 +1790,16 @@ South Alabama (Sun Belt)
 10/24	Sat	@	*Texas State	L	18	36
 11/7	Sat	vs.	*Idaho	W	52	45
 11/12	Thu	vs.	*Louisiana-Lafayette	W	32	25
-11/21	Sat	@	*Georgia State			
-11/28	Sat	@	*Georgia Southern			
-12/5	Sat	vs.	*Appalachian State			
+11/21	Sat	@	*Georgia State	L	10	24
+11/28	Sat	@	*Georgia Southern	L	17	55
+12/5	Sat	vs.	*Appalachian State	L	27	34
  	
+5-7
 
-5-4
-	 	246	334
+ 	300	447
  
-
 South Carolina (SEC)
+
 9/3	Thu	vs.	North Carolina	W	17	13	@ Charlotte, NC
 9/12	Sat	vs.	*Kentucky	L	22	26
 9/19	Sat	@	*Georgia	L	20	52
@@ -1797,15 +1810,15 @@ South Carolina (SEC)
 10/31	Sat	@	*Texas A&M	L	28	35
 11/7	Sat	@	*Tennessee	L	24	27
 11/14	Sat	vs.	*Florida	L	14	24
-11/21	Sat	vs.	Citadel			
-11/28	Sat	vs.	Clemson			
+11/21	Sat	vs.	Citadel	L	22	23
+11/28	Sat	vs.	Clemson	L	32	37
  	
+3-9
 
-3-7
-	 	209	270
+ 	263	330
  
-
 South Florida (American)
+
 9/5	Sat	vs.	Florida A&M	W	51	3
 9/12	Sat	@	Florida State	L	14	34
 9/19	Sat	@	Maryland	L	17	35
@@ -1816,15 +1829,15 @@ South Florida (American)
 10/31	Sat	@	*Navy	L	17	29
 11/7	Sat	@	*East Carolina	W	22	17
 11/14	Sat	vs.	*Temple	W	44	23
-11/20	Fri	vs.	*Cincinnati			
-11/27	Fri	@	*Central Florida			
+11/20	Fri	vs.	*Cincinnati	W	65	27
+11/26	Thu	@	*Central Florida	W	44	3
  	
+8-4
 
-6-4
-	 	293	223
+ 	402	253
  
-
 Southern California (Pac 12)
+
 9/5	Sat	vs.	Arkansas State	W	55	6
 9/12	Sat	vs.	Idaho	W	59	9
 9/19	Sat	vs.	*Stanford	L	31	41
@@ -1835,15 +1848,16 @@ Southern California (Pac 12)
 10/31	Sat	@	*California	W	27	21
 11/7	Sat	vs.	*Arizona	W	38	30
 11/13	Fri	@	*Colorado	W	27	24
-11/21	Sat	@	*Oregon			
-11/28	Sat	vs.	*UCLA			
+11/21	Sat	@	*Oregon	L	28	48
+11/28	Sat	vs.	*UCLA	W	40	21
+12/5	Sat	vs.	*Stanford	L	22	41	@ Santa Clara, CA	Pac 12 Championship
  	
+8-5
 
-7-3
-	 	364	227
+ 	454	337
  
-
 Southern Methodist (American)
+
 9/4	Fri	vs.	Baylor	L	21	56
 9/12	Sat	vs.	North Texas	W	31	13
 9/19	Sat	@	Texas Christian	L	37	56
@@ -1854,15 +1868,15 @@ Southern Methodist (American)
 10/31	Sat	vs.	*Tulsa	L	31	40
 11/6	Fri	vs.	*Temple	L	40	60
 11/14	Sat	@	*Navy	L	14	55
-11/21	Sat	vs.	*Tulane			
-11/28	Sat	@	*Memphis			
+11/21	Sat	vs.	*Tulane	W	49	21
+11/28	Sat	@	*Memphis	L	0	63
  	
+2-10
 
-1-9
-	 	284	464
+ 	333	548
  
-
 Southern Mississippi (CUSA)
+
 9/5	Sat	vs.	Mississippi State	L	16	34
 9/12	Sat	vs.	Austin Peay	W	52	6
 9/19	Sat	@	Texas State	W	56	50
@@ -1873,15 +1887,16 @@ Southern Mississippi (CUSA)
 10/24	Sat	@	*Charlotte	W	44	10
 10/31	Sat	vs.	*Texas-El Paso	W	34	13
 11/14	Sat	@	*Rice	W	65	10
-11/21	Sat	vs.	*Old Dominion			
-11/28	Sat	@	*Louisiana Tech			
+11/21	Sat	vs.	*Old Dominion	W	56	31
+11/28	Sat	@	*Louisiana Tech	W	58	24
+12/5	Sat	vs.	*Western Kentucky	L	28	45	@ Bowling Green, KY	CUSA Championship
  	
+9-4
 
-7-3
-	 	386	214
+ 	528	314
  
-
 Stanford (Pac 12)
+
 9/5	Sat	@	Northwestern	L	6	16
 9/12	Sat	vs.	Central Florida	W	31	7
 9/19	Sat	@	*Southern California	W	41	31
@@ -1892,15 +1907,16 @@ Stanford (Pac 12)
 10/31	Sat	@	*Washington State	W	30	28
 11/7	Sat	@	*Colorado	W	42	10
 11/14	Sat	vs.	*Oregon	L	36	38
-11/21	Sat	vs.	*California			
-11/28	Sat	vs.	Notre Dame			
+11/21	Sat	vs.	*California	W	35	22
+11/28	Sat	vs.	Notre Dame	W	38	36
+12/5	Sat	vs.	*Southern California	W	41	22	@ Santa Clara, CA	Pac 12 Championship
  	
+11-2
 
-8-2
-	 	370	220
+ 	484	300
  
-
 Syracuse (ACC)
+
 9/4	Fri	vs.	Rhode Island	W	47	0
 9/12	Sat	vs.	*Wake Forest	W	30	17
 9/19	Sat	vs.	Central Michigan	W	30	27
@@ -1911,15 +1927,15 @@ Syracuse (ACC)
 10/31	Sat	@	*Florida State	L	21	45
 11/7	Sat	@	*Louisville	L	17	41
 11/14	Sat	vs.	*Clemson	L	27	37
-11/21	Sat	@	*North Carolina State			
-11/28	Sat	vs.	*Boston College			
+11/21	Sat	@	*North Carolina State	L	29	42
+11/28	Sat	vs.	*Boston College	W	20	17
  	
+4-8
 
-3-7
-	 	278	313
+ 	327	372
  
-
 Temple (American)
+
 9/5	Sat	vs.	Penn State	W	27	10
 9/12	Sat	@	*Cincinnati	W	34	26
 9/19	Sat	@	Massachusetts	W	25	23
@@ -1930,15 +1946,16 @@ Temple (American)
 10/31	Sat	vs.	Notre Dame	L	20	24
 11/6	Fri	@	*Southern Methodist	W	60	40
 11/14	Sat	@	*South Florida	L	23	44
-11/21	Sat	vs.	*Memphis			
-11/28	Sat	vs.	*Connecticut			
+11/21	Sat	vs.	*Memphis	W	31	12
+11/28	Sat	vs.	*Connecticut	W	27	3
+12/5	Sat	vs.	*Houston	L	13	24	@ Houston, TX	American Conference Championship
  	
+10-3
 
-8-2
-	 	329	210
+ 	400	249
  
-
 Tennessee (SEC)
+
 9/5	Sat	vs.	Bowling Green State	W	59	30	@ Nashville, TN
 9/12	Sat	vs.	Oklahoma	L	24	31
 9/19	Sat	vs.	Western Carolina	W	55	10
@@ -1949,15 +1966,15 @@ Tennessee (SEC)
 10/31	Sat	@	*Kentucky	W	52	21
 11/7	Sat	vs.	*South Carolina	W	27	24
 11/14	Sat	vs.	North Texas	W	24	0
-11/21	Sat	@	*Missouri			
-11/28	Sat	vs.	*Vanderbilt			
+11/21	Sat	@	*Missouri	W	19	8
+11/28	Sat	vs.	*Vanderbilt	W	53	28
  	
+8-4
 
-6-4
-	 	340	218
+ 	412	254
  
-
 Texas (Big 12)
+
 9/5	Sat	@	Notre Dame	L	3	38
 9/12	Sat	vs.	Rice	W	42	28
 9/19	Sat	vs.	California	L	44	45
@@ -1968,15 +1985,15 @@ Texas (Big 12)
 10/31	Sat	@	*Iowa State	L	0	24
 11/7	Sat	vs.	*Kansas	W	59	20
 11/14	Sat	@	*West Virginia	L	20	38
-11/26	Thu	vs.	*Texas Tech			
-12/5	Sat	@	*Baylor			
+11/26	Thu	vs.	*Texas Tech	L	45	48
+12/5	Sat	@	*Baylor	W	23	17
  	
+5-7
 
-4-6
-	 	249	299
+ 	317	364
  
-
 Texas A&M (SEC)
+
 9/5	Sat	vs.	Arizona State	W	38	17	@ Houston, TX
 9/12	Sat	vs.	Ball State	W	56	23
 9/19	Sat	vs.	Nevada	W	44	27
@@ -1987,15 +2004,15 @@ Texas A&M (SEC)
 10/31	Sat	vs.	*South Carolina	W	35	28
 11/7	Sat	vs.	*Auburn	L	10	26
 11/14	Sat	vs.	Western Carolina	W	41	17
-11/21	Sat	@	*Vanderbilt			
-11/28	Sat	@	*Louisiana State			
+11/21	Sat	@	*Vanderbilt	W	25	0
+11/28	Sat	@	*Louisiana State	L	7	19
  	
+8-4
 
-7-3
-	 	308	240
+ 	340	259
  
-
 Texas Christian (Big 12)
+
 9/3	Thu	@	Minnesota	W	23	17
 9/12	Sat	vs.	Stephen F. Austin	W	70	7
 9/19	Sat	vs.	Southern Methodist	W	56	37
@@ -2006,15 +2023,15 @@ Texas Christian (Big 12)
 10/29	Thu	vs.	*West Virginia	W	40	10
 11/7	Sat	@	*Oklahoma State	L	29	49
 11/14	Sat	vs.	*Kansas	W	23	17
-11/21	Sat	@	*Oklahoma			
-11/27	Fri	vs.	*Baylor			
+11/21	Sat	@	*Oklahoma	L	29	30
+11/27	Fri	vs.	*Baylor	W	28	21
  	
+10-2
 
-9-1
-	 	443	262
+ 	500	313
  
-
 Texas State (Sun Belt)
+
 9/5	Sat	@	Florida State	L	16	59
 9/12	Sat	vs.	Prairie View A&M	W	63	24
 9/19	Sat	vs.	Southern Mississippi	L	50	56
@@ -2024,16 +2041,16 @@ Texas State (Sun Belt)
 10/29	Thu	@	*Georgia Southern	L	13	37
 11/7	Sat	vs.	*New Mexico State	L	21	31
 11/14	Sat	vs.	*Georgia State	L	19	41
-11/19	Thu	vs.	*Louisiana-Monroe			
-11/28	Sat	@	*Idaho			
-12/5	Sat	@	*Arkansas State			
+11/19	Thu	vs.	*Louisiana-Monroe	W	16	3
+11/28	Sat	@	*Idaho	L	31	38
+12/5	Sat	@	*Arkansas State	L	17	55
  	
+3-9
 
-2-7
-	 	259	374
+ 	323	470
  
-
 Texas Tech (Big 12)
+
 9/5	Sat	vs.	Sam Houston State	W	59	45
 9/12	Sat	vs.	Texas-El Paso	W	69	20
 9/19	Sat	@	Arkansas	W	35	24
@@ -2045,14 +2062,14 @@ Texas Tech (Big 12)
 10/31	Sat	vs.	*Oklahoma State	L	53	70
 11/7	Sat	@	*West Virginia	L	26	31
 11/14	Sat	vs.	*Kansas State	W	59	44
-11/26	Thu	@	*Texas			
+11/26	Thu	@	*Texas	W	48	45
  	
+7-5
 
-6-5
-	 	511	466
+ 	559	511
  
-
 Texas-El Paso (CUSA)
+
 9/5	Sat	@	Arkansas	L	13	48
 9/12	Sat	@	Texas Tech	L	20	69
 9/19	Sat	@	New Mexico State	W	50	47
@@ -2063,15 +2080,15 @@ Texas-El Paso (CUSA)
 10/31	Sat	@	*Southern Mississippi	L	13	34
 11/6	Fri	vs.	*Rice	W	24	21
 11/14	Sat	@	*Old Dominion	L	21	31
-11/21	Sat	vs.	*Louisiana Tech			
-11/28	Sat	@	*North Texas			
+11/21	Sat	vs.	*Louisiana Tech	L	15	17
+11/28	Sat	@	*North Texas	W	20	17
  	
+5-7
 
-4-6
-	 	213	361
+ 	248	395
  
-
 Texas-San Antonio (CUSA)
+
 9/3	Thu	@	Arizona	L	32	42
 9/12	Sat	vs.	Kansas State	L	3	30
 9/19	Sat	@	Oklahoma State	L	14	69
@@ -2082,15 +2099,15 @@ Texas-San Antonio (CUSA)
 10/31	Sat	@	*North Texas	L	23	30
 11/7	Sat	vs.	*Old Dominion	L	31	36
 11/14	Sat	@	*Charlotte	W	30	27
-11/21	Sat	vs.	*Rice			
-11/28	Sat	vs.	*Middle Tennessee State			
+11/21	Sat	vs.	*Rice	W	34	24
+11/28	Sat	vs.	*Middle Tennessee State	L	7	42
  	
+3-9
 
-2-8
-	 	230	339
+ 	271	405
  
-
 Toledo (MAC)
+
 9/12	Sat	vs.	Arkansas	W	16	12	@ Little Rock, AR
 9/19	Sat	vs.	Iowa State	W	30	23
 9/26	Sat	vs.	Arkansas State	W	37	7
@@ -2100,15 +2117,15 @@ Toledo (MAC)
 10/24	Sat	@	*Massachusetts	W	51	35
 11/3	Tue	vs.	*Northern Illinois	L	27	32
 11/10	Tue	@	*Central Michigan	W	28	23
-11/17	Tue	@	*Bowling Green State			
-11/27	Fri	vs.	*Western Michigan			
+11/17	Tue	@	*Bowling Green State	W	44	28
+11/27	Fri	vs.	*Western Michigan	L	30	35
  	
+9-2
 
-8-1
-	 	314	169
+ 	388	232
  
-
 Troy (Sun Belt)
+
 9/5	Sat	@	North Carolina State	L	21	49
 9/12	Sat	vs.	Charleston Southern	W	44	16
 9/19	Sat	@	Wisconsin	L	3	28
@@ -2119,15 +2136,15 @@ Troy (Sun Belt)
 10/31	Sat	@	*Appalachian State	L	41	44
 11/7	Sat	vs.	*Louisiana-Monroe	W	51	14
 11/14	Sat	vs.	*Georgia Southern	L	10	45
-11/28	Sat	@	*Georgia State			
-12/5	Sat	@	*Louisiana-Lafayette			
+11/27	Fri	@	*Georgia State	L	21	31
+12/5	Sat	@	*Louisiana-Lafayette	W	41	17
  	
+4-8
 
-3-7
-	 	273	291
+ 	335	339
  
-
 Tulane (American)
+
 9/3	Thu	vs.	Duke	L	7	37
 9/12	Sat	@	Georgia Tech	L	10	65
 9/19	Sat	vs.	Maine	W	38	7
@@ -2138,15 +2155,15 @@ Tulane (American)
 10/31	Sat	@	*Memphis	L	13	41
 11/7	Sat	vs.	*Connecticut	L	3	7
 11/14	Sat	@	Army	W	34	31
-11/21	Sat	@	*Southern Methodist			
-11/28	Sat	vs.	*Tulsa			
+11/21	Sat	@	*Southern Methodist	L	21	49
+11/27	Fri	vs.	*Tulsa	L	34	45
  	
+3-9
 
-3-7
-	 	181	341
+ 	236	435
  
-
 Tulsa (American)
+
 9/5	Sat	vs.	Florida Atlantic	W	47	44
 9/12	Sat	@	New Mexico	W	40	21
 9/19	Sat	@	Oklahoma	L	38	52
@@ -2157,15 +2174,15 @@ Tulsa (American)
 10/31	Sat	@	*Southern Methodist	W	40	31
 11/7	Sat	vs.	*Central Florida	W	45	30
 11/14	Sat	@	*Cincinnati	L	38	49
-11/21	Sat	vs.	*Navy			
-11/28	Sat	@	*Tulane			
+11/21	Sat	vs.	*Navy	L	21	44
+11/27	Fri	@	*Tulane	W	45	34
  	
+6-6
 
-5-5
-	 	365	385
+ 	431	463
  
-
 UCLA (Pac 12)
+
 9/5	Sat	vs.	Virginia	W	34	16
 9/12	Sat	@	Nevada-Las Vegas	W	37	3
 9/19	Sat	vs.	Brigham Young	W	24	23
@@ -2176,15 +2193,15 @@ UCLA (Pac 12)
 10/31	Sat	vs.	*Colorado	W	35	31
 11/7	Sat	@	*Oregon State	W	41	0
 11/14	Sat	vs.	*Washington State	L	27	31
-11/21	Sat	@	*Utah			
-11/28	Sat	@	*Southern California			
+11/21	Sat	@	*Utah	W	17	9
+11/28	Sat	@	*Southern California	L	21	40
  	
+8-4
 
-7-3
-	 	352	252
+ 	390	301
  
-
 Utah (Pac 12)
+
 9/3	Thu	vs.	Michigan	W	24	17
 9/11	Fri	vs.	Utah State	W	24	14
 9/19	Sat	@	Fresno State	W	45	24
@@ -2195,15 +2212,15 @@ Utah (Pac 12)
 10/31	Sat	vs.	*Oregon State	W	27	12
 11/7	Sat	@	*Washington	W	34	23
 11/14	Sat	@	*Arizona	L	30	37
-11/21	Sat	vs.	*UCLA			
-11/28	Sat	vs.	*Colorado			
+11/21	Sat	vs.	*UCLA	L	9	17
+11/28	Sat	vs.	*Colorado	W	20	14
  	
+9-3
 
-8-2
-	 	334	231
+ 	363	262
  
-
 Utah State (MWC)
+
 9/3	Thu	vs.	Southern Utah	W	12	9
 9/11	Fri	@	Utah	L	14	24
 9/19	Sat	@	Washington	L	17	31
@@ -2214,15 +2231,15 @@ Utah State (MWC)
 10/30	Fri	vs.	*Wyoming	W	58	27
 11/7	Sat	@	*New Mexico	L	13	14
 11/14	Sat	@	*Air Force	L	28	35
-11/21	Sat	vs.	*Nevada			
-11/28	Sat	vs.	Brigham Young			
+11/21	Sat	vs.	*Nevada	W	31	27
+11/28	Sat	vs.	Brigham Young	L	28	51
  	
+6-6
 
-5-5
-	 	297	246
+ 	356	324
  
-
 Vanderbilt (SEC)
+
 9/3	Thu	vs.	Western Kentucky	L	12	14
 9/12	Sat	vs.	*Georgia	L	14	31
 9/19	Sat	vs.	Austin Peay	W	47	7
@@ -2233,15 +2250,15 @@ Vanderbilt (SEC)
 10/31	Sat	@	Houston	L	0	34
 11/7	Sat	@	*Florida	L	7	9
 11/14	Sat	vs.	*Kentucky	W	21	17
-11/21	Sat	vs.	*Texas A&M			
-11/28	Sat	@	*Tennessee			
+11/21	Sat	vs.	*Texas A&M	L	0	25
+11/28	Sat	@	*Tennessee	L	28	53
  	
+4-8
 
-4-6
-	 	154	174
+ 	182	252
  
-
 Virginia (ACC)
+
 9/5	Sat	@	UCLA	L	16	34
 9/12	Sat	vs.	Notre Dame	L	27	34
 9/19	Sat	vs.	William & Mary	W	35	29
@@ -2252,15 +2269,15 @@ Virginia (ACC)
 10/31	Sat	vs.	*Georgia Tech	W	27	21
 11/7	Sat	@	*Miami (Florida)	L	21	27
 11/14	Sat	@	*Louisville	L	31	38
-11/21	Sat	vs.	*Duke			
-11/28	Sat	vs.	*Virginia Tech			
+11/21	Sat	vs.	*Duke	W	42	34
+11/28	Sat	vs.	*Virginia Tech	L	20	23
  	
+4-8
 
-3-7
-	 	247	329
+ 	309	386
  
-
 Virginia Tech (ACC)
+
 9/7	Mon	vs.	Ohio State	L	24	42
 9/12	Sat	vs.	Furman	W	42	3
 9/19	Sat	@	Purdue	W	51	24
@@ -2271,15 +2288,15 @@ Virginia Tech (ACC)
 10/24	Sat	vs.	*Duke	L	43	45
 10/31	Sat	@	*Boston College	W	26	10
 11/12	Thu	@	*Georgia Tech	W	23	21
-11/21	Sat	vs.	*North Carolina			
-11/28	Sat	@	*Virginia			
+11/21	Sat	vs.	*North Carolina	L	27	30
+11/28	Sat	@	*Virginia	W	23	20
  	
+6-6
 
-5-5
-	 	298	240
+ 	348	290
  
-
 Wake Forest (ACC)
+
 9/3	Thu	vs.	Elon	W	41	3
 9/12	Sat	@	*Syracuse	L	17	30
 9/19	Sat	@	Army	W	17	14
@@ -2290,15 +2307,15 @@ Wake Forest (ACC)
 10/24	Sat	vs.	*North Carolina State	L	17	35
 10/30	Fri	vs.	*Louisville	L	19	20
 11/14	Sat	@	Notre Dame	L	7	28
-11/21	Sat	@	*Clemson			
-11/28	Sat	vs.	*Duke			
+11/21	Sat	@	*Clemson	L	13	33
+11/28	Sat	vs.	*Duke	L	21	27
  	
+3-9
 
-3-7
-	 	175	235
+ 	209	295
  
-
 Washington (Pac 12)
+
 9/4	Fri	@	Boise State	L	13	16
 9/12	Sat	vs.	Sacramento State	W	49	0
 9/19	Sat	vs.	Utah State	W	31	17
@@ -2309,15 +2326,15 @@ Washington (Pac 12)
 10/31	Sat	vs.	*Arizona	W	49	3
 11/7	Sat	vs.	*Utah	L	23	34
 11/14	Sat	@	*Arizona State	L	17	27
-11/21	Sat	@	*Oregon State			
-11/27	Fri	vs.	*Washington State			
+11/21	Sat	@	*Oregon State	W	52	7
+11/27	Fri	vs.	*Washington State	W	45	10
  	
+6-6
 
-4-6
-	 	257	196
+ 	354	213
  
-
 Washington State (Pac 12)
+
 9/5	Sat	vs.	Portland State	L	17	24
 9/12	Sat	@	Rutgers	W	37	34
 9/19	Sat	vs.	Wyoming	W	31	14
@@ -2328,15 +2345,15 @@ Washington State (Pac 12)
 10/31	Sat	vs.	*Stanford	L	28	30
 11/7	Sat	vs.	*Arizona State	W	38	24
 11/14	Sat	@	*UCLA	W	31	27
-11/21	Sat	vs.	*Colorado			
-11/27	Fri	@	*Washington			
+11/21	Sat	vs.	*Colorado	W	27	3
+11/27	Fri	@	*Washington	L	10	45
  	
+8-4
 
-7-3
-	 	352	298
+ 	389	346
  
-
 West Virginia (Big 12)
+
 9/5	Sat	vs.	Georgia Southern	W	44	0
 9/12	Sat	vs.	Liberty	W	41	17
 9/26	Sat	vs.	Maryland	W	45	6
@@ -2346,16 +2363,16 @@ West Virginia (Big 12)
 10/29	Thu	@	*Texas Christian	L	10	40
 11/7	Sat	vs.	*Texas Tech	W	31	26
 11/14	Sat	vs.	*Texas	W	38	20
-11/21	Sat	@	*Kansas			
-11/28	Sat	vs.	*Iowa State			
-12/5	Sat	@	*Kansas State			
+11/21	Sat	@	*Kansas	W	49	0
+11/28	Sat	vs.	*Iowa State	W	30	6
+12/5	Sat	@	*Kansas State	L	23	24
  	
+7-5
 
-5-4
-	 	297	248
+ 	399	278
  
-
 Western Kentucky (CUSA)
+
 9/3	Thu	@	Vanderbilt	W	14	12
 9/10	Thu	vs.	*Louisiana Tech	W	41	38
 9/19	Sat	@	Indiana	L	35	38
@@ -2366,15 +2383,16 @@ Western Kentucky (CUSA)
 10/24	Sat	@	Louisiana State	L	20	48
 10/31	Sat	@	*Old Dominion	W	55	30
 11/7	Sat	vs.	*Florida Atlantic	W	35	19
-11/21	Sat	@	*Florida International			
-11/28	Sat	vs.	*Marshall			
+11/21	Sat	@	*Florida International	W	63	7
+11/27	Fri	vs.	*Marshall	W	49	28
+12/5	Sat	vs.	*Southern Mississippi	W	45	28	@ Bowling Green, KY	CUSA Championship
  	
+11-2
 
-8-2
-	 	418	265
+ 	575	328
  
-
 Western Michigan (MAC)
+
 9/4	Fri	vs.	Michigan State	L	24	37
 9/12	Sat	@	Georgia Southern	L	17	43
 9/19	Sat	vs.	Murray State	W	52	20
@@ -2385,15 +2403,16 @@ Western Michigan (MAC)
 10/29	Thu	@	*Eastern Michigan	W	58	28
 11/5	Thu	vs.	*Ball State	W	54	7
 11/11	Wed	vs.	*Bowling Green State	L	27	41
-11/18	Wed	@	*Northern Illinois			
-11/27	Fri	@	*Toledo			
+11/18	Wed	@	*Northern Illinois	L	19	27
+11/27	Fri	@	*Toledo	W	35	30
+12/24	Thu	vs.	Middle Tennessee State				@ Nassau, Bahamas	Bahamas Bowl
  	
+7-5
 
-6-4
-	 	369	280
+ 	423	337
  
-
 Wisconsin (Big Ten)
+
 9/5	Sat	vs.	Alabama	L	17	35	@ Arlington, TX
 9/12	Sat	vs.	Miami (Ohio)	W	58	0
 9/19	Sat	vs.	Troy	W	28	3
@@ -2404,15 +2423,15 @@ Wisconsin (Big Ten)
 10/24	Sat	@	*Illinois	W	24	13
 10/31	Sat	vs.	*Rutgers	W	48	10
 11/7	Sat	@	*Maryland	W	31	24
-11/21	Sat	vs.	*Northwestern			
-11/28	Sat	@	*Minnesota			
+11/21	Sat	vs.	*Northwestern	L	7	13
+11/28	Sat	@	*Minnesota	W	31	21
  	
+9-3
 
-8-2
-	 	287	123
+ 	325	157
  
-
 Wyoming (MWC)
+
 9/5	Sat	vs.	North Dakota	L	13	24
 9/12	Sat	vs.	Eastern Michigan	L	29	48
 9/19	Sat	@	Washington State	L	14	31
@@ -2424,8 +2443,8 @@ Wyoming (MWC)
 10/30	Fri	@	*Utah State	L	27	58
 11/7	Sat	vs.	*Colorado State	L	7	26
 11/14	Sat	@	*San Diego State	L	3	38
-11/28	Sat	vs.	*Nevada-Las Vegas			
+11/28	Sat	vs.	*Nevada-Las Vegas	W	35	28
  	
+2-10
 
-1-10
-	 	193	380
+ 	228	408
