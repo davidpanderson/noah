@@ -3,7 +3,7 @@ import pickle
 import math
 
 ratings = []
-
+# returns list of lines
 def r():
     w = []
     f = open('ncaa_football.txt', 'r')
@@ -12,7 +12,7 @@ def r():
         if line != '':
             w.append(line)
     return w
-
+# returns list of teams
 def get_teams():
     fb.teams = []
     f = r()
@@ -27,10 +27,7 @@ def get_teams():
             l = l.split(' (')
             fb.teams.append(l[0])
 
-#ts = teams()            
-#for t in ts:
-#    print(t)
-   
+# checks if c is an integer; returns true or false
 def int_check(c):
     try:
         int(c)
@@ -41,6 +38,8 @@ def int_check(c):
 # parse the data file, create teams and games global variables
 #
 def get_games():
+    x = ['vs.', '@']
+    nuetral = False
     fb.games = []
     get_teams()
     f = r()
@@ -51,7 +50,12 @@ def get_games():
                 continue
             if not int_check(words[6]):
                 continue
-            week += 1
+            try:
+                v = words[8]
+                nuetral = True
+            except:
+                nuetral = False
+                week += 1
            #print(line)
             t2 = words[3].replace('*', '')
             if t1 > t2:
@@ -59,17 +63,28 @@ def get_games():
             if  t2 not in fb.teams:
                 #print(t2, ' not found; skipping ', line)
                 continue
-            game = [
-                fb.teams.index(t1), fb.teams.index(t2),
-                int(words[5]), int(words[6]),
-                week
-                ]
-            fb.games.append(game)
+            if nuetral == False:
+                game = [
+                    fb.teams.index(t1), fb.teams.index(t2),
+                    int(words[5]), int(words[6]),
+                    week, x.index(words[2])
+                    ]
+                print(game)
+                fb.games.append(game)
+            else:
+                game = [
+                    fb.teams.index(t1), fb.teams.index(t2),
+                    int(words[5]), int(words[6]),
+                    week, 2]
+                print(game)
+            
+                fb.games.append(game)
         else:
              words = line.split(' (')
              t1 = words[0]
              week = 0
-
+             
+# creates files with the ratings for each team for each week
 def create_info_files():
     get_games()
     x = [fb.teams, fb.games]
@@ -84,6 +99,7 @@ def create_info_files():
         f.close()
         print('finished week %d'%i)
 
+# adds all the names of the teams to fb.teams
 def read_info_file():
     global teams, games
     f = open('data.pickle', 'rb')
@@ -91,16 +107,18 @@ def read_info_file():
     f.close();
     fb.teams = x[0]
     fb.games = x[1]
-
+    
+# reads the ratings files for a particular week
 def read_ratings_file(week):
-    f = open('ratings_2%d.pickle'%week, 'rb')
+    f = open('ratings%d.pickle'%week, 'rb')
     x = pickle.load(f)
     f.close()
     return x
 
+# prints rankings
 def rankings(week):
     count = 0
-    #ratings = read_ratings_file(week)
+    ratings = read_ratings_file(week)
     read_info_file()
     pairs = {}
     totals = []
@@ -119,12 +137,15 @@ def test():
     get_games()
     print(games)
     print(len(games))
-
+    
+# prints the scores for a game
 def test_predict():
-    ratings = read_info_file()
+    read_info_file()
+    ratings = read_ratings_file(13)
+    print(fb.teams)
 
-    input1 = 'Oklahoma'
-    input2 = 'Clemson'
+    input1 = 'Tennessee'
+    input2 = 'Oregon'
     t1 = fb.teams.index(input1)
     t2 = fb.teams.index(input2)
 
@@ -153,7 +174,7 @@ def wk_error(wk):
             nwin += 1
         diff = (p_spread - r_spread)
         #print(p_spread, r_spread, diff)
-        sum += diff*diff
+        sum += diff*diff 
     #print(sum, len(wk_games))
     ave = sum/len(wk_games)
     ave = math.sqrt(ave)
@@ -165,9 +186,13 @@ def wk_error(wk):
 for i in range(1, 11):
     pass
     #wk_error(i)
-create_info_files()
+#create_info_files()
 
 #wk_error(1)
-
+#print(test_predict())
+#while True:
+  #  i = input()
+g = get_games()
+print(fb.games)
 #test_predict()
 
