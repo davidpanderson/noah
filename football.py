@@ -143,7 +143,7 @@ def test_predict():
     read_info_file()
     ratings = read_ratings_file(13)
     print(fb.teams)
-
+    ratings = fb.compute_ratings(13)
     input1 = 'Tennessee'
     input2 = 'Oregon'
     t1 = fb.teams.index(input1)
@@ -181,10 +181,14 @@ def wk_error(wk):
     print('points off per game:', ave)
     per = 100 * nwin/len(wk_games)
     print("predict right winner ", nwin, " out of ", len(wk_games), per)
+
+#takes a method and method files and sees how good the method is
+def Method_test(method):
+    pass
+
     #return ave
     
-for i in range(1, 11):
-    pass
+
     #wk_error(i)
 #create_info_files()
 
@@ -192,7 +196,41 @@ for i in range(1, 11):
 #print(test_predict())
 #while True:
   #  i = input()
-g = get_games()
-print(fb.games)
-#test_predict()
+get_games()
+read_info_file()
+def score_error_true_1(x, ho):
+    global games
+    sum = 0
+    for g in fb.games:
+        o1 = x[g[0]*2]
+        d1 = x[g[0]*2+1]
+        o2 = x[g[1]*2]
+        d2 = x[g[1]*2+1]
+        if x[2] == 0:
+            p1 = o1*d2*xho
+            p2 = o2*d1/ho
+        elif x[2] == 1:
+            p2 = o2*d1*ho
+            p1 = o1*d2/ho
+        elif x[2] == 2:
+            p2 = o2*d1
+            p1 = o1*d2
+        e1 = p1 - g[2]
+        e2 = p2 - g[3]
+        sum += e1**2
+        sum += e2**2
+        sum += (d1-1)**2
+        sum += (d2-1)**2
+    return sum
+
+x = []
+
+print(fb.teams)
+for t in fb.teams:
+    x.append(20)
+    x.append(1)
+print(score_error_true_1(x, 1))
+print(fb.score_error(x))
+#print(fb.games)
+
 
