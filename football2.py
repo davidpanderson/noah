@@ -38,6 +38,8 @@ def score_error(x):
         sum += e2**2
         sum += (d1-1)**2
         sum += (d2-1)**2
+    #print (sum, len(games))
+    exit
     return sum
 
 def predict_score(i, j, x):
@@ -58,27 +60,21 @@ def compute_ratings(wk):
         ratings.append(1)
     x0 = np.array(ratings)
     week = wk
-    res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-8, 'maxfev':1000000, 'maxiter': 1000000, 'disp': True})
-    return res.x
+    res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-8, 'maxfev':1000000, 'maxiter': 1000000000, 'disp': True})
+    return res
 
 def test():
     global teams, games
     teams = ['Berkeley Bumblebees', 'Albany Anteaters', 'Emeryville Escargot']
-
     g1 = [0, 1, 21, 14]
     g2 = [1, 2, 28, 7]
     games = [g1, g2]
 
     x = compute_ratings(1)
-    print(teams)
     print(x)
-    for i in range(3):
-        for j in range(i+1, 3):
-            return predict_score(teams[0], teams[1], x)
-
-
-
-
-    
-    
-
+    print(predict_score(0, 1, x))
+    #print(teams)
+    #print(x)
+    #for i in range(3):
+     #   for j in range(i+1, 3):
+      #      return predict_score(teams[0], teams[1], x)

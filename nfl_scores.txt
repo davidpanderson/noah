@@ -1,2175 +1,2207 @@
-day, September 10
-
+Thursday, September 10
 Steelers
+	
 21
-Final
-
+	Final
 Patriots
+	
 28
+	
 Sunday, September 13
-
 Colts
+	
 14
-Final
-
+	Final
 Bills
+	
 27
-
+	
 Browns
+	
 10
-Final
-
+	Final
 Jets
+	
 31
-
 Dolphins
+	
 17
-Final
-
+	Final
 Redskins
+	
 10
-
+	
 Panthers
+	
 20
-Final
-
+	Final
 Jaguars
+	
 9
-
 Packers
+	
 31
-Final
-
+	Final
 Bears
+	
 23
-
+	
 Chiefs
+	
 27
-Final
-
+	Final
 Texans
+	
 20
-
 Seahawks
+	
 31
-Final/OT
-
+	Final/OT
 Rams
+	
 34
-
+	
 Lions
+	
 28
-Final
-
+	Final
 Chargers
+	
 33
-
 Saints
+	
 19
-Final
-
+	Final
 Cardinals
+	
 31
-
+	
 Bengals
+	
 33
-Final
-
+	Final
 Raiders
+	
 13
-
 Ravens
+	
 13
-Final
-
+	Final
 Broncos
+	
 19
-
+	
 Titans
+	
 42
-Final
-
+	Final
 Buccaneers
+	
 14
-
 Giants
+	
 26
-Final
-
+	Final
 Cowboys
+	
 27
+	
 Monday, September 14
-
 Eagles
+	
 24
-Final
-
+	Final
 Falcons
+	
 26
-
+	
 Vikings
+	
 3
-Final
-
+	Final
 49ers
+	
 20
+
+Thursday, September 17
 Broncos
+	
 31
-Final
-
+	Final
 Chiefs
+	
 24
+	
 Sunday, September 20
-
 49ers
+	
 18
-Final
-
+	Final
 Steelers
+	
 43
-
+	
 Rams
+	
 10
-Final
-
+	Final
 Redskins
+	
 24
-
 Chargers
+	
 19
-Final
-
+	Final
 Bengals
+	
 24
-
+	
 Patriots
+	
 40
-Final
-
+	Final
 Bills
+	
 32
-
 Buccaneers
+	
 26
-Final
-
+	Final
 Saints
+	
 19
-
+	
 Texans
+	
 17
-Final
-
+	Final
 Panthers
+	
 24
-
 Cardinals
+	
 48
-Final
-
+	Final
 Bears
+	
 23
-
+	
 Lions
+	
 16
-Final
-
+	Final
 Vikings
+	
 26
-
 Titans
+	
 14
-Final
-
+	Final
 Browns
+	
 28
-
+	
 Falcons
+	
 24
-Final
-
+	Final
 Giants
+	
 20
-
 Ravens
+	
 33
-Final
-
+	Final
 Raiders
+	
 37
-
+	
 Dolphins
+	
 20
-Final
-
+	Final
 Jaguars
+	
 23
-
 Cowboys
+	
 20
-Final
-
+	Final
 Eagles
+	
 10
-
+	
 Seahawks
+	
 17
-Final
-
+	Final
 Packers
+	
 27
 Monday, September 21
-
 Jets
+	
 20
-Final
-
+	Final
 Colts
+	
 7
 
-
+Thursday, September 24
 Redskins
+	
 21
-Final
-
+	Final
 Giants
+	
 32
+	
 Sunday, September 27
-
 Raiders
+	
 27
-Final
-
+	Final
 Browns
+	
 20
-
+	
 Colts
+	
 35
-Final
-
+	Final
 Titans
+	
 33
-
 Eagles
+	
 24
-Final
-
+	Final
 Jets
+	
 17
-
+	
 Jaguars
+	
 17
-Final
-
+	Final
 Patriots
+	
 51
-
 Buccaneers
+	
 9
-Final
-
+	Final
 Texans
+	
 19
-
+	
 Bengals
+	
 28
-Final
-
+	Final
 Ravens
+	
 24
-
 Falcons
+	
 39
-Final
-
+	Final
 Cowboys
+	
 28
-
+	
 Chargers
+	
 14
-Final
-
+	Final
 Vikings
+	
 31
-
 Steelers
+	
 12
-Final
-
+	Final
 Rams
+	
 6
-
+	
 Saints
+	
 22
-Final
-
+	Final
 Panthers
+	
 27
-
 49ers
+	
 7
-Final
-
+	Final
 Cardinals
+	
 47
-
+	
 Bears
+	
 0
-Final
-
+	Final
 Seahawks
+	
 26
-
 Bills
+	
 41
-Final
-
+	Final
 Dolphins
+	
 14
-
+	
 Broncos
+	
 24
-Final
-
+	Final
 Lions
+	
 12
 Monday, September 28
-
 Chiefs
+	
 28
-Final
-
+	Final
 Packers
+	
 38
 
-
+Thursday, October 1
 Ravens
+	
 23
-Final/OT
-
+	Final/OT
 Steelers
+	
 20
+	
 Sunday, October 4
-
 Jets
+	
 27
-Final
-
+	Final
 Dolphins
+	
 14
-
+	
 Chiefs
+	
 21
-Final
-
+	Final
 Bengals
+	
 36
-
 Texans
+	
 21
-Final
-
+	Final
 Falcons
+	
 48
-
+	
 Panthers
+	
 37
-Final
-
+	Final
 Buccaneers
+	
 23
-
 Eagles
+	
 20
-Final
-
+	Final
 Redskins
+	
 23
-
+	
 Giants
+	
 24
-Final
-
+	Final
 Bills
+	
 10
-
 Jaguars
+	
 13
-Final/OT
-
+	Final/OT
 Colts
+	
 16
-
+	
 Raiders
+	
 20
-Final
-
+	Final
 Bears
+	
 22
-
 Browns
+	
 27
-Final
-
+	Final
 Chargers
+	
 30
-
+	
 Packers
+	
 17
-Final
-
+	Final
 49ers
+	
 3
-
 Rams
+	
 24
-Final
-
+	Final
 Cardinals
+	
 22
-
+	
 Vikings
+	
 20
-Final
-
+	Final
 Broncos
+	
 23
-
 Cowboys
+	
 20
-Final/OT
-
+	Final/OT
 Saints
+	
 26
+	
 Monday, October 5
-
 Lions
+	
 10
-Final
-
+	Final
 Seahawks
+	
 13
 
-
+Thursday, October 8
 Colts
+	
 27
-Final
-
+	Final
 Texans
+	
 20
+	
 Sunday, October 11
-
 Saints
+	
 17
-Final
-
+	Final
 Eagles
+	
 39
-
+	
 Jaguars
+	
 31
-Final
-
+	Final
 Buccaneers
+	
 38
-
 Redskins
+	
 19
-Final/OT
-
+	Final/OT
 Falcons
+	
 25
-
+	
 Seahawks
+	
 24
-Final/OT
-
+	Final/OT
 Bengals
+	
 27
-
 Bills
+	
 14
-Final
-
+	Final
 Titans
+	
 13
-
+	
 Bears
+	
 18
-Final
-
+	Final
 Chiefs
+	
 17
-
 Browns
+	
 33
-Final/OT
-
+	Final/OT
 Ravens
+	
 30
-
+	
 Rams
+	
 10
-Final
-
+	Final
 Packers
+	
 24
-
 Cardinals
+	
 42
-Final
-
+	Final
 Lions
+	
 17
-
+	
 Broncos
+	
 16
-Final
-
+	Final
 Raiders
+	
 10
-
 Patriots
+	
 30
-Final
-
+	Final
 Cowboys
+	
 6
-
+	
 49ers
+	
 27
-Final
-
+	Final
 Giants
+	
 30
 Monday, October 12
-
 Steelers
+	
 24
-Final
-
+	Final
 Chargers
+	
 20
 
-
+Thursday, October 15
 Falcons
+	
 21
-Final
-
+	Final
 Saints
+	
 31
+	
 Sunday, October 18
-
 Chiefs
+	
 10
-Final
-
+	Final
 Vikings
+	
 16
-
+	
 Redskins
+	
 20
-Final
-
+	Final
 Jets
+	
 34
-
 Broncos
+	
 26
-Final/OT
-
+	Final/OT
 Browns
+	
 23
-
+	
 Cardinals
+	
 13
-Final
-
+	Final
 Steelers
+	
 25
-
 Bears
+	
 34
-Final/OT
-
+	Final/OT
 Lions
+	
 37
-
+	
 Dolphins
+	
 38
-Final
-
+	Final
 Titans
+	
 10
-
 Texans
+	
 31
-Final
-
+	Final
 Jaguars
+	
 20
-
+	
 Bengals
+	
 34
-Final
-
+	Final
 Bills
+	
 21
-
 Panthers
+	
 27
-Final
-
+	Final
 Seahawks
+	
 23
-
+	
 Chargers
+	
 20
-Final
-
+	Final
 Packers
+	
 27
-
 Ravens
+	
 20
-Final
-
+	Final
 49ers
+	
 25
-
+	
 Patriots
+	
 34
-Final
-
+	Final
 Colts
+	
 27
 Monday, October 19
-
 Giants
+	
 7
-Final
-
+	Final
 Eagles
+	
 27
 
-
+Thursday, October 22
 Seahawks
+	
 20
-Final
-
+	Final
 49ers
+	
 3
+	
 Sunday, October 25
-
 Bills
+	
 31
-Final
-
+	Final
 Jaguars
+	
 34
-
+	
 Steelers
+	
 13
-Final
-
+	Final
 Chiefs
+	
 23
-
 Browns
+	
 6
-Final
-
+	Final
 Rams
+	
 24
-
+	
 Vikings
+	
 28
-Final
-
+	Final
 Lions
+	
 19
-
 Saints
+	
 27
-Final
-
+	Final
 Colts
+	
 21
-
+	
 Buccaneers
+	
 30
-Final
-
+	Final
 Redskins
+	
 31
-
 Falcons
+	
 10
-Final
-
+	Final
 Titans
+	
 7
-
+	
 Texans
+	
 26
-Final
-
+	Final
 Dolphins
+	
 44
-
 Jets
+	
 23
-Final
-
+	Final
 Patriots
+	
 30
-
+	
 Raiders
+	
 37
-Final
-
+	Final
 Chargers
+	
 29
-
 Cowboys
+	
 20
-Final
-
+	Final
 Giants
+	
 27
-
+	
 Eagles
+	
 16
-Final
-
+	Final
 Panthers
+	
 27
 Monday, October 26
-
 Ravens
+	
 18
-Final
-
+	Final
 Cardinals
+	
 26
 
-
+Thursday, October 29
 Dolphins
+	
 7
-Final
-
+	Final
 Patriots
+	
 36
+	
 Sunday, November 1
-
 Lions
+	
 10
-Final
-
+	Final
 Chiefs
+	
 45
-
+	
 Bengals
+	
 16
-Final
-
+	Final
 Steelers
+	
 10
-
 Titans
+	
 6
-Final
-
+	Final
 Texans
+	
 20
-
+	
 49ers
+	
 6
-Final
-
+	Final
 Rams
+	
 27
-
 Vikings
+	
 23
-Final
-
+	Final
 Bears
+	
 20
-
+	
 Chargers
+	
 26
-Final
-
+	Final
 Ravens
+	
 29
-
 Cardinals
+	
 34
-Final
-
+	Final
 Browns
+	
 20
-
+	
 Buccaneers
+	
 23
-Final/OT
-
+	Final/OT
 Falcons
+	
 20
-
 Giants
+	
 49
-Final
-
+	Final
 Saints
+	
 52
-
+	
 Jets
+	
 20
-Final
-
+	Final
 Raiders
+	
 34
-
 Seahawks
+	
 13
-Final
-
+	Final
 Cowboys
+	
 12
-
+	
 Packers
+	
 10
-Final
-
+	Final
 Broncos
+	
 29
 Monday, November 2
-
 Colts
+	
 26
-Final/OT
-
+	Final/OT
 Panthers
+	
 29
-Browns
-10
-Final
 
+Thursday, November 5
+Browns
+	
+10
+	Final
 Bengals
+	
 31
 Video Recap
+	
 Sunday, November 8
-
 Packers
+	
 29
-Final
-
+	Final
 Panthers
+	
 37
 Video Recap
-
+	
 Rams
+	
 18
-Final/OT
-
+	Final/OT
 Vikings
+	
 21
 Video Recap
-
 Jaguars
+	
 23
-Final
-
+	Final
 Jets
+	
 28
 Video Recap
-
+	
 Redskins
+	
 10
-Final
-
+	Final
 Patriots
+	
 27
 Video Recap
-
 Titans
+	
 34
-Final/OT
-
+	Final/OT
 Saints
+	
 28
 Video Recap
-
+	
 Raiders
+	
 35
-Final
-
+	Final
 Steelers
+	
 38
 Video Recap
-
 Dolphins
+	
 17
-Final
-
+	Final
 Bills
+	
 33
 Video Recap
-
+	
 Giants
+	
 32
-Final
-
+	Final
 Buccaneers
+	
 18
 Video Recap
-
 Falcons
+	
 16
-Final
-
+	Final
 49ers
+	
 17
 Video Recap
-
+	
 Broncos
+	
 24
-Final
-
+	Final
 Colts
+	
 27
 Video Recap
-
 Eagles
+	
 33
-Final/OT
-
+	Final/OT
 Cowboys
+	
 27
-Video Recap
-Monday, November 9
 
-Bears
-22
-Final
-
-Chargers
-19
-Video Recap
-
-
+Thursday, November 12
 Bills
+	
 22
-Final
-
+	Final
 Jets
+	
 17
 Video Recap
+	
 Sunday, November 15
-
 Dolphins
+	
 20
-Final
-
+	Final
 Eagles
+	
 19
 Video Recap
-
+	
 Cowboys
+	
 6
-Final
-
+	Final
 Buccaneers
+	
 10
 Video Recap
-
 Browns
+	
 9
-Final
-
+	Final
 Steelers
+	
 30
 Video Recap
-
+	
 Bears
+	
 37
-Final
-
+	Final
 Rams
+	
 13
 Video Recap
-
 Lions
+	
 18
-Final
-
+	Final
 Packers
+	
 16
 Video Recap
-
+	
 Saints
+	
 14
-Final
-
+	Final
 Redskins
+	
 47
 Video Recap
-
 Jaguars
+	
 22
-Final
-
+	Final
 Ravens
+	
 20
 Video Recap
-
+	
 Panthers
+	
 27
-Final
-
+	Final
 Titans
+	
 10
 Video Recap
-
 Vikings
+	
 30
-Final
-
+	Final
 Raiders
+	
 14
 Video Recap
-
+	
 Patriots
+	
 27
-Final
-
+	Final
 Giants
+	
 26
 Video Recap
-
 Chiefs
+	
 29
-Final
-
+	Final
 Broncos
+	
 13
 Video Recap
-
+	
 Cardinals
+	
 39
-Final
-
+	Final
 Seahawks
+	
 32
 Video Recap
 Monday, November 16
-
 Texans
+	
 10
-Final
-
-Bengals
-6
-Video Recap
-
-
-Titans
-13
-Final
-
-Jaguars
-19
-Video Recap
-Sunday, November 22
-
-Jets
-17
-Final
-
-Texans
-24
-Video Recap
-
-Raiders
-13
-Final
-
-Lions
-18
-Video Recap
-
-Colts
-24
-Final
-
-Falcons
-21
-Video Recap
-
-Cowboys
-24
-Final
-
-Dolphins
-14
-Video Recap
-
-Redskins
-16
-Final
-
-Panthers
-44
-Video Recap
-
-Rams
-13
-Final
-
-Ravens
-16
-Video Recap
-
-Broncos
-17
-Final
-
-Bears
-15
-Video Recap
-
-Buccaneers
-45
-Final
-
-Eagles
-17
-Video Recap
-
-Chiefs
-33
-Final
-
-Chargers
-3
-Video Recap
-
-Packers
-30
-Final
-
-Vikings
-13
-Video Recap
-
-49ers
-13
-Final
-
-Seahawks
-29
-Video Recap
-
-Bengals
-31
-Final
-
-Cardinals
-34
-Video Recap
-Monday, November 23
-
-Bills
-13
-Final
-
-Patriots
-20
-Video Recap
 	Final
+Bengals
+	
+6
 
+Thursday, November 19
+Titans
+	
+13
+	Final
 Jaguars
+	
 19
 Video Recap
+	
 Sunday, November 22
-
 Jets
+	
 17
-Final
-
+	Final
 Texans
+	
 24
 Video Recap
-
+	
 Raiders
+	
 13
-Final
-
+	Final
 Lions
+	
 18
 Video Recap
-
 Colts
+	
 24
-Final
-
+	Final
 Falcons
+	
 21
 Video Recap
-
+	
 Cowboys
+	
 24
-Final
-
+	Final
 Dolphins
+	
 14
 Video Recap
-
 Redskins
+	
 16
-Final
-
+	Final
 Panthers
+	
 44
 Video Recap
-
+	
 Rams
+	
 13
-Final
-
+	Final
 Ravens
+	
 16
 Video Recap
-
 Broncos
+	
 17
-Final
-
+	Final
 Bears
+	
 15
 Video Recap
-
+	
 Buccaneers
+	
 45
-Final
-
+	Final
 Eagles
+	
 17
 Video Recap
-
 Chiefs
+	
 33
-Final
-
+	Final
 Chargers
+	
 3
 Video Recap
-
+	
 Packers
+	
 30
-Final
-
+	Final
 Vikings
+	
 13
 Video Recap
-
 49ers
+	
 13
-Final
-
+	Final
 Seahawks
+	
 29
 Video Recap
-
+	
 Bengals
+	
 31
-Final
-
+	Final
 Cardinals
+	
 34
 Video Recap
 Monday, November 23
-
 Bills
+	
 13
-Final
-
+	Final
 Patriots
+	
 20
-Video Recap
 
-
+Thursday, November 26
 Eagles
+	
 14
-Final
-
+	Final
 Lions
+	
 45
 Video Recap
-
+	
 Panthers
+	
 33
-Final
-
+	Final
 Cowboys
+	
 14
 Video Recap
-
 Bears
+	
 17
-Final
-
+	Final
 Packers
+	
 13
 Video Recap
+	
 Sunday, November 29
-
 Bills
+	
 22
-Final
-
+	Final
 Chiefs
+	
 30
 Video Recap
-
+	
 Chargers
+	
 31
-Final
-
+	Final
 Jaguars
+	
 25
 Video Recap
-
 Dolphins
+	
 20
-Final
-
+	Final
 Jets
+	
 38
 Video Recap
-
+	
 Raiders
+	
 24
-Final
-
+	Final
 Titans
+	
 21
 Video Recap
-
 Buccaneers
+	
 12
-Final
-
+	Final
 Colts
+	
 25
 Video Recap
-
+	
 Saints
+	
 6
-Final
-
+	Final
 Texans
+	
 24
 Video Recap
-
 Giants
+	
 14
-Final
-
+	Final
 Redskins
+	
 20
 Video Recap
-
+	
 Rams
+	
 7
-Final
-
+	Final
 Bengals
+	
 31
 Video Recap
-
 Vikings
+	
 20
-Final
-
+	Final
 Falcons
+	
 10
 Video Recap
-
+	
 Cardinals
+	
 19
-Final
-
+	Final
 49ers
+	
 13
 Video Recap
-
 Steelers
+	
 30
-Final
-
+	Final
 Seahawks
+	
 39
 Video Recap
-
+	
 Patriots
+	
 24
-Final/OT
-
+	Final/OT
 Broncos
+	
 30
 Video Recap
 Monday, November 30
-
 Ravens
+	
 33
-Final
-
+	Final
 Browns
+	
 27
-Video Recap
 
-
+Thursday, December 3
 Packers
+	
 27
-Final
-
+	Final
 Lions
+	
 23
 Video Recap
+	
 Sunday, December 6
-
 Cardinals
+	
 27
-Final
-
+	Final
 Rams
+	
 3
 Video Recap
-
+	
 Falcons
+	
 19
-Final
-
+	Final
 Buccaneers
+	
 23
 Video Recap
-
 Texans
+	
 21
-Final
-
+	Final
 Bills
+	
 30
 Video Recap
-
+	
 Jaguars
+	
 39
-Final
-
+	Final
 Titans
+	
 42
 Video Recap
-
 Seahawks
+	
 38
-Final
-
+	Final
 Vikings
+	
 7
 Video Recap
-
+	
 Bengals
+	
 37
-Final
-
+	Final
 Browns
+	
 3
 Video Recap
-
 Jets
+	
 23
-Final/OT
-
+	Final/OT
 Giants
+	
 20
 Video Recap
-
+	
 Ravens
+	
 13
-Final
-
+	Final
 Dolphins
+	
 15
 Video Recap
-
 49ers
+	
 26
-Final/OT
-
+	Final/OT
 Bears
+	
 20
 Video Recap
-
+	
 Broncos
+	
 17
-Final
-
+	Final
 Chargers
+	
 3
 Video Recap
-
 Chiefs
+	
 34
-Final
-
+	Final
 Raiders
+	
 20
 Video Recap
-
+	
 Panthers
+	
 41
-Final
-
+	Final
 Saints
+	
 38
 Video Recap
-
 Eagles
+	
 35
-Final
-
+	Final
 Patriots
+	
 28
 Video Recap
-
+	
 Colts
+	
 10
-Final
-
+	Final
 Steelers
+	
 45
 Video Recap
 Monday, December 7
-
 Cowboys
+	
 19
-Final
-
+	Final
 Redskins
+	
 16
-Video Recap
 
-
+Thursday, December 10
 Vikings
+	
 20
-Final
-
+	Final
 Cardinals
+	
 23
 Video Recap
+	
 Sunday, December 13
-
 Lions
+	
 14
-Final
-
+	Final
 Rams
+	
 21
 Video Recap
-
+	
 Falcons
+	
 0
-Final
-
+	Final
 Panthers
+	
 38
 Video Recap
-
 Redskins
+	
 24
-Final
-
+	Final
 Bears
+	
 21
 Video Recap
-
+	
 Bills
+	
 20
-Final
-
+	Final
 Eagles
+	
 23
 Video Recap
-
 49ers
+	
 10
-Final
-
+	Final
 Browns
+	
 24
 Video Recap
-
+	
 Saints
+	
 24
-Final
-
+	Final
 Buccaneers
+	
 17
 Video Recap
-
 Seahawks
+	
 35
-Final
-
+	Final
 Ravens
+	
 6
 Video Recap
-
+	
 Chargers
+	
 3
-Final
-
+	Final
 Chiefs
+	
 10
 Video Recap
-
 Colts
+	
 16
-Final
-
+	Final
 Jaguars
+	
 51
 Video Recap
-
+	
 Titans
+	
 8
-Final
-
+	Final
 Jets
+	
 30
 Video Recap
-
 Steelers
+	
 33
-Final
-
+	Final
 Bengals
+	
 20
 Video Recap
-
+	
 Raiders
+	
 15
-Final
-
+	Final
 Broncos
+	
 12
 Video Recap
-
 Cowboys
+	
 7
-Final
-
+	Final
 Packers
+	
 28
 Video Recap
-
+	
 Patriots
+	
 27
-Final
-
+	Final
 Texans
+	
 6
 Video Recap
 Monday, December 14
-
 Giants
+	
 31
-Final
-
+	Final
 Dolphins
+	
 24
-Video Recap
 
-
+Thursday, December 17
 Buccaneers
+	
 23
-Final
-
+	Final
 Rams
+	
 31
 Video Recap
+	
 Saturday, December 19
-
 Jets
+	
 19
-Final
-
+	Final
 Cowboys
+	
 16
 Video Recap
+	
 Sunday, December 20
-
 Chiefs
+	
 34
-Final
-
+	Final
 Ravens
+	
 14
 Video Recap
-
+	
 Texans
+	
 16
-Final
-
+	Final
 Colts
+	
 10
 Video Recap
-
 Titans
+	
 16
-Final
-
+	Final
 Patriots
+	
 33
 Video Recap
-
+	
 Bills
+	
 25
-Final
-
+	Final
 Redskins
+	
 35
 Video Recap
-
 Bears
+	
 17
-Final
-
+	Final
 Vikings
+	
 38
 Video Recap
-
+	
 Panthers
+	
 38
-Final
-
+	Final
 Giants
+	
 35
 Video Recap
-
 Falcons
+	
 23
-Final
-
+	Final
 Jaguars
+	
 17
 Video Recap
-
+	
 Packers
+	
 30
-Final
-
+	Final
 Raiders
+	
 20
 Video Recap
-
 Browns
+	
 13
-Final
-
+	Final
 Seahawks
+	
 30
 Video Recap
-
+	
 Bengals
+	
 24
-Final
-
+	Final
 49ers
+	
 14
 Video Recap
-
 Broncos
+	
 27
-Final
-
+	Final
 Steelers
+	
 34
 Video Recap
-
+	
 Dolphins
+	
 14
-Final
-
+	Final
 Chargers
+	
 30
 Video Recap
-
 Cardinals
+	
 40
-Final
-
+	Final
 Eagles
+	
 17
 Video Recap
+	
 Monday, December 21
-
 Lions
+	
 35
-Final
-
+	Final
 Saints
+	
 27
-Video Recap
 
-
+Thursday, December 24
 Chargers
+	
 20
-Final/OT
-
+	Final/OT
 Raiders
+	
 23
 Video Recap
+	
 Saturday, December 26
-
 Redskins
+	
 38
-Final
-
+	Final
 Eagles
+	
 24
 Video Recap
+	
 Sunday, December 27
-
 Colts
+	
 18
-Final
-
+	Final
 Dolphins
+	
 12
 Video Recap
-
+	
 Bears
+	
 26
-Final
-
+	Final
 Buccaneers
+	
 21
 Video Recap
-
 Browns
+	
 13
-Final
-
+	Final
 Chiefs
+	
 17
 Video Recap
-
+	
 Patriots
+	
 20
-Final/OT
-
+	Final/OT
 Jets
+	
 26
 Video Recap
-
 Cowboys
+	
 6
-Final
-
+	Final
 Bills
+	
 16
 Video Recap
-
+	
 Panthers
+	
 13
-Final
-
+	Final
 Falcons
+	
 20
 Video Recap
-
 49ers
+	
 17
-Final
-
+	Final
 Lions
+	
 32
 Video Recap
-
+	
 Texans
+	
 34
-Final
-
+	Final
 Titans
+	
 6
 Video Recap
-
 Steelers
+	
 17
-Final
-
+	Final
 Ravens
+	
 20
 Video Recap
-
+	
 Jaguars
+	
 27
-Final
-
+	Final
 Saints
+	
 38
 Video Recap
-
 Rams
+	
 23
-Final
-
+	Final
 Seahawks
+	
 17
 Video Recap
-
+	
 Packers
+	
 8
-Final
-
+	Final
 Cardinals
+	
 38
 Video Recap
-
 Giants
+	
 17
-Final
-
+	Final
 Vikings
+	
 49
 Video Recap
+	
 Monday, December 28
-
 Bengals
+	
 17
-Final/OT
-
+	Final/OT
 Broncos
+	
 20
-Video Recap
 
+Thursday
 
+Sunday, January 3
 Jaguars
+	
 6
-Final
-
+	Final
 Texans
+	
 30
 Video Recap
-
+	
 Steelers
+	
 28
-Final
-
+	Final
 Browns
+	
 12
 Video Recap
-
 Jets
+	
 17
-Final
-
+	Final
 Bills
+	
 22
 Video Recap
-
+	
 Patriots
+	
 10
-Final
-
+	Final
 Dolphins
+	
 20
 Video Recap
-
 Titans
+	
 24
-Final
-
+	Final
 Colts
+	
 30
 Video Recap
-
+	
 Ravens
+	
 16
-Final
-
+	Final
 Bengals
+	
 24
 Video Recap
-
 Redskins
+	
 34
-Final
-
+	Final
 Cowboys
+	
 23
 Video Recap
-
+	
 Saints
+	
 20
-Final
-
+	Final
 Falcons
+	
 17
 Video Recap
-
 Lions
+	
 24
-Final
-
+	Final
 Bears
+	
 20
 Video Recap
-
+	
 Eagles
+	
 35
-Final
-
+	Final
 Giants
+	
 30
 Video Recap
-
 Rams
+	
 16
-Final/OT
-
+	Final/OT
 49ers
+	
 19
 Video Recap
-
+	
 Buccaneers
+	
 10
-Final
-
+	Final
 Panthers
+	
 38
 Video Recap
-
 Raiders
+	
 17
-Final
-
+	Final
 Chiefs
+	
 23
 Video Recap
-
+	
 Chargers
+	
 20
-Final
-
+	Final
 Broncos
+	
 27
 Video Recap
-
 Seahawks
+	
 36
-Final
-
+	Final
 Cardinals
+	
 6
 Video Recap
-
+	
 Vikings
+	
 20
-Final
-
+	Final
 Packers
+	
 13
-Video Recap
 
+Thursday
 
+Saturday, January 9
 Chiefs
+	
 30
-Final
-
+	Final
 Texans
+	
 0
 Video Recap
-
+	
 Steelers
+	
 18
-Final
-
+	Final
 Bengals
+	
 16
 Video Recap
 Sunday, January 10
-
 Seahawks
+	
 10
-Final
-
+	Final
 Vikings
+	
 9
 Video Recap
-
+	
 Packers
+	
 35
-Final
-
+	Final
 Redskins
+	
 18
-Video Recap
 
+Thursday
 
+Saturday, January 16
 Chiefs
+	
 20
-Final
-
+	Final
 Patriots
+	
 27
 Video Recap
-
+	
 Packers
+	
 20
-Final/OT
-
+	Final/OT
 Cardinals
+	
 26
 Video Recap
 Sunday, January 17
-
 Seahawks
+	
 24
-Final
-
+	Final
 Panthers
+	
 31
 Video Recap
-
+	
 Steelers
+	
 16
-Final
-
+	Final
 Broncos
+	
 23
-Video Recap
 
+Thursday
 
+Sunday, January 24
 Patriots
+	
 18
-Final
-
+	Final
 Broncos
+	
 20
 Video Recap
-
+	
 Cardinals
+	
 15
-Final
-
+	Final
 Panthers
+	
 49
-Video Recap
-
-
-

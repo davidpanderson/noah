@@ -69,14 +69,14 @@ def get_games():
                     int(words[5]), int(words[6]),
                     week, x.index(words[2])
                     ]
-                print(game)
+                #print(game)
                 fb.games.append(game)
             else:
                 game = [
                     fb.teams.index(t1), fb.teams.index(t2),
                     int(words[5]), int(words[6]),
                     week, 2]
-                print(game)
+                #print(game)
             
                 fb.games.append(game)
         else:
@@ -103,8 +103,8 @@ def create_info_files():
 def read_info_file():
     global teams, games
     f = open('data.pickle', 'rb')
-    x = pickle.load(f);
-    f.close();
+    x = pickle.load(f)
+    f.close()
     fb.teams = x[0]
     fb.games = x[1]
     
@@ -225,12 +225,13 @@ def score_error_true_1(x, ho):
 
 x = []
 
-print(fb.teams)
-for t in fb.teams:
-    x.append(20)
-    x.append(1)
-print(score_error_true_1(x, 1))
-print(fb.score_error(x))
+#print(fb.teams)
+#for t in fb.teams:
+    #x.append(20)
+    #x.append(1)
+#print(score_error_true_1(x, 1))
+#print(fb.score_error(x))
 #print(fb.games)
+
 
 

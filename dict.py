@@ -1,7 +1,7 @@
 # read word-list file, return list of words (~109K of them)
 #
 def get_dictionary():
-    f = open('C:\Users\David\My Documents\words.txt', 'r')
+    f = open("C:/Users/David/My Documents/words.txt", 'r')
     x = []
     while True:
         word = f.readline()
@@ -23,9 +23,9 @@ def check_words():
         if len(w) == 0:
             break
         if w in dict:
-            print w, ' is a word'
+            print(w, ' is a word')
         else:
-            print w, ' is not a word'
+            print (w, ' is not a word')
 
 # return True if word is made of given letters and includes letters[0]
 # (for the NY Times Spelling Bee game)
@@ -48,7 +48,7 @@ def spelling_bee(letters):
         if len(w)<5:
             continue
         if word_matches(letter_list, w):
-            print w
+            print (w)
 
 # return true if y has all the letters in x, in the same order
 #
@@ -116,7 +116,7 @@ def find3():
             if len(m) > 3:
                 break
         if len(m) <= 3:
-            print s, m
+            print (s, m)
 
 def wps(x):
     dict = get_dictionary()
