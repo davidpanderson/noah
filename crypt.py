@@ -15,7 +15,7 @@ def word_matches_pattern(wo, x):
         if t != ' ':
             if wo[l] != x[l]:
                 return False
-    print 'match: ', wo
+    print ('match: ', wo)
     return True
 
 # return True if any word matches pattern
@@ -42,9 +42,9 @@ def creat_freq(s):
 def guess_to_map(guess):
     x = {}
     for i in range(len(guess)):
-        j = guess[i];
-        print i, j, crypt_chars[i]
-        x[crypt_chars[i]] = eng_letters[j];
+        j = guess[i]
+        print (i, j, crypt_chars[i])
+        x[crypt_chars[i]] = eng_letters[j]
     return x
         
 # given a cryptogram word and a guess, create the corresponding pattern
@@ -68,10 +68,9 @@ def make_pattern(w, map):
 # "OK" means that there are actual words compatible with the guess
 #
 def guess_ok(guess, crypt_words):
-    map = guess_to_map(guess);
+    map = guess_to_map(guess)
     for w in crypt_words:
         p = make_pattern(w, map)
-        print 'pattern: <', p, '>'
         if not any_word_matches_pattern(p):
             return False
     return True
@@ -86,4 +85,4 @@ def solve_crypt(crypt):
     guess = [0]
     print guess_ok(guess, crypt_words)
 
-solve_crypt('xym oliny')
+print(solve_crypt('xym oliny'))

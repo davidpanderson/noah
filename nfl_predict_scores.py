@@ -163,7 +163,6 @@ def rankings(week):
     print(totals)
     count = 0
     for t in totals:
-        print(pairs)
         print(32-count, t, pairs[t])
         count += 1
 
@@ -175,7 +174,7 @@ games = get_games()
 #print(len(games))
 ratings = compute_ratings(week)
 #print(fb.predict_score(teams.index('Panthers'), teams.index('Broncos'), ratings))
-print(rankings(21))
+print(rankings(6))
 #print(read_ratings_file(21))
                 
             
