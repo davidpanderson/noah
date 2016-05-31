@@ -9,23 +9,43 @@ duffy = {'name':'duffy', 'ab':724, 'hits': 209, 'double':34, 'triple':7, 'hr':14
 pence = {'name':'pence', 'ab':5045, 'hits': 1430, 'double':263, 'triple':47, 'hr':198, 'walks': 412}
 span = {'name':'span', 'ab':3906, 'hits': 1119, 'double':192, 'triple':56, 'hr':38, 'walks': 394}
 bumgarner = {'name':'bumgarner', 'ab':378, 'hits': 69, 'double':10, 'triple':0, 'hr':12, 'walks': 19}
+lineup = [pagan, span, panik, posey, pence, belt, crawford, duffy, bumgarner]
 
+def make_probs(player):
+    pa = player['ab'] + player['walks']
+    singles = player['hits'] - (player['double'] + player['triple'] + player['hr'])
+    single_prob = singles / pa
+    double_prob = player['double'] / pa
+    triple_prob = player['triple'] / pa
+    hr_prob = player['hr'] / pa
+    walk_prob = player['walks'] / pa
+    player['ps'] = single_prob
+    player['psd'] = single_prob + double_prob
+    player['psdt'] = single_prob + double_prob + triple_prob
+    player['psdth'] = single_prob+ double_prob + triple_prob + hr_prob
+    player['psdthw'] = single_prob  + double_prob + triple_prob + hr_prob + walk_prob
+    if player['name'] == 'panik':
+        print(pa, singles, single_prob, double_prob, triple_prob, hr_prob, walk_prob)
+        print(player)
+
+for p in lineup:
+    make_probs(p)
+    
 def at_bat(player):
     n = random.uniform(0, 1)
-    singles = player['hits'] - player['double'] - player['triple'] - player['hr']
-    single_prob = singles / player['ab']
-    if n < single_prob:
-        return 1
-    double_prob = player['double'] / player['ab']
-    if n < single_prob + double_prob:
-        return 2
-    triple_prob = player['triple'] / player['ab']
-    if n < single_prob + double_prob + triple_prob:
-        return 3
-    hr_prob = player['hr'] / player['ab']
-    if n < single_prob + double_prob + triple_prob + hr_prob:
-        return 4
-    return 0
+    x = 0
+    if n < player['ps']:
+        x = 1
+    elif n < player['psd']:
+        x = 2
+    elif n < player['psdt']:
+        x = 3
+    elif n < player['psdth']:
+        x = 4
+    elif n < player['psdthw']:
+        x = 5
+    #print(n, x)
+    return x
 
 def game(lineup, b):
     outs = 0
@@ -119,6 +139,28 @@ def game(lineup, b):
                     first = False
                     second = False
                     third = False
+            if r == 5:
+                if b:
+                    print('walk', batter['name'])
+                if third != False and second != False and first != False:
+                    runs += 1
+                    if b:
+                        print('run scores', third['name'])
+
+                    third = second
+                    second = first
+                    first = batter
+                else:
+                    if second != False and first != False:
+                        third = second
+                        second = first
+                        first = batter
+                    else:
+                        if first != False:
+                            second == first
+                            first = batter
+                        else:
+                            first = batter
 
             if outs == 3:
                 first = False
@@ -126,11 +168,11 @@ def game(lineup, b):
                 third = False
                 inning += 1
                 outs = 0
-                if b:
-                    print('inning ', inning)
-
                 if inning == 10:
                     return runs
+                if b:
+                    print('inning', inning)
+
 
 def test(player):
     total = [0, 0, 0, 0, 0]
@@ -151,7 +193,6 @@ def test_lineup(lineup, p):
         total += game(lineup, False)
     return total/p
 
-lineup = [pagan, span, panik, posey, pence, belt, crawford, duffy, bumgarner]
 #test(panik)
 
 def print_lineup(lineup):
@@ -166,12 +207,35 @@ def find_best_lineup(players):
         score = test_lineup(lineup, 500);
         if score > best_score:
             best_lineup = lineup
-            print('new best score: ',score)
+            print('new best score: ',score, lineup)
             print_lineup(lineup);
             best_score = score
         lins += 1
-        if lins % 100 == 0:
+        if lins % 3628 == 0:
             print (lins/362880., 'percent done')
     return best_lineup
+
+def slg(player):
+    b = player['double']*2 + player['triple']*3 + player['hr']*4
+    singles = player['hits'] - player['double'] - player['triple'] - player['hr']
+    b += singles
+    print( b/player['ab'])
+#for player in lineup:
+    #psc.append([player['name'], test_lineup([player], 10000)])
+
+def test1():
+    counter = 0
+    ngames = 5
+    for i in range(ngames):
+        #n = game([panik], False)
+        n = game([span, panik, duffy, posey, pence, belt, crawford, bumgarner, pagan], True)
+        #print(n, ' runs')
+        counter += n
+    re = counter/ngames
+    print(re)
     
+#print (game([panik], True))
+
+#test1()
+
 find_best_lineup(lineup)

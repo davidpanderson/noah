@@ -223,7 +223,7 @@ def score_error_true_1(x, ho):
         sum += (d2-1)**2
     return sum
 
-x = []
+rankings(17)
 
 #print(fb.teams)
 #for t in fb.teams:
