@@ -23,7 +23,6 @@ def key_down(evt):
 
 def key_up(evt):
     global ready, quit
-    print('key up')
     ready = True
     if evt.key == 'left':
         v[0] = 0
@@ -58,12 +57,26 @@ def setup_window():
 def show_instructions():
     global ready
     instructions = text(text='', color=color.white, height=.4, pos=(-2, 3.5, -20))
-    instructions.text = 'Welcome to Space Slalom!\nUse the mouse to steer through rings\nPress any key to start'
+    instructions.text = 'Welcome to Space Slalom!\nUse the mouse to steer through rings.\nPress any key to start.'
     ready = False
     while not ready:
         sleep(.1)
     instructions.visible = False
     del instructions
+
+# given the position of a ring, compute a position for the following ring.
+# dz is uniformly distributed over (A, B)
+# dx and dy are uniform over (-Cdz, Cdz)
+# So A, B and C define the nature and difficulty of the game
+#
+def next_pos(pos):
+    dz = random.uniform(0.5, 8.0)
+    cdz = .8*dz
+    dx = random.uniform(-cdz, cdz) - pos[0]/2
+    dy = random.uniform(-cdz, cdz) - pos[1]/2
+    p2 = vector(pos[0]+dx, pos[1]+dy, pos[2]-dz)
+    #print(pos, p2)
+    return p2
 
 def play_game(game_length):
     global vscale, quit
@@ -77,12 +90,16 @@ def play_game(game_length):
     misses = text(text='misses:', color=c, pos=(6, 4, -20), height=ht)
     projt = text(text='projected:', color=c, pos=(6, 3, -20), height=ht)
     rings = []
-    n = 10
+    nrings = 10
     a = vector(0, 0, 1)
     nhits = 0
     nmisses = 0
-    for i in range(n):
-        p = vector(random.uniform(-s,s), random.uniform(-s,s), random.uniform(-60,-10))
+    for i in range(nrings):
+        if i == 0:
+            p = vector(0, 0, -10)
+        else:
+            p = next_pos(p)
+        #p = vector(random.uniform(-s,s), random.uniform(-s,s), random.uniform(-60,-10))
         r = ring(pos=p, axis=a, color=random_color())
         rings.append(r)
     start = time.time()
@@ -104,7 +121,8 @@ def play_game(game_length):
             clock.text = str(rem)
             projt.text = 'projected:  %.1f'%(nhits / (nsteps*dt) * game_length)
         #d.background = (0, 0, 0)
-        for r in rings:
+        for i in range(nrings):
+            r = rings[i]
             r.pos += v
             if r.pos[2] > 0:
                 if hit_ring(r):
@@ -115,7 +133,9 @@ def play_game(game_length):
                     nmisses += 1
                     misses.text = 'misses:  '+str(nmisses)
                     #d.background = (1, 0, 0)
-                r.pos = (random.uniform(-s,s), random.uniform(-s,s), random.uniform(-55, -50))
+                #r.pos = (random.uniform(-s,s), random.uniform(-s,s), random.uniform(-55, -50))
+                j = (i+nrings-1) % nrings
+                r.pos = next_pos(rings[j].pos)
     clock.visible = False
     hits.visible = False
     misses.visible = False
