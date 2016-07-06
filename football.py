@@ -144,8 +144,8 @@ def test_predict():
     ratings = read_ratings_file(13)
     print(fb.teams)
     ratings = fb.compute_ratings(13)
-    input1 = 'Tennessee'
-    input2 = 'Oregon'
+    input1 = 'Boise State'
+    input2 = 'Air Force'
     t1 = fb.teams.index(input1)
     t2 = fb.teams.index(input2)
 
@@ -223,7 +223,22 @@ def score_error_true_1(x, ho):
         sum += (d2-1)**2
     return sum
 
-rankings(17)
+def compute_ratings(wk):
+    global teams, games, week
+    ratings = []
+    for t in teams:
+        ratings.append(20)
+        ratings.append(1)
+    x0 = np.array(ratings)
+    week = wk
+    res = minimize(score_error_true_1, x0, method='Nelder-Mead', options={'xtol': 1e-8, 'maxfev':1000000, 'maxiter': 1000000000, 'disp': True})
+    return res
+print(r)
+teams = get_teams()
+games = get_games()
+week = 17
+r = compute_ratings(17)
+
 
 #print(fb.teams)
 #for t in fb.teams:

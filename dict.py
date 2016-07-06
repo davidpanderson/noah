@@ -1,17 +1,24 @@
 # read word-list file, return list of words (~109K of them)
 #
-def get_dictionary():
-    f = open("C:/Users/David/My Documents/words.txt", 'r')
+def get_dictionary(big=False, alpha_only=True):
+    if big:
+        f = open("C:/Users/David/My Documents/words2.txt", 'r')
+    else:
+        f = open("C:/Users/David/My Documents/words.txt", 'r')
     x = []
     while True:
         word = f.readline()
+        y = word
         word = word.strip()
         word = word.lower()
         if len(word) == 0:
+            print(y)
             break
+        if alpha_only and not word.isalpha():
+            continue
         x.append(word)
     return x
-
+    
 # tell user whether strings are in dictionary.
 # quit when get empty string
 #

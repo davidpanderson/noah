@@ -1,4 +1,3 @@
-
 from visual import *
 import random
 import time
@@ -71,9 +70,9 @@ def show_instructions():
 #
 def next_pos(pos):
     dz = random.uniform(0.5, 8.0)
-    cdz = .8*dz
-    dx = random.uniform(-cdz, cdz) - pos[0]/2
-    dy = random.uniform(-cdz, cdz) - pos[1]/2
+    cdz = 1.0*dz
+    dx = random.uniform(-cdz, cdz) - pos[0]/4
+    dy = random.uniform(-cdz, cdz) - pos[1]/4
     p2 = vector(pos[0]+dx, pos[1]+dy, pos[2]-dz)
     #print(pos, p2)
     return p2
@@ -84,22 +83,25 @@ def play_game(game_length):
     vscale = d.width/d.height
     s = 3    # determines x/y spacing of rings
     ht = .6
+    total_rings = 120
+    rings_left = total_rings
+    rings_passed = 0
     c = color.white
-    clock = text(text='0', color=c, pos=(-10, 5, -20), height=ht)
-    hits = text(text='hits:', color=c, pos=(6, 5, -20), height=ht)
-    misses = text(text='misses:', color=c, pos=(6, 4, -20), height=ht)
+    rings_left_text = text(text=str(total_rings), color=c, pos=(-10, 5, -20), height=ht)
+    hits = text(text='hits: 0', color=c, pos=(6, 5, -20), height=ht)
+    misses = text(text='misses: 0', color=c, pos=(6, 4, -20), height=ht)
     projt = text(text='projected:', color=c, pos=(6, 3, -20), height=ht)
     rings = []
-    nrings = 10
+    nrings = 10     # # of rings visible at once
     a = vector(0, 0, 1)
     nhits = 0
     nmisses = 0
+    done = False
     for i in range(nrings):
         if i == 0:
             p = vector(0, 0, -10)
         else:
             p = next_pos(p)
-        #p = vector(random.uniform(-s,s), random.uniform(-s,s), random.uniform(-60,-10))
         r = ring(pos=p, axis=a, color=random_color())
         rings.append(r)
     start = time.time()
@@ -113,14 +115,6 @@ def play_game(game_length):
         sleep(dt)
         nsteps += 1
         n = int(nsteps*dt)
-        if n > now:
-            now = n
-            rem = game_length - now
-            if rem <= 0:
-                break
-            clock.text = str(rem)
-            projt.text = 'projected:  %.1f'%(nhits / (nsteps*dt) * game_length)
-        #d.background = (0, 0, 0)
         for i in range(nrings):
             r = rings[i]
             r.pos += v
@@ -132,15 +126,23 @@ def play_game(game_length):
                 else:
                     nmisses += 1
                     misses.text = 'misses:  '+str(nmisses)
-                    #d.background = (1, 0, 0)
-                #r.pos = (random.uniform(-s,s), random.uniform(-s,s), random.uniform(-55, -50))
+                rings_left -= 1
+                rings_passed += 1
+                rings_left_text.text = str(rings_left)
+                projt.text = 'projected:  %.1f'%(float(total_rings*nhits)/rings_passed)
+                if rings_left <= 0:
+                    done = True
+                    break
                 j = (i+nrings-1) % nrings
                 r.pos = next_pos(rings[j].pos)
-    clock.visible = False
+        if done:
+            break
+    sleep(2)
+    rings_left_text.visible = False
     hits.visible = False
     misses.visible = False
     projt.visible = False
-    del clock
+    del rings_left_text
     del hits
     del misses
     del projt
@@ -162,6 +164,7 @@ def read_scores():
         x[1] = int(x[1])
         x[2] = float(x[2])
         scores.append(x)
+    scores.reverse()
     return sorted(scores, key=itemgetter(1), reverse=True)
 
 # return a string of top 10 scores
@@ -206,6 +209,7 @@ def write_score(name, score, t):
 def main():
     print 'Enter your name: ',
     name = raw_input()
+    name = name.strip()
     setup_window()
     show_instructions()
     while True:
