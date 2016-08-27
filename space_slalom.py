@@ -1,3 +1,4 @@
+
 from visual import *
 import random
 import time
@@ -35,9 +36,13 @@ def key_up(evt):
         quit = True
 
 def mouse_move(evt):
-    global vscale
     v[0] = -evt.pos[0]/100
     v[1] = -vscale*evt.pos[1]/100
+
+def get_mouse():
+    global vscale
+    v[0] = -scene.mouse.pos[0]/100
+    v[1] = -vscale*scene.mouse.pos[1]/100
     
 def hit_ring(r):
     d = r.pos[0]*r.pos[0] + r.pos[1]*r.pos[1]
@@ -51,7 +56,7 @@ def setup_window():
     scene.center = vector(0, 0, -20)
     scene.bind('keydown', key_down)
     scene.bind('keyup', key_up)
-    scene.bind('mousemove', mouse_move)
+    #scene.bind('mousemove', mouse_move)
 
 def show_instructions():
     global ready
@@ -110,6 +115,7 @@ def play_game(game_length):
     nsteps = 0
     quit = False
     while True:
+        get_mouse()
         if quit:
             break;
         sleep(dt)

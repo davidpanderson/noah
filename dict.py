@@ -125,6 +125,8 @@ def find3():
         if len(m) <= 3:
             print (s, m)
 
+# what does this do??
+#
 def wps(x):
     dict = get_dictionary()
     l = list('abcdefghijklmnopqrstuvwxyz') 
@@ -138,3 +140,11 @@ def wps(x):
         return True
     else:
         return False
+
+# print list of words that contain given substring
+#
+def extends(s):
+    dict = get_dictionary()
+    for w in dict:
+        if  w.find(s) >= 0:
+            print(w)
