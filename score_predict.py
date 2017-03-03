@@ -1,10 +1,11 @@
+# module for predicting scores based on previous games
+
 import numpy as np
 from scipy.optimize import minimize
-
 # global variables
 teams = []
 games = []
-week = 13
+week = 0
 
 # a game is described by a list
 # team1 (int), team2 (int), score1, score2, week
@@ -16,7 +17,7 @@ week = 13
 #   - over_under: it true, optimize point total
 #      otherwise optimize individual scores
 
-# compute model error
+# compute model error based on games in weeks 1..week
 # this is called by the optimize function
 # x is list of team ratings
 # x[0]/x[1]: off/def for team 0
@@ -26,6 +27,8 @@ def score_error(x):
     global games
     sum = 0
     for g in games:
+        if week>0 and g[4] > week:
+            continue;
         o1 = x[g[0]*2]
         d1 = x[g[0]*2+1]
         o2 = x[g[1]*2]
@@ -39,9 +42,10 @@ def score_error(x):
         sum += (d1-1)**2
         sum += (d2-1)**2
     #print (sum, len(games))
-    exit
+    #exit
     return sum
 
+# predict score of game between i and j, given ratings in x
 def predict_score(i, j, x):
     o1 = x[i*2]
     d1 = x[i*2+1]
@@ -52,29 +56,33 @@ def predict_score(i, j, x):
     #print(teams[i], o1, d1, teams[j], o2, d2, p1, p2)
     return [p1, p2]
 
+# compute ratings based on weeks 1..wk
 def compute_ratings(wk):
     global teams, games, week
     ratings = []
+
+    # initial values: offense 20, defense 1
     for t in teams:
         ratings.append(20)
         ratings.append(1)
     x0 = np.array(ratings)
     week = wk
-    res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-8, 'maxfev':1000000, 'maxiter': 1000000000, 'disp': True})
-    return res
+    res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-4, 'maxfev':1000000, 'maxiter': 1000000000, 'disp': True})
+    return res.x
 
 def test():
     global teams, games
     teams = ['Berkeley Bumblebees', 'Albany Anteaters', 'Emeryville Escargot']
-    g1 = [0, 1, 21, 14]
-    g2 = [1, 2, 28, 7]
+    g1 = [0, 1, 21, 14, 1]
+    g2 = [1, 2, 28, 7, 1]
     games = [g1, g2]
 
-    x = compute_ratings(1)
+    x = compute_ratings(0)
+    #print(predict_score(0, 2, x))
+    print(teams)
     print(x)
-    print(predict_score(0, 1, x))
-    #print(teams)
-    #print(x)
-    #for i in range(3):
-     #   for j in range(i+1, 3):
-      #      return predict_score(teams[0], teams[1], x)
+    for i in range(3):
+        for j in range(i+1, 3):
+            print( predict_score(i,j , x))
+
+#test()

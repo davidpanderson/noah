@@ -5,7 +5,7 @@ def get_dictionary(big=False, alpha_only=True):
         f = open("C:/Users/David/My Documents/words2.txt", 'r')
     else:
         f = open("C:/Users/David/My Documents/words.txt", 'r')
-    x = []
+    x = {}
     while True:
         word = f.readline()
         y = word
@@ -16,7 +16,7 @@ def get_dictionary(big=False, alpha_only=True):
             break
         if alpha_only and not word.isalpha():
             continue
-        x.append(word)
+        x[word] = 1
     return x
     
 # tell user whether strings are in dictionary.
@@ -25,7 +25,7 @@ def get_dictionary(big=False, alpha_only=True):
 def check_words():
     dict = get_dictionary()
     while True:
-        w = raw_input()
+        w = input()
         w = w.strip()
         if len(w) == 0:
             break
@@ -33,6 +33,8 @@ def check_words():
             print(w, ' is a word')
         else:
             print (w, ' is not a word')
+
+#check_words()
 
 # return True if word is made of given letters and includes letters[0]
 # (for the NY Times Spelling Bee game)
@@ -148,3 +150,117 @@ def extends(s):
     for w in dict:
         if  w.find(s) >= 0:
             print(w)
+
+# print list of words whose letters are in alphabetic order
+#
+def alpha_order():
+    dict = get_dictionary()
+    for w in dict:
+        z = list(w)
+        flag = True
+        for i in range(len(z)-1):
+            if z[i] >= z[i+1]:
+                flag = False
+                break
+        if flag and len(w)>5:
+            print(w)
+
+#alpha_order()
+
+def reverse_words():
+    dict = get_dictionary()
+    for w in dict:
+        if w[::-1] in dict and len(w)>5:
+            print(w)
+
+#reverse_words()
+
+def shift_word(w, k):
+    n = len(w)
+    return w[k:n]+w[0:k]
+
+def shift_words():
+    dict = get_dictionary()
+    for w in dict:
+        if shift_word(w, 1) in dict and len(w)>5:
+            print(w)
+
+#shift_words()
+
+def swap_letters(w, a, b):
+    x = list(w)
+    founda = False
+    foundb = False
+    for i in range(len(x)):
+        if x[i] == a:
+            x[i] = b;
+            founda = True
+        elif x[i] == b:
+            x[i] = a;
+            foundb = True
+    if founda and foundb:
+        return ''.join(x)
+    return ''
+
+# words that have m and n, and swapping them is also a word
+def swap():
+    dict = get_dictionary()
+    for w in dict:
+        if swap_letters(w, 'm', 'n') in dict and len(w)>5:
+            print(w)
+
+# words that have all 5 vowels
+def all_vowels():
+    dict = get_dictionary()
+    for w in dict:
+        y = list(w)
+        if not 'a' in y:
+            continue
+        if not 'e' in y:
+            continue
+        if not 'i' in y:
+            continue
+        if not 'o' in y:
+            continue
+        if not 'u' in y:
+            continue
+        print(w)
+
+# words made of 2 sub-words
+#
+def word_pairs():
+    dict = get_dictionary()
+    for w in dict:
+        n = len(w)
+        for i in range(3, n-3):
+            a = w[0:i]
+            if not a in dict:
+                continue
+            b = w[i:n]
+            if not b in dict:
+                continue
+            print(w, a, b)
+
+# words made up of pairs of adjacent letters
+#
+def letter_pairs():
+    dict = get_dictionary(True)
+    for w in dict:
+        n = len(w)
+        if n%2:
+            continue
+        x = list(w)
+        found = False
+        for i in range(n // 2):
+            a = chr(ord(x[i*2])+1);
+            #print(x[0], ord(x[0]), chr(ord(x[0])))
+            b = x[i*2+1];
+            #print(i, w, a, b)
+            if a != b:
+                found = True
+                break
+        if found:
+            continue
+        print(w)
+
+letter_pairs()

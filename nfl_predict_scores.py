@@ -173,8 +173,8 @@ games = get_games()
 #print(games)
 #print(len(games))
 ratings = compute_ratings(week)
-#print(fb.predict_score(teams.index('Panthers'), teams.index('Broncos'), ratings))
-print(rankings(6))
+print(fb.predict_score(teams.index('Raiders'), teams.index('Ravens'), ratings))
+#print(rankings(6))
 #print(read_ratings_file(21))
                 
             

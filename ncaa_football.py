@@ -3,46 +3,82 @@ import pickle
 import math
 
 ratings = []
-# returns list of lines
-def r():
+
+# return whether a line starts with an integer character
+def int_check(c):
+    if c == '':
+        return False
+    d = c[0]
+    return d.isdigit()
+
+# returns list of lines in score file
+# current score file is from http://www.jhowell.net/cf/scores/Sked2016.htm
+def read_scores():
     w = []
-    f = open('ncaa_football.txt', 'r')
+    f = open('collegefootballscores2016.txt', 'r')
     for line in f:
         line = line.strip()
         if line != '':
             w.append(line)
+    f.close()
     return w
-# returns list of teams
+
+# given a line of the form "teamname (conf)", return teamname
+# teamname may contain (, e.g. Miami (Florida) (ACC)
+#
+def team_name(line):
+    n = line.rfind('(')
+    return line[:n-1]
+                    
+# read score file, put list of teams in fb.teams
+#
 def get_teams():
+    pcount = 0
     fb.teams = []
-    f = r()
+    f = read_scores()
     for l in f:
-        x = True
-        try:
-            int(l[0])
-        except:
-            x = False
-            
-        if x == False:
-            l = l.split(' (')
-            fb.teams.append(l[0])
+        if int_check(l):
+            continue
+        fb.teams.append(team_name(l))
 
-# checks if c is an integer; returns true or false
-def int_check(c):
-    try:
-        int(c)
-    except:
-        return False
-    return True
-
-# parse the data file, create teams and games global variables
+# parse the score file, create fb.teams and fb.games global variables
 #
 def get_games():
+    fb.games = []
+    get_teams()
+    f = read_scores()
+    week = 0
+    for line in f:
+        words = line.split('\t')
+        if len(words) >= 7:
+            if not int_check(words[5]):
+                continue
+            if not int_check(words[6]):
+                continue
+            week += 1
+            #print(line)
+            t2 = words[3].replace('*', '')
+            if t1 > t2:
+                continue
+            if t2 not in fb.teams:
+                #print(t2, ' not found; skipping ', line)
+                continue
+            game = [
+                fb.teams.index(t1), fb.teams.index(t2),
+                int(words[5]), int(words[6]),
+                week
+                ]
+            fb.games.append(game)
+        else:
+             t1 = team_name(line)
+             week = 0
+
+def get_games_new():
     x = ['vs.', '@']
     nuetral = False
     fb.games = []
     get_teams()
-    f = r()
+    f = read_scores()
     for line in f:
         words = line.split('\t')
         if len(words) >= 7:
@@ -85,14 +121,13 @@ def get_games():
              week = 0
              
 # creates files with the ratings for each team for each week
-def create_info_files():
+def create_info_files(first, last):
     get_games()
     x = [fb.teams, fb.games]
     f = open('data.pickle', 'wb')
     pickle.dump(x, f)
     f.close()
-#    for i in range(1,14):
-    for i in range(1,2):
+    for i in range(first, last+1):
         ratings = fb.compute_ratings(i)
         f = open('ratings_2%d.pickle'%i, 'wb')
         pickle.dump(ratings, f)
@@ -116,7 +151,7 @@ def read_ratings_file(week):
     return x
 
 # prints rankings
-def rankings(week):
+def rankings():
     count = 0
     ratings = read_ratings_file(week)
     read_info_file()
@@ -133,6 +168,19 @@ def rankings(week):
         print(128-count, t, pairs[t])
         count += 1
 
+# check whether any teams have no games through given week
+#
+def check_teams_have_games(week):
+    nteams = len(fb.teams)
+    ngames = [0]*nteams
+    for game in fb.games:
+        if game[4] > week:
+            continue;
+        ngames[game[0]] += 1
+        ngames[game[1]] += 1
+    for i in range(nteams):
+        print("team %s has played %d games" %(fb.teams[i], ngames[i]))
+        
 def test():
     get_games()
     print(games)
@@ -196,8 +244,6 @@ def Method_test(method):
 #print(test_predict())
 #while True:
   #  i = input()
-get_games()
-read_info_file()
 def score_error_true_1(x, ho):
     global games
     sum = 0
@@ -223,23 +269,6 @@ def score_error_true_1(x, ho):
         sum += (d2-1)**2
     return sum
 
-def compute_ratings(wk):
-    global teams, games, week
-    ratings = []
-    for t in teams:
-        ratings.append(20)
-        ratings.append(1)
-    x0 = np.array(ratings)
-    week = wk
-    res = minimize(score_error_true_1, x0, method='Nelder-Mead', options={'xtol': 1e-8, 'maxfev':1000000, 'maxiter': 1000000000, 'disp': True})
-    return res
-print(r)
-teams = get_teams()
-games = get_games()
-week = 17
-r = compute_ratings(17)
-
-
 #print(fb.teams)
 #for t in fb.teams:
     #x.append(20)
@@ -248,5 +277,14 @@ r = compute_ratings(17)
 #print(fb.score_error(x))
 #print(fb.games)
 
-
-
+#get_games()
+#check_teams_have_games(3)
+#print(fb.games)
+#print('read ', len(fb.games), ' games, ', len(fb.teams), ' teams')
+#create_info_files(4,4)
+#rankings(4)
+#ratings = fb.compute_ratings(3)
+#print(ratings)
+#print(fb.predict_score(0, 1, ratings))
+get_teams()
+print(fb.teams[41])
