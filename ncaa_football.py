@@ -1,4 +1,4 @@
-import football2 as fb
+import score_predict as fb
 import pickle
 import math
 
@@ -276,8 +276,7 @@ def score_error_true_1(x, ho):
 #print(score_error_true_1(x, 1))
 #print(fb.score_error(x))
 #print(fb.games)
-
-#get_games()
+#view_games()
 #check_teams_have_games(3)
 #print(fb.games)
 #print('read ', len(fb.games), ' games, ', len(fb.teams), ' teams')
@@ -287,4 +286,6 @@ def score_error_true_1(x, ho):
 #print(ratings)
 #print(fb.predict_score(0, 1, ratings))
 get_teams()
-print(fb.teams[41])
+get_games()
+r = fb.compute_ratings(3)
+print(r)

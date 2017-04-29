@@ -213,6 +213,8 @@ def swap():
 def all_vowels():
     dict = get_dictionary()
     for w in dict:
+        if len(w)>9:
+            continue
         y = list(w)
         if not 'a' in y:
             continue
@@ -241,10 +243,28 @@ def word_pairs():
                 continue
             print(w, a, b)
 
+def word_triples():
+    m = 4
+    dict = get_dictionary(True)
+    for w in dict:
+        n = len(w)
+        if n < m*3:
+            continue
+        for i in range(m, n-2*m):
+            a = w[0:i]
+            if not a in dict:
+                continue
+            for j in range(i+m, n-m):
+                b = w[i:j]
+                c = w[j:n]
+                if not b in dict or not c in dict:
+                    continue
+                print(w, a, b, c)
+            
 # words made up of pairs of adjacent letters
 #
 def letter_pairs():
-    dict = get_dictionary(True)
+    dict = get_dictionary()
     for w in dict:
         n = len(w)
         if n%2:
@@ -263,4 +283,4 @@ def letter_pairs():
             continue
         print(w)
 
-letter_pairs()
+all_vowels()

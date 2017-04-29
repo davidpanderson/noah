@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+    <title>Babylon - Getting Started</title>
+    <!--- link to the last version of babylon --->
+    <script src="babylon.2.3.js"></script>
+    <style>
+        html, body {
+            overflow: hidden;
+            width   : 100%;
+            height  : 100%;
+            margin  : 0;
+            padding : 0;
+        }
+
+        #renderCanvas {
+            width   : 100%;
+            height  : 100%;
+            touch-action: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            // get the canvas DOM element
+            var canvas = document.getElementById('renderCanvas');
+
+            // load the 3D engine
+            var engine = new BABYLON.Engine(canvas, true);
+
+		var sphere;
+		var torus;
+
+            // createScene function that creates and return the scene
+            var createScene = function(){
+                // create a basic BJS Scene object
+                var scene = new BABYLON.Scene(engine);
+
+                // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
+                var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-10), scene);
+
+                // target the camera to scene origin
+                camera.setTarget(BABYLON.Vector3.Zero());
+
+                // attach the camera to the canvas
+                camera.attachControl(canvas, false);
+
+                // create a basic light, aiming 0,1,0 - meaning, to the sky
+                var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
+                //var light2 = new BABYLON.HemisphericLight('light2', new BABYLON.Vector3(-1,0,0), scene);
+
+                // create a built-in "sphere" shape; its constructor takes 5 params: name, width, depth, subdivisions, scene
+                sphere = BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
+			var m2 = new BABYLON.StandardMaterial("texture1", scene);
+			m2.diffuseColor = new BABYLON.Color3(0.1, 0.9, 0.3);
+			sphere.material = m2;
+
+			torus = BABYLON.Mesh.CreateTorus("torus", 5, 1, 50, scene);
+			var m = new BABYLON.StandardMaterial("texture1", scene);
+			m.diffuseColor = new BABYLON.Color3(1.0, 0.2, 0.7);
+			
+			torus.material = m;
+
+                // move the sphere upward 1/2 of its height
+                sphere.position.y = 1;
+
+                // create a built-in "ground" shape; its constructor takes the same 5 params as the sphere's one
+                //var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
+
+                // return the created scene
+                return scene;
+            }
+
+            // call the createScene function
+            var scene = createScene();
+
+		var t = 0;
+
+            // run the render loop
+            engine.runRenderLoop(function(){
+                scene.render();
+			sphere.position.y = Math.sin(t);
+			torus.position.y = Math.sin(t*2.134);
+			t += .1;
+            });
+
+            // the canvas/window resize event handler
+            window.addEventListener('resize', function(){
+                engine.resize();
+            });
+        });
+    </script>
+</body>
+</html>

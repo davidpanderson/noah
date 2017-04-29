@@ -67,8 +67,17 @@ def compute_ratings(wk):
         ratings.append(1)
     x0 = np.array(ratings)
     week = wk
-    res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-4, 'maxfev':1000000, 'maxiter': 1000000000, 'disp': True})
+    res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-2, 'maxfev':1000, 'maxiter': 100000, 'disp': True})
+
+ #   res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-4, 'maxfev':1000000, 'maxiter': 1000000000, 'disp': True})
     return res.x
+
+def view_games(wk):
+    global games, teams
+    for g in games:
+        if g[4] <= wk:
+            print('team %s %s, team %s %s, week %s' %(teams[g[0]], g[2], teams[g[1]], g[3], g[4]))
+       
 
 def test():
     global teams, games
