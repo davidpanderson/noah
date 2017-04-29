@@ -4,11 +4,20 @@ class neuron():
         self.bias = b    
         self.inputs = i
         if not w:
-            for i in range(len(i)):
-                self.weights.append(np.random.randn(
-def create_network(layer_sizes):
-    network = []
-    layer = 0
-    for layer_size in layer_sizes:
-        if layer == 0:
-            network[counter] = 
+            self.weights = [numpy.random.randn() for inti in range(len(i))]
+    def sigmoid():
+        1.0/(1.0 + np.exp(-(.np..dot(self.weights, self.inputs) + self.biases)))
+        
+class layer():
+    def __init__(self, neurons):
+        self.neurons = neurons
+    def run_layer():
+        self.outputs = [n.sigmoid() for n in self.neurons
+        return self.outputs
+
+class network():
+    def __init__(inputs, self, nsl):
+        self.layers = [neuron = [.5, False] for l in nsl for inti in range\
+        (len(l))
+                
+        
