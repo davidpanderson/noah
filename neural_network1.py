@@ -16,8 +16,37 @@ class layer():
         return self.outputs
 
 class network():
-    def __init__(inputs, self, nsl):
+    def __init__(self, nsl):
         self.layers = [neuron = [.5, False] for l in nsl for inti in range\
         (len(l))
-                
-        
+        self.layers = [layer(layer) for layer in self.layers
+
+    def run_network(inputs):
+        for layer in self.layers:
+            output = layer.run_layer(inputs)
+            outputs.append(output)
+            inputs = outputs
+            return outputs
+
+   def get_output(outputs, thresholds)
+        for i in range(leng(outputs)):
+            for t in thresholds:
+                if outputs[i] > t:
+                    current_fits.append(thresholds.index(t))
+                    counter += 1
+                if counter > 1:
+                    real_outputs.append(False)
+                else:
+                    real_outputs.append(current_fits[0])
+                counter = 0
+        return real_outputs
+
+    def test_network(inputs, expected_results, thresholds):
+        counter = 0
+        outputs = [self.run_network(input) for input in inputs]
+        real_outputs = self.get_output(outputs, thresholds)
+        for output in real_outputs:
+            if output == True:
+                counter += 1
+        return counter        
+         
