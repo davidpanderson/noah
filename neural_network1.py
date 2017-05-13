@@ -49,4 +49,3 @@ class network():
             if output == True:
                 counter += 1
         return counter        
-         
