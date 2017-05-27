@@ -1,3 +1,5 @@
+from scipy.optimize import minimize
+
 import numpy as np
 class neuron():
     def __init__(self, b, w, i):
@@ -49,4 +51,10 @@ class network():
             if output == True:
                 counter += 1
         return counter        
-         
+        
+    def train():
+        net = minimize(cost, x0, method='Nelder-Mead', options={'xtol': 1\
+        e-2, 'maxfev':1000, 'maxiter': 100000, 'disp': True})
+        return net
+
+    

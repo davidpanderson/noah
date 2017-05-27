@@ -18,6 +18,8 @@ def simulate_time_step(m, v, f, d, alt, t):
 #btd = body tube diameter
 #rm = rocket mass without engine
 #et = time per time step
+#the output is a list containing the apogee in feet, meximum speed in mph, and
+#maxx acceleration in gees
 def simulate_flight(ef, em, cd, btd, rm, ems, et):
     max_accel = 0
     rm *= 0.0283495
@@ -104,5 +106,5 @@ e = parse_engine_file(engine)
 ef = e[1]
 em = e[2]
 et = e[0]
-fl = simulate_flight(ef, em, .87, 24.1, 1.2, em[0], et)
+fl = simulate_flight(ef, em, .87, 24.1, 1.42, em[0], et)
 print(fl)
