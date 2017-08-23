@@ -124,6 +124,7 @@
 						} else {
 							misses = misses + 1;
 						//	console.log('miss')
+						}
 						var hitstring = hits.toString()
 						var missstring = misses.toString()
 						hitstring = hitstring.concat('   ')
@@ -140,10 +141,14 @@
 						outputplane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
 						outputplane.material.backFaceCulling = false;
 						outputplaneTexture.drawText(score, null, 140, "bold 140px verdana", "white", "#0000AA");
-							}
-						console.log(hits)
-						console.log(misses)
+						//console.log(hits)
+					//	console.log(misses)
 						tori[i].position.z = 80+Math.random()*30;
+						if (hits + misses == 20) {
+							document.write('hits: ', hits);
+							document.write("<br />");
+							document.write('misses: ', misses)
+						}
 					}
 					tori[i].position.x += vx;
 					tori[i].position.y += vy;
