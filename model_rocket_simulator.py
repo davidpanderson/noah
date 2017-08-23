@@ -1,21 +1,3 @@
-Skip to content
-Features
-Business
-Explore
-Marketplace
-Pricing
-This repository
-Search
-Sign in or Sign up
- Watch 1  Star 0  Fork 0 davidpanderson/noah
- Code  Issues 0  Pull requests 0  Projects 0 Insights 
-Tree: 6ad0e2cecb Find file Copy pathnoah/model_rocket_simulator.py
-6ad0e2c  33 minutes ago
-@noahkla noahkla modifications to model_rocket_simulator.py
-1 contributor
-RawBlameHistory      
-115 lines (108 sloc)  2.66 KB
-accel = 0
 v = 0
 max_v = 0
 apogee = 0
