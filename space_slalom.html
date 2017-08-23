@@ -104,9 +104,11 @@
 
 			var t = 0;
 			var v = []
-
+			var	hits = 0
+			var	misses = 0
 			// run the render loop
 			engine.runRenderLoop(function(){
+			
 				scene.render();
 				vx = -(mousex-width/2)/4000;
 				vy = (mousey-height/2)/4000;
@@ -114,6 +116,13 @@
 				for (i=0; i<ntori; i++) {
 					tori[i].position.z -= .03;
 					if (tori[i].position.z < -10 ){
+						if (tori[i].position.x^2 + tori[i].position.y^2 < 2.25) {
+							hits = hits + 1;
+						} else {
+							misses = misses + 1;
+							}
+						console.log(hits)
+						console.log(misses)
 						tori[i].position.z = 80+Math.random()*30;
 					}
 					tori[i].position.x += vx;

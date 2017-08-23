@@ -245,7 +245,7 @@ def word_pairs():
 
 def word_triples():
     m = 4
-    dict = get_dictionary(True)
+    dict = get_dictionary(False)
     for w in dict:
         n = len(w)
         if n < m*3:
@@ -283,4 +283,4 @@ def letter_pairs():
             continue
         print(w)
 
-reverse_words()
+word_triples()

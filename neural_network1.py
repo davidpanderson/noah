@@ -57,4 +57,3 @@ class network():
         e-2, 'maxfev':1000, 'maxiter': 100000, 'disp': True})
         return net
 
-    
