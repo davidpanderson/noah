@@ -1,3 +1,20 @@
+Skip to content
+Features
+Business
+Explore
+Marketplace
+Pricing
+This repository
+Search
+Sign in or Sign up
+ Watch 1  Star 0  Fork 0 davidpanderson/noah
+ Code  Issues 0  Pull requests 0  Projects 0 Insights 
+Tree: 6ad0e2cecb Find file Copy pathnoah/model_rocket_simulator.py
+6ad0e2c  33 minutes ago
+@noahkla noahkla modifications to model_rocket_simulator.py
+1 contributor
+RawBlameHistory      
+115 lines (108 sloc)  2.66 KB
 accel = 0
 v = 0
 max_v = 0
@@ -18,14 +35,12 @@ def simulate_time_step(m, v, f, d, alt, t):
 #btd = body tube diameter
 #rm = rocket mass without engine
 #et = time per time step
-#the output is a list containing the apogee in feet, meximum speed in mph, and
-#maxx acceleration in gees
-def simulate_flight(ef, em, cd, btd, rm, ems, et):
+def simulate_flight(ef, em, cd, btd, rm, et, c_mass):
+    rmwe = rm
     max_accel = 0
     rm *= 0.0283495
     btd *= .001
     cou = False
-    rm += ems
     pi = 3.141592653
     rho = 1.2062
     t = 0
@@ -36,8 +51,10 @@ def simulate_flight(ef, em, cd, btd, rm, ems, et):
     while True:
         try:
             f = ef[t]
+            rmwe = em[t]
         except:
             f = 0
+            rmwe = rm + c_mass
         try:
             tps = et[t]
         except:
@@ -92,12 +109,18 @@ def parse_engine_file(eng):
             thrust.append(float(l[1]))
             if float(l[1]) == 0:
                 total_time = float(l[0])
+
     for t in time_list:
         count += t
-        p_mass = (total_time - count/total_time) * p_weight
+        try:
+            p_mass = (total_time / (total_time - count)) * p_weight
+        except:
+            p_mass = 0
         t_mass = p_mass + t_weight - p_weight
         weight.append(t_mass)
-    return [time_list, thrust, weight]
+    c_mass = t_weight - p_mass
+
+    return [time_list, thrust, weight, c_mass]
     
 engine = open('C:\\Users\\Noah\\Documents\\engine files\\Cesaroni_O25000.eng', 'r')
 e = parse_engine_file(engine)
