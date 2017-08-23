@@ -99,12 +99,10 @@ def parse_engine_file(eng):
         weight.append(t_mass)
     return [time_list, thrust, weight]
     
-            
-
-engine = open('C:\\Users\\Noah\\Documents\\engine files\\Estes_C6.eng', 'r')
+engine = open('C:\\Users\\Noah\\Documents\\engine files\\Cesaroni_O25000.eng', 'r')
 e = parse_engine_file(engine)
 ef = e[1]
 em = e[2]
 et = e[0]
-fl = simulate_flight(ef, em, .87, 24.1, 1.42, em[0], et)
+fl = simulate_flight(ef, em, .45, 130, 7.0, et, 0)
 print(fl)
