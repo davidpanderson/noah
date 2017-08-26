@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
 	<title>Space Slalom 4.1</title>
 	<!--- link to the last version of babylon --->
-	<script src="babylon.2.3.js"></script>
+	<script src="babylon.2.5.js"></script>
 	<style>
 		html, body {
 			overflow: hidden;
@@ -47,9 +47,17 @@
 
 				// create a FreeCamera, and set its position to (x:0, y:5, z:-10)
 				var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 0,-10), scene);
+				camera.inputs.clear();
 				camera.keysUp = [];camera.keysDown = [];camera.keysLeft = [];camera.keysRight = [];
+
 				//var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
+
+				//var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
+				//camera.setPosition(new BABYLON.Vector3(0, 0, 50));
+				//camera.target = new BABYLON.Vector3(3, 0, 0);
+
 				//var camera = new Camera("camera1", new BABYLON.Vector3(0, 0, -10), scene);
+
 				//camera.setPosition(new BABYLON.Vector3(0, 0, -10));
 
 				// target the camera to scene origin
