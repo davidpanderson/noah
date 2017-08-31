@@ -283,4 +283,4 @@ def letter_pairs():
             continue
         print(w)
 
-word_triples()
+#word_triples()
