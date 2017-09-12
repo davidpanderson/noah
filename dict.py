@@ -2,9 +2,9 @@
 #
 def get_dictionary(big=False, alpha_only=True):
     if big:
-        f = open("C:/Users/David/My Documents/words2.txt", 'r')
+        f = open("words2.txt", 'r')
     else:
-        f = open("C:/Users/David/My Documents/words.txt", 'r')
+        f = open("words.txt", 'r')
     x = {}
     while True:
         word = f.readline()
@@ -283,4 +283,16 @@ def letter_pairs():
             continue
         print(w)
 
-#word_triples()
+# word pairs of the form *or *id
+#
+def orid():
+    dict = get_dictionary(True)
+    for w in dict:
+        n = len(w)
+        if w[n-2:n] != 'or':
+            continue
+        if w[0:n-2] + 'id' not in dict:
+            continue
+        print(w)
+        
+orid()

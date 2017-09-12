@@ -41,7 +41,7 @@ def solve(board):
     edge = math.sqrt(n)
     count = 0
     for w in get_dictionary(False, True):
-        if len(w) < 3:
+        if len(w) < 4:
             continue;
         if find_word(b, w, [], n, edge):
             print(w)
