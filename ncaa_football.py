@@ -287,5 +287,5 @@ def score_error_true_1(x, ho):
 #print(fb.predict_score(0, 1, ratings))
 get_teams()
 get_games()
-r = fb.compute_ratings(3)
+r = fb.compute_ratings(0)
 print(r)

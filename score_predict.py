@@ -67,9 +67,9 @@ def compute_ratings(wk):
         ratings.append(1)
     x0 = np.array(ratings)
     week = wk
-    res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-2, 'maxfev':1000, 'maxiter': 100000, 'disp': True})
+    #res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-2, 'maxfev':1000, 'maxiter': 100000, 'disp': True})
 
- #   res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-4, 'maxfev':1000000, 'maxiter': 1000000000, 'disp': True})
+    res = minimize(score_error, x0,  tol=1e-4, options={'maxiter': 1e8, 'disp': True})
     return res.x
 
 def view_games(wk):
