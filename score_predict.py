@@ -39,8 +39,12 @@ def score_error(x):
         e2 = p2 - g[3]
         sum += e1**2
         sum += e2**2
-        sum += (d1-1)**2
-        sum += (d2-1)**2
+    drating_sum = 0
+    nteams = len(x)/2
+    for i in range(nteams):
+        drating_sum += x[i*2 + 1]
+    davg = drating_sum/nteams
+    sum += (1-davg)**2
     #print (sum, len(games))
     #exit
     return sum
@@ -94,4 +98,28 @@ def test():
         for j in range(i+1, 3):
             print( predict_score(i,j , x))
 
-#test()
+# are teams fully connected by games through week N?
+#
+def fully_connected(week):
+    global teams, games
+    # list of lowest team # team i is connected to by games
+    #
+    lowest = list(range(len(teams)))
+    while True:
+        changed = False
+        for game in games:
+            if game[4] > week:
+                continue
+            t0 = game[0]
+            t1 = game[1]
+            if lowest[t0] < lowest[t1]:
+                changed = True
+                lowest[t1] = lowest[t0]
+            elif lowest[t1] < lowest[t0]:
+                changed = True
+                lowest[t0] = lowest[t1]
+        if not changed:
+            break
+    return all(v == 0 for v in lowest)
+
+test()
