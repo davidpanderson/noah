@@ -15,7 +15,7 @@ def int_check(c):
 # current score file is from http://www.jhowell.net/cf/scores/Sked2016.htm
 def read_scores():
     w = []
-    f = open('collegefootballscores2016.txt', 'r')
+    f = open('ncaa_football_11_17.txt', 'r')
     for line in f:
         line = line.strip()
         if line != '':
@@ -124,12 +124,12 @@ def get_games_new():
 def create_info_files(first, last):
     get_games()
     x = [fb.teams, fb.games]
-    f = open('data.pickle', 'wb')
+    f = open('data_17.pickle', 'wb')
     pickle.dump(x, f)
     f.close()
     for i in range(first, last+1):
         ratings = fb.compute_ratings(i)
-        f = open('ratings_2%d.pickle'%i, 'wb')
+        f = open('ratings_17_2%d.pickle'%i, 'wb')
         pickle.dump(ratings, f)
         f.close()
         print('finished week %d'%i)
@@ -145,7 +145,7 @@ def read_info_file():
     
 # reads the ratings files for a particular week
 def read_ratings_file(week):
-    f = open('ratings%d.pickle'%week, 'rb')
+    f = open('ratings_17_2%d.pickle'%week, 'rb')
     x = pickle.load(f)
     f.close()
     return x
@@ -289,3 +289,4 @@ get_teams()
 get_games()
 #r = fb.compute_ratings(0)
 #print(r)
+#create_info_files(3,9)

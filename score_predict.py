@@ -39,6 +39,7 @@ def score_error(x):
         e2 = p2 - g[3]
         sum += e1**2
         sum += e2**2
+    # add penalty to normalize average def rating
     drating_sum = 0
     nteams = len(x)/2
     for i in range(nteams):
@@ -49,6 +50,47 @@ def score_error(x):
     #exit
     return sum
 
+# gradient of score error function
+#
+def score_error_gradient(x):
+    global games
+    nteams = len(x)/2
+    gradient = np.array([0]*len(x))
+    for g in games:
+        if week>0 and g[4] > week:
+            continue;
+        t1 = g[0]
+        t2 = g[1]
+        o1_ind = t1*2
+        d1_ind = o1_ind+1
+        o2_ind = t2*2
+        d2_ind = o2_ind+1
+        o1 = x[o1_ind]
+        d1 = x[d1_ind]
+        o2 = x[o2_ind]
+        d2 = x[d2_ind]
+        p1 = o1*d2
+        p2 = o2*d1
+        e1 = p1 - g[2]
+        e2 = p2 - g[3]
+        gradient[o1_ind] += 2*e1*d2
+        gradient[o2_ind] += 2*e2*d1
+        gradient[d1_ind] += 2*e2*o2
+        gradient[d2_ind] += 2*e1*o1
+        
+    # add component for penalty that normalizes average defensive rating
+    sum=0
+    for i in range(nteams):
+        d_ind = i*2+1
+        sum += x[d_ind]
+    diff = sum/nteams - 1
+    y = 2*diff/nteams
+    for i in range(nteams):
+        d_ind = i*2+1
+        gradient[d_ind] += y
+        
+    return gradient
+            
 # predict score of game between i and j, given ratings in x
 def predict_score(i, j, x):
     o1 = x[i*2]
@@ -73,7 +115,8 @@ def compute_ratings(wk):
     week = wk
     #res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-2, 'maxfev':1000, 'maxiter': 100000, 'disp': True})
 
-    res = minimize(score_error, x0,  tol=1e-4, options={'maxiter': 1e8, 'disp': True})
+    res = minimize(score_error,x0,   jac=score_error_gradient, tol=1e-4, options={'maxiter': 1e8, 'disp': True})
+    #res = minimize(score_error,x0,  tol=1e-4, options={'maxiter': 1e8, 'disp': True})
     return res.x
 
 def view_games(wk):
