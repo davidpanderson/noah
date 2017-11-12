@@ -165,4 +165,4 @@ def fully_connected(week):
             break
     return all(v == 0 for v in lowest)
 
-test()
+#test()

@@ -15,7 +15,7 @@ def int_check(c):
 # current score file is from http://www.jhowell.net/cf/scores/Sked2016.htm
 def read_scores():
     w = []
-    f = open('ncaa_football_11_17.txt', 'r')
+    f = open('ncaa_football_11_12.txt', 'r')
     for line in f:
         line = line.strip()
         if line != '':
@@ -153,8 +153,9 @@ def read_ratings_file(week):
 # prints rankings
 def rankings():
     count = 0
-    ratings = read_ratings_file(week)
-    read_info_file()
+  #  ratings = read_ratings_file(week)
+  #  read_info_file()
+    ratings = fb.compute_ratings(0)
     pairs = {}
     totals = []
     for team in fb.teams:
@@ -165,7 +166,7 @@ def rankings():
     totals.sort()
     count = 0
     for t in totals:
-        print(128-count, t, pairs[t])
+        print(128-count + 2, t, pairs[t])
         count += 1
 
 # check whether any teams have no games through given week
@@ -188,12 +189,12 @@ def test():
     
 # prints the scores for a game
 def test_predict():
-    read_info_file()
-    ratings = read_ratings_file(13)
-    print(fb.teams)
-    ratings = fb.compute_ratings(13)
-    input1 = 'Boise State'
-    input2 = 'Air Force'
+   # read_info_file()
+    #ratings = read_ratings_file(13)
+    #print(fb.teams)
+    ratings = fb.compute_ratings(0)
+    input1 = 'Ohio'
+    input2 = 'Toledo'
     t1 = fb.teams.index(input1)
     t2 = fb.teams.index(input2)
 
@@ -287,6 +288,9 @@ def score_error_true_1(x, ho):
 #print(fb.predict_score(0, 1, ratings))
 get_teams()
 get_games()
+rankings()
 #r = fb.compute_ratings(0)
+#test_predict()
 #print(r)
 #create_info_files(3,9)
+
