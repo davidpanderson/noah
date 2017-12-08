@@ -137,7 +137,7 @@ def create_info_files(first, last):
 # adds all the names of the teams to fb.teams
 def read_info_file():
     global teams, games
-    f = open('data.pickle', 'rb')
+    f = open('data_17.pickle', 'rb')
     x = pickle.load(f)
     f.close()
     fb.teams = x[0]
@@ -145,7 +145,7 @@ def read_info_file():
     
 # reads the ratings files for a particular week
 def read_ratings_file(week):
-    f = open('ratings_17_2%d.pickle'%week, 'rb')
+    f = open('ratings%d.pickle'%week, 'rb')
     x = pickle.load(f)
     f.close()
     return x
@@ -189,11 +189,11 @@ def test():
 # prints the scores for a game
 def test_predict():
     read_info_file()
-    ratings = read_ratings_file(13)
+#    ratings = read_ratings_file(13)
     print(fb.teams)
-    ratings = fb.compute_ratings(13)
-    input1 = 'Boise State'
-    input2 = 'Air Force'
+    ratings = fb.compute_ratings(0)
+    input1 = 'Washington'
+    input2 = 'Stanford'
     t1 = fb.teams.index(input1)
     t2 = fb.teams.index(input2)
 
@@ -287,6 +287,8 @@ def score_error_true_1(x, ho):
 #print(fb.predict_score(0, 1, ratings))
 get_teams()
 get_games()
-#r = fb.compute_ratings(0)
+rankings()
+#test_predict()
+#r = fb.compute_ratings(9)
 #print(r)
 #create_info_files(3,9)
