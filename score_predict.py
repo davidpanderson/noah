@@ -45,7 +45,7 @@ def score_error(x):
     for i in range(nteams):
         drating_sum += x[i*2 + 1]
     davg = drating_sum/nteams
-    sum += (1-davg)**2
+    sum += 100000*((1-davg)**2)
     #print (sum, len(games))
     #exit
     return sum
@@ -84,12 +84,12 @@ def score_error_gradient(x):
         d_ind = i*2+1
         sum += x[d_ind]
     diff = sum/nteams - 1
-    y = 2*diff/nteams
+    y = 200000*diff/nteams
     for i in range(nteams):
         d_ind = i*2+1
         gradient[d_ind] += y
         
-    return gradient
+    return gradient/1000.
             
 # predict score of game between i and j, given ratings in x
 def predict_score(i, j, x):
@@ -113,9 +113,12 @@ def compute_ratings(wk):
         ratings.append(1)
     x0 = np.array(ratings)
     week = wk
+    #print(score_error(ratings));
+    #print(score_error(ratings - .0001*score_error_gradient(ratings)))
+    #return
     #res = minimize(score_error, x0, method='Nelder-Mead', options={'xtol': 1e-2, 'maxfev':1000, 'maxiter': 100000, 'disp': True})
 
-    res = minimize(score_error,x0,   jac=score_error_gradient, tol=1e-4, options={'maxiter': 1e8, 'disp': True})
+    res = minimize(score_error,x0, jac=score_error_gradient, tol=1e-7, options={'maxiter': 1e8, 'disp': True})
     #res = minimize(score_error,x0,  tol=1e-4, options={'maxiter': 1e8, 'disp': True})
     return res.x
 

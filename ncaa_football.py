@@ -12,10 +12,10 @@ def int_check(c):
     return d.isdigit()
 
 # returns list of lines in score file
-# current score file is from http://www.jhowell.net/cf/scores/Sked2016.htm
+# current score file is from http://www.jhowell.net/cf/scores/Sked2017.htm
 def read_scores():
     w = []
-    f = open('ncaa_football_11_12.txt', 'r')
+    f = open('ncaa_football_12_3.txt', 'r')
     for line in f:
         line = line.strip()
         if line != '':
@@ -193,8 +193,8 @@ def test_predict():
     #ratings = read_ratings_file(13)
     #print(fb.teams)
     ratings = fb.compute_ratings(0)
-    input1 = 'Ohio'
-    input2 = 'Toledo'
+    input1 = 'Clemson'
+    input2 = 'Iowa State'
     t1 = fb.teams.index(input1)
     t2 = fb.teams.index(input2)
 
@@ -270,6 +270,13 @@ def score_error_true_1(x, ho):
         sum += (d2-1)**2
     return sum
 
+def avg_def_rating(r):
+    sum = 0
+    nteams = len(fb.teams)
+    for i in range(nteams):
+        sum += r[i*2+1];
+    print("avg def rating: ", sum/nteams)
+          
 #print(fb.teams)
 #for t in fb.teams:
     #x.append(20)
@@ -288,9 +295,13 @@ def score_error_true_1(x, ho):
 #print(fb.predict_score(0, 1, ratings))
 get_teams()
 get_games()
-rankings()
 #r = fb.compute_ratings(0)
-#test_predict()
+#avg_def_rating(r)
+#print fb.games
+#rankings()
+
+#print r
+test_predict()
 #print(r)
 #create_info_files(3,9)
 
