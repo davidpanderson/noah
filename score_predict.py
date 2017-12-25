@@ -122,11 +122,7 @@ def compute_ratings(wk):
     #res = minimize(score_error,x0,  tol=1e-4, options={'maxiter': 1e8, 'disp': True})
     return res.x
 
-def view_games(wk):
-    global games, teams
-    for g in games:
-        if g[4] <= wk:
-            print('team %s %s, team %s %s, week %s' %(teams[g[0]], g[2], teams[g[1]], g[3], g[4]))
+
        
 
 def test():

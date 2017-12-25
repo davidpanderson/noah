@@ -1,6 +1,7 @@
 import score_predict as fb
 import pickle
 import math
+import spread_predict as sp
 
 ratings = []
 
@@ -193,8 +194,8 @@ def test_predict():
     #ratings = read_ratings_file(13)
     #print(fb.teams)
     ratings = fb.compute_ratings(0)
-    input1 = 'Clemson'
-    input2 = 'Iowa State'
+    input1 = 'Florida State'
+    input2 = 'Southern Miss'
     t1 = fb.teams.index(input1)
     t2 = fb.teams.index(input2)
 
@@ -245,6 +246,12 @@ def Method_test(method):
 #print(test_predict())
 #while True:
   #  i = input()
+def view_games(wk):
+    global games, teams
+    for g in fb.games:
+        if g[4] <= wk:
+            print('team %s %s, team %s %s, week %s' %(fb.teams[g[0]], g[2], fb.teams[g[1]], g[3], g[4]))
+
 def score_error_true_1(x, ho):
     global games
     sum = 0
@@ -276,32 +283,34 @@ def avg_def_rating(r):
     for i in range(nteams):
         sum += r[i*2+1];
     print("avg def rating: ", sum/nteams)
-          
-#print(fb.teams)
-#for t in fb.teams:
-    #x.append(20)
-    #x.append(1)
-#print(score_error_true_1(x, 1))
-#print(fb.score_error(x))
-#print(fb.games)
-#view_games()
-#check_teams_have_games(3)
-#print(fb.games)
-#print('read ', len(fb.games), ' games, ', len(fb.teams), ' teams')
-#create_info_files(4,4)
-#rankings(4)
-#ratings = fb.compute_ratings(3)
-#print(ratings)
-#print(fb.predict_score(0, 1, ratings))
-get_teams()
-get_games()
-#r = fb.compute_ratings(0)
-#avg_def_rating(r)
-#print fb.games
-#rankings()
 
-#print r
-test_predict()
-#print(r)
-#create_info_files(3,9)
+def read_spread_file():
+    f = open('spreads16-17.txt', 'r')
+    f = list(f)
+    games = []
+    g = []
+    counter = 0
+    for e in f:
+        e = e.split(',')
+        counter +=1
+        if counter == 3:
+            counter = 1
+            print(g[6])
+            g = []
+        for x in e:
+            g.append(x)
+    
+        
+
+
+get_games()
+get_teams()
+sp.games = fb.games
+sp.teams = fb.teams
+r = sp.compute_ratings(0)
+for i in range(len(r)):
+    print fb.teams[i],
+    print r[i]
+    
+
 
