@@ -138,7 +138,7 @@ def create_info_files(first, last):
 # adds all the names of the teams to fb.teams
 def read_info_file():
     global teams, games
-    f = open('data.pickle', 'rb')
+    f = open('data_17.pickle', 'rb')
     x = pickle.load(f)
     f.close()
     fb.teams = x[0]
@@ -146,7 +146,7 @@ def read_info_file():
     
 # reads the ratings files for a particular week
 def read_ratings_file(week):
-    f = open('ratings_17_2%d.pickle'%week, 'rb')
+    f = open('ratings%d.pickle'%week, 'rb')
     x = pickle.load(f)
     f.close()
     return x
@@ -154,9 +154,8 @@ def read_ratings_file(week):
 # prints rankings
 def rankings():
     count = 0
-  #  ratings = read_ratings_file(week)
-  #  read_info_file()
-    ratings = fb.compute_ratings(0)
+    ratings = read_ratings_file(week)
+    read_info_file()
     pairs = {}
     totals = []
     for team in fb.teams:
@@ -167,7 +166,7 @@ def rankings():
     totals.sort()
     count = 0
     for t in totals:
-        print(128-count + 2, t, pairs[t])
+        print(128-count, t, pairs[t])
         count += 1
 
 # check whether any teams have no games through given week
@@ -190,9 +189,9 @@ def test():
     
 # prints the scores for a game
 def test_predict():
-   # read_info_file()
-    #ratings = read_ratings_file(13)
-    #print(fb.teams)
+    read_info_file()
+#    ratings = read_ratings_file(13)
+    print(fb.teams)
     ratings = fb.compute_ratings(0)
     input1 = 'Florida State'
     input2 = 'Southern Miss'
@@ -312,5 +311,17 @@ for i in range(len(r)):
     print fb.teams[i],
     print r[i]
     
+<<<<<<< .mine
 
 
+=======
+#test_predict()
+#r = fb.compute_ratings(9)
+>>>>>>> .theirs
+<<<<<<< .mine
+
+
+=======
+#print(r)
+#create_info_files(3,9)
+>>>>>>> .theirs
