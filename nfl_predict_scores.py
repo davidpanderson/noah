@@ -1,5 +1,5 @@
 import pickle
-import football2 as fb
+import score_predict as fb
 import numpy as np
 from scipy.optimize import minimize
 

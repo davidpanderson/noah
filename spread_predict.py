@@ -2,7 +2,7 @@ import numpy as np
 from scipy.optimize import minimize
 import math
 penalty_scale = 100000
-week = 10
+week = 11
 def diff_error_old(x):
     global games, penaly_scale
     sum = 0
@@ -74,7 +74,7 @@ def diff_error_test(x):
     nteams = len(x)
     ngames = len(games)
     sum /= ngames
-  #  sum = math.sqrt(sum)
+#    sum = math.sqrt(sum)
     return sum
 
 def test_team(team):
@@ -168,4 +168,21 @@ def compute_ratings(wk):
     res = minimize(diff_error,x0, jac=diff_error_gradient, tol=1e-7, options={'maxiter': 1e8, 'disp': True})
     #res = minimize(score_error,x0,  tol=1e-4, options={'maxiter': 1e8, 'disp': True})
     return res.x
+
+def predict_spread(t1, t2):
+    r = compute_ratings(0)
+    t1 = teams.index(t1)
+    t2 = teams.index(t2)
+    score1 = r[t1*2] * r[t2*2 + 1]
+    print t1
+    print t2
+    print score1
+    score2 = r[t2*2] * r[t1 * 2 + 1]
+    print score2
+    print r[t1*2]
+    print r[t1*2 + 1]
+    print r[t2*2]
+    print r[t2*2 + 1]
+
+    print score1 - score2
 

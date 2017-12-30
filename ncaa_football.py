@@ -156,7 +156,7 @@ def rankings():
     count = 0
   #  ratings = read_ratings_file(week)
   #  read_info_file()
-    ratings = fb.compute_ratings(0)
+    ratings = sp.compute_ratings(0)
     pairs = {}
     totals = []
     for team in fb.teams:
@@ -194,8 +194,8 @@ def test_predict():
     #ratings = read_ratings_file(13)
     #print(fb.teams)
     ratings = fb.compute_ratings(0)
-    input1 = 'Florida State'
-    input2 = 'Southern Miss'
+    input1 = 'Georgia'
+    input2 = 'Oklahoma'
     t1 = fb.teams.index(input1)
     t2 = fb.teams.index(input2)
 
@@ -295,10 +295,12 @@ def read_spread_file():
         counter +=1
         if counter == 3:
             counter = 1
-            print(g[6])
             g = []
+            games.append(g)
         for x in e:
             g.append(x)
+        print games
+        
 
 
      # add penalty to normalize average def rating
@@ -330,6 +332,7 @@ get_teams()
 get_games()
 sp.teams = fb.teams
 sp.games = fb.games
-x = fb.compute_ratings(10)
-e = sp.diff_error_test(x)
-print e
+#sp.predict_spread('Clemson', 'Alabama')
+r = fb.compute_ratings(0)
+print r
+avg_def_rating(r)
