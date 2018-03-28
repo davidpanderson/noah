@@ -17,6 +17,7 @@ def int_check(c):
 def read_scores():
     w = []
     f = open('ncaa_football_12_3.txt', 'r')
+    print f
     for line in f:
         line = line.strip()
         if line != '':
@@ -36,7 +37,7 @@ def team_name(line):
 def get_teams():
     pcount = 0
     fb.teams = []
-    f = read_scores()
+    f = read_scores()      
     for l in f:
         if int_check(l):
             continue
@@ -122,18 +123,7 @@ def get_games_new():
              week = 0
              
 # creates files with the ratings for each team for each week
-def create_info_files(first, last):
-    get_games()
-    x = [fb.teams, fb.games]
-    f = open('data_17.pickle', 'wb')
-    pickle.dump(x, f)
-    f.close()
-    for i in range(first, last+1):
-        ratings = fb.compute_ratings(i)
-        f = open('ratings_17_2%d.pickle'%i, 'wb')
-        pickle.dump(ratings, f)
-        f.close()
-        print('finished week %d'%i)
+
 
 # adds all the names of the teams to fb.teams
 def read_info_file():
@@ -194,8 +184,8 @@ def test_predict():
     #ratings = read_ratings_file(13)
     #print(fb.teams)
     ratings = fb.compute_ratings(0)
-    input1 = 'Georgia'
-    input2 = 'Oklahoma'
+    input1 = 'Wisconsin'
+    input2 = 'Miami (Florida)'
     t1 = fb.teams.index(input1)
     t2 = fb.teams.index(input2)
 
@@ -327,12 +317,6 @@ def spread_score(wk):
         score2 = diff_ratings[g[1]*2]*diff_ratings[g[1]*2+1]
         spread_error += (score1-score2-g[2]+g[3])**2
     print spread_error, score_error, len(test)
-
 get_teams()
 get_games()
-sp.teams = fb.teams
-sp.games = fb.games
-#sp.predict_spread('Clemson', 'Alabama')
-r = fb.compute_ratings(0)
-print r
-avg_def_rating(r)
+print fb.read_ratings_file('ncaa_football18')

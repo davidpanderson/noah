@@ -2,6 +2,9 @@
 
 import numpy as np
 from scipy.optimize import minimize
+import matplotlib.pyplot as plt
+import pickle
+
 # global variables
 teams = []
 games = []
@@ -164,4 +167,49 @@ def fully_connected(week):
             break
     return all(v == 0 for v in lowest)
 
+def prob(t1, t2):
+    count1 = 0
+    count2 = 0
+    r = compute_ratings(0)
+    s1, s2, = predict_score(t1, t2, r)
+    for g in games:
+        p1, p2 = predict_score(g[0], g[1], r)
+        pred1 = s1 + (p1-g[2])
+        pred2 = s2 + (p2-g[3])
+        if pred1>pred2:
+            count1 += 1
+        else:
+            count2 += 1
+    return float(count1)/(float(count1) + float(count2))
+def plot_ratings():
+    r = compute_ratings(0)
+    offr = []
+    defr = []
+    n= len(teams)
+    for i in range(n):
+        offr.append(r[i*2])
+        defr.append(r[i*2+1])
+    plt.scatter(offr, defr)
+    for i, name in enumerate(teams):
+        plt.annotate(name, [offr[i], defr[i]])
+    plt.ylabel('some numbers')
+    plt.show()
+def create_info_files(first, last, name):
+    for i in range(first, last+1):
+        ratings = compute_ratings(i)
+        f = open('ratings_'+name+'%d.pickle'%i, 'wb')
+        pickle.dump(ratings, f)
+        f.close()
+        print('finished week %d'%i)
 #test()
+def create_info_file(name):
+        ratings = compute_ratings(0)
+        f = open('ratings_'+name+'.pickle', 'wb')
+        pickle.dump(ratings, f)
+        f.close()
+        print('finished week ')
+def read_ratings_file(name):
+    f = open('ratings_'+name+'.pickle', 'rb')
+    x = pickle.load(f)
+    f.close()
+    return x
