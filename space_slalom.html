@@ -48,6 +48,7 @@
 				// create a FreeCamera, and set its position to (x:0, y:5, z:-10)
 				var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 0,-10), scene);
 				camera.inputs.clear();
+				//camera.fov = 2;
 				camera.keysUp = [];camera.keysDown = [];camera.keysLeft = [];camera.keysRight = [];
 
 				//var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
@@ -73,7 +74,7 @@
 				for (i=0; i<ntori; i++) {
 					var m = new BABYLON.StandardMaterial("texture1", scene);
 					m.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
-					torus = BABYLON.Mesh.CreateTorus("torus", 3, .4, 50, scene);
+					torus = BABYLON.Mesh.CreateTorus("torus", 3, .35, 50, scene);
 					torus.material = m;
 					torus.position.x = 8*(Math.random()-.5);
 					torus.position.y = 8*(Math.random()-.5);
@@ -129,7 +130,7 @@
 				vy = (mousey-height/2)/4000;
 				//console.log(vx, vy);
 				for (i=0; i<ntori; i++) {
-					tori[i].position.z -= .03;
+					tori[i].position.z -= .06;
 					if (tori[i].position.z < -10 ){
 					//	console.log("passing ring")
 						if (tori[i].position.x**2 + tori[i].position.y**2 < 2.25) {
