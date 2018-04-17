@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!--- Space Slalom in javascript; version 4.1 --->
+<!--- Space Slalom in javascript; version 5.1 --->
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
-	<title>Space Slalom 4.1</title>
+	<title>Space Slalom 5.1</title>
 	<!--- link to the last version of babylon --->
 	<script src="babylon.2.5.js"></script>
 	<style>
@@ -161,10 +161,12 @@
 					//	console.log(misses)
 						tori[i].position.z = 80+Math.random()*30;
 						if (hits + misses == 20) {
-							window.location.href = "space_slalom.html?hits="+hits;
-							document.write('hits: ', hits);
-							document.write("<br />");
-							document.write('misses: ', misses)
+							var url = "http://continuum-hypothesis.com/space_slalom.php?hits="+hits;
+							window.location.replace(url);
+							return;
+							//document.write('hits: ', hits);
+							//document.write("<br />");
+							//document.write('misses: ', misses)
 						}
 					}
 					tori[i].position.x += vx;
