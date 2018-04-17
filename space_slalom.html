@@ -112,10 +112,10 @@
 
 			// call the createScene function
 			var scene = createScene();
-			var click = new BABYLON.Sound("Click", "click_x.wav", scene, function () {
+			var bell = new BABYLON.Sound("Bell", "bell.mp3", scene, function () {
 				console.log("Sound is now ready to be played.");
 			});
-			var klaxon = new BABYLON.Sound("Klaxon", "klaxon_ahooga.wav", scene, function () {
+			var error = new BABYLON.Sound("Error", "error.mp3", scene, function () {
 				console.log("Sound is now ready to be played.");
 			});
 			var t = 0;
@@ -136,10 +136,10 @@
 						if (tori[i].position.x**2 + tori[i].position.y**2 < 2.25) {
 						//	console.log(tori[i].position.x^2 + tori[i].position.y^2)
 							hits = hits + 1;
-							click.play()
+							bell.play()
 						} else {
 							misses = misses + 1;
-							klaxon.play();
+							error.play();
 						}
 						var hitstring = hits.toString()
 						var missstring = misses.toString()
@@ -161,6 +161,7 @@
 					//	console.log(misses)
 						tori[i].position.z = 80+Math.random()*30;
 						if (hits + misses == 20) {
+							window.location.href = "space_slalom.html?hits="+hits;
 							document.write('hits: ', hits);
 							document.write("<br />");
 							document.write('misses: ', misses)
