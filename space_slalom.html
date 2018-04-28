@@ -27,16 +27,32 @@
 	<script>
 		var ntori = 20;
 		var ring_radius = 1.5;
-		var difficulty = 2.;
-		var control_speed = .0004;
+		var difficulty = 3.;
+		var control_speed = .0005;
+		var fog_density = .01;
+		var speed = .09;
+		var check_offset = .5;
+			// check for hit when ring is this much in front of us
+		var scoreboard_z = 120.;
+		var scoreboard_size = 80.;
+		var fov = 1.1;		// field of view
 
+		// given the position of a ring, pick the position of the next ring
+		//
 		function next_pos(pos) {
-			var dz = 7*Math.random() + .5;
+			var dz = 7*Math.random() + 1;
 			var cdz = difficulty*dz;
-			var dx = cdz*(Math.random()-.5) - pos.x/4;
-			var dy = cdz*(Math.random()-.5) - pos.x/4;
+			// the pos.x/4 is to keep the rings centered around the z axis
+			//
+			var dx = cdz*(Math.random()-.5) - pos.x/6;
+			var dy = cdz*(Math.random()-.5) - pos.x/6;
 			return new BABYLON.Vector3(pos.x+dx, pos.y+dy, pos.z+dz);
 		}
+
+		function get_diameter() {
+			return 2 + 2.*Math.random();
+		}
+
 		window.addEventListener('DOMContentLoaded', function(){
 			// get the canvas DOM element
 			var canvas = document.getElementById('renderCanvas');
@@ -51,7 +67,8 @@
 			var tori = [];
 			var mousex = width/2, mousey=height/2;
 
-			// createScene function that creates and return the scene
+			// function that creates and return the scene
+			//
 			var createScene = function(){
 				// create a basic BJS Scene object
 				var scene = new BABYLON.Scene(engine);
@@ -59,7 +76,7 @@
 				// create a FreeCamera, and set its position to (x:0, y:5, z:-10)
 				var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 0,-10), scene);
 				camera.inputs.clear();
-				//camera.fov = 2;
+				camera.fov = fov;
 				camera.keysUp = [];camera.keysDown = [];camera.keysLeft = [];camera.keysRight = [];
 
 				//var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
@@ -87,7 +104,9 @@
 				for (i=0; i<ntori; i++) {
 					var m = new BABYLON.StandardMaterial("texture1", scene);
 					m.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
-					torus = BABYLON.Mesh.CreateTorus("torus", ring_radius*2, .35, 50, scene);
+					var d = get_diameter();
+					torus = BABYLON.Mesh.CreateTorus("torus", d, .35, 50, scene);
+					torus.diameter = d;
 					torus.material = m;
 					if  (i == 0) {
 						pos.x = 8*(Math.random()-.5);
@@ -100,35 +119,20 @@
 					torus.rotation = new BABYLON.Vector3(Math.PI/2, 0, 0);
 					tori.push(torus);
 				}
-				var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 25, scene, false);
-				outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
-				outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
-				outputplane.position = new BABYLON.Vector3(-5, 5, 25);
-				outputplane.scaling.y = 0.4;
 
-				var outputplaneTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
-				outputplane.material.diffuseTexture = outputplaneTexture;
-				outputplane.material.specularColor = new BABYLON.Color3(0, 0, 0);
-				outputplane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
-				
-				outputplane.material.backFaceCulling = false;
-
-			//	outputplaneTexture.drawText("alpha", null, 140, "bold 140px verdana", "white", "#0000AA");
 				window.addEventListener("mousemove", function() {
 					mousex = scene.pointerX;
 					mousey = scene.pointerY;
 					// console.log(x, y);
-					
 				});
 				
 				scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
-				scene.fogDensity = .05;
+				scene.fogDensity = fog_density;
 				scene.fogColor = BABYLON.Color3.Black();
 				scene.clearColor = BABYLON.Color3.Black();
 				return scene;
 			}
 
-			// call the createScene function
 			var scene = createScene();
 			var bell = new BABYLON.Sound("Bell", "bell.mp3", scene, function () {
 				console.log("Sound is now ready to be played.");
@@ -136,16 +140,17 @@
 			var error = new BABYLON.Sound("Error", "error.mp3", scene, function () {
 				console.log("Sound is now ready to be played.");
 			});
-			var outputplane = BABYLON.Mesh.CreatePlane("outputplane", 25, scene, false);
+			var outputplane = BABYLON.Mesh.CreatePlane("outputplane", scoreboard_size, scene, false);
 			outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
 			outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
-			outputplane.position = new BABYLON.Vector3(-5, 5, 25);
+			outputplane.position = new BABYLON.Vector3(-5, 5, scoreboard_z);
 			outputplane.scaling.y = 0.4;
 			var outputplaneTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
 			outputplane.material.diffuseTexture = outputplaneTexture;
 			outputplane.material.specularColor = new BABYLON.Color3(0, 0, 0);
 			outputplane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
 			outputplane.material.backFaceCulling = false;
+
 			var t = 0;
 			var v = []
 			var	hits = 0
@@ -157,10 +162,10 @@
 				vy = (mousey-height/2)*control_speed;
 				//console.log(vx, vy);
 				for (i=0; i<ntori; i++) {
-					tori[i].position.z -= .08;
-					if (tori[i].position.z < -10 ){
+					tori[i].position.z -= speed;
+					if (tori[i].position.z < -10+check_offset ){
 					//	console.log("passing ring")
-						if (tori[i].position.x**2 + tori[i].position.y**2 < ring_radius*ring_radius) {
+						if (tori[i].position.x**2 + tori[i].position.y**2 < (tori[i].diameter**2)/4) {
 						//	console.log(tori[i].position.x^2 + tori[i].position.y^2)
 							hits = hits + 1;
 							bell.play()
