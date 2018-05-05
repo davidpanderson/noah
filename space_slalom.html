@@ -27,25 +27,28 @@
 	<script>
 		var ntori = 20;
 		var ring_radius = 1.5;
-		var difficulty = 3.;
-		var control_speed = .0005;
+		var difficulty = 3.5;
+		var control_speed = .0003;
 		var fog_density = .01;
-		var speed = .09;
+		var speed = .08;
 		var check_offset = .5;
 			// check for hit when ring is this much in front of us
 		var scoreboard_z = 120.;
 		var scoreboard_size = 80.;
+		var background_z = 130;
+		var background_size = 280.;
 		var fov = 1.1;		// field of view
+		var vscale;
 
 		// given the position of a ring, pick the position of the next ring
 		//
 		function next_pos(pos) {
-			var dz = 7*Math.random() + 1;
+			var dz = 4*Math.random() + 1;
 			var cdz = difficulty*dz;
 			// the pos.x/4 is to keep the rings centered around the z axis
 			//
 			var dx = cdz*(Math.random()-.5) - pos.x/6;
-			var dy = cdz*(Math.random()-.5) - pos.x/6;
+			var dy = cdz*(Math.random()-.5)/vscale - pos.x/6;
 			return new BABYLON.Vector3(pos.x+dx, pos.y+dy, pos.z+dz);
 		}
 
@@ -58,6 +61,7 @@
 			var canvas = document.getElementById('renderCanvas');
 			var width = canvas.scrollWidth;
 			var height = canvas.scrollHeight;
+			vscale = width/height;
 			console.log(width, height);
 
 			// load the 3D engine
@@ -109,9 +113,9 @@
 					torus.diameter = d;
 					torus.material = m;
 					if  (i == 0) {
-						pos.x = 8*(Math.random()-.5);
-						pos.y = 8*(Math.random()-.5);
-						pos.z = 5*Math.random();
+						pos.x = 0;
+						pos.y = 0;
+						pos.z = 10;
 					} else {
 						pos = next_pos(pos);
 					}
@@ -140,6 +144,9 @@
 			var error = new BABYLON.Sound("Error", "error.mp3", scene, function () {
 				console.log("Sound is now ready to be played.");
 			});
+
+			// make scoreboard
+			//
 			var outputplane = BABYLON.Mesh.CreatePlane("outputplane", scoreboard_size, scene, false);
 			outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
 			outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
@@ -151,18 +158,41 @@
 			outputplane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
 			outputplane.material.backFaceCulling = false;
 
+			// make background
+			//
+			var background = BABYLON.Mesh.CreatePlane("background", background_size, scene, false);
+			background.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
+			background.material = new BABYLON.StandardMaterial("background", scene);
+			background.position = new BABYLON.Vector3(-background_size/2, -background_size/2, background_z);
+			background.scaling.y = 0.4;
+			var backgroundTexture = new BABYLON.Texture("milkyway.jpg", scene);
+			background.material.diffuseTexture = backgroundTexture;
+			background.material.specularColor = new BABYLON.Color3(0, 0, 0);
+			background.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
+			background.material.backFaceCulling = false;
+
 			var t = 0;
 			var v = []
 			var	hits = 0
 			var	misses = 0
+			var vx=0, vy=0;;
+			var last_time = 0;
+			
 			// run the render loop
 			engine.runRenderLoop(function(){
 				scene.render();
-				vx = -(mousex-width/2)*control_speed;
-				vy = (mousey-height/2)*control_speed;
+				t = Date.now();
+				if (last_time>0) {
+					dt = (t - last_time)/25;
+				} else {
+					dt = 0;
+				}
+				last_time = t;
+				vx = -(mousex-width/2)*control_speed*dt;
+				vy = (mousey-height/2)*control_speed*dt*vscale;
 				//console.log(vx, vy);
 				for (i=0; i<ntori; i++) {
-					tori[i].position.z -= speed;
+					tori[i].position.z -= dt*speed;
 					if (tori[i].position.z < -10+check_offset ){
 					//	console.log("passing ring")
 						if (tori[i].position.x**2 + tori[i].position.y**2 < (tori[i].diameter**2)/4) {
@@ -184,7 +214,7 @@
 						var j = (i+ntori-1) % ntori;
 						tori[i].position = next_pos(tori[j].position);
 
-						if (hits + misses == 100) {
+						if (misses == 10) {
 							var url = "http://continuum-hypothesis.com/space_slalom.php?action=game_over&hits="+hits;
 							window.location.replace(url);
 							return;
