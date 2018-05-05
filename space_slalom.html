@@ -29,7 +29,7 @@
 		var ring_radius = 1.5;
 		var difficulty = 3.5;
 		var control_speed = .0003;
-		var fog_density = .01;
+		var fog_density = .008;
 		var speed = .08;
 		var check_offset = .5;
 			// check for hit when ring is this much in front of us
@@ -147,24 +147,25 @@
 
 			// make scoreboard
 			//
-			var outputplane = BABYLON.Mesh.CreatePlane("outputplane", scoreboard_size, scene, false);
+			var outputplane = BABYLON.MeshBuilder.CreatePlane("outputplane", {width: 100, height: 100}, scene, false);
 			outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
 			outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
 			outputplane.position = new BABYLON.Vector3(-5, 5, scoreboard_z);
-			outputplane.scaling.y = 0.4;
+			//outputplane.scaling.y = 0.4;
 			var outputplaneTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
 			outputplane.material.diffuseTexture = outputplaneTexture;
 			outputplane.material.specularColor = new BABYLON.Color3(0, 0, 0);
 			outputplane.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
 			outputplane.material.backFaceCulling = false;
+			outputplane.material.alpha = .2;
 
 			// make background
 			//
-			var background = BABYLON.Mesh.CreatePlane("background", background_size, scene, false);
+			var background = BABYLON.Mesh.CreatePlane("background", 400, scene, false);
 			background.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
 			background.material = new BABYLON.StandardMaterial("background", scene);
-			background.position = new BABYLON.Vector3(-background_size/2, -background_size/2, background_z);
-			background.scaling.y = 0.4;
+			background.position = new BABYLON.Vector3(-5, 5, 131);
+			background.scaling.y = 0.45;
 			var backgroundTexture = new BABYLON.Texture("milkyway.jpg", scene);
 			background.material.diffuseTexture = backgroundTexture;
 			background.material.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -205,10 +206,10 @@
 						}
 						var hitstring = hits.toString()
 						var missstring = misses.toString()
-						hitstring = hitstring.concat('   ')
+						hitstring = hitstring.concat('  ')
 						var score = hitstring.concat(missstring)
 						//console.log(score)
-						outputplaneTexture.drawText(score, null, 140, "bold 140px verdana", "white", "#0000AA");
+						outputplaneTexture.drawText(score, null, 140, "bold 100px verdana", "white", "#000000");
 						//console.log(hits)
 					//	console.log(misses)
 						var j = (i+ntori-1) % ntori;
