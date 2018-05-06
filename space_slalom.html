@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--- Space Slalom in javascript; version 5.1 --->
+<!--- Copyright (C) 2018 by David Anderson and Noah Klarreich --->
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
 	<title>Space Slalom 5.1</title>
-	<!--- link to the last version of babylon --->
 	<script src="babylon.2.5.js"></script>
 	<style>
 		html, body {
@@ -52,21 +52,20 @@
 			return new BABYLON.Vector3(pos.x+dx, pos.y+dy, pos.z+dz);
 		}
 
+		// diameter of a ring
+		//
 		function get_diameter() {
 			return 2 + 2.*Math.random();
 		}
 
 		window.addEventListener('DOMContentLoaded', function(){
-			// get the canvas DOM element
 			var canvas = document.getElementById('renderCanvas');
 			var width = canvas.scrollWidth;
 			var height = canvas.scrollHeight;
 			vscale = width/height;
 			console.log(width, height);
 
-			// load the 3D engine
 			var engine = new BABYLON.Engine(canvas, true);
-
 
 			var tori = [];
 			var mousex = width/2, mousey=height/2;
@@ -83,16 +82,6 @@
 				camera.fov = fov;
 				camera.keysUp = [];camera.keysDown = [];camera.keysLeft = [];camera.keysRight = [];
 
-				//var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
-
-				//var camera = new BABYLON.ArcRotateCamera("ArcRotateCamera", 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
-				//camera.setPosition(new BABYLON.Vector3(0, 0, 50));
-				//camera.target = new BABYLON.Vector3(3, 0, 0);
-
-				//var camera = new Camera("camera1", new BABYLON.Vector3(0, 0, -10), scene);
-
-				//camera.setPosition(new BABYLON.Vector3(0, 0, -10));
-
 				// target the camera to scene origin
 				camera.setTarget(BABYLON.Vector3.Zero());
 
@@ -101,8 +90,6 @@
 
 				// create a basic light, aiming 0,1,0 - meaning, to the sky
 				var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
-				//var light2 = new BABYLON.HemisphericLight('light2', new BABYLON.Vector3(-1,0,0), scene);
-
 				
 				var pos = new BABYLON.Vector3();
 				for (i=0; i<ntori; i++) {
@@ -127,7 +114,6 @@
 				window.addEventListener("mousemove", function() {
 					mousex = scene.pointerX;
 					mousey = scene.pointerY;
-					// console.log(x, y);
 				});
 				
 				scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
@@ -151,7 +137,7 @@
 			outputplane.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
 			outputplane.material = new BABYLON.StandardMaterial("outputplane", scene);
 			outputplane.position = new BABYLON.Vector3(-5, 5, scoreboard_z);
-			//outputplane.scaling.y = 0.4;
+
 			var outputplaneTexture = new BABYLON.DynamicTexture("dynamic texture", 512, scene, true);
 			outputplane.material.diffuseTexture = outputplaneTexture;
 			outputplane.material.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -159,7 +145,7 @@
 			outputplane.material.backFaceCulling = false;
 			outputplane.material.alpha = .2;
 
-			// make background
+			// make star background
 			//
 			var background = BABYLON.Mesh.CreatePlane("background", 400, scene, false);
 			background.billboardMode = BABYLON.AbstractMesh.BILLBOARDMODE_ALL;
@@ -180,6 +166,7 @@
 			var last_time = 0;
 			
 			// run the render loop
+			//
 			engine.runRenderLoop(function(){
 				scene.render();
 				t = Date.now();
@@ -191,13 +178,10 @@
 				last_time = t;
 				vx = -(mousex-width/2)*control_speed*dt;
 				vy = (mousey-height/2)*control_speed*dt*vscale;
-				//console.log(vx, vy);
 				for (i=0; i<ntori; i++) {
 					tori[i].position.z -= dt*speed;
 					if (tori[i].position.z < -10+check_offset ){
-					//	console.log("passing ring")
 						if (tori[i].position.x**2 + tori[i].position.y**2 < (tori[i].diameter**2)/4) {
-						//	console.log(tori[i].position.x^2 + tori[i].position.y^2)
 							hits = hits + 1;
 							bell.play()
 						} else {
@@ -208,10 +192,8 @@
 						var missstring = misses.toString()
 						hitstring = hitstring.concat('  ')
 						var score = hitstring.concat(missstring)
-						//console.log(score)
+
 						outputplaneTexture.drawText(score, null, 140, "bold 100px verdana", "white", "#000000");
-						//console.log(hits)
-					//	console.log(misses)
 						var j = (i+ntori-1) % ntori;
 						tori[i].position = next_pos(tori[j].position);
 
@@ -219,9 +201,6 @@
 							var url = "http://continuum-hypothesis.com/space_slalom.php?action=game_over&hits="+hits;
 							window.location.replace(url);
 							return;
-							//document.write('hits: ', hits);
-							//document.write("<br />");
-							//document.write('misses: ', misses)
 						}
 					}
 					tori[i].position.x += vx;
@@ -230,7 +209,6 @@
 				t += .1;
 			});
 
-			// the canvas/window resize event handler
 			window.addEventListener('resize', function(){
 				engine.resize();
 			});
