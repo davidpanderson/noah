@@ -198,7 +198,8 @@
 						tori[i].position = next_pos(tori[j].position);
 
 						if (misses == 10) {
-							var url = "http://continuum-hypothesis.com/space_slalom.php?action=game_over&hits="+hits;
+							x = "hits="+hits+"&time="+Date.now();
+							var url = "http://continuum-hypothesis.com/space_slalom.php?action=game_over&x="+btoa(x);
 							window.location.replace(url);
 							return;
 						}
