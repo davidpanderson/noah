@@ -17,48 +17,30 @@ def is_substitution(event):
 def is_end_of_quarter(event):
     return event[2] == 13
 
-teamid_0 = 0
-teamid_1 = 0
-team_name0 = ''
-team_name1 = ''
-
-def team_name(i):
-    global team_name0, team_name1
-    if i:
-        return team_name1
-    return team_name0
-
 # for team rebounds, the data has a team ID in the player ID field (boo!)
 #
-def is_player_id(id):
-    global teamid_0, teamid_1
+def is_player_id(id, team_ids):
     if not id:
         return False
-    if id == teamid_0:
+    if id == team_ids[0]:
         return False
-    if id == teamid_1:
+    if id == team_ids[1]:
         return False
     return True
 
-player_names = {}
-
-def player_name(id, name):
-    global player_names;
-    player_names[id] = name
-
 # return list of players involved in event
 #
-def get_players(event):
+def get_players(event, team_ids, player_names):
     x = []
-    if is_player_id(event[13]):
+    if is_player_id(event[13], team_ids):
         x.append([event[13], event[15]])
-        player_name(event[13], event[14])
-    if is_player_id(event[20]):
+        player_names[event[13]] = event[14]
+    if is_player_id(event[20], team_ids):
         x.append([event[20], event[22]])
-        player_name(event[20], event[21])
-    if is_player_id(event[27]):
+        player_names[event[20]] = event[21]
+    if is_player_id(event[27], team_ids):
         x.append([event[27], event[29]])
-        player_name(event[27], event[28])
+        player_names[event[27]] = event[28]
     return x
 
 # add player to current segment.
@@ -71,11 +53,10 @@ def add_player(player, team, seg, segs):
     for s in segs:
         s['players'][team].append(player)
 
-def get_team(id):
-    global teamid_0, teamid_1
-    if id == teamid_0:
+def get_team(id, team_ids):
+    if id == team_ids[0]:
         return 0
-    if id == teamid_1:
+    if id == team_ids[1]:
         return 1
     print('bad ID ', id);
     exit()
@@ -83,32 +64,52 @@ def get_team(id):
 def new_segment(quarter):
     s = {}
     s['players'] = [[],[]]
-    s['score'] = [None, None]
-    s['time'] = [None, None]
+    s['score'] = [[], []]
+    s['time'] = [-1, -1]
     s['quarter'] = quarter
     return s
 
+# take score as N - M and convert to list of 2 ints
+#
+def score_str_to_int(s):
+    x = s.split("-")
+    return [int(x[0]), int(x[1])]
+
+# take time as MM:SS and convert to seconds counting up
+#
+def time_str_to_secs(s):
+    x = s.split(":")
+    y = int(x[0])*60+int(x[1])
+    return 720-y
+
+def time_secs_to_str(t):
+    x = 720-t
+    return "%d:%02d"%(x/60, x%60)
+
 # return list of segments
 # segment is a map
+# quarter (1..4)
 # players[2]: lists of players for each team
-# time[2]: game time at start and end of segment
-# score[2]: score at start and end of segment
+# time[2]: game time at start and end of segment (seconds from start of quarter)
+# score[2]: score at start and end of segment.  Each score is a pair of ints.
 
 def find_segments(events):
-    global teamid_0, teamid_1, team_name0, team_name1
     quarter = 1
     print(len(events), ' events')
-    teamid_0 = events[1][15]
-    teamid_1 = events[1][22]
-    team_name0 = events[1][18]
-    team_name1 = events[1][25]
+    team_ids = {}
+    team_ids[0] = events[1][15]
+    team_ids[1] = events[1][22]
+    team_names = {}
+    team_names[0] = events[1][18]
+    team_names[1] = events[1][25]
+    player_names = {}
     segs_quarter = []       # list of segments in this quarter
     segs_game = []
     seg = new_segment(quarter)        # current segment
     for event in events:
         #print('event type ', event[2])
         if is_end_of_quarter(event):
-            seg['time'][1] = event[6]
+            seg['time'][1] = time_str_to_secs(event[6])
             segs_quarter.append(seg)
             quarter += 1
             seg = new_segment(quarter)
@@ -117,53 +118,55 @@ def find_segments(events):
         elif is_substitution(event):
             outgoing_player = event[13]
             incoming_player = event[20]
-            player_name(event[13], event[14])
-            player_name(event[20], event[21])
-            team = get_team(event[15])
+            player_names[event[13]] = event[14]
+            player_names[event[20]] = event[21]
+            team = get_team(event[15], team_ids)
             add_player(outgoing_player, team, seg, segs_quarter)
             segs_quarter.append(copy.deepcopy(seg))
-            seg['time'][0] = event[6]
+            seg['time'][0] = time_str_to_secs(event[6])
             seg['score'][0] = copy.deepcopy(seg['score'][1])
             seg['players'][team].remove(outgoing_player)
             seg['players'][team].append(incoming_player)
         else:
             score = event[10]
             if score:
+                s = score_str_to_int(score)
                 if not seg['score'][0]:
-                    seg['score'][0] = score
-                seg['score'][1] = score
+                    seg['score'][0] = s
+                seg['score'][1] = s
             time = event[6]
             if time:
-                if not seg['time'][0]:
-                    seg['time'][0] = time
-                seg['time'][1] = time
-            p = get_players(event)
+                if seg['time'][0] < 0:
+                    seg['time'][0] = time_str_to_secs(time)
+                seg['time'][1] = time_str_to_secs(time)
+            p = get_players(event, team_ids, player_names)
             for x in p:
                 if x[1] == None:
                     print(event)
-                add_player(x[0], get_team(x[1]), seg, segs_quarter)
+                add_player(x[0], get_team(x[1], team_ids), seg, segs_quarter)
     out = []
     for seg in segs_game:
         if seg['time'][0] != seg['time'][1]:
             out.append(seg)
-    return out
+    return [out, team_names, player_names]
 
-def print_segments(segs):
-    global player_names
+def print_segments(segs, team_names, player_names):
     n = 0
     for seg in segs:
         n += 1
         print('Segment ', n)
         print('   quarter: ', seg['quarter'])
-        print('   start time: ', seg['time'][0])
-        print('   end time: ', seg['time'][1])
-        print('   start score: ', seg['score'][0])
-        print('   end score: ', seg['score'][1])
+        print('   start time: ', time_secs_to_str(seg['time'][0]))
+        print('   end time: ', time_secs_to_str(seg['time'][1]))
+        s = seg['score'][0]
+        print('   start score: %d - %d'%(s[0], s[1]))
+        s = seg['score'][1]
+        print('   end score: %d - %d'%(s[0], s[1]))
         for i in range(2):
-            print('  ', team_name(i), 'players:')
+            print('  ', team_names[i], 'players:')
             for p in seg['players'][i]:
                 print('      ', player_names[p])
             
 events = read_json_file('nba_json.txt')
-segs = find_segments(events)
-print_segments(segs)
+x = find_segments(events)
+print_segments(x[0], x[1], x[2])
