@@ -319,4 +319,5 @@ def spread_score(wk):
     print spread_error, score_error, len(test)
 get_teams()
 get_games()
-print fb.read_ratings_file('ncaa_football18')
+r = fb.read_ratings_file('ncaa_football18')
+fb.plot_ratings(r)

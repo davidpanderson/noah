@@ -167,10 +167,9 @@ def fully_connected(week):
             break
     return all(v == 0 for v in lowest)
 
-def prob(t1, t2):
+def prob(t1, t2, r):
     count1 = 0
     count2 = 0
-    r = compute_ratings(0)
     s1, s2, = predict_score(t1, t2, r)
     for g in games:
         p1, p2 = predict_score(g[0], g[1], r)
@@ -181,8 +180,7 @@ def prob(t1, t2):
         else:
             count2 += 1
     return float(count1)/(float(count1) + float(count2))
-def plot_ratings():
-    r = compute_ratings(0)
+def plot_ratings(r):
     offr = []
     defr = []
     n= len(teams)
