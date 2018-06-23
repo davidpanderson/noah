@@ -1,12 +1,17 @@
 import json, copy, pickle
 
+# URLs
+# players: http://data.nba.net/data/10s/prod/v1/2017/players.json
+# teams: http://data.nba.net/data/10s/prod/v1/2017/teams.json
+# schedule: http://data.nba.net/data/10s/prod/v1/2017/schedule.json
+
 class nba:
     # IMPLEMENTATION STARTS HERE
 
     def __init__(self):
         self.segs = []
-        self.player_names = {}    # map ID->name
-        self.team_ids = {}        # IDs of 2 teams in current game
+        self.player_names = {}      # map ID->name
+        self.team_ids = {}          # IDs of 2 teams in current game
         self.team_names = {}        # map ID->name
     
     def read_teams(self):
@@ -189,6 +194,30 @@ class nba:
         self.player_names = x.player_names
         self.team_names = x.team_names
         self.team_ids = x.team_ids
+
+    def analyze(self):
+        # trim segment list, and assign seq nos to players
+
+        trimmed_segs = []
+        player_seqno = {}
+        seqno = 0
+        for seg in self.segs:
+            dur = seg['time'][1] - seg['time'][0]
+            if (dur < 0):
+                continue
+            trimmed_segs.append(seg)
+            for i in range(2):
+                for p in seg['players'][i]:
+                    if p not in player_seqno:
+                        player_seqno[p] = seqno
+                        seqno += 1
+        res = minimize(nba_score_error,x0, jac=nba_score_error_gradient,
+            tol=1e-7, options={'maxiter': 1e8, 'disp': True})
+        player_ratings = res.x
+
+    
+    
+        
         
 n = nba()
 n.read_players()
