@@ -15,12 +15,12 @@ def get_file(url, values, filename):
         print(e.code)
         print(e.read())
         
-data={}
-data['EndPeriod']=10
-data['EndRange']=55800
-data['GameID']='0021700001'
-data['RangeType']=2
-data['Season']='2015-16'
-data['SeasonType']='Regular Season'
-data['StartPeriod']=1
-get_file('http://stats.nba.com/stats/playbyplayv2', data, 'foo')
+
+for i in range(1200):
+    i = str(i)
+    id_len = len(i)
+    id_len = 5-id_len
+    id_string = '0' * id_len
+    gameid = id_string + i
+    url = 'http://data.nba.com/data/10s/v2015/json/mobile_teams/nba/2016/scores/pbp/00216'+ gameid + '_full_pbp.json'
+    get_file(url, [], 'pbp' + gameid + '.json')
