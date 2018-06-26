@@ -215,14 +215,21 @@ class nba:
             tol=1e-7, options={'maxiter': 1e8, 'disp': True})
         player_ratings = res.x
 
-    
-    
-        
-        
-n = nba()
-n.read_players()
-n.read_teams()
-n.parse_game('0021600361_full_pbp.json')
-n.print_segments()
-#n.write_data("foo")
+def nba_test():   
+    n = nba()
+    n.read_players()
+    n.read_teams()
+    n.parse_game('0021600361_full_pbp.json')
+    n.print_segments()
+    #n.write_data("foo")
 
+def parse_schedule():
+    f = open('nba_schedule_2017.json')
+    x = json.loads(f.read())
+    x = x['league']
+    x = x['standard']
+    for g in x:
+        print(g['gameId'])
+
+parse_schedule()
+        
