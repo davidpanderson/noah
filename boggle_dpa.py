@@ -1,21 +1,24 @@
 import math, sys
-from dict import *
+import dict            # module for getting word list (regular or jumbo)
+
+# program to find all the words in a Boggle board of arbitrary (square) size
 
 # return True if the num1 and num2 positions in the grid are adjacent
+# "edge" is the edge length of the grid
 #
-def adjacent(num1, num2, len):
-    num1_row = num1//len
-    num1_col = num1 % len
-    num2_row = num2//len
-    num2_col = num2 % len
+def adjacent(num1, num2, edge):
+    num1_row = num1//edge
+    num1_col = num1 % edge
+    num2_row = num2//edge
+    num2_col = num2 % edge
     if abs(num1_row - num2_row) >= 2:
         return False
     if abs(num1_col - num2_col) >= 2:
         return False
     return True
 
-# return True is word is in board
-# "used" says which letters have been used so far
+# recursive function, returns True if word is in board
+# "used" is a list of board positions used so far
 #
 def find_word(board, word, used, n, edge):
     nused = len(used)
@@ -36,15 +39,14 @@ def find_word(board, word, used, n, edge):
         return find_word(board, word[1:], used, n, edge)
     return False
 
-min_length = 4
-
 # print list of all words in board
 #
-def solve(board, jumbo):
+def solve(board, min_length, jumbo):
+    print(board)
     n = len(board)
     edge = int(math.sqrt(n))
     count = 0
-    for w in get_dictionary(jumbo, True):
+    for w in dict.get_dictionary(jumbo, True):
         if len(w) < min_length:
             continue
         if find_word(board, w, [], n, edge):
@@ -52,11 +54,17 @@ def solve(board, jumbo):
             count += 1
     print 'count: ', count
 
-b = ['a', 'n', 'e', 'r',
+def test():
+    solve ([
+     'a', 'n', 'e', 'r',
      's', 'e', 'h', 't',
      'm', 'o', 'l', 'i',
-     'w', 'b', 'c', 'v']
+     'w', 'b', 'c', 'v'
+      ], 4, False)
 
-x = list(sys.argv[1])
-min_length = int(sys.argv[2])
-solve(x, len(sys.argv)>3)
+if (True):
+    board = list(sys.argv[1])
+    min_length = int(sys.argv[2])
+    solve(board, min_length, len(sys.argv)>3)
+else:
+    test()
