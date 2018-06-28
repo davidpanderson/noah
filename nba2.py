@@ -223,13 +223,3 @@ def nba_test():
     n.print_segments()
     #n.write_data("foo")
 
-def parse_schedule():
-    f = open('nba_schedule_2017.json')
-    x = json.loads(f.read())
-    x = x['league']
-    x = x['standard']
-    for g in x:
-        print(g['gameId'])
-
-parse_schedule()
-        
