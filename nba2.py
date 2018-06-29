@@ -1,4 +1,4 @@
-import json, copy, pickle
+import json, copy, pickle, os
 
 # URLs
 # players: http://data.nba.net/data/10s/prod/v1/2017/players.json
@@ -215,11 +215,21 @@ class nba:
             tol=1e-7, options={'maxiter': 1e8, 'disp': True})
         player_ratings = res.x
 
+    def parse_games(self, year):
+        dirname = 'nba_games_%d'%(year)
+        files = os.listdir(dirname)
+        for file in files:
+            if file[2] == '1':
+                continue
+            self.parse_game('%s/%s'%(dirname, file))
+            
 def nba_test():   
     n = nba()
     n.read_players()
     n.read_teams()
-    n.parse_game('0021600361_full_pbp.json')
-    n.print_segments()
+    n.parse_games(2017)
+    #n.parse_game('0021600361_full_pbp.json')
+    #n.print_segments()
     #n.write_data("foo")
 
+nba_test()
