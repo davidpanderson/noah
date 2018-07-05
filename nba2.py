@@ -1,11 +1,14 @@
 import json, copy, pickle, os
+import numpy as np
+from scipy.optimize import minimize
+import nba_analyze 
 
 # URLs
 # players: http://data.nba.net/data/10s/prod/v1/2017/players.json
 # teams: http://data.nba.net/data/10s/prod/v1/2017/teams.json
 # schedule: http://data.nba.net/data/10s/prod/v1/2017/schedule.json
 
-class nba:
+class NBA:
     # IMPLEMENTATION STARTS HERE
 
     def __init__(self):
@@ -211,7 +214,12 @@ class nba:
                     if p not in player_seqno:
                         player_seqno[p] = seqno
                         seqno += 1
-        res = minimize(nba_score_error,x0, jac=nba_score_error_gradient,
+        ratings = []
+        for i in range(seqno):
+            ratings.append(0.03)
+            ratings.append(1)
+        x0 = np.array(ratings)
+        res = minimize(nba_analyze.nba_error,x0, jac=nba_analyze.nba_error_gradient,
             tol=1e-7, options={'maxiter': 1e8, 'disp': True})
         player_ratings = res.x
 
@@ -222,14 +230,15 @@ class nba:
             if file[2] == '1':
                 continue
             self.parse_game('%s/%s'%(dirname, file))
-            
-def nba_test():   
-    n = nba()
-    n.read_players()
-    n.read_teams()
-    n.parse_games(2017)
-    #n.parse_game('0021600361_full_pbp.json')
-    #n.print_segments()
-    #n.write_data("foo")
+
+def nba_test():
+    nba_analyze.nba = NBA()
+    nba_analyze.nba.read_players()
+    nba_analyze.nba.read_teams()
+    #nba.parse_games(2017)
+    nba_analyze.nba.parse_game('0021600361_full_pbp.json')
+    nba_analyze.nba.analyze()
+    #nba.print_segments()
+    #nba.write_data("foo")
 
 nba_test()
