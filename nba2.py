@@ -44,7 +44,6 @@ class NBA:
     def read_game(self, name):
         f = open(name)
         x = f.read()
-        print(x)
         x = json.loads(x)
         x = x['g']
         periods = x['pd']
