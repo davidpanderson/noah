@@ -30,7 +30,7 @@ class NBA:
 
     def read_players(self):
         global players
-        f = open('nba_players_2015.json')
+        f = open('nba_players_2017.json')
         x = json.loads(f.read())
         x = x['league']
         x = x['standard']
@@ -43,7 +43,9 @@ class NBA:
     #
     def read_game(self, name):
         f = open(name)
-        x = json.loads(f.read())
+        x = f.read()
+        print(x)
+        x = json.loads(x)
         x = x['g']
         periods = x['pd']
         e = []
@@ -246,7 +248,7 @@ def nba_test():
     nba_analyze.nba.read_players()
     nba_analyze.nba.read_teams()
     #nba.parse_games(2017)
-    nba_analyze.nba.parse_game('0021600361_full_pbp.json')
+    nba_analyze.nba.parse_game('nba_games_2017/0041700401.json')
     nba_analyze.nba.analyze()
     #nba.print_segments()
     #nba.write_data("foo")
