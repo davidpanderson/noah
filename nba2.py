@@ -16,6 +16,8 @@ class NBA:
         self.player_names = {}      # map ID->name
         self.team_ids = {}          # IDs of 2 teams in current game
         self.team_names = {}        # map ID->name
+        self.trimmed_segs = []
+        self.player_seqno = {}       # map ID->seqno
     
     def read_teams(self):
         global teams
@@ -169,6 +171,10 @@ class NBA:
         
         for seg in segs_game:
             if seg['time'][0] != seg['time'][1]:
+                seg['duration'] = seg['time'][1] - seg['time'][0]
+                seg['points_scored'] = [0,0]
+                for i in range(2):
+                    seg['points_scored'][i] = seg['score'][1][i] - seg['score'][0][i]
                 self.segs.append(seg)
 
     def print_segments(self):
@@ -201,27 +207,25 @@ class NBA:
     def analyze(self):
         # trim segment list, and assign seq nos to players
 
-        trimmed_segs = []
-        player_seqno = {}
         seqno = 0
         for seg in self.segs:
             dur = seg['time'][1] - seg['time'][0]
             if (dur < 0):
                 continue
-            trimmed_segs.append(seg)
+            self.trimmed_segs.append(seg)
             for i in range(2):
                 for p in seg['players'][i]:
-                    if p not in player_seqno:
-                        player_seqno[p] = seqno
+                    if p not in self.player_seqno:
+                        self.player_seqno[p] = seqno
                         seqno += 1
         ratings = []
         for i in range(seqno):
             ratings.append(0.03)
-            ratings.append(1)
+            ratings.append(1.0)
         x0 = np.array(ratings)
         res = minimize(nba_analyze.nba_error,x0, jac=nba_analyze.nba_error_gradient,
-            tol=1e-7, options={'maxiter': 1e8, 'disp': True})
-        player_ratings = res.x
+            method='Newton-CG',tol=1e-9, options={'maxiter': 1e8, 'disp': True})
+        self.player_ratings = res.x
 
     def parse_games(self, year):
         dirname = 'nba_games_%d'%(year)
@@ -230,6 +234,12 @@ class NBA:
             if file[2] == '1':
                 continue
             self.parse_game('%s/%s'%(dirname, file))
+
+    def print_ratings(self):
+        for id, seqno in self.player_seqno.iteritems():
+            offr = self.player_ratings[2*seqno]
+            defr = self.player_ratings[2*seqno+1]
+            print(self.player_names[id],  offr , defr, offr/defr )
 
 def nba_test():
     nba_analyze.nba = NBA()
@@ -240,5 +250,6 @@ def nba_test():
     nba_analyze.nba.analyze()
     #nba.print_segments()
     #nba.write_data("foo")
+    nba_analyze.nba.print_ratings()
 
 nba_test()
