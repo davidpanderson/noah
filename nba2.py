@@ -94,7 +94,7 @@ class NBA:
             return 0
         if id == self.team_ids[1]:
             return 1
-        print('bad ID ', id);
+        print('bad ID ', id, self.team_ids);
         exit()
 
     def new_segment(self, quarter):
@@ -117,6 +117,7 @@ class NBA:
         x = int(x)
         return "%d:%02d"%(x/60, x%60)
 
+ 
     # given list of events, return list of segments
     # segment is a map
     # quarter (1..4)
@@ -128,8 +129,19 @@ class NBA:
         events = self.read_game(filename)
         quarter = 1
         print(len(events), ' events')
-        self.team_ids[0] = events[1]['tid']
-        self.team_ids[1] = events[1]['oftid']
+        print(events[0])
+        
+        tid0 = events[1]['tid']
+        # look for the second team ID
+        for event in events:
+            tid1 =  event['tid']
+            if tid1 and tid1 != tid0:
+                break
+            tid1 = event['oftid']
+            if tid1 and tid1 != tid0:
+                break
+        self.team_ids = [tid0, tid1]
+        
         segs_quarter = []       # list of segments in this quarter
         segs_game = []
         seg = self.new_segment(quarter)        # current segment
