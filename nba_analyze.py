@@ -4,7 +4,7 @@
 # returns error
 #
 import numpy as np
-def_weight = 1.e6
+def_weight = 1.e3
 
 def rating_avgs(players, x):
     osum = 0

@@ -48,7 +48,7 @@ class NBA:
         x = x['g']
         periods = x['pd']
         e = []
-        print(len(periods), ' periods')
+        print len(periods), ' periods'
         for i in range(len(periods)):
             x = periods[i]
             e.extend(x['pla'])
@@ -79,10 +79,18 @@ class NBA:
                     x.append([p, t1])
         return x
 
+    def check_segs(self, segs):
+         for seg in segs:
+             for i in range(2):
+                 if len(seg['players'][i]) != 5:
+                        print "bad # players"
+                        print seg
+                        exit()
+                    
     # add player to current segment.
     # if not already there, add to previous segments too
     #
-    def add_player(seld, player, team, seg, segs):
+    def add_player(self, player, team, seg, segs):
         if player in seg['players'][team]:
             return;
         seg['players'][team].append(player)
@@ -117,7 +125,6 @@ class NBA:
         x = int(x)
         return "%d:%02d"%(x/60, x%60)
 
- 
     # given list of events, return list of segments
     # segment is a map
     # quarter (1..4)
@@ -129,16 +136,18 @@ class NBA:
         events = self.read_game(filename)
         quarter = 1
         print(len(events), ' events')
-        print(events[0])
-        
-        tid0 = events[1]['tid']
-        # look for the second team ID
+
+        # find the team IDs, in the order used for scores (home, visitor)
+
+        tid0 = 0
+        tid1 = 0
         for event in events:
-            tid1 =  event['tid']
-            if tid1 and tid1 != tid0:
+            if event['hs']:
+                tid0 = event['tid']
                 break
-            tid1 = event['oftid']
-            if tid1 and tid1 != tid0:
+        for event in events:
+            if event['vs']:
+                tid1 = event['tid']
                 break
         self.team_ids = [tid0, tid1]
         
@@ -146,12 +155,13 @@ class NBA:
         segs_game = []
         seg = self.new_segment(quarter)        # current segment
         for event in events:
-            #print('event type ', event['etype'])
+            #print 'event ', event['evt'], ' type ', event['etype']
             if self.is_end_of_quarter(event):
                 seg['time'][1] = self.time_str_to_secs(event['cl'])
                 segs_quarter.append(seg)
                 quarter += 1
                 seg = self.new_segment(quarter)
+                self.check_segs(segs_quarter)
                 segs_game.extend(segs_quarter)
                 segs_quarter = []
             elif self.is_substitution(event):
@@ -164,6 +174,9 @@ class NBA:
                 seg['score'][0] = copy.deepcopy(seg['score'][1])
                 seg['players'][team].remove(outgoing_player)
                 seg['players'][team].append(incoming_player)
+            elif event['etype'] == 6:
+                # technical foul can involve someone on bench
+                continue
             else:
                 s = []
                 s.append(event['hs'])
@@ -194,18 +207,20 @@ class NBA:
         n = 0
         for seg in self.segs:
             n += 1
-            print('Segment ', n)
-            print('   quarter: ', seg['quarter'])
-            print('   start time: ', self.time_secs_to_str(seg['time'][0]))
-            print('   end time: ', self.time_secs_to_str(seg['time'][1]))
+            print 'Segment ', n
+            print '   quarter: ', seg['quarter']
+            print '   start time: ', self.time_secs_to_str(seg['time'][0])
+            print '   end time: ', self.time_secs_to_str(seg['time'][1])
+            print '   duration: ', seg['duration']
             s = seg['score'][0]
-            print('   start score: %d - %d'%(s[0], s[1]))
+            print '   start score: %d - %d'%(s[0], s[1])
             s = seg['score'][1]
-            print('   end score: %d - %d'%(s[0], s[1]))
+            print '   end score: %d - %d'%(s[0], s[1])
+            print '   points scored: ', seg['points_scored']
             for i in range(2):
-                print('  ', self.team_names[self.team_ids[i]], 'players:')
+                print '  ', self.team_names[self.team_ids[i]], 'players:'
                 for p in seg['players'][i]:
-                    print('      ', self.player_names[p])
+                    print '      ', self.player_names[p]
 
     def write_data(self, filename):
         pickle.dump(self, open(filename, 'wb'))
@@ -254,15 +269,47 @@ class NBA:
             defr = self.player_ratings[2*seqno+1]
             print(self.player_names[id],  offr , defr, offr/defr )
 
+    # for each player, show
+    # # of segments
+    # duration of segments
+    # points scored by team and by other team
+    #
+    def print_stats(self):
+        players = {}
+        for seg in self.trimmed_segs:
+            dur = seg['duration']
+            for ta in range(2):
+                tb = 1 - ta
+                pa = seg['points_scored'][ta]
+                pb = seg['points_scored'][tb]
+                for p in seg['players'][ta]:
+                    if  p not in players:
+                        x = {}
+                        x['nsegs'] = 0
+                        x['dur'] = 0
+                        x['pf'] = 0
+                        x['pa'] = 0
+                        players[p] = x
+                    players[p]['nsegs'] += 1
+                    players[p]['dur'] += dur
+                    players[p]['pf'] += pa
+                    players[p]['pa'] += pb
+        for pid, x in players.iteritems():
+            print "%s: n %d dur %d pf %d pa %d"%(self.player_names[pid], x['nsegs'], x['dur'], x['pf'], x['pa'])
+
 def nba_test():
     nba_analyze.nba = NBA()
     nba_analyze.nba.read_players()
     nba_analyze.nba.read_teams()
     #nba.parse_games(2017)
     nba_analyze.nba.parse_game('nba_games_2017/0041700401.json')
+    #nba_analyze.nba.parse_game('nba_games_2017/0041700402.json')
+    #nba_analyze.nba.parse_game('nba_games_2017/0041700403.json')
+    #nba_analyze.nba.parse_game('nba_games_2017/0041700404.json')
     nba_analyze.nba.analyze()
-    #nba.print_segments()
+    #nba_analyze.nba.print_segments()
     #nba.write_data("foo")
     nba_analyze.nba.print_ratings()
+    nba_analyze.nba.print_stats()
 
 nba_test()
