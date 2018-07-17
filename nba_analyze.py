@@ -4,7 +4,7 @@
 # returns error
 #
 import numpy as np
-def_weight = 1.e3
+def_weight = 1.e6
 
 def rating_avgs(players, x):
     osum = 0
@@ -24,9 +24,9 @@ def nba_error(x):
             r.append(rating_avgs(s['players'][t], x))
         for ta in range(2):
             tb = 1 - ta
-            pred = r[ta][0]*r[tb][1]*s['duration']
-            ps = s['points_scored'][ta]
-            sum += (pred - ps)**2
+            predicted = r[ta][0]*r[tb][1]*s['duration']
+            actual = s['points_scored'][ta]
+            sum += (predicted - actual)**2
     dsum = 0
     nplayers = len(x)/2
     for i in range(nplayers):

@@ -203,6 +203,23 @@ class NBA:
                     seg['points_scored'][i] = seg['score'][1][i] - seg['score'][0][i]
                 self.segs.append(seg)
 
+    def rating_avgs(self, players):
+        osum = 0
+        dsum = 0
+        for pid in players:
+            pseq = self.player_seqno[pid]
+            osum += self.player_ratings[2*pseq]
+            dsum += self.player_ratings[2*pseq+1]
+        return [osum/5, dsum/5]
+    
+    def print_predictions(self, seg, ta):
+        tb = 1 - ta
+        ra = self.rating_avgs(seg['players'][ta])
+        rb = self.rating_avgs(seg['players'][tb])
+        print '   average rating: ', ra
+        pred = ra[0]*rb[1]*seg['duration']
+        print '    predicted points scored: ', pred
+        
     def print_segments(self):
         n = 0
         for seg in self.segs:
@@ -218,9 +235,17 @@ class NBA:
             print '   end score: %d - %d'%(s[0], s[1])
             print '   points scored: ', seg['points_scored']
             for i in range(2):
-                print '  ', self.team_names[self.team_ids[i]], 'players:'
+                print '  ', self.team_names[self.team_ids[i]]
                 for p in seg['players'][i]:
-                    print '      ', self.player_names[p]
+                    if len(self.player_ratings):
+                        pseq = self.player_seqno[p]
+                        offr = self.player_ratings[pseq*2]
+                        defr = self.player_ratings[pseq*2+1]
+                        print '     ', self.player_names[p], offr, defr
+                    else:
+                        print '      ', self.player_names[p]
+                if len(self.player_ratings):
+                   self.print_predictions(seg, i)
 
     def write_data(self, filename):
         pickle.dump(self, open(filename, 'wb'))
@@ -303,11 +328,11 @@ def nba_test():
     nba_analyze.nba.read_teams()
     #nba.parse_games(2017)
     nba_analyze.nba.parse_game('nba_games_2017/0041700401.json')
-    #nba_analyze.nba.parse_game('nba_games_2017/0041700402.json')
-    #nba_analyze.nba.parse_game('nba_games_2017/0041700403.json')
-    #nba_analyze.nba.parse_game('nba_games_2017/0041700404.json')
+    nba_analyze.nba.parse_game('nba_games_2017/0041700402.json')
+    nba_analyze.nba.parse_game('nba_games_2017/0041700403.json')
+    nba_analyze.nba.parse_game('nba_games_2017/0041700404.json')
     nba_analyze.nba.analyze()
-    #nba_analyze.nba.print_segments()
+    nba_analyze.nba.print_segments()
     #nba.write_data("foo")
     nba_analyze.nba.print_ratings()
     nba_analyze.nba.print_stats()
