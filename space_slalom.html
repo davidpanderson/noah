@@ -124,16 +124,18 @@
 					tori.push(torus);
 				}
 
-				window.addEventListener("touchmove", function() {
+				window.addEventListener("mousemove", function() {
 					mousex = scene.pointerX;
 					mousey = scene.pointerY;
 					// console.log(x, y);
-				}, false);
-				window.addEventListener("mousemove", function(ev) {
+				});
+				
+				window.addEventListener("touchmove", function(ev) {
 					mousex = ev.ClientX;
 					mousey = ev.ClientY;
+					ev.preventDefault();
 					// console.log(x, y);
-				});
+				}, false);
 				
 				scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
 				scene.fogDensity = fog_density;
