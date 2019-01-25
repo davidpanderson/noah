@@ -216,9 +216,9 @@ class NBA:
         tb = 1 - ta
         ra = self.rating_avgs(seg['players'][ta])
         rb = self.rating_avgs(seg['players'][tb])
-        print '   average rating: ', ra
+        print '     average rating: ', ra
         pred = ra[0]*rb[1]*seg['duration']
-        print '    predicted points scored: ', pred
+        print '     predicted points scored: ', pred
         
     def print_segments(self):
         n = 0
