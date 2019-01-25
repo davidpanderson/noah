@@ -321,7 +321,9 @@ class NBA:
                     players[p]['pa'] += pb
         for pid, x in players.iteritems():
             print "%s: n %d dur %d pf %d pa %d"%(self.player_names[pid], x['nsegs'], x['dur'], x['pf'], x['pa'])
-
+        def average_offr(self):
+            print (self)
+            
 def nba_test():
     nba_analyze.nba = NBA()
     nba_analyze.nba.read_players()
@@ -333,8 +335,9 @@ def nba_test():
     nba_analyze.nba.parse_game('nba_games_2017/0041700404.json')
     nba_analyze.nba.analyze()
     nba_analyze.nba.print_segments()
+    average_offr()
     #nba.write_data("foo")
-    nba_analyze.nba.print_ratings()
-    nba_analyze.nba.print_stats()
+   # nba_analyze.nba.print_ratings()
+    #nba_analyze.nba.print_stats()
 
 nba_test()
