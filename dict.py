@@ -1,3 +1,5 @@
+import sys
+
 # read word-list file, return list of words (~109K of them)
 #
 def get_dictionary(big=False, alpha_only=True):
@@ -294,3 +296,10 @@ def orid():
         if w[0:n-2] + 'id' not in dict:
             continue
         print(w)
+
+if sys.argv[1] == 'license_plate':
+    x = lis_game(sys.argv[2])
+    for w in x:
+        print w
+elif sys.argv[1] == 'spelling_bee':
+    spelling_bee(sys.argv[2])

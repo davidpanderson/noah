@@ -183,8 +183,9 @@
 			var v = []
 			var	hits = 0
 			var	misses = 0
-			var vx=0, vy=0;;
+			var vx=0, vy=0;
 			var last_time = 0;
+			var w2 = width/2., h2 = height/2.;
 			
 			// run the render loop
 			engine.runRenderLoop(function(){
@@ -196,9 +197,20 @@
 					dt = 0;
 				}
 				last_time = t;
-				vx = -(mousex-width/2)*control_speed*dt;
-				vy = (mousey-height/2)*control_speed*dt*vscale;
-				//console.log(vx, vy);
+				if (1) {
+					// linear response
+					vx = -(mousex-w2)*control_speed*dt;
+					vy = (mousey-h2)*control_speed*dt*vscale;
+				} else {
+					// quadratic response
+					vx = -(mousex-w2);
+					vy = (mousey-h2);
+					vx = (vx*Math.abs(vx))/w2;
+					vy = (vy*Math.abs(vy))/h2;
+					vx *= control_speed*dt;
+					vy *= control_speed*dt*vscale;
+				}
+				console.log(vx, vy);
 				for (i=0; i<ntori; i++) {
 					tori[i].position.z -= dt*speed;
 					if (tori[i].position.z < -10+check_offset ){

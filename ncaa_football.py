@@ -16,7 +16,7 @@ def int_check(c):
 # current score file is from http://www.jhowell.net/cf/scores/Sked2017.htm
 def read_scores():
     w = []
-    f = open('ncaa_football_12_3.txt', 'r')
+    f = open('collegefootballscores2018.txt', 'r')
     print f
     for line in f:
         line = line.strip()
@@ -146,7 +146,7 @@ def rankings():
     count = 0
   #  ratings = read_ratings_file(week)
   #  read_info_file()
-    ratings = sp.compute_ratings(0)
+    ratings = fb.compute_ratings(0)
     pairs = {}
     totals = []
     for team in fb.teams:
@@ -157,7 +157,7 @@ def rankings():
     totals.sort()
     count = 0
     for t in totals:
-        print(128-count + 2, t, pairs[t])
+        print(128-count+2  ,t, pairs[t])
         count += 1
 
 # check whether any teams have no games through given week
@@ -319,5 +319,7 @@ def spread_score(wk):
     print spread_error, score_error, len(test)
 get_teams()
 get_games()
-r = fb.read_ratings_file('ncaa_football18')
-fb.plot_ratings(r)
+rankings()
+#r = fb.read_ratings_file('ncaa_football18')
+#fb.plot_ratings(r)
+
