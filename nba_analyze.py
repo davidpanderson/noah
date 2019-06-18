@@ -1,11 +1,16 @@
-# compute error
-# x: vector of player ratings (off0, def0, off1, def1, ...)
-# global: segments
-# returns error
-#
+# error function and gradient for NBA player analysis
+
 import numpy as np
+
+# in the error function we add an error term to make the
+# defensive weights average to 1.
+# This is the coefficient of the error term
+#
 def_weight = 1.e6
 
+# compute average off/def ratings of 5 players
+# x: vector of player ratings (off0, def0, off1, def1, ...)
+#
 def rating_avgs(players, x):
     osum = 0
     dsum = 0
@@ -15,6 +20,11 @@ def rating_avgs(players, x):
         dsum += x[2*pseq+1]
     return [osum/5, dsum/5]
 
+# compute error
+# x: vector of player ratings (off0, def0, off1, def1, ...)
+# global: segments
+# returns error
+#
 def nba_error(x):
     global nba
     sum = 0
@@ -28,7 +38,7 @@ def nba_error(x):
             actual = s['points_scored'][ta]
             sum += (predicted - actual)**2
     dsum = 0
-    nplayers = len(x)/2
+    nplayers = int(len(x)/2)
     for i in range(nplayers):
         dsum += x[i*2+1]
     davg = dsum/nplayers
@@ -58,7 +68,7 @@ def nba_error_gradient(x):
                 gradient[pseq*2+1] += 2.*(pred[tb] - ps[tb])*r[tb][0]
 
     dsum = 0
-    nplayers = len(x)/2
+    nplayers = int(len(x)/2)
     for i in range(nplayers):
         dsum += x[2*i+1]
     davg = dsum/nplayers

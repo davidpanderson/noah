@@ -28,6 +28,7 @@ def download_games(year):
         url = 'http://data.nba.com/data/10s/v2015/json/mobile_teams/nba/%d/scores/pbp/%s_full_pbp.json'%(year, game_id)
         file = 'nba_games_%d/%s.json'%(year, game_id)
         if (os.path.exists(file)):
+            print (file, ' already exists')
             continue
         print (url)
         get_file(url, file)

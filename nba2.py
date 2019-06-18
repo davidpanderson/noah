@@ -1,3 +1,9 @@
+# main program for NBA player analysis.
+# - read data from game files
+# - divide into segments (periods w/ same 10 players)
+# - do optimization to find player coefficients
+# - show results
+
 import json, copy, pickle, os
 import numpy as np
 from scipy.optimize import minimize
@@ -48,7 +54,7 @@ class NBA:
         x = x['g']
         periods = x['pd']
         e = []
-        print len(periods), ' periods'
+        print(len(periods), ' periods')
         for i in range(len(periods)):
             x = periods[i]
             e.extend(x['pla'])
@@ -83,8 +89,8 @@ class NBA:
          for seg in segs:
              for i in range(2):
                  if len(seg['players'][i]) != 5:
-                        print "bad # players"
-                        print seg
+                        print("bad # players")
+                        print(seg)
                         exit()
                     
     # add player to current segment.
@@ -155,7 +161,7 @@ class NBA:
         segs_game = []
         seg = self.new_segment(quarter)        # current segment
         for event in events:
-            #print 'event ', event['evt'], ' type ', event['etype']
+            #print('event ', event['evt'], ' type ', event['etype'])
             if self.is_end_of_quarter(event):
                 seg['time'][1] = self.time_str_to_secs(event['cl'])
                 segs_quarter.append(seg)
@@ -216,34 +222,34 @@ class NBA:
         tb = 1 - ta
         ra = self.rating_avgs(seg['players'][ta])
         rb = self.rating_avgs(seg['players'][tb])
-        print '     average rating: ', ra
+        print('     average rating: ', ra)
         pred = ra[0]*rb[1]*seg['duration']
-        print '     predicted points scored: ', pred
+        print('     predicted points scored: ', pred)
         
     def print_segments(self):
         n = 0
         for seg in self.segs:
             n += 1
-            print 'Segment ', n
-            print '   quarter: ', seg['quarter']
-            print '   start time: ', self.time_secs_to_str(seg['time'][0])
-            print '   end time: ', self.time_secs_to_str(seg['time'][1])
-            print '   duration: ', seg['duration']
+            print('Segment ', n)
+            print('   quarter: ', seg['quarter'])
+            print('   start time: ', self.time_secs_to_str(seg['time'][0]))
+            print('   end time: ', self.time_secs_to_str(seg['time'][1]))
+            print('   duration: ', seg['duration'])
             s = seg['score'][0]
-            print '   start score: %d - %d'%(s[0], s[1])
+            print('   start score: %d - %d'%(s[0], s[1]))
             s = seg['score'][1]
-            print '   end score: %d - %d'%(s[0], s[1])
-            print '   points scored: ', seg['points_scored']
+            print('   end score: %d - %d'%(s[0], s[1]))
+            print('   points scored: ', seg['points_scored'])
             for i in range(2):
-                print '  ', self.team_names[self.team_ids[i]]
+                print('  ', self.team_names[self.team_ids[i]])
                 for p in seg['players'][i]:
                     if len(self.player_ratings):
                         pseq = self.player_seqno[p]
                         offr = self.player_ratings[pseq*2]
                         defr = self.player_ratings[pseq*2+1]
-                        print '     ', self.player_names[p], offr, defr
+                        print('     ', self.player_names[p], offr, defr)
                     else:
-                        print '      ', self.player_names[p]
+                        print('      ', self.player_names[p])
                 if len(self.player_ratings):
                    self.print_predictions(seg, i)
 
@@ -320,7 +326,7 @@ class NBA:
                     players[p]['pf'] += pa
                     players[p]['pa'] += pb
         for pid, x in players.iteritems():
-            print "%s: n %d dur %d pf %d pa %d"%(self.player_names[pid], x['nsegs'], x['dur'], x['pf'], x['pa'])
+            print("%s: n %d dur %d pf %d pa %d"%(self.player_names[pid], x['nsegs'], x['dur'], x['pf'], x['pa']))
         def average_offr(self):
             print (self)
             
