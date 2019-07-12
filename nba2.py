@@ -17,6 +17,12 @@ import nba_analyze
 class NBA:
     # IMPLEMENTATION STARTS HERE
 
+    # A segment is a map
+    # quarter (1..4)
+    # players[2]: lists of players for each team
+    # time[2]: game time at start and end of segment (seconds from start of quarter)
+    # score[2]: score at start and end of segment.  Each score is a pair of ints.
+
     def __init__(self):
         self.segs = []
         self.player_names = {}      # map ID->name
@@ -24,7 +30,10 @@ class NBA:
         self.team_names = {}        # map ID->name
         self.trimmed_segs = []
         self.player_seqno = {}       # map ID->seqno
-    
+            # we need seqnos for players since optimization takes an array
+
+    # get team names; make map
+    #
     def read_teams(self):
         global teams
         f = open('nba_teams.json')
@@ -34,6 +43,8 @@ class NBA:
             name = t['simpleName']
             self.team_names[id] = name
 
+    # get player names
+    #
     def read_players(self):
         global players
         f = open('nba_players_2017.json')
@@ -46,6 +57,8 @@ class NBA:
             self.player_names[id] = name
 
     # return list of events in NBA JSON file
+    # events are things like baskets, player substitutions, etc.
+    # In the data file these are divided into "period"
     #
     def read_game(self, name):
         f = open(name)
@@ -71,7 +84,7 @@ class NBA:
     #
     def get_players(self, event):
         x = []
-        t1 = int(event['tid'])
+        t1 = int(event['tid'])      # team ID
         t2 = int(event['oftid'])
         p = int(event['pid'])
         if (p in self.player_names):
@@ -85,6 +98,8 @@ class NBA:
                     x.append([p, t1])
         return x
 
+    # verify that each segment is 5 on 5
+    #
     def check_segs(self, segs):
          for seg in segs:
              for i in range(2):
@@ -131,13 +146,8 @@ class NBA:
         x = int(x)
         return "%d:%02d"%(x/60, x%60)
 
-    # given list of events, return list of segments
-    # segment is a map
-    # quarter (1..4)
-    # players[2]: lists of players for each team
-    # time[2]: game time at start and end of segment (seconds from start of quarter)
-    # score[2]: score at start and end of segment.  Each score is a pair of ints.
-
+    # parse a game file; return list of segments
+    #
     def parse_game(self, filename):
         events = self.read_game(filename)
         quarter = 1
@@ -200,7 +210,9 @@ class NBA:
                     if x[1] == None:
                         print(event)
                     self.add_player(x[0], self.get_team(x[1]), seg, segs_quarter)
-        
+
+        # what does the following do?
+        #
         for seg in segs_game:
             if seg['time'][0] != seg['time'][1]:
                 seg['duration'] = seg['time'][1] - seg['time'][0]
@@ -209,6 +221,8 @@ class NBA:
                     seg['points_scored'][i] = seg['score'][1][i] - seg['score'][0][i]
                 self.segs.append(seg)
 
+    # return avg off and def ratings of a group of players
+    #
     def rating_avgs(self, players):
         osum = 0
         dsum = 0
@@ -217,7 +231,9 @@ class NBA:
             osum += self.player_ratings[2*pseq]
             dsum += self.player_ratings[2*pseq+1]
         return [osum/5, dsum/5]
-    
+
+    # print predicted score for a segment, based on who's playing
+    #
     def print_predictions(self, seg, ta):
         tb = 1 - ta
         ra = self.rating_avgs(seg['players'][ta])
@@ -263,6 +279,9 @@ class NBA:
         self.team_names = x.team_names
         self.team_ids = x.team_ids
 
+    # given a set of segments, find ratings for players such that
+    # predicted scores are as close as possible to actual scores
+    #
     def analyze(self):
         # trim segment list, and assign seq nos to players
 
