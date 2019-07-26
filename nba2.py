@@ -14,6 +14,8 @@ import nba_analyze
 # teams: http://data.nba.net/data/10s/prod/v1/2017/teams.json
 # schedule: http://data.nba.net/data/10s/prod/v1/2017/schedule.json
 
+# Note: Firefox will let you browse a .json file
+
 class NBA:
     # IMPLEMENTATION STARTS HERE
 
@@ -63,6 +65,8 @@ class NBA:
     def read_game(self, name):
         f = open(name)
         x = f.read()
+        if x[:2] == "b'":
+            x = x[2:-1]
         x = json.loads(x)
         x = x['g']
         periods = x['pd']
@@ -348,16 +352,37 @@ class NBA:
             print("%s: n %d dur %d pf %d pa %d"%(self.player_names[pid], x['nsegs'], x['dur'], x['pf'], x['pa']))
         def average_offr(self):
             print (self)
-            
-def nba_test():
+
+# given two teams, return list of games between them
+#
+def game_find(t1, t2):
+    x = []
+    f = open('nba_schedule_2017.json')
+    games = json.loads(f.read())
+    games = games['league']
+    games = games['standard']
+    for g in games:
+        hteam = g['hTeam']
+        vteam = g['vTeam']
+        hteam = hteam['teamId']
+        vteam = vteam['teamId']
+        if hteam != t1 and hteam != t2:
+            continue
+        if vteam != t1 and vteam != t2:
+            continue
+        x.append(g['gameId'])
+    print(x)
+    return x
+    
+def nba_test(game_ids):
     nba_analyze.nba = NBA()
     nba_analyze.nba.read_players()
     nba_analyze.nba.read_teams()
     #nba.parse_games(2017)
-    nba_analyze.nba.parse_game('nba_games_2017/0041700401.json')
-    nba_analyze.nba.parse_game('nba_games_2017/0041700402.json')
-    nba_analyze.nba.parse_game('nba_games_2017/0041700403.json')
-    nba_analyze.nba.parse_game('nba_games_2017/0041700404.json')
+    for id in game_ids:
+        f = 'nba_games_2017/'+id+'.json'
+        print(f)
+        nba_analyze.nba.parse_game(f)
     nba_analyze.nba.analyze()
     nba_analyze.nba.print_segments()
     average_offr()
@@ -365,4 +390,7 @@ def nba_test():
    # nba_analyze.nba.print_ratings()
     #nba_analyze.nba.print_stats()
 
-nba_test()
+#games = ['0041700401', '0041700402', '0041700403', '0041700404']
+games = game_find('1610612744', '1610612745')
+nba_test(games)
+
