@@ -47,9 +47,9 @@ class NBA:
 
     # get player names
     #
-    def read_players(self):
+    def read_players(self, filename):
         global players
-        f = open('nba_players_2017.json')
+        f = open(filename)
         x = json.loads(f.read())
         x = x['league']
         x = x['standard']
@@ -350,8 +350,9 @@ class NBA:
                     players[p]['pa'] += pb
         for pid, x in players.iteritems():
             print("%s: n %d dur %d pf %d pa %d"%(self.player_names[pid], x['nsegs'], x['dur'], x['pf'], x['pa']))
-        def average_offr(self):
-            print (self)
+
+    def average_offr(self):
+        print (self)
 
 # given two teams, return list of games between them
 #
@@ -376,7 +377,9 @@ def game_find(t1, t2):
     
 def nba_test(game_ids):
     nba_analyze.nba = NBA()
-    nba_analyze.nba.read_players()
+    nba_analyze.nba.read_players('nba_players_2017.json')
+    nba_analyze.nba.read_players('nba_players_2016.json')
+
     nba_analyze.nba.read_teams()
     #nba.parse_games(2017)
     for id in game_ids:
@@ -384,11 +387,11 @@ def nba_test(game_ids):
         print(f)
         nba_analyze.nba.parse_game(f)
     nba_analyze.nba.analyze()
-    nba_analyze.nba.print_segments()
-    average_offr()
+    #nba_analyze.nba.print_segments()
+    #nba_analyze.nba.average_offr()
     #nba.write_data("foo")
-   # nba_analyze.nba.print_ratings()
-    #nba_analyze.nba.print_stats()
+    #nba_analyze.nba.print_ratings()
+    nba_analyze.nba.print_stats()
 
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
 games = game_find('1610612744', '1610612745')
