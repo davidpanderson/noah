@@ -7,7 +7,8 @@
 import json, copy, pickle, os
 import numpy as np
 from scipy.optimize import minimize
-import nba_analyze 
+import nba_analyze
+from itertools import combinations
 
 # URLs
 # players: http://data.nba.net/data/10s/prod/v1/2017/players.json
@@ -119,6 +120,8 @@ class NBA:
         if player in seg['players'][team]:
             return;
         seg['players'][team].append(player)
+        print('adding ', player, team)
+        print(seg['players'][team])
         for s in segs:
             s['players'][team].append(player)
 
@@ -175,7 +178,7 @@ class NBA:
         segs_game = []
         seg = self.new_segment(quarter)        # current segment
         for event in events:
-            #print('event ', event['evt'], ' type ', event['etype'])
+            print('event ', event['evt'], ' type ', event['etype'])
             if self.is_end_of_quarter(event):
                 seg['time'][1] = self.time_str_to_secs(event['cl'])
                 segs_quarter.append(seg)
@@ -316,12 +319,23 @@ class NBA:
             if file[2] == '1':
                 continue
             self.parse_game('%s/%s'%(dirname, file))
+    def average_offr(self):
+        total = 0
+        n = 0
+        for id, seqno in self.player_seqno.items():
+            offr = self.player_ratings[2*seqno]
+            total += offr
+            n += 1
+        print(total/n)
+        return total/n
 
     def print_ratings(self):
-        for id, seqno in self.player_seqno.iteritems():
+        a_offr = self.average_offr()
+        for id, seqno in self.player_seqno.items():
             offr = self.player_ratings[2*seqno]
+            offr = offr/a_offr
             defr = self.player_ratings[2*seqno+1]
-            print(self.player_names[id],  offr , defr, offr/defr )
+            print(self.player_names[id],  offr , defr, offr - defr )
 
     # for each player, show
     # # of segments
@@ -348,15 +362,15 @@ class NBA:
                     players[p]['dur'] += dur
                     players[p]['pf'] += pa
                     players[p]['pa'] += pb
-        for pid, x in players.iteritems():
+        for pid, x in players.items():
             print("%s: n %d dur %d pf %d pa %d"%(self.player_names[pid], x['nsegs'], x['dur'], x['pf'], x['pa']))
 
-    def average_offr(self):
-        print (self)
+    
+        
 
 # given two teams, return list of games between them
 #
-def game_find(t1, t2):
+def game_find(teams):
     x = []
     f = open('nba_schedule_2017.json')
     games = json.loads(f.read())
@@ -367,9 +381,9 @@ def game_find(t1, t2):
         vteam = g['vTeam']
         hteam = hteam['teamId']
         vteam = vteam['teamId']
-        if hteam != t1 and hteam != t2:
+        if hteam not in teams:
             continue
-        if vteam != t1 and vteam != t2:
+        if vteam not in teams:
             continue
         x.append(g['gameId'])
     print(x)
@@ -390,10 +404,14 @@ def nba_test(game_ids):
     #nba_analyze.nba.print_segments()
     #nba_analyze.nba.average_offr()
     #nba.write_data("foo")
-    #nba_analyze.nba.print_ratings()
+    nba_analyze.nba.print_ratings()
     nba_analyze.nba.print_stats()
+    nba_analyze.nba.average_offr()
+
 
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
-games = game_find('1610612744', '1610612745')
+games = game_find(['1610612757', '1610612740', '1610612744'])
 nba_test(games)
+
+
 
