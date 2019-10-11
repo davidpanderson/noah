@@ -35,6 +35,12 @@ class NBA:
         self.player_seqno = {}       # map ID->seqno
             # we need seqnos for players since optimization takes an array
 
+    # print list of IDs as names
+    #
+    def print_players(self, players):
+        for id in players:
+            print(self.player_names[id])
+        
     # get team names; make map
     #
     def read_teams(self):
@@ -97,9 +103,8 @@ class NBA:
         if (event['epid']):
             p = int(event['epid'])
             if (p in self.player_names):
-                if (event['etype'] == 10):
-                    x.append([p, t2])
-                else:
+                if (event['etype'] != 10):
+                    # for jump ball the 2nd player could be on either team
                     x.append([p, t1])
         return x
 
@@ -119,9 +124,13 @@ class NBA:
     def add_player(self, player, team, seg, segs):
         if player in seg['players'][team]:
             return;
+        #print('adding ', self.player_names[player], team)
         seg['players'][team].append(player)
-        print('adding ', player, team)
-        print(seg['players'][team])
+        #self.print_players(seg['players'][team])
+        if len(seg['players'][team]) > 5:
+            print("bad # players");
+            print(seg)
+            exit()
         for s in segs:
             s['players'][team].append(player)
 
@@ -178,7 +187,7 @@ class NBA:
         segs_game = []
         seg = self.new_segment(quarter)        # current segment
         for event in events:
-            print('event ', event['evt'], ' type ', event['etype'])
+            #print('event ', event['evt'], ' type ', event['etype'])
             if self.is_end_of_quarter(event):
                 seg['time'][1] = self.time_str_to_secs(event['cl'])
                 segs_quarter.append(seg)
