@@ -3,6 +3,8 @@ from scipy.optimize import minimize
 import math
 penalty_scale = 100000
 week = 11
+games = []
+teams = []
 def diff_error_old(x):
     global games, penaly_scale
     sum = 0
@@ -81,10 +83,10 @@ def test_team(team):
     x = compute_ratings(0)
     for g in games:
         if g[0] == team or g[1] == team:
-            print teams[g[0]]
-            print teams[g[1]]
-            print 'score ', g[2], g[3]
-            print 'predicted differince', x[g[0]] - x[g[1]]
+            print (teams[g[0]])
+            print (teams[g[1]])
+            print ('score ', g[2], g[3])
+            print ('predicted differince', x[g[0]] - x[g[1]])
                     
 
 
@@ -105,6 +107,7 @@ def diff_error(x):
     # add penalty to normalize average def rating
     drating_sum = 0
     nteams = len(x)/2
+    nteams = int(nteams)
     for i in range(nteams):
         drating_sum += x[i*2 + 1]
     davg = drating_sum/nteams
@@ -139,6 +142,7 @@ def diff_error_gradient(x):
      
  # add component for penalty that normalizes average defensive rating
     sum=0
+    nteams = int(nteams)
     for i in range(nteams):
         d_ind = i*2+1
         sum += x[d_ind]
@@ -174,15 +178,15 @@ def predict_spread(t1, t2):
     t1 = teams.index(t1)
     t2 = teams.index(t2)
     score1 = r[t1*2] * r[t2*2 + 1]
-    print t1
-    print t2
-    print score1
+    print (t1)
+    print (t2)
+    print (score1)
     score2 = r[t2*2] * r[t1 * 2 + 1]
-    print score2
-    print r[t1*2]
-    print r[t1*2 + 1]
-    print r[t2*2]
-    print r[t2*2 + 1]
+    print (score2)
+    print (r[t1*2])
+    print (r[t1*2 + 1])
+    print (r[t2*2])
+    print (r[t2*2 + 1])
 
-    print score1 - score2
+    print (score1 - score2)
 

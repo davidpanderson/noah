@@ -2,7 +2,7 @@
 
 import numpy as np
 from scipy.optimize import minimize
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import pickle
 
 # global variables
@@ -45,6 +45,7 @@ def score_error(x):
     # add penalty to normalize average def rating
     drating_sum = 0
     nteams = len(x)/2
+    nteams = int(nteams)
     for i in range(nteams):
         drating_sum += x[i*2 + 1]
     davg = drating_sum/nteams
@@ -83,6 +84,7 @@ def score_error_gradient(x):
         
     # add component for penalty that normalizes average defensive rating
     sum=0
+    nteams = int(nteams)
     for i in range(nteams):
         d_ind = i*2+1
         sum += x[d_ind]
