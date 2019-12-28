@@ -1,7 +1,7 @@
 import score_predict as fb
 import pickle
 import math
-import spread_predict as sp
+#import spread_predict as sp
 
 ratings = []
 
@@ -16,8 +16,8 @@ def int_check(c):
 # current score file is from http://www.jhowell.net/cf/scores/Sked2017.htm
 def read_scores():
     w = []
-    f = open('collegefootballscores2018.txt', 'r')
-    print f
+    f = open('collegefootballscores2019.txt', 'r')
+    print (f)
     for line in f:
         line = line.strip()
         if line != '':
@@ -289,7 +289,7 @@ def read_spread_file():
             games.append(g)
         for x in e:
             g.append(x)
-        print games
+        print (games)
         
 
 
@@ -298,7 +298,7 @@ def read_spread_file():
     nteams = len(x)
 def spread_score(wk):
     global teams, games 
-    print fb.teams
+    print (fb.teams)
     sp.teams = fb.teams
     sp.games = fb.games
     test = []
@@ -316,7 +316,7 @@ def spread_score(wk):
         score1 = diff_ratings[g[0]*2]*diff_ratings[g[0]*2+1]
         score2 = diff_ratings[g[1]*2]*diff_ratings[g[1]*2+1]
         spread_error += (score1-score2-g[2]+g[3])**2
-    print spread_error, score_error, len(test)
+    print (spread_error, score_error, len(test))
 get_teams()
 get_games()
 rankings()
