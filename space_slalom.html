@@ -61,6 +61,8 @@
 			var canvas = document.getElementById('renderCanvas');
 			var width = canvas.scrollWidth;
 			var height = canvas.scrollHeight;
+			var hits = 0
+			var misses = 0
 			vscale = width/height;
 			console.log(width, height);
 
@@ -131,9 +133,12 @@
 				});
 				
 				window.addEventListener("touchmove", function(ev) {
-					mousex = ev.ClientX;
-					mousey = ev.ClientY;
+					mousex = ev.touches[0].ClientX;
+					mousey = ev.touches[0].ClientY;
 					ev.preventDefault();
+					hits = mousex;
+					misses = mousey;
+					//show_hits_misses();
 					// console.log(x, y);
 				}, false);
 				
@@ -181,12 +186,21 @@
 
 			var t = 0;
 			var v = []
-			var	hits = 0
-			var	misses = 0
 			var vx=0, vy=0;
 			var last_time = 0;
 			var w2 = width/2., h2 = height/2.;
 			
+			function show_hits_misses() {
+				var hitstring = hits.toString()
+				var missstring = misses.toString()
+				hitstring = hitstring.concat('  ')
+				var score = hitstring.concat(missstring)
+				//console.log(score)
+				outputplaneTexture.drawText(score, null, 140, "bold 100px verdana", "white", "#000000");
+				//console.log(hits)
+				//console.log(misses)
+			}
+
 			// run the render loop
 			engine.runRenderLoop(function(){
 				scene.render();
@@ -210,27 +224,20 @@
 					vx *= control_speed*dt;
 					vy *= control_speed*dt*vscale;
 				}
-				console.log(vx, vy);
+				//console.log(vx, vy);
 				for (i=0; i<ntori; i++) {
 					tori[i].position.z -= dt*speed;
 					if (tori[i].position.z < -10+check_offset ){
 					//	console.log("passing ring")
 						if (tori[i].position.x**2 + tori[i].position.y**2 < (tori[i].diameter**2)/4) {
 						//	console.log(tori[i].position.x^2 + tori[i].position.y^2)
-							hits = hits + 1;
+							//hits = hits + 1;
 							bell.play()
 						} else {
-							misses = misses + 1;
+							//misses = misses + 1;
 							error.play();
 						}
-						var hitstring = hits.toString()
-						var missstring = misses.toString()
-						hitstring = hitstring.concat('  ')
-						var score = hitstring.concat(missstring)
-						//console.log(score)
-						outputplaneTexture.drawText(score, null, 140, "bold 100px verdana", "white", "#000000");
-						//console.log(hits)
-					//	console.log(misses)
+						show_hits_misses();
 						var j = (i+ntori-1) % ntori;
 						tori[i].position = next_pos(tori[j].position);
 

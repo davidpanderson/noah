@@ -26,4 +26,26 @@ To do:
 - run with entire season of data
 - get 2018/19 data
 
-2) 
+2) Score predict
+
+Goal: make it usable without editing source code
+
+commands:
+
+sp_status()
+	show sport and year
+sp_use(sport, year)
+	sport = 'nfl', 'ncaaf'
+	year = 2019 etc.
+	subsequent commands apply to that sport/year
+sp_calc()
+	calculate and save ratings
+sp_teams()
+	show list of teams (w/ numbers)
+sp_predict(t1, t2)
+	predict score of game between t1 and t2
+sp_top(which)
+	which = 'off', 'def', 'all'
+	show top teams ordered by specified quantity
+sp_plot()
+	draw scatter plot

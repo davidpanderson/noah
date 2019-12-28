@@ -124,7 +124,7 @@ class NBA:
     def add_player(self, player, team, seg, segs):
         if player in seg['players'][team]:
             return;
-        #print('adding ', self.player_names[player], team)
+        print('adding ', player, self.player_names[player], team)
         seg['players'][team].append(player)
         #self.print_players(seg['players'][team])
         if len(seg['players'][team]) > 5:

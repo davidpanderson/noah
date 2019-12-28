@@ -1,0 +1,968 @@
+Dec 23, 05:15 PM
+Green Bay Packers
+@ Minnesota Vikings
+23 : 10
+Dec 22, 05:20 PM
+Kansas City Chiefs
+@ Chicago Bears
+26 : 3
+Dec 22, 01:25 PM
+Arizona Cardinals
+@ Seattle Seahawks
+27 : 13
+Dec 22, 01:25 PM
+Dallas Cowboys
+@ Philadelphia Eagles
+9 : 17
+Dec 22, 01:05 PM
+Detroit Lions
+@ Denver Broncos
+17 : 27
+Dec 22, 01:05 PM
+Oakland Raiders
+@ Los Angeles Chargers
+24 : 17
+Dec 22, 10:00 AM
+Baltimore Ravens
+@ Cleveland Browns
+31 : 15
+Dec 22, 10:00 AM
+Carolina Panthers
+@ Indianapolis Colts
+6 : 38
+Dec 22, 10:00 AM
+Cincinnati Bengals
+@ Miami Dolphins
+35 : 38
+(35 : 35)
+Dec 22, 10:00 AM
+Jacksonville Jaguars
+@ Atlanta Falcons
+12 : 24
+Dec 22, 10:00 AM
+New Orleans Saints
+@ Tennessee Titans
+38 : 28
+Dec 22, 10:00 AM
+New York Giants
+@ Washington Redskins
+41 : 35
+(35 : 35)
+Dec 22, 10:00 AM
+Pittsburgh Steelers
+@ New York Jets
+10 : 16
+Dec 21, 05:15 PM
+Los Angeles Rams
+@ San Francisco 49ers
+31 : 34
+Dec 21, 01:30 PM
+Buffalo Bills
+@ New England Patriots
+17 : 24
+Dec 21, 10:00 AM
+Houston Texans
+@ Tampa Bay Buccaneers
+23 : 20
+Dec 16, 05:15 PM
+Indianapolis Colts
+@ New Orleans Saints
+7 : 34
+Dec 15, 05:20 PM
+Buffalo Bills
+@ Pittsburgh Steelers
+17 : 10
+Dec 15, 01:25 PM
+Atlanta Falcons
+@ San Francisco 49ers
+29 : 22
+Dec 15, 01:25 PM
+Los Angeles Rams
+@ Dallas Cowboys
+21 : 44
+Dec 15, 01:05 PM
+Cleveland Browns
+@ Arizona Cardinals
+24 : 38
+Dec 15, 01:05 PM
+Jacksonville Jaguars
+@ Oakland Raiders
+20 : 16
+Dec 15, 01:05 PM
+Minnesota Vikings
+@ Los Angeles Chargers
+39 : 10
+Dec 15, 10:00 AM
+Chicago Bears
+@ Green Bay Packers
+13 : 21
+Dec 15, 10:00 AM
+Denver Broncos
+@ Kansas City Chiefs
+3 : 23
+Dec 15, 10:00 AM
+Houston Texans
+@ Tennessee Titans
+24 : 21
+Dec 15, 10:00 AM
+Miami Dolphins
+@ New York Giants
+20 : 36
+Dec 15, 10:00 AM
+New England Patriots
+@ Cincinnati Bengals
+34 : 13
+Dec 15, 10:00 AM
+Philadelphia Eagles
+@ Washington Redskins
+37 : 27
+Dec 15, 10:00 AM
+Seattle Seahawks
+@ Carolina Panthers
+30 : 24
+Dec 15, 10:00 AM
+Tampa Bay Buccaneers
+@ Detroit Lions
+38 : 17
+Dec 12, 05:20 PM
+New York Jets
+@ Baltimore Ravens
+21 : 42
+Dec 09, 05:15 PM
+New York Giants
+@ Philadelphia Eagles
+17 : 23
+(17 : 17)
+Dec 08, 05:20 PM
+Seattle Seahawks
+@ Los Angeles Rams
+12 : 28
+Dec 08, 01:25 PM
+Kansas City Chiefs
+@ New England Patriots
+23 : 16
+Dec 08, 01:25 PM
+Pittsburgh Steelers
+@ Arizona Cardinals
+23 : 17
+Dec 08, 01:25 PM
+Tennessee Titans
+@ Oakland Raiders
+42 : 21
+Dec 08, 01:05 PM
+Los Angeles Chargers
+@ Jacksonville Jaguars
+45 : 10
+Dec 08, 10:00 AM
+Baltimore Ravens
+@ Buffalo Bills
+24 : 17
+Dec 08, 10:00 AM
+Carolina Panthers
+@ Atlanta Falcons
+20 : 40
+Dec 08, 10:00 AM
+Cincinnati Bengals
+@ Cleveland Browns
+19 : 27
+Dec 08, 10:00 AM
+Denver Broncos
+@ Houston Texans
+38 : 24
+Dec 08, 10:00 AM
+Detroit Lions
+@ Minnesota Vikings
+7 : 20
+Dec 08, 10:00 AM
+Indianapolis Colts
+@ Tampa Bay Buccaneers
+35 : 38
+Dec 08, 10:00 AM
+Miami Dolphins
+@ New York Jets
+21 : 22
+Dec 08, 10:00 AM
+San Francisco 49ers
+@ New Orleans Saints
+48 : 46
+Dec 08, 10:00 AM
+Washington Redskins
+@ Green Bay Packers
+15 : 20
+Dec 05, 05:20 PM
+Dallas Cowboys
+@ Chicago Bears
+24 : 31
+Dec 02, 05:15 PM
+Minnesota Vikings
+@ Seattle Seahawks
+30 : 37
+Dec 01, 05:20 PM
+New England Patriots
+@ Houston Texans
+22 : 28
+Dec 01, 01:25 PM
+Los Angeles Chargers
+@ Denver Broncos
+20 : 23
+Dec 01, 01:25 PM
+Oakland Raiders
+@ Kansas City Chiefs
+9 : 40
+Dec 01, 01:05 PM
+Los Angeles Rams
+@ Arizona Cardinals
+34 : 7
+Dec 01, 10:00 AM
+Cleveland Browns
+@ Pittsburgh Steelers
+13 : 20
+Dec 01, 10:00 AM
+Green Bay Packers
+@ New York Giants
+31 : 13
+Dec 01, 10:00 AM
+New York Jets
+@ Cincinnati Bengals
+6 : 22
+Dec 01, 10:00 AM
+Philadelphia Eagles
+@ Miami Dolphins
+31 : 37
+Dec 01, 10:00 AM
+San Francisco 49ers
+@ Baltimore Ravens
+17 : 20
+Dec 01, 10:00 AM
+Tampa Bay Buccaneers
+@ Jacksonville Jaguars
+28 : 11
+Dec 01, 10:00 AM
+Tennessee Titans
+@ Indianapolis Colts
+31 : 17
+Dec 01, 10:00 AM
+Washington Redskins
+@ Carolina Panthers
+29 : 21
+Nov 28, 05:20 PM
+New Orleans Saints
+@ Atlanta Falcons
+26 : 18
+Nov 28, 01:30 PM
+Buffalo Bills
+@ Dallas Cowboys
+26 : 15
+Nov 28, 09:30 AM
+Chicago Bears
+@ Detroit Lions
+24 : 20
+Nov 25, 05:15 PM
+Baltimore Ravens
+@ Los Angeles Rams
+45 : 6
+Nov 24, 05:20 PM
+Green Bay Packers
+@ San Francisco 49ers
+8 : 37
+Nov 24, 01:25 PM
+Dallas Cowboys
+@ New England Patriots
+9 : 13
+Nov 24, 01:05 PM
+Jacksonville Jaguars
+@ Tennessee Titans
+20 : 42
+Nov 24, 10:00 AM
+Carolina Panthers
+@ New Orleans Saints
+31 : 34
+Nov 24, 10:00 AM
+Denver Broncos
+@ Buffalo Bills
+3 : 20
+Nov 24, 10:00 AM
+Detroit Lions
+@ Washington Redskins
+16 : 19
+Nov 24, 10:00 AM
+Miami Dolphins
+@ Cleveland Browns
+24 : 41
+Nov 24, 10:00 AM
+New York Giants
+@ Chicago Bears
+14 : 19
+Nov 24, 10:00 AM
+Oakland Raiders
+@ New York Jets
+3 : 34
+Nov 24, 10:00 AM
+Pittsburgh Steelers
+@ Cincinnati Bengals
+16 : 10
+Nov 24, 10:00 AM
+Seattle Seahawks
+@ Philadelphia Eagles
+17 : 9
+Nov 24, 10:00 AM
+Tampa Bay Buccaneers
+@ Atlanta Falcons
+35 : 22
+Nov 21, 05:20 PM
+Indianapolis Colts
+@ Houston Texans
+17 : 20
+Nov 18, 05:15 PM
+Kansas City Chiefs
+@ Los Angeles Chargers
+24 : 17
+Nov 17, 05:20 PM
+Chicago Bears
+@ Los Angeles Rams
+7 : 17
+Nov 17, 01:25 PM
+Cincinnati Bengals
+@ Oakland Raiders
+10 : 17
+Nov 17, 01:25 PM
+New England Patriots
+@ Philadelphia Eagles
+17 : 10
+Nov 17, 01:05 PM
+Arizona Cardinals
+@ San Francisco 49ers
+26 : 36
+Nov 17, 10:00 AM
+Atlanta Falcons
+@ Carolina Panthers
+29 : 3
+Nov 17, 10:00 AM
+Buffalo Bills
+@ Miami Dolphins
+37 : 20
+Nov 17, 10:00 AM
+Dallas Cowboys
+@ Detroit Lions
+35 : 27
+Nov 17, 10:00 AM
+Denver Broncos
+@ Minnesota Vikings
+23 : 27
+Nov 17, 10:00 AM
+Houston Texans
+@ Baltimore Ravens
+7 : 41
+Nov 17, 10:00 AM
+Jacksonville Jaguars
+@ Indianapolis Colts
+13 : 33
+Nov 17, 10:00 AM
+New Orleans Saints
+@ Tampa Bay Buccaneers
+34 : 17
+Nov 17, 10:00 AM
+New York Jets
+@ Washington Redskins
+34 : 17
+Nov 14, 05:20 PM
+Pittsburgh Steelers
+@ Cleveland Browns
+7 : 21
+Nov 11, 05:15 PM
+Seattle Seahawks
+@ San Francisco 49ers
+27 : 24
+(24 : 24)
+Nov 10, 05:20 PM
+Minnesota Vikings
+@ Dallas Cowboys
+28 : 24
+Nov 10, 01:25 PM
+Carolina Panthers
+@ Green Bay Packers
+16 : 24
+Nov 10, 01:25 PM
+Los Angeles Rams
+@ Pittsburgh Steelers
+12 : 17
+Nov 10, 01:05 PM
+Miami Dolphins
+@ Indianapolis Colts
+16 : 12
+Nov 10, 10:00 AM
+Arizona Cardinals
+@ Tampa Bay Buccaneers
+27 : 30
+Nov 10, 10:00 AM
+Atlanta Falcons
+@ New Orleans Saints
+26 : 9
+Nov 10, 10:00 AM
+Baltimore Ravens
+@ Cincinnati Bengals
+49 : 13
+Nov 10, 10:00 AM
+Buffalo Bills
+@ Cleveland Browns
+16 : 19
+Nov 10, 10:00 AM
+Detroit Lions
+@ Chicago Bears
+13 : 20
+Nov 10, 10:00 AM
+Kansas City Chiefs
+@ Tennessee Titans
+32 : 35
+Nov 10, 10:00 AM
+New York Giants
+@ New York Jets
+27 : 34
+Nov 07, 05:20 PM
+Los Angeles Chargers
+@ Oakland Raiders
+24 : 26
+Nov 04, 05:15 PM
+Dallas Cowboys
+@ New York Giants
+37 : 18
+Nov 03, 05:20 PM
+New England Patriots
+@ Baltimore Ravens
+20 : 37
+Nov 03, 01:25 PM
+Cleveland Browns
+@ Denver Broncos
+19 : 24
+Nov 03, 01:25 PM
+Green Bay Packers
+@ Los Angeles Chargers
+11 : 26
+Nov 03, 01:05 PM
+Detroit Lions
+@ Oakland Raiders
+24 : 31
+Nov 03, 01:05 PM
+Tampa Bay Buccaneers
+@ Seattle Seahawks
+34 : 40
+(34 : 34)
+Nov 03, 10:00 AM
+Chicago Bears
+@ Philadelphia Eagles
+14 : 22
+Nov 03, 10:00 AM
+Indianapolis Colts
+@ Pittsburgh Steelers
+24 : 26
+Nov 03, 10:00 AM
+Minnesota Vikings
+@ Kansas City Chiefs
+23 : 26
+Nov 03, 10:00 AM
+New York Jets
+@ Miami Dolphins
+18 : 26
+Nov 03, 10:00 AM
+Tennessee Titans
+@ Carolina Panthers
+20 : 30
+Nov 03, 10:00 AM
+Washington Redskins
+@ Buffalo Bills
+9 : 24
+Nov 03, 06:30 AM
+Houston Texans
+@ Jacksonville Jaguars
+26 : 3
+Oct 31, 05:20 PM
+San Francisco 49ers
+@ Arizona Cardinals
+28 : 25
+Oct 28, 05:15 PM
+Miami Dolphins
+@ Pittsburgh Steelers
+14 : 27
+Oct 27, 05:20 PM
+Green Bay Packers
+@ Kansas City Chiefs
+31 : 24
+Oct 27, 01:25 PM
+Cleveland Browns
+@ New England Patriots
+13 : 27
+Oct 27, 01:25 PM
+Oakland Raiders
+@ Houston Texans
+24 : 27
+Oct 27, 01:05 PM
+Carolina Panthers
+@ San Francisco 49ers
+13 : 51
+Oct 27, 10:00 AM
+Arizona Cardinals
+@ New Orleans Saints
+9 : 31
+Oct 27, 10:00 AM
+Cincinnati Bengals
+@ Los Angeles Rams
+10 : 24
+Oct 27, 10:00 AM
+Denver Broncos
+@ Indianapolis Colts
+13 : 15
+Oct 27, 10:00 AM
+Los Angeles Chargers
+@ Chicago Bears
+17 : 16
+Oct 27, 10:00 AM
+New York Giants
+@ Detroit Lions
+26 : 31
+Oct 27, 10:00 AM
+New York Jets
+@ Jacksonville Jaguars
+15 : 29
+Oct 27, 10:00 AM
+Philadelphia Eagles
+@ Buffalo Bills
+31 : 13
+Oct 27, 10:00 AM
+Seattle Seahawks
+@ Atlanta Falcons
+27 : 20
+Oct 27, 10:00 AM
+Tampa Bay Buccaneers
+@ Tennessee Titans
+23 : 27
+Oct 24, 05:20 PM
+Washington Redskins
+@ Minnesota Vikings
+9 : 19
+Oct 21, 05:15 PM
+New England Patriots
+@ New York Jets
+33 : 0
+Oct 20, 05:20 PM
+Philadelphia Eagles
+@ Dallas Cowboys
+10 : 37
+Oct 20, 01:25 PM
+Baltimore Ravens
+@ Seattle Seahawks
+30 : 16
+Oct 20, 01:25 PM
+New Orleans Saints
+@ Chicago Bears
+36 : 25
+Oct 20, 01:05 PM
+Los Angeles Chargers
+@ Tennessee Titans
+20 : 23
+Oct 20, 10:00 AM
+Arizona Cardinals
+@ New York Giants
+27 : 21
+Oct 20, 10:00 AM
+Houston Texans
+@ Indianapolis Colts
+23 : 30
+Oct 20, 10:00 AM
+Jacksonville Jaguars
+@ Cincinnati Bengals
+27 : 17
+Oct 20, 10:00 AM
+Los Angeles Rams
+@ Atlanta Falcons
+37 : 10
+Oct 20, 10:00 AM
+Miami Dolphins
+@ Buffalo Bills
+21 : 31
+Oct 20, 10:00 AM
+Minnesota Vikings
+@ Detroit Lions
+42 : 30
+Oct 20, 10:00 AM
+Oakland Raiders
+@ Green Bay Packers
+24 : 42
+Oct 20, 10:00 AM
+San Francisco 49ers
+@ Washington Redskins
+9 : 0
+Oct 17, 05:20 PM
+Kansas City Chiefs
+@ Denver Broncos
+30 : 6
+Oct 14, 05:15 PM
+Detroit Lions
+@ Green Bay Packers
+22 : 23
+Oct 13, 05:20 PM
+Pittsburgh Steelers
+@ Los Angeles Chargers
+24 : 17
+Oct 13, 01:25 PM
+Dallas Cowboys
+@ New York Jets
+22 : 24
+Oct 13, 01:25 PM
+Tennessee Titans
+@ Denver Broncos
+0 : 16
+Oct 13, 01:05 PM
+Atlanta Falcons
+@ Arizona Cardinals
+33 : 34
+Oct 13, 01:05 PM
+San Francisco 49ers
+@ Los Angeles Rams
+20 : 7
+Oct 13, 10:00 AM
+Cincinnati Bengals
+@ Baltimore Ravens
+17 : 23
+Oct 13, 10:00 AM
+Houston Texans
+@ Kansas City Chiefs
+31 : 24
+Oct 13, 10:00 AM
+New Orleans Saints
+@ Jacksonville Jaguars
+13 : 6
+Oct 13, 10:00 AM
+Philadelphia Eagles
+@ Minnesota Vikings
+20 : 38
+Oct 13, 10:00 AM
+Seattle Seahawks
+@ Cleveland Browns
+32 : 28
+Oct 13, 10:00 AM
+Washington Redskins
+@ Miami Dolphins
+17 : 16
+Oct 13, 06:30 AM
+Carolina Panthers
+@ Tampa Bay Buccaneers
+37 : 26
+Oct 10, 05:20 PM
+New York Giants
+@ New England Patriots
+14 : 35
+Oct 07, 05:15 PM
+Cleveland Browns
+@ San Francisco 49ers
+3 : 31
+Oct 06, 05:20 PM
+Indianapolis Colts
+@ Kansas City Chiefs
+19 : 13
+Oct 06, 01:25 PM
+Green Bay Packers
+@ Dallas Cowboys
+34 : 24
+Oct 06, 01:05 PM
+Denver Broncos
+@ Los Angeles Chargers
+20 : 13
+Oct 06, 10:00 AM
+Arizona Cardinals
+@ Cincinnati Bengals
+26 : 23
+Oct 06, 10:00 AM
+Atlanta Falcons
+@ Houston Texans
+32 : 53
+Oct 06, 10:00 AM
+Baltimore Ravens
+@ Pittsburgh Steelers
+26 : 23
+(23 : 23)
+Oct 06, 10:00 AM
+Buffalo Bills
+@ Tennessee Titans
+14 : 7
+Oct 06, 10:00 AM
+Chicago Bears
+@ Oakland Raiders
+21 : 24
+Oct 06, 10:00 AM
+Jacksonville Jaguars
+@ Carolina Panthers
+27 : 34
+Oct 06, 10:00 AM
+Minnesota Vikings
+@ New York Giants
+28 : 10
+Oct 06, 10:00 AM
+New England Patriots
+@ Washington Redskins
+33 : 7
+Oct 06, 10:00 AM
+New York Jets
+@ Philadelphia Eagles
+6 : 31
+Oct 06, 10:00 AM
+Tampa Bay Buccaneers
+@ New Orleans Saints
+24 : 31
+Oct 03, 05:20 PM
+Los Angeles Rams
+@ Seattle Seahawks
+29 : 30
+Sep 30, 05:15 PM
+Cincinnati Bengals
+@ Pittsburgh Steelers
+3 : 27
+Sep 29, 05:20 PM
+Dallas Cowboys
+@ New Orleans Saints
+10 : 12
+Sep 29, 01:25 PM
+Jacksonville Jaguars
+@ Denver Broncos
+26 : 24
+Sep 29, 01:25 PM
+Minnesota Vikings
+@ Chicago Bears
+6 : 16
+Sep 29, 01:05 PM
+Seattle Seahawks
+@ Arizona Cardinals
+27 : 10
+Sep 29, 01:05 PM
+Tampa Bay Buccaneers
+@ Los Angeles Rams
+55 : 40
+Sep 29, 10:00 AM
+Carolina Panthers
+@ Houston Texans
+16 : 10
+Sep 29, 10:00 AM
+Cleveland Browns
+@ Baltimore Ravens
+40 : 25
+Sep 29, 10:00 AM
+Kansas City Chiefs
+@ Detroit Lions
+34 : 30
+Sep 29, 10:00 AM
+Los Angeles Chargers
+@ Miami Dolphins
+30 : 10
+Sep 29, 10:00 AM
+New England Patriots
+@ Buffalo Bills
+16 : 10
+Sep 29, 10:00 AM
+Oakland Raiders
+@ Indianapolis Colts
+31 : 24
+Sep 29, 10:00 AM
+Tennessee Titans
+@ Atlanta Falcons
+24 : 10
+Sep 29, 10:00 AM
+Washington Redskins
+@ New York Giants
+3 : 24
+Sep 26, 05:20 PM
+Philadelphia Eagles
+@ Green Bay Packers
+34 : 27
+Sep 23, 05:15 PM
+Chicago Bears
+@ Washington Redskins
+31 : 15
+Sep 22, 05:20 PM
+Los Angeles Rams
+@ Cleveland Browns
+20 : 13
+Sep 22, 01:25 PM
+Houston Texans
+@ Los Angeles Chargers
+27 : 20
+Sep 22, 01:25 PM
+New Orleans Saints
+@ Seattle Seahawks
+33 : 27
+Sep 22, 01:25 PM
+Pittsburgh Steelers
+@ San Francisco 49ers
+20 : 24
+Sep 22, 01:05 PM
+Carolina Panthers
+@ Arizona Cardinals
+38 : 20
+Sep 22, 01:05 PM
+New York Giants
+@ Tampa Bay Buccaneers
+32 : 31
+Sep 22, 10:00 AM
+Atlanta Falcons
+@ Indianapolis Colts
+24 : 27
+Sep 22, 10:00 AM
+Baltimore Ravens
+@ Kansas City Chiefs
+28 : 33
+Sep 22, 10:00 AM
+Cincinnati Bengals
+@ Buffalo Bills
+17 : 21
+Sep 22, 10:00 AM
+Denver Broncos
+@ Green Bay Packers
+16 : 27
+Sep 22, 10:00 AM
+Detroit Lions
+@ Philadelphia Eagles
+27 : 24
+Sep 22, 10:00 AM
+Miami Dolphins
+@ Dallas Cowboys
+6 : 31
+Sep 22, 10:00 AM
+New York Jets
+@ New England Patriots
+14 : 30
+Sep 22, 10:00 AM
+Oakland Raiders
+@ Minnesota Vikings
+14 : 34
+Sep 19, 05:20 PM
+Tennessee Titans
+@ Jacksonville Jaguars
+7 : 20
+Sep 16, 05:15 PM
+Cleveland Browns
+@ New York Jets
+23 : 3
+Sep 15, 05:20 PM
+Philadelphia Eagles
+@ Atlanta Falcons
+20 : 24
+Sep 15, 01:25 PM
+Chicago Bears
+@ Denver Broncos
+16 : 14
+Sep 15, 01:25 PM
+New Orleans Saints
+@ Los Angeles Rams
+9 : 27
+Sep 15, 01:05 PM
+Kansas City Chiefs
+@ Oakland Raiders
+28 : 10
+Sep 15, 10:00 AM
+Arizona Cardinals
+@ Baltimore Ravens
+17 : 23
+Sep 15, 10:00 AM
+Buffalo Bills
+@ New York Giants
+28 : 14
+Sep 15, 10:00 AM
+Dallas Cowboys
+@ Washington Redskins
+31 : 21
+Sep 15, 10:00 AM
+Indianapolis Colts
+@ Tennessee Titans
+19 : 17
+Sep 15, 10:00 AM
+Jacksonville Jaguars
+@ Houston Texans
+12 : 13
+Sep 15, 10:00 AM
+Los Angeles Chargers
+@ Detroit Lions
+10 : 13
+Sep 15, 10:00 AM
+Minnesota Vikings
+@ Green Bay Packers
+16 : 21
+Sep 15, 10:00 AM
+New England Patriots
+@ Miami Dolphins
+43 : 0
+Sep 15, 10:00 AM
+San Francisco 49ers
+@ Cincinnati Bengals
+41 : 17
+Sep 15, 10:00 AM
+Seattle Seahawks
+@ Pittsburgh Steelers
+28 : 26
+Sep 12, 05:20 PM
+Tampa Bay Buccaneers
+@ Carolina Panthers
+20 : 14
+Sep 09, 07:20 PM
+Denver Broncos
+@ Oakland Raiders
+16 : 24
+Sep 09, 04:10 PM
+Houston Texans
+@ New Orleans Saints
+28 : 30
+Sep 08, 05:20 PM
+Pittsburgh Steelers
+@ New England Patriots
+3 : 33
+Sep 08, 01:25 PM
+Detroit Lions
+@ Arizona Cardinals
+27 : 27
+(24 : 24)
+Sep 08, 01:25 PM
+New York Giants
+@ Dallas Cowboys
+17 : 35
+Sep 08, 01:25 PM
+San Francisco 49ers
+@ Tampa Bay Buccaneers
+31 : 17
+Sep 08, 01:05 PM
+Cincinnati Bengals
+@ Seattle Seahawks
+20 : 21
+Sep 08, 01:05 PM
+Indianapolis Colts
+@ Los Angeles Chargers
+24 : 30
+(24 : 24)
+Sep 08, 10:00 AM
+Atlanta Falcons
+@ Minnesota Vikings
+12 : 28
+Sep 08, 10:00 AM
+Baltimore Ravens
+@ Miami Dolphins
+59 : 10
+Sep 08, 10:00 AM
+Buffalo Bills
+@ New York Jets
+17 : 16
+Sep 08, 10:00 AM
+Kansas City Chiefs
+@ Jacksonville Jaguars
+40 : 26
+Sep 08, 10:00 AM
+Los Angeles Rams
+@ Carolina Panthers
+30 : 27
+Sep 08, 10:00 AM
+Tennessee Titans
+@ Cleveland Browns
+43 : 13
+Sep 08, 10:00 AM
+Washington Redskins
+@ Philadelphia Eagles
+27 : 32
+Sep 05, 05:20 PM
+Green Bay Packers
+@ Chicago Bears
+10 : 3
