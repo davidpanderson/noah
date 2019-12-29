@@ -16,8 +16,10 @@ def read_scores():
     f.close()
     return w
 
-#
-def get_games():
+#divide the lines into a list of games
+#each game is the date, the first team, @ the home team, and the score.
+# if the game goes into OT, there will also be the score before OT
+def read_games():
     lines = read_scores()
     games = []
     g = []
@@ -36,4 +38,30 @@ def get_games():
         games.append(g)
     return games
 
-def get
+#puts list of teams in sp.teams
+def get_teams(games):
+    for g in games:
+        if g[1] not in sp.teams:
+            sp.teams.append(g[1])
+        t2 = g[2]
+        t2 = t2[2:]
+        if t2 not in sp.teams:
+            sp.teams.append(t2)
+
+def get_games():
+    games = read_games()
+    get_teams(games)
+    for g in games:
+        x = g[3].split(' : ')
+        y = [
+            sp.teams.index(g[1]),
+            sp.teams.index(g[2][2:]),
+            int(x[0]),
+            int(x[1]),
+            0
+        ]
+        sp.games.append(y)
+   
+get_games()
+r = sp.compute_ratings(0)
+sp.plot_ratings(r)
