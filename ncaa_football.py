@@ -14,9 +14,9 @@ def int_check(c):
 
 # returns list of lines in score file
 # current score file is from http://www.jhowell.net/cf/scores/Sked2017.htm
-def read_scores():
+def read_scores(year):
     w = []
-    f = open('collegefootballscores2019.txt', 'r')
+    f = open('college_football_'+year+'.txt', 'r')
     print (f)
     for line in f:
         line = line.strip()
@@ -34,10 +34,10 @@ def team_name(line):
                     
 # read score file, put list of teams in fb.teams
 #
-def get_teams():
+def get_teams(year):
     pcount = 0
     fb.teams = []
-    f = read_scores()      
+    f = read_scores(year)      
     for l in f:
         if int_check(l):
             continue
@@ -45,10 +45,10 @@ def get_teams():
 
 # parse the score file, create fb.teams and fb.games global variables
 #
-def get_games():
+def get_games(year):
     fb.games = []
     get_teams()
-    f = read_scores()
+    f = read_scores(year)
     week = 0
     for line in f:
         words = line.split('\t')
@@ -290,12 +290,11 @@ def read_spread_file():
         for x in e:
             g.append(x)
         print (games)
-        
-
-
+    
      # add penalty to normalize average def rating
     rating_sum = 0
     nteams = len(x)
+    
 def spread_score(wk):
     global teams, games 
     print (fb.teams)
@@ -317,9 +316,10 @@ def spread_score(wk):
         score2 = diff_ratings[g[1]*2]*diff_ratings[g[1]*2+1]
         spread_error += (score1-score2-g[2]+g[3])**2
     print (spread_error, score_error, len(test))
-get_teams()
-get_games()
-rankings()
+
+#get_teams()
+#get_games()
+#rankings()
 #r = fb.read_ratings_file('ncaa_football18')
 #fb.plot_ratings(r)
 

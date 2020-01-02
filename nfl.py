@@ -5,9 +5,9 @@ sp.games = []
 
 #read scores from file
 #https://www.scoreboard.com/nfl/results/
-def read_scores():
+def read_scores(year):
     w = []
-    f = open('nfl_scores2019.txt', 'r')
+    f = open('nfl_scores'+year+'.txt', 'r')
     print (f)
     for line in f:
         line = line.strip()
@@ -19,8 +19,8 @@ def read_scores():
 #divide the lines into a list of games
 #each game is the date, the first team, @ the home team, and the score.
 # if the game goes into OT, there will also be the score before OT
-def read_games():
-    lines = read_scores()
+def read_games(year):
+    lines = read_scores(year)
     games = []
     g = []
     for line in lines:
@@ -48,8 +48,8 @@ def get_teams(games):
         if t2 not in sp.teams:
             sp.teams.append(t2)
 
-def get_games():
-    games = read_games()
+def get_games(year):
+    games = read_games(year)
     get_teams(games)
     for g in games:
         x = g[3].split(' : ')
@@ -62,6 +62,6 @@ def get_games():
         ]
         sp.games.append(y)
    
-get_games()
-r = sp.compute_ratings(0)
-sp.plot_ratings(r)
+#get_games(2019)
+#r = sp.compute_ratings(0)
+#sp.plot_ratings(r)

@@ -2,7 +2,7 @@
 
 import numpy as np
 from scipy.optimize import minimize
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import pickle
 
 # global variables
@@ -96,7 +96,7 @@ def score_error_gradient(x):
         
     return gradient/1000.
             
-# predict score of game between i and j, given ratings in x
+# predict score of game between teams i and j, given ratings in x
 def predict_score(i, j, x):
     o1 = x[i*2]
     d1 = x[i*2+1]
@@ -126,9 +126,6 @@ def compute_ratings(wk):
     res = minimize(score_error,x0, jac=score_error_gradient, tol=1e-7, options={'maxiter': 1e8, 'disp': True})
     #res = minimize(score_error,x0,  tol=1e-4, options={'maxiter': 1e8, 'disp': True})
     return res.x
-
-
-       
 
 def test():
     global teams, games
@@ -169,6 +166,7 @@ def fully_connected(week):
             break
     return all(v == 0 for v in lowest)
 
+# estimate the probability that t1 will beat t2
 def prob(t1, t2, r):
     count1 = 0
     count2 = 0
@@ -182,6 +180,9 @@ def prob(t1, t2, r):
         else:
             count2 += 1
     return float(count1)/(float(count1) + float(count2))
+
+# show a scatter plot of teams with coords
+# (offensive rating, defensive rating)
 def plot_ratings(r):
     offr = []
     defr = []
@@ -192,8 +193,11 @@ def plot_ratings(r):
     plt.scatter(offr, defr)
     for i, name in enumerate(teams):
         plt.annotate(name, [offr[i], defr[i]])
-    plt.ylabel('some numbers')
+    plt.ylabel('Defensive rating')
+    plt.xlabel('Offensive rating')
     plt.show()
+
+# compute and save ratings for weeks n..m
 def create_info_files(first, last, name):
     for i in range(first, last+1):
         ratings = compute_ratings(i)
@@ -201,13 +205,15 @@ def create_info_files(first, last, name):
         pickle.dump(ratings, f)
         f.close()
         print('finished week %d'%i)
-#test()
+
+# compute and save ratings based on all weeks
 def create_info_file(name):
         ratings = compute_ratings(0)
         f = open('ratings_'+name+'.pickle', 'wb')
         pickle.dump(ratings, f)
         f.close()
         print('finished week ')
+        
 def read_ratings_file(name):
     f = open('ratings_'+name+'.pickle', 'rb')
     x = pickle.load(f)

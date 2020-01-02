@@ -231,10 +231,10 @@
 					//	console.log("passing ring")
 						if (tori[i].position.x**2 + tori[i].position.y**2 < (tori[i].diameter**2)/4) {
 						//	console.log(tori[i].position.x^2 + tori[i].position.y^2)
-							//hits = hits + 1;
+							hits = hits + 1;
 							bell.play()
 						} else {
-							//misses = misses + 1;
+							misses = misses + 1;
 							error.play();
 						}
 						show_hits_misses();
