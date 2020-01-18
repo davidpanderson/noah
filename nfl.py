@@ -8,6 +8,7 @@ sp.games = []
 def read_scores(year):
     w = []
     f = open('nfl_scores'+year+'.txt', 'r')
+   # f = open('ncaa_basketball2019.txt', 'r')
     print (f)
     for line in f:
         line = line.strip()

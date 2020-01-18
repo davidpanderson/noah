@@ -50,7 +50,7 @@ def score_error(x):
         drating_sum += x[i*2 + 1]
     davg = drating_sum/nteams
     sum += 100000*((1-davg)**2)
-    #print (sum, len(games))
+    print (sum, len(games))
     #exit
     return sum
 

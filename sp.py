@@ -3,10 +3,16 @@
 import ncaa_football as ncaa
 import nfl as nfl
 import score_predict as sp
-
+import pickle
 ratings = []
-
-def sp_use(sport, year):
+sport = ''
+year = ''
+def rating_filename(s, y):
+    return 'ratings_'+sport+'_'+year
+def sp_use(s, y):
+    global sport, year, ratings
+    sport = s
+    year = y
     year = str(year)
     if sport == 'ncaaf':
         ncaa.read_scores(year)
@@ -14,10 +20,22 @@ def sp_use(sport, year):
         nfl.get_games(year)
     else:
         print("no such sport: ", sport)
+    try:
+        filename = rating_filename(sport, year)
+        f = open(filename, 'rb')
+        ratings = pickle.load(f)
+        f.close()
+    except:
+        print('run sp_calc')
+        
 
 def sp_calc():
-    global ratings
+    global ratings, sport, year
     ratings = sp.compute_ratings(0)
+    filename = rating_filename(sport, year)
+    f = open(filename, 'wb')
+    pickle.dump(ratings, f)
+    f.close()
 
 def sp_teams():
     for t in sp.teams:
