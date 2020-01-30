@@ -124,7 +124,7 @@ class NBA:
     def add_player(self, player, team, seg, segs):
         if player in seg['players'][team]:
             return;
-        print('adding ', player, self.player_names[player], team)
+        #print('adding ', player, self.player_names[player], team)
         seg['players'][team].append(player)
         #self.print_players(seg['players'][team])
         if len(seg['players'][team]) > 5:
@@ -322,7 +322,7 @@ class NBA:
         self.player_ratings = res.x
 
     def parse_games(self, year):
-        dirname = 'nba_games_%d'%(year)
+        dirname = 'nba_data/%d/games'%(year)
         files = os.listdir(dirname)
         for file in files:
             if file[2] == '1':
@@ -381,7 +381,7 @@ class NBA:
 #
 def game_find(teams):
     x = []
-    f = open('nba_schedule_2017.json')
+    f = open('nba_data/2017/schedule.json')
     games = json.loads(f.read())
     games = games['league']
     games = games['standard']
@@ -400,13 +400,13 @@ def game_find(teams):
     
 def nba_test(game_ids):
     nba_analyze.nba = NBA()
-    nba_analyze.nba.read_players('nba_players_2017.json')
-    nba_analyze.nba.read_players('nba_players_2016.json')
+    nba_analyze.nba.read_players('nba_data/2017/players.json')
+    nba_analyze.nba.read_players('nba_data/2016/players.json')
 
     nba_analyze.nba.read_teams()
     #nba.parse_games(2017)
     for id in game_ids:
-        f = 'nba_games_2017/'+id+'.json'
+        f = 'nba_data/2017/games/'+id+'.json'
         print(f)
         nba_analyze.nba.parse_game(f)
     nba_analyze.nba.analyze()
