@@ -26,6 +26,28 @@ To do:
 - run with entire season of data
 - get 2018/19 data
 
+file names: nba/year/ratings_t1_t2_t3  or ratings_all
+nba = NBA(2017)
+nba.rating_files()
+    shows ratings files for that year
+nba.show_teams()
+   show team names and numbers
+nba.load_ratings(filename)
+nba.get_ratings([1,2,3])
+   compute ratings for given teams, writes file
+nba.plot()
+nba.rankings()
+   show top offense, defense, combined
+
+ideas:
+have "min playing time"
+omit segments where some player has less than min time
+
+specify player traded mid-season
+compute ratings as if pre-trade and post-trade where different players
+
+
+
 2) Score predict
 
 Goal: make it usable without editing source code

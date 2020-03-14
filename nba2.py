@@ -422,5 +422,3 @@ def nba_test(game_ids):
 games = game_find(['1610612757', '1610612740', '1610612744'])
 nba_test(games)
 
-
-
