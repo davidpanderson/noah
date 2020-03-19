@@ -33,4 +33,4 @@ def download_games(year):
         print (url)
         get_file(url, file)
 
-download_games(2018)
+download_games(2017)

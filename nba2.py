@@ -45,7 +45,7 @@ class NBA:
     #
     def read_teams(self):
         global teams
-        f = open('nba_teams.json')
+        f = open('nba_data/teams.json')
         x = json.loads(f.read())
         for t in x:
             id = t['teamId']
@@ -346,6 +346,17 @@ class NBA:
             defr = self.player_ratings[2*seqno+1]
             print(self.player_names[id],  offr , defr, offr - defr )
 
+    def save(self):
+        f = open('nba.pickle', 'wb')
+        pickle.dump(self, f)
+        f.close()
+
+    def restore(self):
+        f = open('nba.pickle', 'rb')
+        self = pickle.load(f)
+        self.print_ratings()
+        f.close()
+
     # for each player, show
     # # of segments
     # duration of segments
@@ -379,9 +390,9 @@ class NBA:
 
 # given two teams, return list of games between them
 #
-def game_find(teams):
+def game_find(year, teams):
     x = []
-    f = open('nba_data/2017/schedule.json')
+    f = open('nba_data/'+year+'/schedule.json')
     games = json.loads(f.read())
     games = games['league']
     games = games['standard']
@@ -398,15 +409,14 @@ def game_find(teams):
     print(x)
     return x
     
-def nba_test(game_ids):
+def nba_test(year, game_ids):
     nba_analyze.nba = NBA()
     nba_analyze.nba.read_players('nba_data/2017/players.json')
     nba_analyze.nba.read_players('nba_data/2016/players.json')
 
     nba_analyze.nba.read_teams()
-    #nba.parse_games(2017)
     for id in game_ids:
-        f = 'nba_data/2017/games/'+id+'.json'
+        f = 'nba_data/'+year+'/games/'+id+'.json'
         print(f)
         nba_analyze.nba.parse_game(f)
     nba_analyze.nba.analyze()
@@ -414,11 +424,12 @@ def nba_test(game_ids):
     #nba_analyze.nba.average_offr()
     #nba.write_data("foo")
     nba_analyze.nba.print_ratings()
+    nba_analyze.nba.save()
     nba_analyze.nba.print_stats()
     nba_analyze.nba.average_offr()
 
 
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
-games = game_find(['1610612757', '1610612740', '1610612744'])
-nba_test(games)
+games = game_find('2018', ['1610612757', '1610612740', '1610612744'])
+nba_test('2018', games)
 
