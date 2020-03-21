@@ -90,6 +90,11 @@ class NBA:
     def is_substitution(self, event):
         return int(event['etype']) == 8
 
+    def is_technical_foul(self, event):
+        if int(event['etype']) != 6:
+            return False
+        return 'Technical' in event['de']
+
     # return list of players involved in event
     # return list of (playerid, teamid) pairs
     #
@@ -114,7 +119,7 @@ class NBA:
          for seg in segs:
              for i in range(2):
                  if len(seg['players'][i]) != 5:
-                        print("bad # players")
+                        print("bad # players in check_segs")
                         print(seg)
                         exit()
                     
@@ -124,11 +129,11 @@ class NBA:
     def add_player(self, player, team, seg, segs):
         if player in seg['players'][team]:
             return;
-        #print('adding ', player, self.player_names[player], team)
+        print('adding ', player, self.player_names[player], team)
         seg['players'][team].append(player)
         #self.print_players(seg['players'][team])
         if len(seg['players'][team]) > 5:
-            print("bad # players");
+            print("bad # players in add_player");
             print(seg)
             exit()
         for s in segs:
@@ -143,6 +148,7 @@ class NBA:
         exit()
 
     def new_segment(self, quarter):
+        #print('new segment')
         s = {}
         s['players'] = [[],[]]
         s['score'] = [[], []]
@@ -187,7 +193,7 @@ class NBA:
         segs_game = []
         seg = self.new_segment(quarter)        # current segment
         for event in events:
-            #print('event ', event['evt'], ' type ', event['etype'])
+            print('event ', event['evt'], ' type ', event['etype'], event['de'])
             if self.is_end_of_quarter(event):
                 seg['time'][1] = self.time_str_to_secs(event['cl'])
                 segs_quarter.append(seg)
@@ -206,7 +212,7 @@ class NBA:
                 seg['score'][0] = copy.deepcopy(seg['score'][1])
                 seg['players'][team].remove(outgoing_player)
                 seg['players'][team].append(incoming_player)
-            elif event['etype'] == 6:
+            elif self.is_technical_foul(event):
                 # technical foul can involve someone on bench
                 continue
             else:
@@ -385,8 +391,6 @@ class NBA:
         for pid, x in players.items():
             print("%s: n %d dur %d pf %d pa %d"%(self.player_names[pid], x['nsegs'], x['dur'], x['pf'], x['pa']))
 
-    
-        
 
 # given two teams, return list of games between them
 #
@@ -413,8 +417,10 @@ def nba_test(year, game_ids):
     nba_analyze.nba = NBA()
     nba_analyze.nba.read_players('nba_data/2017/players.json')
     nba_analyze.nba.read_players('nba_data/2016/players.json')
-
+    nba_analyze.nba.read_players('nba_data/2018/players.json')
     nba_analyze.nba.read_teams()
+    nba_analyze.nba.parse_game('nba_data/2018/games/0021800246.json')
+
     for id in game_ids:
         f = 'nba_data/'+year+'/games/'+id+'.json'
         print(f)
@@ -422,7 +428,6 @@ def nba_test(year, game_ids):
     nba_analyze.nba.analyze()
     #nba_analyze.nba.print_segments()
     #nba_analyze.nba.average_offr()
-    #nba.write_data("foo")
     nba_analyze.nba.print_ratings()
     nba_analyze.nba.save()
     nba_analyze.nba.print_stats()
@@ -430,6 +435,6 @@ def nba_test(year, game_ids):
 
 
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
-games = game_find('2018', ['1610612757', '1610612740', '1610612744'])
+games = game_find('2018', ['1610612757', '1610612740', '1610612744', '1610612759', '1610612747',  '1610612746'])
 nba_test('2018', games)
 
