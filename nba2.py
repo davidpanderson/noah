@@ -35,11 +35,19 @@ class NBA:
         self.player_seqno = {}       # map ID->seqno
             # we need seqnos for players since optimization takes an array
 
-    # print list of IDs as names
+    # map player ID to name
+    # NOTE: the player lists are incomplete, maybe for players on short contracts
+    #
+    def player_name(self, player_id):
+        if player_id in self.player_names:
+            return self.player_names[player_id]
+        return 'Unknown'
+    
+    # print list of player IDs as names
     #
     def print_players(self, players):
         for id in players:
-            print(self.player_names[id])
+            print(self.player_name(id))
         
     # get team names; make map
     #
@@ -129,7 +137,7 @@ class NBA:
     def add_player(self, player, team, seg, segs):
         if player in seg['players'][team]:
             return;
-        print('adding ', player, self.player_names[player], team)
+        #print('adding ', player, self.player_name(player), team)
         seg['players'][team].append(player)
         #self.print_players(seg['players'][team])
         if len(seg['players'][team]) > 5:
@@ -173,7 +181,6 @@ class NBA:
     def parse_game(self, filename):
         events = self.read_game(filename)
         quarter = 1
-        print(len(events), ' events')
 
         # find the team IDs, in the order used for scores (home, visitor)
 
@@ -188,12 +195,17 @@ class NBA:
                 tid1 = event['tid']
                 break
         self.team_ids = [tid0, tid1]
-        
+
+        print('parsing game '+filename)
+        print('between '+self.team_names[tid0]+' and '+self.team_names[tid1])
+        print(len(events), ' events')
         segs_quarter = []       # list of segments in this quarter
         segs_game = []
         seg = self.new_segment(quarter)        # current segment
         for event in events:
-            print('event ', event['evt'], ' type ', event['etype'], event['de'])
+            #print('event ', event['evt'], ' type ', event['etype'], event['de'])
+            if event['etype'] == 10:
+                continue
             if self.is_end_of_quarter(event):
                 seg['time'][1] = self.time_str_to_secs(event['cl'])
                 segs_quarter.append(seg)
@@ -285,9 +297,9 @@ class NBA:
                         pseq = self.player_seqno[p]
                         offr = self.player_ratings[pseq*2]
                         defr = self.player_ratings[pseq*2+1]
-                        print('     ', self.player_names[p], offr, defr)
+                        print('     ', self.player_name(p), offr, defr)
                     else:
-                        print('      ', self.player_names[p])
+                        print('      ', self.player_name(p))
                 if len(self.player_ratings):
                    self.print_predictions(seg, i)
 
@@ -323,8 +335,11 @@ class NBA:
             ratings.append(0.03)
             ratings.append(1.0)
         x0 = np.array(ratings)
+        # list of available methods is here:
+        # https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html
+        # Newton-CG hangs in some cases;SLSQP seems to work
         res = minimize(nba_analyze.nba_error,x0, jac=nba_analyze.nba_error_gradient,
-            method='Newton-CG',tol=1e-9, options={'maxiter': 1e8, 'disp': True})
+            method='SLSQP',tol=1e-9, options={'maxiter': 1e8, 'disp': True})
         self.player_ratings = res.x
 
     def parse_games(self, year):
@@ -334,6 +349,7 @@ class NBA:
             if file[2] == '1':
                 continue
             self.parse_game('%s/%s'%(dirname, file))
+            
     def average_offr(self):
         total = 0
         n = 0
@@ -350,7 +366,7 @@ class NBA:
             offr = self.player_ratings[2*seqno]
             offr = offr/a_offr
             defr = self.player_ratings[2*seqno+1]
-            print(self.player_names[id],  offr , defr, offr - defr )
+            print(self.player_name(id),  offr , defr, offr - defr )
 
     def save(self):
         f = open('nba.pickle', 'wb')
@@ -389,10 +405,10 @@ class NBA:
                     players[p]['pf'] += pa
                     players[p]['pa'] += pb
         for pid, x in players.items():
-            print("%s: n %d dur %d pf %d pa %d"%(self.player_names[pid], x['nsegs'], x['dur'], x['pf'], x['pa']))
+            print("%s: n %d dur %d pf %d pa %d"%(self.player_name(pid), x['nsegs'], x['dur'], x['pf'], x['pa']))
 
 
-# given two teams, return list of games between them
+# given list of teams, return list of games between any two of them
 #
 def game_find(year, teams):
     x = []
@@ -410,7 +426,6 @@ def game_find(year, teams):
         if vteam not in teams:
             continue
         x.append(g['gameId'])
-    print(x)
     return x
     
 def nba_test(year, game_ids):
@@ -419,7 +434,8 @@ def nba_test(year, game_ids):
     nba_analyze.nba.read_players('nba_data/2016/players.json')
     nba_analyze.nba.read_players('nba_data/2018/players.json')
     nba_analyze.nba.read_teams()
-    nba_analyze.nba.parse_game('nba_data/2018/games/0021800246.json')
+    #nba_analyze.nba.parse_game('nba_data/2018/games/0021800246.json')
+    #exit()
 
     for id in game_ids:
         f = 'nba_data/'+year+'/games/'+id+'.json'
