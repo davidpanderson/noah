@@ -17,6 +17,15 @@ from itertools import combinations
 
 # Note: Firefox will let you browse a .json file
 
+def off(r):
+    return r[1]
+
+def defense(r):
+    return r[2]
+
+def ovr(r):
+    return r[1] - r[2]
+
 class NBA:
     # IMPLEMENTATION STARTS HERE
 
@@ -78,6 +87,7 @@ class NBA:
     # In the data file these are divided into "period"
     #
     def read_game(self, name):
+        print('reading game ', name)
         f = open(name)
         x = f.read()
         if x[:2] == "b'":
@@ -342,7 +352,7 @@ class NBA:
             method='SLSQP',tol=1e-9, options={'maxiter': 1e8, 'disp': True})
         self.player_ratings = res.x
 
-    def parse_games(self, year):
+    def parse_all_games(self, year):
         dirname = 'nba_data/%d/games'%(year)
         files = os.listdir(dirname)
         for file in files:
@@ -360,14 +370,32 @@ class NBA:
         print(total/n)
         return total/n
 
-    def print_ratings(self):
+    def print_leaders(self, r, func, title, numplayers):
+        print(title)
+        i = 1
+        for p in r:
+            print(i, p[0], func(p))
+            i += 1
+            if i> numplayers:
+                return
+    def print_ratings(self, numplayers):
         a_offr = self.average_offr()
+        x = []
         for id, seqno in self.player_seqno.items():
             offr = self.player_ratings[2*seqno]
             offr = offr/a_offr
             defr = self.player_ratings[2*seqno+1]
-            print(self.player_name(id),  offr , defr, offr - defr )
-
+            x.append([self.player_name(id), offr, defr])
+                
+            # print(self.player_name(id),  offr , defr, offr - defr )
+        print(x)
+        x.sort(key=off, reverse=True)
+        self.print_leaders(x, off, 'offensive rating', numplayers)
+        x.sort(key=defense)
+        self.print_leaders(x, defense, 'defensive rating', numplayers)
+        x.sort(key=ovr, reverse=True)
+        self.print_leaders(x, ovr, 'overall rating', numplayers)
+         
     def save(self):
         f = open('nba.pickle', 'wb')
         pickle.dump(self, f)
@@ -407,7 +435,8 @@ class NBA:
         for pid, x in players.items():
             print("%s: n %d dur %d pf %d pa %d"%(self.player_name(pid), x['nsegs'], x['dur'], x['pf'], x['pa']))
 
-
+        
+    
 # given list of teams, return list of games between any two of them
 #
 def game_find(year, teams):
@@ -434,8 +463,9 @@ def nba_test(year, game_ids):
     nba_analyze.nba.read_players('nba_data/2016/players.json')
     nba_analyze.nba.read_players('nba_data/2018/players.json')
     nba_analyze.nba.read_teams()
-    #nba_analyze.nba.parse_game('nba_data/2018/games/0021800246.json')
-    #exit()
+    nba_analyze.nba.parse_game('nba_data/2018/games/0021800001.json')
+    nba_analyze.nba.parse_all_games(2018)
+    exit()
 
     for id in game_ids:
         f = 'nba_data/'+year+'/games/'+id+'.json'
@@ -444,13 +474,14 @@ def nba_test(year, game_ids):
     nba_analyze.nba.analyze()
     #nba_analyze.nba.print_segments()
     #nba_analyze.nba.average_offr()
-    nba_analyze.nba.print_ratings()
+    nba_analyze.nba.print_ratings(10)
     nba_analyze.nba.save()
     nba_analyze.nba.print_stats()
     nba_analyze.nba.average_offr()
 
 
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
-games = game_find('2018', ['1610612757', '1610612740', '1610612744', '1610612759', '1610612747',  '1610612746'])
+#games = game_find('2018', ['1610612757', '1610612740', '1610612744', '1610612759', '1610612747',  '1610612746'])
+games = game_find('2018', ['1610612757', '1610612740'])
 nba_test('2018', games)
 
