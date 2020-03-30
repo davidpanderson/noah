@@ -92,6 +92,7 @@ class NBA:
         x = f.read()
         if x[:2] == "b'":
             x = x[2:-1]
+        x = x.encode('latin1').decode('unicode-escape').encode('latin1').decode('utf-8')
         x = json.loads(x)
         x = x['g']
         periods = x['pd']
@@ -109,6 +110,9 @@ class NBA:
         return int(event['etype']) == 8
 
     def is_technical_foul(self, event):
+        if int(event['etype']) == 11:
+            # player ejection (can be on bench)
+            return True
         if int(event['etype']) != 6:
             return False
         return 'Technical' in event['de']
@@ -131,15 +135,18 @@ class NBA:
                     x.append([p, t1])
         return x
 
-    # verify that each segment is 5 on 5
+    # return true if each segment is 5 on 5
     #
     def check_segs(self, segs):
          for seg in segs:
              for i in range(2):
-                 if len(seg['players'][i]) != 5:
-                        print("bad # players in check_segs")
+                 n = len(seg['players'][i])
+                 if  n != 5:
+                        print("bad # players in check_segs: ", n)
                         print(seg)
-                        exit()
+                        return False
+                        #exit()
+         return True
                     
     # add player to current segment.
     # if not already there, add to previous segments too
@@ -147,7 +154,7 @@ class NBA:
     def add_player(self, player, team, seg, segs):
         if player in seg['players'][team]:
             return;
-        #print('adding ', player, self.player_name(player), team)
+        print('adding ', player, self.player_name(player), team)
         seg['players'][team].append(player)
         #self.print_players(seg['players'][team])
         if len(seg['players'][team]) > 5:
@@ -186,7 +193,7 @@ class NBA:
         x = int(x)
         return "%d:%02d"%(x/60, x%60)
 
-    # parse a game file; return list of segments
+    # parse a game file; append list of segments to self.segs
     #
     def parse_game(self, filename):
         events = self.read_game(filename)
@@ -213,16 +220,20 @@ class NBA:
         segs_game = []
         seg = self.new_segment(quarter)        # current segment
         for event in events:
-            #print('event ', event['evt'], ' type ', event['etype'], event['de'])
+            print('event ', event['evt'], ' type ', event['etype'], event['de'])
             if event['etype'] == 10:
+                # jump ball.  sometimes data is bad
                 continue
             if self.is_end_of_quarter(event):
+                # some game files erroneously have two End Periods in a row
+                if not segs_quarter:
+                    continue
                 seg['time'][1] = self.time_str_to_secs(event['cl'])
                 segs_quarter.append(seg)
                 quarter += 1
                 seg = self.new_segment(quarter)
-                self.check_segs(segs_quarter)
-                segs_game.extend(segs_quarter)
+                if self.check_segs(segs_quarter):
+                    segs_game.extend(segs_quarter)
                 segs_quarter = []
             elif self.is_substitution(event):
                 outgoing_player = int(event['pid'])
@@ -255,7 +266,7 @@ class NBA:
                         print(event)
                     self.add_player(x[0], self.get_team(x[1]), seg, segs_quarter)
 
-        # what does the following do?
+        # append this game's segments to self.segs
         #
         for seg in segs_game:
             if seg['time'][0] != seg['time'][1]:
@@ -463,8 +474,8 @@ def nba_test(year, game_ids):
     nba_analyze.nba.read_players('nba_data/2016/players.json')
     nba_analyze.nba.read_players('nba_data/2018/players.json')
     nba_analyze.nba.read_teams()
-    nba_analyze.nba.parse_game('nba_data/2018/games/0021800001.json')
-    nba_analyze.nba.parse_all_games(2018)
+    nba_analyze.nba.parse_game('nba_data/2018/games/0021800388.json')
+    #nba_analyze.nba.parse_all_games(2018)
     exit()
 
     for id in game_ids:
