@@ -97,7 +97,7 @@ class NBA:
         x = x['g']
         periods = x['pd']
         e = []
-        print(len(periods), ' periods')
+        #print(len(periods), ' periods')
         for i in range(len(periods)):
             x = periods[i]
             e.extend(x['pla'])
@@ -154,13 +154,14 @@ class NBA:
     def add_player(self, player, team, seg, segs):
         if player in seg['players'][team]:
             return;
-        print('adding ', player, self.player_name(player), team)
-        seg['players'][team].append(player)
+        #print('adding ', player, self.player_name(player), team)
         #self.print_players(seg['players'][team])
-        if len(seg['players'][team]) > 5:
+        if len(seg['players'][team]) >= 5:
             print("bad # players in add_player");
             print(seg)
-            exit()
+            return
+        seg['players'][team].append(player)
+
         for s in segs:
             s['players'][team].append(player)
 
@@ -213,14 +214,14 @@ class NBA:
                 break
         self.team_ids = [tid0, tid1]
 
-        print('parsing game '+filename)
+        #print('parsing game '+filename)
         print('between '+self.team_names[tid0]+' and '+self.team_names[tid1])
-        print(len(events), ' events')
+        #print(len(events), ' events')
         segs_quarter = []       # list of segments in this quarter
         segs_game = []
         seg = self.new_segment(quarter)        # current segment
         for event in events:
-            print('event ', event['evt'], ' type ', event['etype'], event['de'])
+            #print('event ', event['evt'], ' type ', event['etype'], event['de'])
             if event['etype'] == 10:
                 # jump ball.  sometimes data is bad
                 continue
@@ -363,13 +364,6 @@ class NBA:
             method='SLSQP',tol=1e-9, options={'maxiter': 1e8, 'disp': True})
         self.player_ratings = res.x
 
-    def parse_all_games(self, year):
-        dirname = 'nba_data/%d/games'%(year)
-        files = os.listdir(dirname)
-        for file in files:
-            if file[2] == '1':
-                continue
-            self.parse_game('%s/%s'%(dirname, file))
             
     def average_offr(self):
         total = 0
@@ -465,34 +459,47 @@ def game_find(year, teams):
             continue
         if vteam not in teams:
             continue
-        x.append(g['gameId'])
+        x.append(g['gameId'+ '.json'])
     return x
-    
+
+
+def find_all_games(year):
+    dirname = 'nba_data/%d/games'%(year)
+    files = os.listdir(dirname)
+    games= []
+    for file in files:
+        #1 is preaseason, 2 is regular season, 3 is all star game, 4 is playoffs
+        if file[2] == '1':
+            continue
+        if file[2] == '3':
+            continue
+        games.append(file)
+    return games
+        
 def nba_test(year, game_ids):
     nba_analyze.nba = NBA()
     nba_analyze.nba.read_players('nba_data/2017/players.json')
     nba_analyze.nba.read_players('nba_data/2016/players.json')
     nba_analyze.nba.read_players('nba_data/2018/players.json')
     nba_analyze.nba.read_teams()
-    nba_analyze.nba.parse_game('nba_data/2018/games/0021800388.json')
-    #nba_analyze.nba.parse_all_games(2018)
-    exit()
+    #nba_analyze.nba.parse_game('nba_data/2018/games/0021800388.json')
 
     for id in game_ids:
-        f = 'nba_data/'+year+'/games/'+id+'.json'
-        print(f)
+        f = 'nba_data/'+year+'/games/'+id
+        #print(f)
         nba_analyze.nba.parse_game(f)
     nba_analyze.nba.analyze()
     #nba_analyze.nba.print_segments()
     #nba_analyze.nba.average_offr()
-    nba_analyze.nba.print_ratings(10)
     nba_analyze.nba.save()
+    nba_analyze.nba.print_ratings(10)
     nba_analyze.nba.print_stats()
     nba_analyze.nba.average_offr()
 
 
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
 #games = game_find('2018', ['1610612757', '1610612740', '1610612744', '1610612759', '1610612747',  '1610612746'])
-games = game_find('2018', ['1610612757', '1610612740'])
+#games = game_find('2018', ['1610612757', '1610612740'])
+games = find_all_games(2018)
 nba_test('2018', games)
 
