@@ -383,10 +383,14 @@ class NBA:
             i += 1
             if i> numplayers:
                 return
-    def print_ratings(self, numplayers):
+            
+    def print_ratings(self, numplayers, min_dur):
         a_offr = self.average_offr()
         x = []
+        player_stats = self.compute_player_stats()
         for id, seqno in self.player_seqno.items():
+            if player_stats[id]['dur'] < min_dur:
+                continue
             offr = self.player_ratings[2*seqno]
             offr = offr/a_offr
             defr = self.player_ratings[2*seqno+1]
@@ -401,15 +405,21 @@ class NBA:
         x.sort(key=ovr, reverse=True)
         self.print_leaders(x, ovr, 'overall rating', numplayers)
          
-    def save(self):
-        f = open('nba.pickle', 'wb')
+    def save(self, year):
+        f = open('nba_%d.pickle'%year, 'wb')
         pickle.dump(self, f)
         f.close()
 
-    def restore(self):
-        f = open('nba.pickle', 'rb')
-        self = pickle.load(f)
-        self.print_ratings()
+    def restore(self, year):
+        f = open('nba_%d.pickle'%year, 'rb')
+        x = pickle.load(f)
+        self.segs = x.segs
+        self.player_names = x.player_names
+        self.team_names = x.team_names
+        self.team_ids = x.team_ids
+        self.player_seqno = x.player_seqno
+        self.player_ratings = x.player_ratings
+        self.trimmed_segs = x.trimmed_segs
         f.close()
 
     # for each player, show
@@ -417,7 +427,7 @@ class NBA:
     # duration of segments
     # points scored by team and by other team
     #
-    def print_stats(self):
+    def compute_player_stats(self):
         players = {}
         for seg in self.trimmed_segs:
             dur = seg['duration']
@@ -437,10 +447,11 @@ class NBA:
                     players[p]['dur'] += dur
                     players[p]['pf'] += pa
                     players[p]['pa'] += pb
+        return players
+    
+    def print_player_stats(self, players):
         for pid, x in players.items():
             print("%s: n %d dur %d pf %d pa %d"%(self.player_name(pid), x['nsegs'], x['dur'], x['pf'], x['pa']))
-
-        
     
 # given list of teams, return list of games between any two of them
 #
@@ -491,15 +502,21 @@ def nba_test(year, game_ids):
     nba_analyze.nba.analyze()
     #nba_analyze.nba.print_segments()
     #nba_analyze.nba.average_offr()
-    nba_analyze.nba.save()
-    nba_analyze.nba.print_ratings(10)
-    nba_analyze.nba.print_stats()
+    nba_analyze.nba.save(year)
+
+def print_info(year, min_dur):
+    nba_analyze.nba = NBA()
+    nba_analyze.nba.restore(year)
+    nba_analyze.nba.print_ratings(10, min_dur)
+    players = nba_analyze.nba.compute_player_stats()
+    nba_analyze.nba.print_player_stats(players)
     nba_analyze.nba.average_offr()
 
 
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
 #games = game_find('2018', ['1610612757', '1610612740', '1610612744', '1610612759', '1610612747',  '1610612746'])
 #games = game_find('2018', ['1610612757', '1610612740'])
-games = find_all_games(2018)
-nba_test('2018', games)
+#games = find_all_games(2018)
+#nba_test('2018', games)
+print_info(2018, 30000)
 
