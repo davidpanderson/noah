@@ -496,7 +496,7 @@ def nba_test(year, game_ids):
     #nba_analyze.nba.parse_game('nba_data/2018/games/0021800388.json')
 
     for id in game_ids:
-        f = 'nba_data/'+year+'/games/'+id
+        f = 'nba_data/%d/games/%s'%(year, id)
         #print(f)
         nba_analyze.nba.parse_game(f)
     nba_analyze.nba.analyze()
@@ -516,7 +516,7 @@ def print_info(year, min_dur):
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
 #games = game_find('2018', ['1610612757', '1610612740', '1610612744', '1610612759', '1610612747',  '1610612746'])
 #games = game_find('2018', ['1610612757', '1610612740'])
-#games = find_all_games(2018)
-#nba_test('2018', games)
-print_info(2018, 30000)
+games = find_all_games(2017)
+nba_test(2017, games)
+print_info(2017, 30000)
 
