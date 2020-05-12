@@ -4,7 +4,7 @@
 # - do optimization to find player coefficients
 # - show results
 
-import json, copy, pickle, os
+import json, copy, pickle, os, random
 import numpy as np
 from scipy.optimize import minimize
 import nba_analyze
@@ -14,6 +14,9 @@ from itertools import combinations
 # players: http://data.nba.net/data/10s/prod/v1/2017/players.json
 # teams: http://data.nba.net/data/10s/prod/v1/2017/teams.json
 # schedule: http://data.nba.net/data/10s/prod/v1/2017/schedule.json
+# games: see nba_download.py
+
+# A source of CSV game data: https://eightthirtyfour.com/data
 
 # Note: Firefox will let you browse a .json file
 
@@ -405,13 +408,13 @@ class NBA:
         x.sort(key=ovr, reverse=True)
         self.print_leaders(x, ovr, 'overall rating', numplayers)
          
-    def save(self, year):
-        f = open('nba_%d.pickle'%year, 'wb')
+    def save(self, year, tag):
+        f = open('nba_results/nba_%d_%d.pickle'%(year, tag), 'wb')
         pickle.dump(self, f)
         f.close()
 
-    def restore(self, year):
-        f = open('nba_%d.pickle'%year, 'rb')
+    def restore(self, year, tag):
+        f = open('nba_results/nba_%d_%d.pickle'%(year, tag), 'rb')
         x = pickle.load(f)
         self.segs = x.segs
         self.player_names = x.player_names
@@ -451,7 +454,7 @@ class NBA:
     
     def print_player_stats(self, players):
         for pid, x in players.items():
-            print("%s: n %d dur %d pf %d pa %d"%(self.player_name(pid), x['nsegs'], x['dur'], x['pf'], x['pa']))
+            print("%s: n %d dur %d pf %d pa %d pts %f"%(self.player_name(pid), x['nsegs'], x['dur'], x['pf'], x['pa'], (x['pf'] + x['pa'])/x['dur']))
     
 # given list of teams, return list of games between any two of them
 #
@@ -487,7 +490,7 @@ def find_all_games(year):
         games.append(file)
     return games
         
-def nba_test(year, game_ids):
+def analyze_games(year, game_ids, tag=''):
     nba_analyze.nba = NBA()
     nba_analyze.nba.read_players('nba_data/2017/players.json')
     nba_analyze.nba.read_players('nba_data/2016/players.json')
@@ -502,21 +505,33 @@ def nba_test(year, game_ids):
     nba_analyze.nba.analyze()
     #nba_analyze.nba.print_segments()
     #nba_analyze.nba.average_offr()
-    nba_analyze.nba.save(year)
+    nba_analyze.nba.save(year, tag)
 
-def print_info(year, min_dur):
+def print_info(year, tag, nplayers, min_dur):
     nba_analyze.nba = NBA()
-    nba_analyze.nba.restore(year)
-    nba_analyze.nba.print_ratings(10, min_dur)
-    players = nba_analyze.nba.compute_player_stats()
-    nba_analyze.nba.print_player_stats(players)
-    nba_analyze.nba.average_offr()
+    nba_analyze.nba.restore(year, tag)
+    nba_analyze.nba.print_ratings(nplayers, min_dur)
+  #  players = nba_analyze.nba.compute_player_stats()
+    #nba_analyze.nba.print_player_stats(players)
 
+def split_list(g):
+    random.shuffle(g)
+    n = len(g)//2
+    return [g[:n], g[n:]]
+
+def analyze_halves(year):
+    games = find_all_games(year)
+    (g1, g2) = split_list(games)
+    analyze_games(year, g1, '_1')
+    print("first half done")
+    analyze_games(year, g2, '_2')
 
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
 #games = game_find('2018', ['1610612757', '1610612740', '1610612744', '1610612759', '1610612747',  '1610612746'])
 #games = game_find('2018', ['1610612757', '1610612740'])
-games = find_all_games(2017)
-nba_test(2017, games)
-print_info(2017, 30000)
+#games = find_all_games(2017)
+#analyze_games(2017, games)
+print_info(2017, 1, 50, 30000)
+print_info(2017, 2, 50, 30000)
 
+#analyze_halves(2017)
