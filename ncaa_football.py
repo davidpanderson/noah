@@ -1,4 +1,4 @@
-import score_predict as fb
+import score_predict2 as fb
 import pickle
 import math
 #import spread_predict as sp
@@ -16,7 +16,7 @@ def int_check(c):
 # current score file is from http://www.jhowell.net/cf/scores/Sked2017.htm
 def read_scores(year):
     w = []
-    f = open('college_football_'+year+'.txt', 'r')
+    f = open('college_football_'+str(year)+'.txt', 'r')
     print (f)
     for line in f:
         line = line.strip()
@@ -44,32 +44,49 @@ def get_teams(year):
         fb.teams.append(team_name(l))
 
 # parse the score file, create fb.teams and fb.games global variables
+# If home_field is true, omit neutral games and home team is always first
 #
-def get_games(year):
+def get_games(year, home_field):
     fb.games = []
-    get_teams()
+    get_teams(year)
     f = read_scores(year)
     week = 0
     for line in f:
-        words = line.split('\t')
+      #  print(line)
+        #words = line.split('\t')
+        words = line.split(' ')
+      #  print(len(words))
         if len(words) >= 7:
             if not int_check(words[5]):
                 continue
             if not int_check(words[6]):
                 continue
+          #  print('new game')
             week += 1
             #print(line)
             t2 = words[3].replace('*', '')
-            if t1 > t2:
-                continue
+            #Only counts each game once
+            if not home_field:
+                if t1 > t2:
+                    continue
+            else:
+                if words[2] == 'vs.':
+                    continue
             if t2 not in fb.teams:
                 #print(t2, ' not found; skipping ', line)
                 continue
-            game = [
-                fb.teams.index(t1), fb.teams.index(t2),
-                int(words[5]), int(words[6]),
-                week
-                ]
+            if not home_field:
+                game = [
+                    fb.teams.index(t1), fb.teams.index(t2),
+                    int(words[5]), int(words[6]),
+                    week
+                    ]
+            else:
+                game = [
+                    fb.teams.index(t2), fb.teams.index(t1),
+                    int(words[6]), int(words[5]),
+                    week
+                    ]
             fb.games.append(game)
         else:
              t1 = team_name(line)
@@ -82,7 +99,7 @@ def get_games_new():
     get_teams()
     f = read_scores()
     for line in f:
-        words = line.split('\t')
+        words = line.split(' ')
         if len(words) >= 7:
             if not int_check(words[5]):
                 continue
@@ -317,9 +334,12 @@ def spread_score(wk):
         spread_error += (score1-score2-g[2]+g[3])**2
     print (spread_error, score_error, len(test))
 
-#get_teams()
-#get_games()
-#rankings()
+get_teams(2019)
+get_games(2019, 1)
+print(fb.home_field())
+#print(fb.games)
+#ratings = fb.compute_ratings(0)
+#print(ratings[len(ratings)-1])
 #r = fb.read_ratings_file('ncaa_football18')
 #fb.plot_ratings(r)
 

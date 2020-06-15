@@ -1,4 +1,4 @@
-import score_predict as sp
+import score_predict2 as sp
 
 sp.teams = []
 sp.games = []
@@ -7,7 +7,7 @@ sp.games = []
 #https://www.scoreboard.com/nfl/results/
 def read_scores(year):
     w = []
-    f = open('nfl_scores'+year+'.txt', 'r')
+    f = open('nfl_scores'+str(year)+'.txt', 'r')
    # f = open('ncaa_basketball2019.txt', 'r')
     print (f)
     for line in f:
@@ -63,6 +63,9 @@ def get_games(year):
         ]
         sp.games.append(y)
    
-#get_games(2019)
+get_games(2019)
+print(sp.home_field())
+#print(sp.games)
 #r = sp.compute_ratings(0)
 #sp.plot_ratings(r)
+#print(r[len(r)-1])

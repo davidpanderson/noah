@@ -4,7 +4,7 @@
 # - do optimization to find player coefficients
 # - show results
 
-import json, copy, pickle, os
+import json, copy, pickle, os, random
 import numpy as np
 from scipy.optimize import minimize
 import nba_analyze
@@ -14,6 +14,9 @@ from itertools import combinations
 # players: http://data.nba.net/data/10s/prod/v1/2017/players.json
 # teams: http://data.nba.net/data/10s/prod/v1/2017/teams.json
 # schedule: http://data.nba.net/data/10s/prod/v1/2017/schedule.json
+# games: see nba_download.py
+
+# A source of CSV game data: https://eightthirtyfour.com/data
 
 # Note: Firefox will let you browse a .json file
 
@@ -87,7 +90,7 @@ class NBA:
     # In the data file these are divided into "period"
     #
     def read_game(self, name):
-        print('reading game ', name)
+      #  print('reading game ', name)
         f = open(name)
         x = f.read()
         if x[:2] == "b'":
@@ -142,8 +145,8 @@ class NBA:
              for i in range(2):
                  n = len(seg['players'][i])
                  if  n != 5:
-                        print("bad # players in check_segs: ", n)
-                        print(seg)
+                       # print("bad # players in check_segs: ", n)
+                        #print(seg)
                         return False
                         #exit()
          return True
@@ -215,7 +218,7 @@ class NBA:
         self.team_ids = [tid0, tid1]
 
         #print('parsing game '+filename)
-        print('between '+self.team_names[tid0]+' and '+self.team_names[tid1])
+      #  print('between '+self.team_names[tid0]+' and '+self.team_names[tid1])
         #print(len(events), ' events')
         segs_quarter = []       # list of segments in this quarter
         segs_game = []
@@ -263,8 +266,9 @@ class NBA:
                     seg['time'][1] = self.time_str_to_secs(time)
                 p = self.get_players(event)
                 for x in p:
-                    if x[1] == None:
-                        print(event)
+                   # if x[1] == None:
+                      #  print(event)
+                      
                     self.add_player(x[0], self.get_team(x[1]), seg, segs_quarter)
 
         # append this game's segments to self.segs
@@ -383,10 +387,14 @@ class NBA:
             i += 1
             if i> numplayers:
                 return
-    def print_ratings(self, numplayers):
+            
+    def print_ratings(self, numplayers, min_dur):
         a_offr = self.average_offr()
         x = []
+        player_stats = self.compute_player_stats()
         for id, seqno in self.player_seqno.items():
+            if player_stats[id]['dur'] < min_dur:
+                continue
             offr = self.player_ratings[2*seqno]
             offr = offr/a_offr
             defr = self.player_ratings[2*seqno+1]
@@ -401,15 +409,21 @@ class NBA:
         x.sort(key=ovr, reverse=True)
         self.print_leaders(x, ovr, 'overall rating', numplayers)
          
-    def save(self):
-        f = open('nba.pickle', 'wb')
+    def save(self, year, tag):
+        f = open('nba_results/nba_%d_%d.pickle'%(year, tag), 'wb')
         pickle.dump(self, f)
         f.close()
 
-    def restore(self):
-        f = open('nba.pickle', 'rb')
-        self = pickle.load(f)
-        self.print_ratings()
+    def restore(self, year, tag):
+        f = open('nba_results/nba_%d_%d.pickle'%(year, tag), 'rb')
+        x = pickle.load(f)
+        self.segs = x.segs
+        self.player_names = x.player_names
+        self.team_names = x.team_names
+        self.team_ids = x.team_ids
+        self.player_seqno = x.player_seqno
+        self.player_ratings = x.player_ratings
+        self.trimmed_segs = x.trimmed_segs
         f.close()
 
     # for each player, show
@@ -417,9 +431,9 @@ class NBA:
     # duration of segments
     # points scored by team and by other team
     #
-    def print_stats(self):
+    def compute_player_stats(self):
         players = {}
-        for seg in self.trimmed_segs:
+        for seg in self.segs:
             dur = seg['duration']
             for ta in range(2):
                 tb = 1 - ta
@@ -437,10 +451,26 @@ class NBA:
                     players[p]['dur'] += dur
                     players[p]['pf'] += pa
                     players[p]['pa'] += pb
-        for pid, x in players.items():
-            print("%s: n %d dur %d pf %d pa %d"%(self.player_name(pid), x['nsegs'], x['dur'], x['pf'], x['pa']))
+        return players
 
+    def trim_segments(self, min_dur):
+        stats = self.compute_player_stats()
+    #    print(stats)
+        for seg in self.segs:
+            v = 0
+            for t in seg['players']:
+                for p in t:
+                    player = stats[p]
+                    if player['dur'] < min_dur:
+                        v = 1
+                        break
+            if v == 1:
+                self.segs.remove(seg)
         
+    
+    def print_player_stats(self, players):
+        for pid, x in players.items():
+            print("%s: n %d dur %d pf %d pa %d pts %f"%(self.player_name(pid), x['nsegs'], x['dur'], x['pf'], x['pa'], (x['pf'] + x['pa'])/x['dur']))
     
 # given list of teams, return list of games between any two of them
 #
@@ -476,7 +506,7 @@ def find_all_games(year):
         games.append(file)
     return games
         
-def nba_test(year, game_ids):
+def analyze_games(year, game_ids, tag=''):
     nba_analyze.nba = NBA()
     nba_analyze.nba.read_players('nba_data/2017/players.json')
     nba_analyze.nba.read_players('nba_data/2016/players.json')
@@ -485,21 +515,45 @@ def nba_test(year, game_ids):
     #nba_analyze.nba.parse_game('nba_data/2018/games/0021800388.json')
 
     for id in game_ids:
-        f = 'nba_data/'+year+'/games/'+id
+        f = 'nba_data/%d/games/%s'%(year, id)
         #print(f)
         nba_analyze.nba.parse_game(f)
+    print(len(nba_analyze.nba.segs))
+    nba_analyze.nba.trim_segments(72000)
+    print(len(nba_analyze.nba.segs))
+    return
     nba_analyze.nba.analyze()
     #nba_analyze.nba.print_segments()
     #nba_analyze.nba.average_offr()
-    nba_analyze.nba.save()
-    nba_analyze.nba.print_ratings(10)
-    nba_analyze.nba.print_stats()
-    nba_analyze.nba.average_offr()
+    nba_analyze.nba.save(year, tag)
+
+def print_info(year, tag, nplayers, min_dur):
+    nba_analyze.nba = NBA()
+    nba_analyze.nba.restore(year, tag)
+    nba_analyze.nba.print_ratings(nplayers, min_dur)
+  #  players = nba_analyze.nba.compute_player_stats()
+    #nba_analyze.nba.print_player_stats(players)
+
+def split_list(g):
+    random.shuffle(g)
+    n = len(g)//2
+    return [g[:n], g[n:]]
+
+def analyze_halves(year):
+    games = find_all_games(year)
+    (g1, g2) = split_list(games)
+    analyze_games(year, g1, '_1')
+    print("first half done")
+    analyze_games(year, g2, '_2')
 
 
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
 #games = game_find('2018', ['1610612757', '1610612740', '1610612744', '1610612759', '1610612747',  '1610612746'])
 #games = game_find('2018', ['1610612757', '1610612740'])
-games = find_all_games(2018)
-nba_test('2018', games)
+games = find_all_games(2017)
 
+analyze_games(2017, games)
+#print_info(2017, 1, 50, 30000)
+#print_info(2017, 2, 50, 30000)
+
+#analyze_halves(2017)
