@@ -467,6 +467,11 @@ class NBA:
             if v == 1:
                 self.segs.remove(seg)
         
+        return players
+    
+    def print_player_stats(self, players):
+        for pid, x in players.items():
+            print("%s: n %d dur %d pf %d pa %d pts %f"%(self.player_name(pid), x['nsegs'], x['dur'], x['pf'], x['pa'], (x['pf'] + x['pa'])/x['dur']))
     
     def print_player_stats(self, players):
         for pid, x in players.items():
@@ -547,10 +552,26 @@ def analyze_halves(year):
     analyze_games(year, g2, '_2')
 
 
+def split_list(g):
+    random.shuffle(g)
+    n = len(g)//2
+    return [g[:n], g[n:]]
+
+def analyze_halves(year):
+    games = find_all_games(year)
+    (g1, g2) = split_list(games)
+    analyze_games(year, g1, '_1')
+    print("first half done")
+    analyze_games(year, g2, '_2')
+
 #games = ['0041700401', '0041700402', '0041700403', '0041700404']
 #games = game_find('2018', ['1610612757', '1610612740', '1610612744', '1610612759', '1610612747',  '1610612746'])
 #games = game_find('2018', ['1610612757', '1610612740'])
 games = find_all_games(2017)
+#games = find_all_games(2017)
+#analyze_games(2017, games)
+print_info(2017, 1, 50, 30000)
+print_info(2017, 2, 50, 30000)
 
 analyze_games(2017, games)
 #print_info(2017, 1, 50, 30000)
