@@ -109,21 +109,25 @@ def rankings():
     for t in totals:
         print(len(fb.teams)-count  ,t, pairs[t])
         count += 1
-load_file(('nfl odds 2017-18.xlsx'))
+
+
+def stats_test():
+    a = 0
+    b = 0
+    for i in range(9):
+        print('nfl odds 20'+str(10+i)+'-'+str(11+i)+'.xlsx')
+        load_file('nfl odds 20'+str(10+i)+'-'+str(11+i)+'.xlsx')
+        get_teams()
+        get_games()
+        v = compare_vegas(1205)
+        a += v[0]
+        b += v[1]
+    print(a/(a+b))
+    
+load_file(('excel files/nfl odds 2017-18.xlsx'))
 get_teams()
 get_games()
-a = 0
-b = 0
-for i in range(9):
-    print('nfl odds 20'+str(10+i)+'-'+str(11+i)+'.xlsx')
-    load_file('nfl odds 20'+str(10+i)+'-'+str(11+i)+'.xlsx')
-    get_teams()
-    get_games()
-    v = compare_vegas(1205)
-    a += v[0]
-    b += v[1]
-print(a/(a+b))
-    
+
 #print(len(fb.games))
 compare_vegas(1196)
 #print(len(fb.games))
