@@ -300,6 +300,6 @@ def orid():
 if sys.argv[1] == 'license_plate':
     x = lis_game(sys.argv[2])
     for w in x:
-        print w
+        print(w)
 elif sys.argv[1] == 'spelling_bee':
     spelling_bee(sys.argv[2])
