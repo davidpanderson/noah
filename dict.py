@@ -311,10 +311,12 @@ def only_y():
         if 'y' not in w: continue
         print(w)
 
-only_y()
-if sys.argv[1] == 'license_plate':
-    x = lis_game(sys.argv[2])
-    for w in x:
-        print(w)
-elif sys.argv[1] == 'spelling_bee':
-    spelling_bee(sys.argv[2])
+#only_y()
+
+def dispatch():
+    if sys.argv[1] == 'license_plate':
+        x = lis_game(sys.argv[2])
+        for w in x:
+            print(w)
+    elif sys.argv[1] == 'spelling_bee':
+        spelling_bee(sys.argv[2])
