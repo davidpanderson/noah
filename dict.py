@@ -297,6 +297,21 @@ def orid():
             continue
         print(w)
 
+# words with only 'y'
+#
+def only_y():
+    dict = get_dictionary()
+    for w in dict:
+        if len(w)<4: continue
+        if 'a' in w: continue
+        if 'e' in w: continue
+        if 'i' in w: continue
+        if 'o' in w: continue
+        if 'u' in w: continue
+        if 'y' not in w: continue
+        print(w)
+
+only_y()
 if sys.argv[1] == 'license_plate':
     x = lis_game(sys.argv[2])
     for w in x:
