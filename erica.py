@@ -66,7 +66,7 @@ def triangle(w, wbl, show):
 def main():
     wbl = div_by_len()
     if True:
-        x = ''.join(sorted('reactivation'))
+        x = ''.join(sorted('rational'))
         triangle(x, wbl, True)
         return
 

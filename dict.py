@@ -297,6 +297,21 @@ def orid():
             continue
         print(w)
 
+# find letter frequencies in n-letter words
+#
+def letter_freq(n):
+    dict = get_dictionary(True)
+    f = {}
+    for x in 'abcdefghijklmnopqrstuvwxyz':
+        f[x] = 0
+    for w in dict:
+        if len(w) != n: continue
+        if w[n-1] == 's': continue
+        for x in w:
+            f[x] += 1
+    for x in 'abcdefghijklmnopqrstuvwxyz':
+        print(x, f[x])
+
 def dispatch():
     if sys.argv[1] == 'license_plate':
         x = lis_game(sys.argv[2])
