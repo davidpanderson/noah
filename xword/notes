@@ -1,0 +1,146 @@
+A grid is a set of slots S.
+Each is a sequence of spaces with length L(S)
+
+Each space i in a slot can be shared with zero or more
+crossing slots S', with an index j in S'.
+
+Note: this is more general than traditional 2D grids.
+Could have 3D grids, tori, Klein bottle, etc.
+
+Terms:
+
+Suppose a slot S contains a pattern P
+
+- let C(P) be the set of words compatible with P.
+    We call these the "compatible" words.
+
+- The pattern is "complete" if it has letters in all shared slots.
+    In that case we can fill the slot with any word in C(P);
+    the choice doesn't make an difference.
+
+- If the pattern is not complete, and W is a word in C(P),
+    we say that W is "usable" if
+    for every space i that's empty in P and has at least 1 crossing word:
+        for each of these crossing words,
+        if we add W[i] to their template P',
+        then C(P') is nonempty
+    i.e. filling S with W will leave at least one compatible word
+        for each crossing word
+
+---------
+State:
+
+- a stack of filled slots S1..Sn.
+
+- For each filled slot Si, a list of words C(Si)
+    (compatible with the letters in S1..Si-1)
+    and an index into C(Si) (next word to try)
+
+- For each unfilled slot, a list of words compatible with filled slots
+
+basic idea: depth-first search.
+    if get stuck, pop 1 level, try next word
+
+// scan the list of compatible words for S, starting from current index.
+// if find one that's usable, install it and return true
+// else return false
+find_next_usable(S)
+    while S.ind < len(C(S))
+        W = C(S.ind)
+        found = false
+        for each crossing slot A
+            (only need to do this for spaces that have changed)
+            compute C(A)
+            if empty:
+                found = true
+                break
+        if !found
+            return true
+        S.ind++
+    return false
+
+// decide what slot to fill next (i.e. the one with smallest C(S))
+// scan its C(S) from the start, looking for a usable word.
+// If find one:
+//      install that word in slot
+//      update C(S') for crossing slots
+//      return true
+// else return false
+// 
+next_slot():
+    (called after installed word for top filled slot;
+    all unfilled slots have nonempty compatible list)
+    if no unfilled slots
+        return true
+    find unfilled slot S for which P(S) is smallest
+    if find_usable(S)
+        stack.push(S)
+        return next_slot()
+    else
+        return backtrack()
+
+// called when next_slot() failed
+// for slot S on top of stack.
+// uninstall current word
+// if next_usable()
+//      return true
+//      note: only consider words that differ in a position
+//          crossed by non-filled slot
+// else
+//      pop S from stack
+//      return false
+backtrack():
+    called when no more words for top filled slot
+    pop stack
+    if empty stack
+        return false 
+    S = new top of stack
+    if find_usable(S)
+        return stack.push(S)
+    else
+        return backtrack()
+
+main():
+    stack = empty
+    if next_slot():
+        done
+    else:
+        no solution
+
+Note: some slots not in S1..Sn may be filled because
+    all their letters are crossed by S1..Sn
+
+optimization:
+    maintain a dictionary
+        pattern -> word list
+        where pattern is a string of letters and '*',
+        and list is the words matching that pattern
+
+when scanning compatible words for a slot,
+    all that actually matters is the crossing letters.
+    For example, suppose in a 3-letter word the only crossing letter
+    is the last one.
+    We try 'ana' and (after a lot of work) it fails
+    We try 'man' and it fails
+    We come to 'tea'.  No reason to try it because 'ana' already failed.
+
+    So instead of having lists of compatible words for a slot,
+    we should lists (or sets) of compatible patterns
+
+terms
+    'mask': array of bools for which positions have crossing
+    mword (word, mask): chars from word in masked positions
+    mwords (len, mask)
+        for words of that len, unique mwords
+
+Approach
+    for each slot
+        len
+        mask_len
+        mask (to generate actual words later)
+        list of mwords (static)
+        list of compatible mwords indices
+            can cache these in map pattern -> vector
+
+A solution for a grid is an mword for each slot.
+Can then list possible words for each slot
