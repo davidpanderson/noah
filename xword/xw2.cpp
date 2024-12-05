@@ -19,7 +19,7 @@ using namespace std;
 // each of which holds a word of a fixed length.
 // A 'cell' (letter space) in a slot can be linked to a cell in another slot.
 // Use add_slot() and add_link() to describe this.
-// This can representalso
+// This can also represent
 // - higher-dimensional grids
 // - grids on tori or Klein bottles
 // - other weird things
@@ -27,23 +27,10 @@ using namespace std;
 // Note: currently a cell can't be shared by >2 slots,
 // but this shouldn't be hard to add.
 //
-// For a given slot S, mask(S) is the bitmask of the linked positions.
-// If W is a word and M is a mask,
-// mword(W, M) is the letters in W in masked positions,
-// i.e. the crossed letters in W.
-//
-// For purposes of grid-filling, only mwords matter.
-// So we convert the original grid to a form using mwords instead of words;
-// in this form, every cell is linked, i.e. crossed
-//
-// A solution is an assignment of mwords to slots.
-// For each slot there is a set of (actual) words that match the mword.
-// For an (actual) solution you can pick any word from each set.
-//
 // This program enumerates all solutions for a given grid.
 
 // Other terms
-// 'pattern': a word (or mword) in which some or all positions are undetermined
+// 'pattern': a word in which some or all positions are undetermined
 // (represented by _)
 
 // copyright (C) 2024 David P. Anderson
@@ -115,22 +102,7 @@ void show_matches(int len, WLIST &wlist, ILIST &ilist) {
     }
 }
 
-char* mword_example(int len, char* w, MASK mask) {
-    char pattern[MAX_LEN];
-    int j=0;
-    for (int i=0; i<len; i++) {
-        pattern[i] = mask[i]?w[j++]:'_';
-    }
-    pattern[len] = 0;
-    for (char *w: words.words[len]) {
-        if (match(len, pattern, w)) {
-            return w;
-        }
-    }
-    return (char*)"not found";
-}
-
-// for a given word list,
+// for a list of words of given len,
 // cache a mapping of pattern -> word index list
 //
 struct PATTERN_CACHE {
@@ -155,28 +127,13 @@ struct PATTERN_CACHE {
     }
 };
 
-// get list of mwords for given (len, mask)
+// for each word len, cache of pattern -> ILIST pairs
 //
-void get_mwords_aux(int len, MASK mask, WLIST &wlist) {
-    vector<string> mw;
-    for (char* word: words.words[len]) {
-        char mword[MAX_LEN];
-        int j = 0;
-        for (int i=0; i<len; i++) {
-            if (mask[i]) {
-                mword[j++] = word[i];
-            }
-        }
-        mword[j] = 0;
-        mw.push_back(mword);
-    }
-    sort(mw.begin(), mw.end());
-    auto last = std::unique(mw.begin(), mw.end());
-    mw.erase(last, mw.end());
-    random_shuffle(mw.begin(), mw.end());
+PATTERN_CACHE pattern_cache[MAX_LEN];
 
-    for (string s: mw) {
-        wlist.push_back(strdup(s.c_str()));
+void init_pattern_cache() {
+    for (int i=1; i<=MAX_LEN; i++) {
+        pattern_cache[i].init(i, &(words.words[i]));
     }
 }
 
@@ -189,6 +146,9 @@ struct SLOT;
 struct LINK {
     SLOT *other_slot;       // NULL if no link
     int other_pos;
+    inline bool empty() {
+        return other_slot == NULL;
+    }
 };
 
 typedef enum {LETTER_UNKNOWN, LETTER_OK, LETTER_NOT_OK} LETTER_STATUS;
@@ -198,28 +158,20 @@ struct SLOT {
     int len;
     LINK links[MAX_LEN];
 
-    // masked items; fill in after links done
-    MASK mask;
-    int mlen;
-    int mpos[MAX_LEN];  // mask position of cell i
-    LINK mlinks[MAX_LEN];
-    WLIST mwords;
-    PATTERN_CACHE pattern_cache;
-        // cache of pattern -> ILIST pairs
-
     bool filled;
-    char mpattern[MAX_LEN];
-        // mword pattern from filled slots lower on stack
-    ILIST *compatible_mwords;
-        // mwords compatible with this pattern
-    int next_mword_index;
+        // is this slot filled?
+    char filled_pattern[MAX_LEN];
+        // pattern of letters from crossing filled slots lower on stack
+    ILIST *compatible_words;
+        // words compatible with this pattern
+    int next_word_index;
         // next one to try
-    char current_mword[MAX_LEN];
+    char current_word[MAX_LEN];
         // if filled, current word
 
     // for each position and each letter (a-z)
-    // we keep track of whether putting the letter in that position
-    // as OK (nonzero compatible mwords in the linked slot).
+    // keep track of whether putting the letter in that position
+    // was OK (nonzero compatible words in the linked slot).
     // These must be cleared each time we fill this slot.
     //
     bool usable_letter_checked[MAX_LEN][26];
@@ -232,6 +184,8 @@ struct SLOT {
     void clear_usable_letter_checked() {
         memset(usable_letter_checked, 0, sizeof(usable_letter_checked));
     }
+
+    // debugging
     void print_usable() {
         printf("usable checked:\n");
         for (int i=0; i<len; i++) {
@@ -248,6 +202,7 @@ struct SLOT {
             printf("\n");
         }
     }
+
     void add_link(int this_pos, SLOT* other_slot, int other_pos) {
         LINK &link = links[this_pos];
         if (link.other_slot) {
@@ -258,88 +213,35 @@ struct SLOT {
         link.other_pos = other_pos;
     }
 
-    // get ordinals of linked cells
-    void mpos_init() {
-        int j = 0;
-        for (int i=0; i<len; i++) {
-            if (links[i].other_slot) {
-                mpos[i] = j++;
-            }
-        }
-        mlen = j;
-    }
-
-    // compute mask links
-    void mlinks_init() {
-        int j=0;
-        for (int i=0; i<len; i++) {
-            LINK &link = links[i];
-            if (!link.other_slot) continue;
-            SLOT *slot2 = link.other_slot;
-            LINK &link2 = mlinks[j];
-            link2.other_slot = slot2;
-            link2.other_pos = slot2->mpos[link.other_pos];
-            j++;
-        }
-    }
-
-    void print_mlinks() {
-        printf("Slot %d:\n", num);
-        for (int i=0; i<mlen; i++) {
-            printf("   pos %d:\n", i);
-            LINK &link = mlinks[i];
-            printf("      slot %d, pos %d\n",
-                link.other_slot->num, link.other_pos
-            );
-        }
-    }
-
-    void mwords_init() {
-        // get the slot's list of mwords
-        for (int i=0; i<len; i++) {
-            mask[i] = (links[i].other_slot != NULL);
-        }
-        get_mwords_aux(len, mask, mwords);
-
+    void words_init() {
         // initialize pattern and compatible word list
-        strcpy(mpattern, NULL_PATTERN);
-        mpattern[len] = 0;
-        pattern_cache.init(mlen, &mwords);
-        compatible_mwords = pattern_cache.get_list(mpattern);
-    }
-
-    void print_mwords() {
-        printf("Slot %d:\n", num);
-        int i=0;
-        for (char* w: mwords) {
-            printf("   %s (%s)\n", w, mword_example(len, w, mask));
-            i++;
-            if (i > 4) break;
-        }
+        strcpy(filled_pattern, NULL_PATTERN);
+        filled_pattern[len] = 0;
+        compatible_words = pattern_cache[len].get_list(filled_pattern);
     }
 
     void print_state() {
         printf("slot %d:\n", num);
         if (filled) {
-            printf("   filled; mword: %s; index %d\n",
-                current_mword, next_mword_index
+            printf("   filled; word: %s; index %d\n",
+                current_word, next_word_index
             );
         } else {
             printf("   unfilled\n");
         }
-        printf("   mpattern: %s\n", mpattern);
-        if (compatible_mwords) {
-            printf("   %ld compat mwords\n",
-                compatible_mwords->size()
+        printf("   stack pattern: %s\n", filled_pattern);
+        if (compatible_words) {
+            printf("   %ld compat words\n",
+                compatible_words->size()
             );
         } else {
             printf("   compat words is null\n");
         }
     }
 
-    bool find_next_usable_mword();
-    bool letter_compatible(int mpos, char c);
-    bool check_mpattern(char* mp);
+    bool find_next_usable_word();
+    bool letter_compatible(int pos, char c);
+    bool check_pattern(char* mp);
 };
 
 struct GRID {
@@ -356,22 +258,10 @@ struct GRID {
         slot1->add_link(pos1, slot2, pos2);
         slot2->add_link(pos2, slot1, pos1);
     }
-    void print_mlinks() {
-        printf("Mlinks:\n");
-        for (SLOT *s: slots) {
-            s->print_mlinks();
-        }
-    }
-    void print_mwords() {
-        printf("Mwords:\n");
-        for (SLOT *s: slots) {
-            s->print_mwords();
-        }
-    }
     void print_solution() {
         printf("------ solution --------\n");
         for (SLOT *slot: slots) {
-            printf("%d: %s\n", slot->num, slot->current_mword);
+            printf("%d: %s\n", slot->num, slot->current_word);
         }
     }
     void print_state() {
@@ -391,11 +281,7 @@ struct GRID {
     // call this after adding slots and links
     void prepare() {
         for (SLOT *s: slots) {
-            s->mpos_init();
-        }
-        for (SLOT *s: slots) {
-            s->mlinks_init();
-            s->mwords_init();
+            s->words_init();
             s->filled = false;
         }
     }
@@ -446,44 +332,45 @@ void make_square_grid(GRID &grid, int len) {
 void print_square_grid(GRID &grid, int len) {
     for (int i=0; i<len; i++) {
         SLOT *slot = grid.slots[i];
-        printf("%s\n", slot->filled?slot->current_mword:slot->mpattern);
+        printf("%s\n", slot->filled?slot->current_word:slot->filled_pattern);
     }
 }
 
 ////////////////// GRID-FILL ALGORITHMS ////////////////
 
-// Scan compatible mwords for the given slot, starting from current index.
-// If find one that's usable (crossing words still have compat mwords)
+// Scan compatible words for the given slot, starting from current index.
+// If find one that's usable (crossing words still have compat words)
 // install it and return true
 //
-// Each position in the mword links to an xword
-// For each position and each possible letter (a-z) either
+// For each linked position and each possible letter (a-z) either
 // - we haven't checked it yet
 // - we checked and it's OK
 // - we checked and it's not OK
 //
-// so when scanning mwords:
+// so when scanning words:
 //  if any letter not checked, check it for all linked slots
 //  if any letter not OK, skip word
 //
-bool SLOT::find_next_usable_mword() {
-    if (!compatible_mwords) return false;
-    if (next_mword_index == 0) {
+bool SLOT::find_next_usable_word() {
+    if (!compatible_words) return false;
+    if (next_word_index == 0) {
         clear_usable_letter_checked();
     }
-    int n = compatible_mwords->size();
+    int n = compatible_words->size();
 #if VERBOSE
-    printf("slot %d: find next usable mword; %d of %d\n",
-        num, next_mword_index, n
+    printf("slot %d: find next usable word; %d of %d\n",
+        num, next_word_index, n
     );
-    printf("   mpattern %s\n", mpattern);
+    printf("   stack pattern %s\n", filled_pattern);
 #endif
-    while (next_mword_index < n) {
-        char* mw = mwords[(*compatible_mwords)[next_mword_index++]];
+    while (next_word_index < n) {
+        int ind = (*compatible_words)[next_word_index++];
+        char* w = words.words[len][ind];
         bool usable = true;
-        for (int i=0; i<mlen; i++) {
-            if (mpattern[i] != '_') continue;
-            char c = mw[i];
+        for (int i=0; i<len; i++) {
+            if (links[i].empty()) continue;
+            if (filled_pattern[i] != '_') continue;
+            char c = w[i];
             int nc = c-'a';
             if (!usable_letter_checked[i][nc]) {
                 usable_letter_checked[i][nc] = true;
@@ -508,10 +395,10 @@ bool SLOT::find_next_usable_mword() {
         }
         if (usable) {
 #if VERBOSE
-            printf("%s is usable for slot %d\n", mw, num);
+            printf("%s is usable for slot %d\n", w, num);
             print_usable();
 #endif
-            strcpy(current_mword, mw);
+            strcpy(current_word, w);
             return true;
         }
     }
@@ -522,31 +409,31 @@ bool SLOT::find_next_usable_mword() {
     return false;
 }
 
-// see if given letter in given position is compatible with xword
+// see if given letter in given crossed position is compatible with xword
 //
-bool SLOT::letter_compatible(int mpos, char c) {
-    LINK &link = mlinks[mpos];
+bool SLOT::letter_compatible(int pos, char c) {
+    LINK &link = links[pos];
     SLOT* slot2 = link.other_slot;
     char pattern2[MAX_LEN];
-    strcpy(pattern2, slot2->mpattern);
+    strcpy(pattern2, slot2->filled_pattern);
     pattern2[link.other_pos] = c;
-    return slot2->check_mpattern(pattern2);
+    return slot2->check_pattern(pattern2);
 }
 
 // mp differs from current mpattern by 1 additional letter.
-// see if this slot has an mword matching this
-// (only need to check mwords compatible with current mpattern)
+// see if this slot has an compatible word matching this
+// (only need to check words compatible with current filled_pattern)
 //
-bool SLOT::check_mpattern(char* mp) {
-    for (int i: *compatible_mwords) {
-        if (match(len, mp, mwords[i])) {
+bool SLOT::check_pattern(char* mp) {
+    for (int i: *compatible_words) {
+        if (match(len, mp, words.words[len][i])) {
             return true;
         }
     }
     return false;
 }
 
-// Find the unfilled slot with fewest compatible mwords
+// Find the unfilled slot with fewest compatible words
 // if any of these are usable,
 // mark slot as filled, push on stack, return true
 // Else return false (need to backtrack)
@@ -564,9 +451,9 @@ bool GRID::fill_next_slot() {
 #endif
     for (SLOT* slot: slots) {
         if (slot->filled) continue;
-        size_t n = slot->compatible_mwords->size();
+        size_t n = slot->compatible_words->size();
 #if VERBOSE
-        printf("   slot %d, %ld compatible mwords\n",
+        printf("   slot %d, %ld compatible words\n",
             slot->num, n
         );
 #endif
@@ -576,8 +463,8 @@ bool GRID::fill_next_slot() {
         }
     }
 
-    best->next_mword_index = 0;
-    if (best->find_next_usable_mword()) {
+    best->next_word_index = 0;
+    if (best->find_next_usable_word()) {
 #if VERBOSE
         printf("   slot %d has usable words; pushing\n", best->num);
 #endif
@@ -593,36 +480,37 @@ bool GRID::fill_next_slot() {
     }
 }
 
-// we've found a usable mword for the given slot.
+// we've found a usable word for the given slot.
 // for each position where its pattern was _:
-// in the linked slot, update the pattern and the compatible_mwords list.
+// in the linked slot, update the pattern and the compatible_words list.
 // If the pattern is full, mark slot as filled and push
 //
 void GRID::fill_slot(SLOT* slot) {
 #if VERBOSE
-    printf("filling %s in slot %d\n", slot->current_mword, slot->num);
+    printf("filling %s in slot %d\n", slot->current_word, slot->num);
 #endif
-    for (int i=0; i<slot->mlen; i++) {
-        char c = slot->mpattern[i];
+    for (int i=0; i<slot->len; i++) {
+        LINK &link = slot->links[i];
+        if (link.empty()) continue;
+        char c = slot->filled_pattern[i];
         if (c != '_') continue;
-        LINK &link = slot->mlinks[i];
         SLOT *slot2 = link.other_slot;
-        slot2->mpattern[link.other_pos] = slot->current_mword[i];
-        if (strchr(slot2->mpattern, '_')) {
-            slot2->compatible_mwords = slot2->pattern_cache.get_list(
-                slot2->mpattern
+        slot2->filled_pattern[link.other_pos] = slot->current_word[i];
+        if (strchr(slot2->filled_pattern, '_')) {
+            slot2->compatible_words = pattern_cache[slot->len].get_list(
+                slot2->filled_pattern
             );
-            if (slot2->compatible_mwords->empty()) {
+            if (slot2->compatible_words->empty()) {
                 printf("empty compat list for slot %d pattern %s\n",
-                    slot2->num, slot2->mpattern
+                    slot2->num, slot2->filled_pattern
                 );
                 exit(1);
             }
         } else {
             // other slot is now filled
-            slot2->compatible_mwords = NULL;
+            slot2->compatible_words = NULL;
             slot2->filled = true;
-            strcpy(slot2->current_mword, slot2->mpattern);
+            strcpy(slot2->current_word, slot2->filled_pattern);
             filled_slots.push(slot2);
         }
     }
@@ -640,24 +528,25 @@ bool GRID::backtrack() {
 #if VERBOSE
         printf("backtracking to slot %d\n", slot->num);
 #endif
-        // update mpatterns of unfilled crossing slots
+        // update filled_patterns of unfilled crossing slots
         //
-        for (int i=0; i<slot->mlen; i++) {
-            LINK &link = slot->mlinks[i];
+        for (int i=0; i<slot->len; i++) {
+            LINK &link = slot->links[i];
+            if (link.empty()) continue;
             SLOT* slot2 = link.other_slot;
             if (slot2->filled) continue;
-            slot2->mpattern[link.other_pos] = '_';
-            slot2->compatible_mwords = slot2->pattern_cache.get_list(
-                slot2->mpattern
+            slot2->filled_pattern[link.other_pos] = '_';
+            slot2->compatible_words = pattern_cache[slot->len].get_list(
+                slot2->filled_pattern
             );
-            if (slot2->compatible_mwords->empty()) {
+            if (slot2->compatible_words->empty()) {
                 printf("empty compat list for slot %d pattern %s\n",
-                    slot2->num, slot2->mpattern
+                    slot2->num, slot2->filled_pattern
                 );
                 exit(1);
             }
         }
-        if (slot->find_next_usable_mword()) {
+        if (slot->find_next_usable_word()) {
             fill_slot(slot);
             return true;
         }
@@ -678,33 +567,33 @@ bool GRID::backtrack() {
 //
 // at any point we have a stack of filled slots
 // each slot has
-//      'mpattern' reflecting crossing letters:
+//      'filled_pattern' reflecting crossing letters:
 //          filled slots: slots lower on the stack
 //          unfilled slots: all filled slots
-//      compatible_mwords: list of mwords compatible with mpattern
+//      compatible_words: list of words compatible with filled_pattern
 // filled slots have
-//      current mword
-//      a 'next index' into compatible_mwords
+//      current word
+//      a 'next index' into compatible_words
 //
 // fill_next_slot() picks an unfilled slot S
-//      (currently, the one with fewest compatible mwords).
-//      it scans its compatible_mwords list for an mword that's 'usable'
+//      (currently, the one with fewest compatible words).
+//      it scans its compatible_words list for an word that's 'usable'
 //          (i.e. other unfilled slots would have compatible words)
 //      if it finds one it adds that S to the filled stack,
 //          sets S.current_word
-//          and updates mpattern and compatible_mwords
+//          and updates filled_pattern and compatible_words
 //          of affected unfilled slots
 //      otherwise we backtrack:
 //          loop
 //              for slot S at top of stack:
-//              update mpatterns of unfilled slots to remove
-//                  letters in S.current_word unspecified in S.mpattern
-//              look for next usable mword
+//              update filled_patterns of unfilled slots to remove
+//                  letters in S.current_word unspecified in S.filled_pattern
+//              look for next usable word
 //              if none
 //                  pop S
 //              else
 //                  set S.current_word
-//                  update mpatterns of unfilled slots to include new mword
+//                  update filled_patterns of unfilled slots to include new word
 //                  return
 
 bool GRID::fill() {
@@ -742,11 +631,10 @@ void test_match() {
 int main(int, char**) {
     GRID grid;
     words.read();
+    init_pattern_cache();
     //make_test_grid(grid);
     make_square_grid(grid, 6);
     grid.prepare();
-    //grid.print_mlinks();
-    //grid.print_mwords();
     if (grid.fill()) {
         grid.print_solution();
     } else {

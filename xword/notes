@@ -144,3 +144,62 @@ Approach
 
 A solution for a grid is an mword for each slot.
 Can then list possible words for each slot
+
+------------------
+Standard crosswords, by convention, have unique words.
+How to enforce this?
+
+an mword (for a particular slot) has an associated set of words
+if 2 slots have the same length but different masks,
+they could have different mwords both with the same word.
+problem:
+given N sets, can we pick a unique element from each set?
+see https://stackoverflow.com/questions/55139919/algorithm-to-determine-the-possibility-of-selecting-1-unique-element-from-n-arra
+To use this, we'd have to
+for each slot (or each (len, mask)) have a mapping
+mword -> set of word indices
+maintain this set for filled slots
+in 'usable' check, as a last step, do the unique-element algorithm
+
+Note: in square grids, mwords and words are the same.
+so in the case the usable check can compare with filled words of that len
+(could use a data structure)
+
+The motivation for mwords is:
+suppose a slot has uncrossed letters,
+say the middle space in a 3-letter slot.
+If you filled in 'bat' and got stuck and backtracked.
+You don't want to then use 'but'; you'll get stuck again.
+
+This is true in the absence of a uniqueness requirement.
+But not in the presence of it.
+You might get stuck because some other slot needed 'bat',
+and you couldn't use it.
+
+for highly-connected puzzles it's probably better just to use
+words (not mwords) and then the uniqueness problem is easier
+---------------
+back-jumping
+see https://cdn.aaai.org/AAAI/1990/AAAI90-032.pdf
+suppose you fail to find a usable word in a slot S.
+
+The lack of a usable word for S might be due to:
+- uniqueness: S had a compatible word already used in a filled slot
+- crossings by filled slots
+One or both might hold.
+
+Back-tracking tries the next work in the last filled slot S',
+which may not fix either of these problems.
+E.g. S' may not overlap or be close to S,
+or have the duplicate word.
+
+Back-jumping means going back to a filled slot lower on the stack:
+one that has the dup word, or that crosses S.
+We can then either:
+
+- pop the filled slots above that
+(this could cause a lot of work to be re-done)
+
+- raise S' to the top of the stack,
+and recompute masks and compatible word lists for slots above it.
+This might work better, but it may cause solutions to be skipped.
