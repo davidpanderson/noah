@@ -1,3 +1,5 @@
+// DEPRECATED: doesn't support unique words, and too complex
+
 #include <cstdio>
 #include <cstring>
 #include <vector>

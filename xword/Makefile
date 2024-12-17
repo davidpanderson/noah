@@ -1,6 +1,10 @@
-all: xword xw2
+all: xword word_square
+
+SRC = xw.cpp
+HDR = xw.h
 
 xword: xword.cpp
 	g++ -g xword.cpp -o xword
-xw2: xw2.cpp
-	g++ -g xw2.cpp -o xw2
+
+word_square: word_square.cpp $(SRC) $(HDR)
+	g++ -g word_square.cpp $(SRC) -lncurses -o word_square
