@@ -1,3 +1,8 @@
+#include <cstdio>
+#include <stdlib.h>
+
+#include "xw.h"
+
 #define MAX_SIZE 21
     // NYT sunday is 21x21
 
@@ -14,11 +19,14 @@
 // so to print it you just print the acrosses.
 
 void read_black_square_grid(FILE *f, GRID &grid) {
+    int i, j, k, start, len;
     char chars[MAX_SIZE][MAX_SIZE];
     SLOT *slots[MAX_SIZE][MAX_SIZE];
     int starts[MAX_SIZE][MAX_SIZE];
     int nrows=0, ncols=0;
-    while (fgets(buf, sizeof(buf), f) {
+    char buf[256];
+
+    while (fgets(buf, sizeof(buf), f)) {
         int nc = strlen(buf)-1;
         if (ncols) {
             if (nc != ncols) {
@@ -79,21 +87,22 @@ void read_black_square_grid(FILE *f, GRID &grid) {
     }
 }
 
-// line grid:
-// read a file of the form
-//
-//  a a a a|a a a a a a a a
-//      -   -   -       -
-//  a|a|a a a a a a a a a a
-//          -   -       -
-//  a a a a a a|a a a a a a
-// etc.
-// and make it into a GRID
-
-void read_line_grid(FILE* f, GRID& grid) {
-    char file[MAX_SIZE][MAX_SIZE];
-    while (fgets(buf, sizeof(buf), f) {
-    }
+void print_grid(GRID &grid, bool) {
 }
 
-// There can be unmarked squares
+int main(int argc, char** argv) {
+    GRID grid;
+    words.read();
+    init_pattern_cache();
+    FILE *f = fopen(argv[1], "r");
+    read_black_square_grid(f, grid);
+    grid.prepare();
+#if CURSES
+    initscr();
+#endif
+    if (grid.fill()) {
+        grid.print_solution();
+    } else {
+        printf("no solution\n");
+    }
+}
