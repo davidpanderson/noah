@@ -9,21 +9,29 @@
 // black square grid:
 // read a file of the form
 //
-//  XXaaaaaaaaaaaXX
-//  XaaaaaaaaaaaaaX
+//  **aaaaaaaaaaa**
+//  *aaaaaaaaaaaaa*
 //  aaaaaaaaaaaaaaa
-//  aaaaaXXXaaaXaaa
+//  aaaaa***aaaXaaa
 // etc.
-// and make it into a GRID
+// * = a black square.
+// a = any letter (can hard-code entries)
+//      or . or space (blank cell)
+//
+// ... and make it into a GRID
+//
 // By convention there are no unchecked squares,
-// so to print it you just print the acrosses.
+// so to print it you can just print the acrosses.
+
+SLOT *slots[MAX_SIZE][MAX_SIZE];
+    // for each cell, the across word if any
+int starts[MAX_SIZE][MAX_SIZE];
+    // and the column where that word starts
+int nrows, ncols;
 
 void read_black_square_grid(FILE *f, GRID &grid) {
     int i, j, k, start, len;
     char chars[MAX_SIZE][MAX_SIZE];
-    SLOT *slots[MAX_SIZE][MAX_SIZE];
-    int starts[MAX_SIZE][MAX_SIZE];
-    int nrows=0, ncols=0;
     char buf[256];
 
     while (fgets(buf, sizeof(buf), f)) {
@@ -54,7 +62,7 @@ void read_black_square_grid(FILE *f, GRID &grid) {
                     len = j-start;
                 }
                 if (len > 1) {
-                    SLOT *slot = grid.add_slot(len);
+                    SLOT *slot = grid.add_slot(new SLOT(len));
                     for (k=start; k<j; k++) {
                         slots[i][k] = slot;
                         starts[i][k] = start;
@@ -73,7 +81,7 @@ void read_black_square_grid(FILE *f, GRID &grid) {
                     len = i-start;
                 }
                 if (len > 1) {
-                    SLOT *slot = grid.add_slot(len);
+                    SLOT *slot = grid.add_slot(new SLOT(len));
                     for (k=start; k<i; k++) {
                         if (slots[k][j]) {
                             SLOT *slot2 = slots[k][j];
@@ -88,6 +96,18 @@ void read_black_square_grid(FILE *f, GRID &grid) {
 }
 
 void print_grid(GRID &grid, bool) {
+    int i, j;
+    for (i=0; i<nrows; i++) {
+        for (j=0; j<ncols; j++) {
+            SLOT *slot = slots[i][j];
+            if (slot) {
+                printf("%s", slot->filled_pattern);
+                j += slot->len;
+            } else {
+                printf("*");
+            }
+        }
+    }
 }
 
 int main(int argc, char** argv) {

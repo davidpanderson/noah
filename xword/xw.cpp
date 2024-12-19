@@ -5,7 +5,6 @@
 
 #include "xw.h"
 
-#define VERBOSE     0
 #define SHOW_GRID   1
     // show grid as you go
 #define DEBUG       0
@@ -127,10 +126,13 @@ void init_pattern_cache() {
 ////////////////// GRID-FILL ALGORITHMS ////////////////
 
 void SLOT::words_init() {
-    // initialize pattern and compatible word list
-    strcpy(filled_pattern, NULL_PATTERN);
-    filled_pattern[len] = 0;
-    compatible_words = pattern_cache[len].get_list(filled_pattern);
+    if (strchr(filled_pattern, '_')) {
+        compatible_words = pattern_cache[len].get_list(filled_pattern);
+        filled = false;
+    } else {
+        compatible_words = NULL;
+        filled = true;
+    }
 }
 
 // debugging
@@ -200,7 +202,7 @@ bool SLOT::find_next_usable_word(GRID *grid) {
     }
     int n = compatible_words->size();
 #if VERBOSE
-    printf("slot %d: find next usable word; %d of %d\n",
+    printf("find_next_usable_word() slot %d: %d of %d\n",
         num, next_word_index, n
     );
     printf("   stack pattern %s\n", filled_pattern);
@@ -208,6 +210,9 @@ bool SLOT::find_next_usable_word(GRID *grid) {
     while (next_word_index < n) {
         int ind = (*compatible_words)[next_word_index++];
         char* w = words.words[len][ind];
+#if VERBOSE
+        printf("   checking %s\n", w);
+#endif
         bool usable = true;
         for (int i=0; i<len; i++) {
             if (links[i].empty()) continue;
@@ -219,9 +224,6 @@ bool SLOT::find_next_usable_word(GRID *grid) {
                 bool x = letter_compatible(i, c);
                 usable_letter_ok[i][nc] = x;
 #if DEBUG
-                if (num==4 && i==0 && c=='a') {
-                    printf("USABLE setting 4/0/a to %d\n", x);
-                }
             } else {
                 bool x = letter_compatible(i, c);
                 if (x != usable_letter_ok[i][nc]) {
@@ -245,15 +247,15 @@ bool SLOT::find_next_usable_word(GRID *grid) {
 #endif
         if (usable) {
 #if VERBOSE
-            printf("%s is usable for slot %d\n", w, num);
-            print_usable();
+            printf("   %s is usable for slot %d\n", w, num);
+            //print_usable();
 #endif
             strcpy(current_word, w);
             return true;
         }
     }
 #if VERBOSE
-    printf("no compat words are usable for slot %d\n", num);
+    printf("   no compat words are usable for slot %d\n", num);
     print_usable();
 #endif
     return false;
@@ -351,7 +353,7 @@ bool GRID::fill_next_slot() {
     best->next_word_index = 0;
     if (best->find_next_usable_word(this)) {
 #if VERBOSE
-        printf("   slot %d has usable words; pushing\n", best->num);
+        printf("   slot %d has usable words; pushing on filled stack\n", best->num);
 #endif
         best->filled = true;
         filled_slots.push_back(best);
@@ -372,7 +374,7 @@ bool GRID::fill_next_slot() {
 //
 void GRID::fill_slot(SLOT* slot) {
 #if VERBOSE
-    printf("filling %s in slot %d\n", slot->current_word, slot->num);
+    printf("fill_slot(): filling %s in slot %d\n", slot->current_word, slot->num);
 #endif
     for (int i=0; i<slot->len; i++) {
         LINK &link = slot->links[i];
@@ -382,9 +384,15 @@ void GRID::fill_slot(SLOT* slot) {
         SLOT *slot2 = link.other_slot;
         slot2->filled_pattern[link.other_pos] = slot->current_word[i];
         if (strchr(slot2->filled_pattern, '_')) {
-            slot2->compatible_words = pattern_cache[slot->len].get_list(
+            slot2->compatible_words = pattern_cache[slot2->len].get_list(
                 slot2->filled_pattern
             );
+#if VERBOSE
+            printf("   slot %d now has %ld compat words for pattern %s\n",
+                slot2->num, slot2->compatible_words->size(),
+                slot2->filled_pattern
+            );
+#endif
             if (slot2->compatible_words->empty()) {
                 printf("empty compat list for slot %d pattern %s\n",
                     slot2->num, slot2->filled_pattern
@@ -393,6 +401,11 @@ void GRID::fill_slot(SLOT* slot) {
             }
         } else {
             // other slot is now filled
+#if VERBOSE
+            printf("   slot %d is now filled: %s\n",
+                slot2->num, slot2->filled_pattern
+            );
+#endif
             slot2->compatible_words = NULL;
             slot2->filled = true;
             strcpy(slot2->current_word, slot2->filled_pattern);
@@ -411,7 +424,7 @@ bool GRID::backtrack() {
     while (1) {
         SLOT *slot = filled_slots.back();
 #if VERBOSE
-        printf("backtracking to slot %d\n", slot->num);
+        printf("backtrack() to slot %d\n", slot->num);
 #endif
         // update filled_patterns of unfilled crossing slots
         //
@@ -421,11 +434,17 @@ bool GRID::backtrack() {
             SLOT* slot2 = link.other_slot;
             if (slot2->filled) continue;
             slot2->filled_pattern[link.other_pos] = '_';
-            slot2->compatible_words = pattern_cache[slot->len].get_list(
+            slot2->compatible_words = pattern_cache[slot2->len].get_list(
                 slot2->filled_pattern
             );
             if (slot2->compatible_words->empty()) {
-                printf("empty compat list for slot %d pattern %s\n",
+#if VERBOSE
+                printf("   slot %d now has %ld compat words for pattern %s\n",
+                    slot2->num, slot2->compatible_words->size(),
+                    slot2->filled_pattern
+                );
+#endif
+                printf("   empty compat list for slot %d pattern %s\n",
                     slot2->num, slot2->filled_pattern
                 );
                 exit(1);
@@ -475,31 +494,3 @@ bool GRID::fill() {
 #endif
     }
 }
-
-////////////////////
-
-#if 0
-void make_test_grid(GRID &grid) {
-    SLOT *slot0 = grid.add_slot(10);
-    SLOT *slot1 = grid.add_slot(6);
-    SLOT *slot2 = grid.add_slot(4);
-    SLOT *slot3 = grid.add_slot(5);
-    grid.add_link(slot0, 3, slot2, 1);
-    grid.add_link(slot1, 2, slot2, 3);
-    grid.add_link(slot0, 6, slot3, 1);
-    grid.add_link(slot1, 5, slot3, 3);
-}
-
-int main(int, char**) {
-    GRID grid;
-    words.read();
-    init_pattern_cache();
-    make_test_grid(grid);
-    grid.prepare();
-    if (grid.fill()) {
-        grid.print_solution();
-    } else {
-        printf("no solution\n");
-    }
-}
-#endif

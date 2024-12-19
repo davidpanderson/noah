@@ -1,4 +1,4 @@
-all: xword word_square lines black_square
+all: xword word_square lines black_square xwtest
 
 SRC = xw.cpp
 HDR = xw.h
@@ -12,3 +12,5 @@ lines: lines.cpp $(SRC) $(HDR)
 	g++ -g lines.cpp $(SRC) -lncurses -o lines
 black_square: black_square.cpp $(SRC) $(HDR)
 	g++ -g black_square.cpp $(SRC) -lncurses -o black_square
+xwtest: xwtest.cpp $(SRC) $(HDR)
+	g++ -g xwtest.cpp $(SRC) -lncurses -o xwtest

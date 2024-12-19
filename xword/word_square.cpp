@@ -13,10 +13,10 @@ void make_square_grid(GRID &grid, int len) {
     vector<SLOT*> across;
     vector<SLOT*> down;
     for (int i=0; i<len; i++) {
-        across.push_back(grid.add_slot(len));
+        across.push_back(grid.add_slot(new SLOT(len)));
     }
     for (int i=0; i<len; i++) {
-        down.push_back(grid.add_slot(len));
+        down.push_back(grid.add_slot(new SLOT(len)));
     }
     for (int i=0; i<len; i++) {
         for (int j=0; j<len; j++) {

@@ -203,3 +203,12 @@ We can then either:
 - raise S' to the top of the stack,
 and recompute masks and compatible word lists for slots above it.
 This might work better, but it may cause solutions to be skipped.
+---------------------
+Preset letters
+
+A given slot can have some cells preset to particular letters.
+Use that pattern when generate usable word list.
+
+A slot is preset if all its cells are preset.
+
+Mark preset slots as filled (but don't push on filled stack)

@@ -1,8 +1,11 @@
 #include <cstring>
 #include <vector>
 #include <stack>
+#include <cstdlib>
 
 using namespace std;
+
+#define VERBOSE     1
 
 ///////////// WORD LISTS AND PATTERNS //////////////
 
@@ -57,7 +60,7 @@ struct SLOT {
     ILIST *compatible_words;
         // words compatible with this pattern
     int next_word_index;
-        // next one to try
+        // next compatible word to try
     char current_word[MAX_LEN];
         // if filled, current word
 
@@ -69,9 +72,18 @@ struct SLOT {
     bool usable_letter_checked[MAX_LEN][26];
     bool usable_letter_ok[MAX_LEN][26];
 
-    SLOT(int _len, int _num) {
+    SLOT(int _len, char* preset_pattern=NULL) {
         len = _len;
-        num = _num;
+        if (preset_pattern) {
+            if (strlen(preset_pattern) != len) {
+                fprintf(stderr, "bad preset pattern %s\n", preset_pattern);
+                exit(1);
+            }
+            strcpy(filled_pattern, preset_pattern);
+        } else {
+            strcpy(filled_pattern, NULL_PATTERN);
+            filled_pattern[len] = 0;
+        }
     }
     inline void clear_usable_letter_checked() {
         memset(usable_letter_checked, 0, sizeof(usable_letter_checked));
@@ -91,14 +103,22 @@ struct GRID {
     vector<SLOT*> slots;
     vector<SLOT*> filled_slots;
 
-    SLOT* add_slot(int len) {
-        SLOT *slot = new SLOT(len, slot_num++);
+    SLOT* add_slot(SLOT* slot) {
+        slot->num = slot_num++;
         slots.push_back(slot);
         return slot;
     }
     void add_link(SLOT *slot1, int pos1, SLOT *slot2, int pos2) {
-        slot1->add_link(pos1, slot2, pos2);
-        slot2->add_link(pos2, slot1, pos1);
+        char c1 = slot1->filled_pattern[pos1];
+        char c2 = slot2->filled_pattern[pos2];
+        if (c1 != '_') {
+            slot2->filled_pattern[pos2] = c1;
+        } else if (c2 != '_') {
+            slot1->filled_pattern[pos1] = c2;
+        } else {
+            slot1->add_link(pos1, slot2, pos2);
+            slot2->add_link(pos2, slot1, pos1);
+        }
     }
     void print_solution() {
         printf("------ solution --------\n");
@@ -108,12 +128,12 @@ struct GRID {
     }
     void print_state() {
         printf("------- state ----------\n");
-        for (SLOT *slot: slots) {
+        for (SLOT *slot: filled_slots) {
             slot->print_state();
         }
-        printf("filled slots: ");
-        for (SLOT *slot: filled_slots) {
-            printf(" %d", slot->num);
+        for (SLOT *slot: slots) {
+            if (slot->filled) continue;
+            slot->print_state();
         }
         printf("\n------- end ----------\n");
     }
@@ -122,7 +142,6 @@ struct GRID {
     void prepare() {
         for (SLOT *s: slots) {
             s->words_init();
-            s->filled = false;
         }
     }
 
@@ -131,4 +150,3 @@ struct GRID {
     bool fill();
     void fill_slot(SLOT*);
 };
-
