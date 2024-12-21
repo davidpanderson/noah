@@ -5,7 +5,31 @@
 
 using namespace std;
 
-#define VERBOSE     1
+#define NO_DUPS     1
+    // don't allow duplicate words
+#define EXIT_AFTER_SOLVE    1
+    // exit after find a solution
+
+// turn off if you use curses
+
+#define VERBOSE_INIT            0
+    // initialization of grid
+#define VERBOSE_STEP_GRID       1
+    // show grid after each step (fill or backtrack)
+#define VERBOSE_STEP_STATE      0
+    // show detailed state after each step
+#define VERBOSE_NEXT_USABLE     0
+    // SLOT::find_next_usable_work()
+#define VERBOSE_FILL_NEXT_SLOT  0
+    // GRID::fill_next_slot()
+#define VERBOSE_FILL_SLOT       0
+    // GRID::fill_slot()
+#define VERBOSE_BACKTRACK       0
+    // GRID::backtrack()
+
+#define CHECK_ASSERTS   0
+    // do sanity checks: conditions that should always hold
+
 
 ///////////// WORD LISTS AND PATTERNS //////////////
 
@@ -63,6 +87,8 @@ struct SLOT {
         // next compatible word to try
     char current_word[MAX_LEN];
         // if filled, current word
+    int row, col;
+        // for planar grids
 
     // for each position and each letter (a-z)
     // keep track of whether putting the letter in that position

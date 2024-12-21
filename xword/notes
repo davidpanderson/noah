@@ -184,23 +184,26 @@ see https://cdn.aaai.org/AAAI/1990/AAAI90-032.pdf
 suppose you fail to find a usable word in a slot S.
 
 The lack of a usable word for S might be due to:
-- uniqueness: S had a compatible word already used in a filled slot
-- crossings by filled slots
-One or both might hold.
+- uniqueness: S had a compatible word
+    but it was already used in a filled slot S2
+- S is crossed by a filled slot S2
+- S is crossed by an unfilled slot S3,
+    and S3 is crossed by a filled slot S2
 
-Back-tracking tries the next work in the last filled slot S',
-which may not fix either of these problems.
-E.g. S' may not overlap or be close to S,
-or have the duplicate word.
+Let X be the set of these S2's.
+Back-tracking tries the next word in the last
+(i.e. top of stack) filled slot S',
+But if S' is not in X,
+changing its word won't lead to a usable word for S
 
-Back-jumping means going back to a filled slot lower on the stack:
-one that has the dup word, or that crosses S.
+Back-jumping means:
+Find the topmost S2 in X
 We can then either:
 
-- pop the filled slots above that
+- pop the filled slots above X
 (this could cause a lot of work to be re-done)
 
-- raise S' to the top of the stack,
+- move X to the top of the stack,
 and recompute masks and compatible word lists for slots above it.
 This might work better, but it may cause solutions to be skipped.
 ---------------------

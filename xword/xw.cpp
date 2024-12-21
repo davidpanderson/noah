@@ -7,10 +7,7 @@
 
 #define SHOW_GRID   1
     // show grid as you go
-#define DEBUG       0
-    // do sanity checks
 #define WORD_FILE   "words_random"
-#define NO_DUPS     1
 
 extern void print_grid(GRID&, bool is_solution);
 
@@ -201,7 +198,7 @@ bool SLOT::find_next_usable_word(GRID *grid) {
         clear_usable_letter_checked();
     }
     int n = compatible_words->size();
-#if VERBOSE
+#if VERBOSE_NEXT_USABLE
     printf("find_next_usable_word() slot %d: %d of %d\n",
         num, next_word_index, n
     );
@@ -210,7 +207,7 @@ bool SLOT::find_next_usable_word(GRID *grid) {
     while (next_word_index < n) {
         int ind = (*compatible_words)[next_word_index++];
         char* w = words.words[len][ind];
-#if VERBOSE
+#if VERBOSE_NEXT_USABLE
         printf("   checking %s\n", w);
 #endif
         bool usable = true;
@@ -223,7 +220,7 @@ bool SLOT::find_next_usable_word(GRID *grid) {
                 usable_letter_checked[i][nc] = true;
                 bool x = letter_compatible(i, c);
                 usable_letter_ok[i][nc] = x;
-#if DEBUG
+#if CHECK_ASSERTS
             } else {
                 bool x = letter_compatible(i, c);
                 if (x != usable_letter_ok[i][nc]) {
@@ -246,7 +243,7 @@ bool SLOT::find_next_usable_word(GRID *grid) {
         }
 #endif
         if (usable) {
-#if VERBOSE
+#if VERBOSE_NEXT_USABLE
             printf("   %s is usable for slot %d\n", w, num);
             //print_usable();
 #endif
@@ -254,7 +251,7 @@ bool SLOT::find_next_usable_word(GRID *grid) {
             return true;
         }
     }
-#if VERBOSE
+#if VERBOSE_NEXT_USABLE
     printf("   no compat words are usable for slot %d\n", num);
     print_usable();
 #endif
@@ -333,13 +330,13 @@ bool GRID::fill_next_slot() {
     //
     size_t nbest = 9999999;
     SLOT* best;
-#if VERBOSE
+#if VERBOSE_FILL_NEXT_SLOT
     printf("fill_next_slot():\n");
 #endif
     for (SLOT* slot: slots) {
         if (slot->filled) continue;
         size_t n = slot->compatible_words->size();
-#if VERBOSE
+#if VERBOSE_FILL_NEXT_SLOT
         printf("   slot %d, %ld compatible words\n",
             slot->num, n
         );
@@ -352,7 +349,7 @@ bool GRID::fill_next_slot() {
 
     best->next_word_index = 0;
     if (best->find_next_usable_word(this)) {
-#if VERBOSE
+#if VERBOSE_FILL_NEXT_SLOT
         printf("   slot %d has usable words; pushing on filled stack\n", best->num);
 #endif
         best->filled = true;
@@ -360,7 +357,7 @@ bool GRID::fill_next_slot() {
         fill_slot(best);
         return true;
     } else {
-#if VERBOSE
+#if VERBOSE_FILL_NEXT_SLOT
         printf("   slot %d has no usable words\n", best->num);
 #endif
         return false;
@@ -373,7 +370,7 @@ bool GRID::fill_next_slot() {
 // If the pattern is full, mark slot as filled and push
 //
 void GRID::fill_slot(SLOT* slot) {
-#if VERBOSE
+#if VERBOSE_FILL_SLOT
     printf("fill_slot(): filling %s in slot %d\n", slot->current_word, slot->num);
 #endif
     for (int i=0; i<slot->len; i++) {
@@ -387,7 +384,7 @@ void GRID::fill_slot(SLOT* slot) {
             slot2->compatible_words = pattern_cache[slot2->len].get_list(
                 slot2->filled_pattern
             );
-#if VERBOSE
+#if VERBOSE_FILL_SLOT
             printf("   slot %d now has %ld compat words for pattern %s\n",
                 slot2->num, slot2->compatible_words->size(),
                 slot2->filled_pattern
@@ -401,7 +398,7 @@ void GRID::fill_slot(SLOT* slot) {
             }
         } else {
             // other slot is now filled
-#if VERBOSE
+#if VERBOSE_FILL_SLOT
             printf("   slot %d is now filled: %s\n",
                 slot2->num, slot2->filled_pattern
             );
@@ -423,7 +420,7 @@ void GRID::fill_slot(SLOT* slot) {
 bool GRID::backtrack() {
     while (1) {
         SLOT *slot = filled_slots.back();
-#if VERBOSE
+#if VERBOSE_BACKTRACK
         printf("backtrack() to slot %d\n", slot->num);
 #endif
         // update filled_patterns of unfilled crossing slots
@@ -438,7 +435,7 @@ bool GRID::backtrack() {
                 slot2->filled_pattern
             );
             if (slot2->compatible_words->empty()) {
-#if VERBOSE
+#if VERBOSE_BACKTRACK
                 printf("   slot %d now has %ld compat words for pattern %s\n",
                     slot2->num, slot2->compatible_words->size(),
                     slot2->filled_pattern
@@ -455,7 +452,7 @@ bool GRID::backtrack() {
             return true;
         }
 
-#if VERBOSE
+#if VERBOSE_BACKTRACK
         printf("slot %d has no more usable words; popping\n", slot->num);
 #endif
         filled_slots.pop_back();
@@ -472,12 +469,12 @@ void print_square_grid(GRID &grid, int len, bool is_solution);
 bool GRID::fill() {
     while (1) {
         if (filled_slots.size() == slots.size()) {
-#if VERBOSE
-            printf("All slots filled; we're done here\n");
-#endif
-            //return true;
-            //print_solution();
+            printf("SOLUTION FOUND\n");
             print_grid(*this, true);
+            //print_solution();
+#if EXIT_AFTER_SOLVE
+            return true;
+#endif
             backtrack();
             continue;
         }
@@ -486,10 +483,10 @@ bool GRID::fill() {
                 return false;
             }
         }
-#if SHOW_GRID
+#if VERBOSE_STEP_GRID
         print_grid(*this, false);
 #endif
-#if VERBOSE
+#if VERBOSE_STEP_STATE
         print_state();
 #endif
     }
