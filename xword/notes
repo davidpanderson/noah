@@ -210,8 +210,15 @@ This might work better, but it may cause solutions to be skipped.
 Preset letters
 
 A given slot can have some cells preset to particular letters.
+Store this in slot.filled_pattern
 Use that pattern when generate usable word list.
+SLOT::preset_char(int pos, char)
+SLOT::preset(char*)
 
 A slot is preset if all its cells are preset.
-
 Mark preset slots as filled (but don't push on filled stack)
+
+in grid initiation:
+- if preset char, copy to crossword
+    check consistency
+- find preset slots and mark as filled

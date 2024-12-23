@@ -14,7 +14,7 @@ using namespace std;
 
 #define VERBOSE_INIT            0
     // initialization of grid
-#define VERBOSE_STEP_GRID       1
+#define VERBOSE_STEP_GRID       0
     // show grid after each step (fill or backtrack)
 #define VERBOSE_STEP_STATE      0
     // show detailed state after each step
@@ -27,7 +27,7 @@ using namespace std;
 #define VERBOSE_BACKTRACK       0
     // GRID::backtrack()
 
-#define CHECK_ASSERTS   0
+#define CHECK_ASSERTS           0
     // do sanity checks: conditions that should always hold
 
 
@@ -98,21 +98,19 @@ struct SLOT {
     bool usable_letter_checked[MAX_LEN][26];
     bool usable_letter_ok[MAX_LEN][26];
 
-    SLOT(int _len, char* preset_pattern=NULL) {
+    SLOT(int _len) {
         len = _len;
-        if (preset_pattern) {
-            if (strlen(preset_pattern) != len) {
-                fprintf(stderr, "bad preset pattern %s\n", preset_pattern);
-                exit(1);
-            }
-            strcpy(filled_pattern, preset_pattern);
-        } else {
-            strcpy(filled_pattern, NULL_PATTERN);
-            filled_pattern[len] = 0;
-        }
+        strcpy(filled_pattern, NULL_PATTERN);
+        filled_pattern[len] = 0;
     }
     inline void clear_usable_letter_checked() {
         memset(usable_letter_checked, 0, sizeof(usable_letter_checked));
+    }
+    void preset_char(int pos, char c) {
+        filled_pattern[pos] = c;
+    }
+    void preset(char *p) {
+        strcpy(filled_pattern, p);
     }
 
     void print_usable();
@@ -128,6 +126,7 @@ struct GRID {
     int slot_num=0;
     vector<SLOT*> slots;
     vector<SLOT*> filled_slots;
+    int npreset_slots;
 
     SLOT* add_slot(SLOT* slot) {
         slot->num = slot_num++;
@@ -164,10 +163,18 @@ struct GRID {
         printf("\n------- end ----------\n");
     }
 
+    void preset_init();
+        // propagate preset chars
+
     // call this after adding slots and links
     void prepare() {
+        npreset_slots = 0;
+        preset_init();
         for (SLOT *s: slots) {
             s->words_init();
+            if (s->filled) {
+                npreset_slots++;
+            }
         }
     }
 

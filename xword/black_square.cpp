@@ -59,11 +59,13 @@ void read_black_square_grid(FILE *f, GRID &grid) {
         nrows++;
     }
 
-    // add a row of X at bottom
+    // add a row of * at bottom
     for (j=0; j<ncols; j++) {
         chars[nrows][j] = '*';
     }
 
+    // make across slots
+    //
     for (i=0; i<nrows; i++) {
         start = -1;     // index of initial non-black cell
         for (j=0; j<ncols+1; j++) {
@@ -94,6 +96,8 @@ void read_black_square_grid(FILE *f, GRID &grid) {
         }
     }
 
+    // make down slots
+    //
     for (j=0; j<ncols; j++) {
         start = -1;
         for (i=0; i<nrows+1; i++) {
@@ -120,6 +124,20 @@ void read_black_square_grid(FILE *f, GRID &grid) {
                     start = i;
                 }
             }
+        }
+    }
+
+    // handle presets
+    //
+    for (i=0; i<nrows; i++) {
+        for (j=0; j<ncols+1; j++) {
+            char c = chars[i][j];
+            if (c == '*' || c == '.') {
+                continue;
+            }
+            SLOT *slot = slots[i][j];
+            int pos = j - starts[i][j];
+            slot->preset_char(pos, c);
         }
     }
 }

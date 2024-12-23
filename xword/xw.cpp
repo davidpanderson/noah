@@ -120,14 +120,16 @@ void init_pattern_cache() {
     }
 }
 
-////////////////// GRID-FILL ALGORITHMS ////////////////
-
+// get initial list of compatible words.
+// If slot is preset, mark as filled
+//
 void SLOT::words_init() {
     if (strchr(filled_pattern, '_')) {
         compatible_words = pattern_cache[len].get_list(filled_pattern);
         filled = false;
     } else {
         compatible_words = NULL;
+        strcpy(current_word, filled_pattern);
         filled = true;
     }
 }
@@ -179,6 +181,67 @@ void SLOT::print_state() {
     }
 }
 
+// propagate preset chars to crosswords; check for consistency
+//
+void GRID::preset_init() {
+    for (SLOT *slot: slots) {
+        for (int pos=0; pos<slot->len; pos++) {
+            char c1 = slot->filled_pattern[pos];
+            if (c1 == '_') continue;
+            LINK &link = slot->links[pos];
+            SLOT *slot2 = link.other_slot;
+            if (!slot2) continue;
+            int pos2 = link.other_pos;
+            char c2 = slot2->filled_pattern[pos2];
+            if (c2 == c1) {
+                continue;
+            } else if (c2 == '_') {
+                slot2->filled_pattern[pos2] = c1;
+            } else {
+                printf("inconsistent preset in slots %d and %d",
+                    slot->num, slot2->num
+                );
+                exit(1);
+            }
+        }
+    }
+}
+
+////////////////// GRID-FILL ALGORITHMS ////////////////
+
+// Sketch of fill algorithm:
+//
+// at any point we have a stack of filled slots
+// each slot has
+//      'filled_pattern' reflecting crossing letters:
+//          filled slots: slots lower on the stack
+//          unfilled slots: all filled slots
+//      compatible_words: list of words compatible with filled_pattern
+// filled slots have
+//      current word
+//      a 'next index' into compatible_words
+//
+// fill_next_slot() picks an unfilled slot S
+//      (currently, the one with fewest compatible words).
+//      it scans its compatible_words list for an word that's 'usable'
+//          (i.e. other unfilled slots would have compatible words)
+//      if it finds one it adds that S to the filled stack,
+//          sets S.current_word
+//          and updates filled_pattern and compatible_words
+//          of affected unfilled slots
+//      otherwise we backtrack:
+//          loop
+//              for slot S at top of stack:
+//              update filled_patterns of unfilled slots to remove
+//                  letters in S.current_word unspecified in S.filled_pattern
+//              look for next usable word
+//              if none
+//                  pop S
+//              else
+//                  set S.current_word
+//                  update filled_patterns of unfilled slots to include new word
+//                  return
+
 // Scan compatible words for the given slot, starting from current index.
 // If find one that's usable (crossing words still have compat words)
 // install it and return true
@@ -224,7 +287,7 @@ bool SLOT::find_next_usable_word(GRID *grid) {
             } else {
                 bool x = letter_compatible(i, c);
                 if (x != usable_letter_ok[i][nc]) {
-                    printf("USABLE inconsistent flag i %d char %c x %d mw %s\n", i, c, x, mw);
+                    printf("USABLE inconsistent flag i %d char %c x %d mw %s\n", i, c, x, w);
                     exit(1);
                 }
 #endif
@@ -263,6 +326,7 @@ bool SLOT::find_next_usable_word(GRID *grid) {
 bool SLOT::letter_compatible(int pos, char c) {
     LINK &link = links[pos];
     SLOT* slot2 = link.other_slot;
+    if (slot2->filled) return true;
     char pattern2[MAX_LEN];
     strcpy(pattern2, slot2->filled_pattern);
     pattern2[link.other_pos] = c;
@@ -282,41 +346,6 @@ bool SLOT::check_pattern(char* mp) {
     return false;
 }
 
-/////////////// FILL ALGORITHM /////////////////
-
-// Sketch of fill algorithm:
-//
-// at any point we have a stack of filled slots
-// each slot has
-//      'filled_pattern' reflecting crossing letters:
-//          filled slots: slots lower on the stack
-//          unfilled slots: all filled slots
-//      compatible_words: list of words compatible with filled_pattern
-// filled slots have
-//      current word
-//      a 'next index' into compatible_words
-//
-// fill_next_slot() picks an unfilled slot S
-//      (currently, the one with fewest compatible words).
-//      it scans its compatible_words list for an word that's 'usable'
-//          (i.e. other unfilled slots would have compatible words)
-//      if it finds one it adds that S to the filled stack,
-//          sets S.current_word
-//          and updates filled_pattern and compatible_words
-//          of affected unfilled slots
-//      otherwise we backtrack:
-//          loop
-//              for slot S at top of stack:
-//              update filled_patterns of unfilled slots to remove
-//                  letters in S.current_word unspecified in S.filled_pattern
-//              look for next usable word
-//              if none
-//                  pop S
-//              else
-//                  set S.current_word
-//                  update filled_patterns of unfilled slots to include new word
-//                  return
-
 // Find the unfilled slot with fewest compatible words
 // if any of these are usable,
 // mark slot as filled, push on stack, return true
@@ -329,7 +358,7 @@ bool GRID::fill_next_slot() {
     // find unfilled slot with smallest compat set
     //
     size_t nbest = 9999999;
-    SLOT* best;
+    SLOT* best=0;
 #if VERBOSE_FILL_NEXT_SLOT
     printf("fill_next_slot():\n");
 #endif
@@ -346,6 +375,12 @@ bool GRID::fill_next_slot() {
             best = slot;
         }
     }
+#if CHECK_ASSERTS
+    if (!best) {
+        printf("no unfilled slot\n");
+        exit(1);
+    }
+#endif
 
     best->next_word_index = 0;
     if (best->find_next_usable_word(this)) {
@@ -353,6 +388,12 @@ bool GRID::fill_next_slot() {
         printf("   slot %d has usable words; pushing on filled stack\n", best->num);
 #endif
         best->filled = true;
+#if CHECK_ASSERTS
+        if (find(filled_slots.begin(), filled_slots.end(), best) != filled_slots.end()) {
+            printf("slot %d is already in filled stack\n", best->num);
+            exit(1);
+        }
+#endif
         filled_slots.push_back(best);
         fill_slot(best);
         return true;
@@ -397,6 +438,12 @@ void GRID::fill_slot(SLOT* slot) {
                 exit(1);
             }
         } else {
+#if CHECK_ASSERTS
+            if (find(filled_slots.begin(), filled_slots.end(), slot2) != filled_slots.end()) {
+                printf("slot %d is already in filled stack\n", slot2->num);
+                exit(1);
+            }
+#endif
             // other slot is now filled
 #if VERBOSE_FILL_SLOT
             printf("   slot %d is now filled: %s\n",
@@ -468,7 +515,7 @@ void print_square_grid(GRID &grid, int len, bool is_solution);
 
 bool GRID::fill() {
     while (1) {
-        if (filled_slots.size() == slots.size()) {
+        if (filled_slots.size() + npreset_slots == slots.size()) {
             printf("SOLUTION FOUND\n");
             print_grid(*this, true);
             //print_solution();
