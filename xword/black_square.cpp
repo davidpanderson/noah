@@ -3,12 +3,6 @@
 
 #include "xw.h"
 
-#define CURSES      1
-
-#if CURSES
-#include <ncurses.h>
-#endif
-
 #define MAX_SIZE 22
     // NYT sunday is 21x21
 
@@ -37,7 +31,7 @@ int starts[MAX_SIZE][MAX_SIZE];
 vector<SLOT*> across_slots;
 int nrows, ncols;
 
-void read_black_square_grid(FILE *f, GRID &grid) {
+void read_black_square_grid(FILE *f, GRID &grid, bool mirror) {
     int i, j, k, start, len;
     char chars[MAX_SIZE][MAX_SIZE];
     char buf[256];
@@ -54,9 +48,19 @@ void read_black_square_grid(FILE *f, GRID &grid) {
         } else {
             ncols = nc;
         }
-        strncpy(chars[nrows], buf, nc);
-        chars[nrows][nc] = '*';
+        strncpy(chars[nrows], buf, ncols);
+        chars[nrows][ncols] = '*';
         nrows++;
+    }
+
+    if (mirror) {
+        for (i=0; i<nrows-1; i++) {
+            for (j=0; j<ncols; j++) {
+                chars[nrows+i][j] = chars[nrows-i-2][ncols-j-1];
+            }
+            chars[nrows+i][ncols] = '*';
+        }
+        nrows += (nrows-1);
     }
 
     // add a row of * at bottom
@@ -175,23 +179,25 @@ void print_grid(GRID &grid, bool) {
 
 int main(int argc, char** argv) {
     GRID grid;
+    bool mirror=false;
     words.read();
     init_pattern_cache();
     const char *fname = "bs_11_1";
-    if (argc > 1) {
-        fname = argv[1];
+    for (int i=1; i<argc; i++) {
+        if (!strcmp(argv[i], "--mirror")) {
+            mirror = true;
+        } else {
+            fname = argv[i];
+        }
     }
     FILE *f = fopen(fname, "r");
     if (!f) {
         printf("no file %s\n", fname);
         exit(1);
     }
-    read_black_square_grid(f, grid);
+    read_black_square_grid(f, grid, mirror);
     grid.prepare();
     // grid.print_state();
-#if CURSES
-    initscr();
-#endif
     if (grid.fill()) {
         // grid.print_solution();
         print_grid(grid, true);

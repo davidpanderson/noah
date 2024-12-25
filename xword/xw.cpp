@@ -5,10 +5,6 @@
 
 #include "xw.h"
 
-#define SHOW_GRID   1
-    // show grid as you go
-#define WORD_FILE   "words_random"
-
 extern void print_grid(GRID&, bool is_solution);
 
 // xw2: fill generalized crossword puzzle grids
@@ -23,7 +19,8 @@ extern void print_grid(GRID&, bool is_solution);
 // - other weird things
 // as well as conventional 2D grids
 // Note: currently a cell can't be shared by >2 slots,
-// but this shouldn't be hard to add.
+// so you can't have e.g. 3D grids.
+// But this shouldn't be hard to add.
 //
 // This program enumerates all solutions for a given grid.
 
@@ -42,13 +39,10 @@ WORDS words;
 void WORDS::read() {
     FILE* f = fopen(WORD_FILE, "r");
     char buf[256];
-    max_len = 0;
     while (fgets(buf, 256, f)) {
         int len = strlen(buf)-1;
+        if (len >= MAX_LEN) continue;
         buf[len] = 0;
-        if (len>max_len) {
-            max_len = len;
-        }
         nwords[len]++;
         words[len].push_back(strdup(buf));
     }
@@ -248,7 +242,7 @@ void GRID::preset_init() {
 //
 // For each linked position and each possible letter (a-z) either
 // - we haven't checked it yet
-// - we checked and it's OK
+// - we checked and it's OK (the linked slot had compatible words)
 // - we checked and it's not OK
 //
 // so when scanning words:
@@ -301,6 +295,7 @@ bool SLOT::find_next_usable_word(GRID *grid) {
         for (SLOT *s2: grid->filled_slots) {
             if (!strcmp(w, s2->current_word)) {
                 usable = false;
+                dup_stack_level = s2->stack_level;
                 break;
             }
         }
@@ -394,6 +389,7 @@ bool GRID::fill_next_slot() {
             exit(1);
         }
 #endif
+        best->stack_level = filled_slots.size();
         filled_slots.push_back(best);
         fill_slot(best);
         return true;
@@ -453,15 +449,77 @@ void GRID::fill_slot(SLOT* slot) {
             slot2->compatible_words = NULL;
             slot2->filled = true;
             strcpy(slot2->current_word, slot2->filled_pattern);
+            slot2->stack_level = filled_slots.size();
             filled_slots.push_back(slot2);
         }
     }
 }
 
-// for the slot S on top of the filled stack:
-// unlink current word.
-// look for next usable word.
-// if find one, link it and return true
+// We just popped this slot S from the stack.
+// Find the level of the topmost filled slot that affects it, i.e.
+// - had a dup word conflict
+// - intersects S
+// - intersects an unfilled slot that intersects S
+//
+// This is used for "jumptracking": if we couldn't find a word for this slot,
+// we want to backtrack all the way to a slot that will make a difference
+//
+int SLOT::top_affecting_level() {
+    int max_level=-1;
+    if (dup_stack_level >= 0) {
+        max_level = dup_stack_level;
+    }
+    for (int i=0; i<len; i++) {
+        LINK &link = links[i];
+        if (link.empty()) continue;
+        SLOT* slot2 = link.other_slot;
+        if (slot2->filled) {
+            if (slot2->stack_level > max_level) {
+                max_level = slot2->stack_level;
+            }
+        } else {
+            for (int j=0; j<slot2->len; j++) {
+                LINK &link2 = slot2->links[j];
+                if (link2.empty()) continue;
+                SLOT* slot3 = link2.other_slot;
+                if (slot3->filled) {
+                    if (slot3->stack_level > max_level) {
+                        max_level = slot3->stack_level;
+                    }
+                }
+            }
+        }
+    }
+    return max_level;
+}
+
+// We're undoing a filled word.
+// Update filled_patterns of unfilled crossing slots
+//
+void SLOT::remove_filled_word() {
+    for (int i=0; i<len; i++) {
+        LINK &link = links[i];
+        if (link.empty()) continue;
+        SLOT* slot2 = link.other_slot;
+        if (slot2->filled) continue;
+        slot2->filled_pattern[link.other_pos] = '_';
+        slot2->compatible_words = pattern_cache[slot2->len].get_list(
+            slot2->filled_pattern
+        );
+        if (slot2->compatible_words->empty()) {
+            // should never get here
+            printf("   empty compat list for slot %d pattern %s\n",
+                slot2->num, slot2->filled_pattern
+            );
+            exit(1);
+        }
+    }
+}
+
+// Remove current word for the slot S on top of the filled stack,
+// and update compat word lists for crossing slots
+// Look for next usable word for S.
+// if find one: add it, update crossing slots, and return true
 // else pop S and repeat for next slot down on stack
 //
 bool GRID::backtrack() {
@@ -470,30 +528,7 @@ bool GRID::backtrack() {
 #if VERBOSE_BACKTRACK
         printf("backtrack() to slot %d\n", slot->num);
 #endif
-        // update filled_patterns of unfilled crossing slots
-        //
-        for (int i=0; i<slot->len; i++) {
-            LINK &link = slot->links[i];
-            if (link.empty()) continue;
-            SLOT* slot2 = link.other_slot;
-            if (slot2->filled) continue;
-            slot2->filled_pattern[link.other_pos] = '_';
-            slot2->compatible_words = pattern_cache[slot2->len].get_list(
-                slot2->filled_pattern
-            );
-            if (slot2->compatible_words->empty()) {
-#if VERBOSE_BACKTRACK
-                printf("   slot %d now has %ld compat words for pattern %s\n",
-                    slot2->num, slot2->compatible_words->size(),
-                    slot2->filled_pattern
-                );
-#endif
-                printf("   empty compat list for slot %d pattern %s\n",
-                    slot2->num, slot2->filled_pattern
-                );
-                exit(1);
-            }
-        }
+        slot->remove_filled_word();
         if (slot->find_next_usable_word(this)) {
             fill_slot(slot);
             return true;
@@ -507,7 +542,13 @@ bool GRID::backtrack() {
         if (filled_slots.empty()) {
             return false;
         }
-        slot = filled_slots.back();
+        int level = slot->top_affecting_level();
+        while (filled_slots.size() > level+1) {
+            slot = filled_slots.back();
+            slot->remove_filled_word();
+            slot->filled = false;
+            filled_slots.pop_back();
+        }
     }
 }
 
@@ -516,10 +557,13 @@ void print_square_grid(GRID &grid, int len, bool is_solution);
 bool GRID::fill() {
     while (1) {
         if (filled_slots.size() + npreset_slots == slots.size()) {
-            printf("SOLUTION FOUND\n");
-            print_grid(*this, true);
-            //print_solution();
 #if EXIT_AFTER_SOLVE
+            print_grid(*this, true);
+#if CURSES
+            endwin();
+#endif
+            printf("\nSOLUTION FOUND\n");
+            print_solution();
             return true;
 #endif
             backtrack();

@@ -2,12 +2,7 @@
 
 #include "xw.h"
 
-#define CURSES      1
 #define SQUARE_GRID_SIZE    6
-
-#if CURSES
-#include <ncurses.h>
-#endif
 
 void make_square_grid(GRID &grid, int len) {
     vector<SLOT*> across;
@@ -48,9 +43,6 @@ int main(int, char**) {
     init_pattern_cache();
     make_square_grid(grid, SQUARE_GRID_SIZE);
     grid.prepare();
-#if CURSES
-    initscr();
-#endif
     if (grid.fill()) {
         grid.print_solution();
     } else {

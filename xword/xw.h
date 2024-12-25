@@ -5,6 +5,13 @@
 
 using namespace std;
 
+#define WORD_FILE   "words_combined"
+
+#define CURSES      1
+#if CURSES
+#include <ncurses.h>
+#endif
+
 #define NO_DUPS     1
     // don't allow duplicate words
 #define EXIT_AFTER_SOLVE    1
@@ -14,12 +21,12 @@ using namespace std;
 
 #define VERBOSE_INIT            0
     // initialization of grid
-#define VERBOSE_STEP_GRID       0
+#define VERBOSE_STEP_GRID       1
     // show grid after each step (fill or backtrack)
 #define VERBOSE_STEP_STATE      0
     // show detailed state after each step
 #define VERBOSE_NEXT_USABLE     0
-    // SLOT::find_next_usable_work()
+    // SLOT::find_next_usable_word()
 #define VERBOSE_FILL_NEXT_SLOT  0
     // GRID::fill_next_slot()
 #define VERBOSE_FILL_SLOT       0
@@ -87,6 +94,12 @@ struct SLOT {
         // next compatible word to try
     char current_word[MAX_LEN];
         // if filled, current word
+    int stack_level;
+        // if filled, the level on the filled stack
+    int dup_stack_level;
+        // if we skipped a compatible word because it was already used,
+        // the stack level of the slot that used it.
+
     int row, col;
         // for planar grids
 
@@ -120,6 +133,8 @@ struct SLOT {
     bool find_next_usable_word(GRID*);
     bool letter_compatible(int pos, char c);
     bool check_pattern(char* mp);
+    void remove_filled_word();
+    int top_affecting_level();
 };
 
 struct GRID {
@@ -168,6 +183,9 @@ struct GRID {
 
     // call this after adding slots and links
     void prepare() {
+#if CURSES
+        initscr();
+#endif
         npreset_slots = 0;
         preset_init();
         for (SLOT *s: slots) {
