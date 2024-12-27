@@ -101,6 +101,7 @@ struct SLOT {
         // the stack level of the slot that used it.
 
     int row, col;
+    bool is_across;
         // for planar grids
 
     // for each position and each letter (a-z)
@@ -111,14 +112,21 @@ struct SLOT {
     bool usable_letter_checked[MAX_LEN][26];
     bool usable_letter_ok[MAX_LEN][26];
 
-    SLOT(int _len) {
-        len = _len;
+    void init() {
         strcpy(filled_pattern, NULL_PATTERN);
         filled_pattern[len] = 0;
+    }
+    SLOT(int _len=0) {
+        len = _len;
+        init();
     }
     inline void clear_usable_letter_checked() {
         memset(usable_letter_checked, 0, sizeof(usable_letter_checked));
     }
+
+    // fix a particular cell
+    // NOTE: if there's a crossing slot, you must set it there too
+    //
     void preset_char(int pos, char c) {
         filled_pattern[pos] = c;
     }
@@ -178,18 +186,16 @@ struct GRID {
         printf("\n------- end ----------\n");
     }
 
-    void preset_init();
-        // propagate preset chars
-
-    // call this after adding slots and links
+    // call this after adding slots, presets, and links
+    //
     void prepare() {
 #if CURSES
         initscr();
 #endif
         npreset_slots = 0;
-        preset_init();
         for (SLOT *s: slots) {
             s->words_init();
+                // this sets filled if needed
             if (s->filled) {
                 npreset_slots++;
             }

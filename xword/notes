@@ -246,3 +246,25 @@ in grid initiation:
 - if preset char, copy to crossword
     check consistency
 - find preset slots and mark as filled
+---------------------
+puzzle ideas
+
+grid on a torus or Klein bottle
+words can go in either direction
+    add reverses to word list
+words can start anywhere
+    add shifts to word list
+hexagonal or 3D grids
+    would need multiple links per cell
+--------------
+blacksquare:
+    --wrapx --twistx --wrapy --twisty
+    wraparound
+        for each row
+            for each cell
+                if blank and prev cell is black
+                    make word
+                    scan until hit black square
+                    wrap around, possibly w/ twist
+                    break if wrapped
+    generate across/down cell numbers

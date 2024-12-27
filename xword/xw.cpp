@@ -158,6 +158,9 @@ void SLOT::add_link(int this_pos, SLOT* other_slot, int other_pos) {
 
 void SLOT::print_state() {
     printf("slot %d:\n", num);
+    printf("   row %d column %d; %s; len %d\n",
+        row, col, is_across?"across":"down", len
+    );
     if (filled) {
         printf("   filled; word: %s; index %d\n",
             current_word, next_word_index
@@ -172,32 +175,6 @@ void SLOT::print_state() {
         );
     } else {
         printf("   compat words is null\n");
-    }
-}
-
-// propagate preset chars to crosswords; check for consistency
-//
-void GRID::preset_init() {
-    for (SLOT *slot: slots) {
-        for (int pos=0; pos<slot->len; pos++) {
-            char c1 = slot->filled_pattern[pos];
-            if (c1 == '_') continue;
-            LINK &link = slot->links[pos];
-            SLOT *slot2 = link.other_slot;
-            if (!slot2) continue;
-            int pos2 = link.other_pos;
-            char c2 = slot2->filled_pattern[pos2];
-            if (c2 == c1) {
-                continue;
-            } else if (c2 == '_') {
-                slot2->filled_pattern[pos2] = c1;
-            } else {
-                printf("inconsistent preset in slots %d and %d",
-                    slot->num, slot2->num
-                );
-                exit(1);
-            }
-        }
     }
 }
 
