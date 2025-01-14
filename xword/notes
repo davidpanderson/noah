@@ -268,3 +268,31 @@ blacksquare:
                     wrap around, possibly w/ twist
                     break if wrapped
     generate across/down cell numbers
+---------------
+move main() to xw.cpp
+options:
+    --word_list fname
+    --curses [0|1]
+        use curses; default 1
+    --show_grid
+        after parsing grid file, show grid and exit
+    --period x
+        during fill, display grid every x seconds
+        if 0, show every update
+
+debugging output:
+    set VERBOSE flags in xw.h and recompile
+
+when get a solution:
+    s filename
+        save solution to file
+    CR or c
+        continue to next solution
+    q
+        quit
+    v word
+        add word to veto list and continue
+
+functions provided by grid type code
+    make_grid(argc, argv, GRID&)
+    print_grid(GRID&, bool curses)

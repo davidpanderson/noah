@@ -5,21 +5,22 @@
 
 #include "xw.h"
 
-extern void print_grid(GRID&, bool is_solution);
-
-// xw2: fill generalized crossword puzzle grids
+// xw: library for filling generalized crossword puzzle grids
+// copyright (C) 2025 David P. Anderson
 
 // A 'grid' is a set of 'slots',
 // each of which holds a word of a fixed length.
-// A 'cell' (letter space) in a slot can be linked to a cell in another slot.
+// A 'cell' (letter space) in a slot can be linked to a cell in another slot,
+// in which case the 2 cells must contain the same letter.
 // Use add_slot() and add_link() to describe this.
-// This can also represent
-// - higher-dimensional grids
+//
+// This structure can represent
+// - conventional 2D grids (black-square, lined style, etc.)
 // - grids on tori or Klein bottles
 // - other weird things
-// as well as conventional 2D grids
-// Note: currently a cell can't be shared by >2 slots,
-// so you can't have e.g. 3D grids.
+//
+// Note: currently a cell can be shared by at most 2 slots,
+// so we can't represent e.g. 3D grids.
 // But this shouldn't be hard to add.
 //
 // This program enumerates all solutions for a given grid.
@@ -28,7 +29,10 @@ extern void print_grid(GRID&, bool is_solution);
 // 'pattern': a word in which some or all positions are undetermined
 // (represented by _)
 
-// copyright (C) 2024 David P. Anderson
+
+// functions supplied by grid type code
+extern void print_grid(GRID&, bool curses);
+extern void make_grid(const char* filename, GRID&);
 
 ///////////// WORD LISTS AND PATTERNS //////////////
 
@@ -36,8 +40,8 @@ WORDS words;
 
 // read words from file into per-length vectors
 //
-void WORDS::read() {
-    FILE* f = fopen(WORD_FILE, "r");
+void WORDS::read(const char* fname) {
+    FILE* f = fopen(fname, "r");
     char buf[256];
     while (fgets(buf, 256, f)) {
         int len = strlen(buf)-1;
@@ -45,6 +49,12 @@ void WORDS::read() {
         buf[len] = 0;
         nwords[len]++;
         words[len].push_back(strdup(buf));
+    }
+}
+void WORDS::shuffle() {
+    for (int i=1; i<=MAX_LEN; i++) {
+        if (words[i].empty()) continue;
+        random_shuffle(words[i].begin(), words[i].end());
     }
 }
 void WORDS::print_counts() {
@@ -156,7 +166,7 @@ void SLOT::add_link(int this_pos, SLOT* other_slot, int other_pos) {
     link.other_pos = other_pos;
 }
 
-void SLOT::print_state() {
+void SLOT::print_state(bool show_links) {
     printf("slot %d:\n", num);
     printf("   row %d column %d; %s; len %d\n",
         row, col, is_across?"across":"down", len
@@ -175,6 +185,17 @@ void SLOT::print_state() {
         );
     } else {
         printf("   compat words is null\n");
+    }
+    if (show_links) {
+        printf("   links\n");
+        for (int i=0; i<len; i++) {
+            LINK &link = links[i];
+            if (link.other_slot) {
+                printf("      pos %d -> slot %d pos %d\n",
+                    i, link.other_slot->num, link.other_pos
+                );
+            }
+        }
     }
 }
 
@@ -529,33 +550,81 @@ bool GRID::backtrack() {
     }
 }
 
-void print_square_grid(GRID &grid, int len, bool is_solution);
-
-bool GRID::fill() {
+bool GRID::find_solutions(bool curses, double period) {
     while (1) {
         if (filled_slots.size() + npreset_slots == slots.size()) {
-#if EXIT_AFTER_SOLVE
-            print_grid(*this, true);
-#if CURSES
-            endwin();
-#endif
-            printf("\nSOLUTION FOUND\n");
-            print_solution();
-            return true;
-#endif
+            // we have a solution
+            if (curses) {
+                clear();
+                refresh();
+                endwin();
+            }
+            printf("\nSolution found:\n");
+            print_grid(*this, false);
+            printf("enter:\n"
+                "s filename to save solution to file\n"
+                "<CR> to continue to next solution\n"
+                "q to quit\n> "
+            );
+            char buf[256];
+            fgets(buf, sizeof(buf), stdin);
+            if (buf[0] != '\n') break;
             backtrack();
+            if (curses) {
+                initscr();
+            }
             continue;
         }
         if (!fill_next_slot()) {
             if (!backtrack()) {
-                return false;
+                break;
             }
         }
-#if VERBOSE_STEP_GRID
-        print_grid(*this, false);
-#endif
+        if (period >= 0) {
+            print_grid(*this, curses);
+        }
 #if VERBOSE_STEP_STATE
         print_state();
 #endif
+    }
+    printf("no more solutions\n");
+}
+
+int main(int argc, char** argv) {
+    GRID grid;
+    bool curses = true;
+    bool show_grid = false;
+    double period;
+    const char* word_list = DEFAULT_WORD_LIST;
+    const char* grid_file = NULL;
+
+    for (int i=1; i<argc; i++) {
+        if (!strcmp(argv[i], "--word_list")) {
+            word_list = argv[++i];
+        } else if (!strcmp(argv[i], "--grid_file")) {
+            grid_file = argv[++i];
+        } else if (!strcmp(argv[i], "--curses")) {
+            if (atoi(argv[++i]) == 0) curses = false;
+        } else if (!strcmp(argv[i], "--show_grid")) {
+            show_grid = true;
+        } else if (!strcmp(argv[i], "--period")) {
+            period = atof(argv[++i]);
+        }
+    }
+    words.read(word_list);
+    words.shuffle();
+    init_pattern_cache();
+    make_grid(grid_file, grid);
+    grid.prepare();
+    if (show_grid) {
+        grid.print_state(true);
+        exit(0);
+    }
+    if (curses) {
+        initscr();
+    }
+    grid.find_solutions(curses, period);
+    if (curses) {
+        endwin();
     }
 }

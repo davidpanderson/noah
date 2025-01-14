@@ -2,27 +2,17 @@
 #include <vector>
 #include <stack>
 #include <cstdlib>
+#include <ncurses.h>
 
 using namespace std;
 
-#define WORD_FILE   "words_combined"
-
-#define CURSES      1
-#if CURSES
-#include <ncurses.h>
-#endif
+#define DEFAULT_WORD_LIST   "words"
 
 #define NO_DUPS     1
     // don't allow duplicate words
-#define EXIT_AFTER_SOLVE    1
-    // exit after find a solution
-
-// turn off if you use curses
 
 #define VERBOSE_INIT            0
     // initialization of grid
-#define VERBOSE_STEP_GRID       1
-    // show grid after each step (fill or backtrack)
 #define VERBOSE_STEP_STATE      0
     // show detailed state after each step
 #define VERBOSE_NEXT_USABLE     0
@@ -55,8 +45,9 @@ struct WORDS {
     WLIST words[MAX_LEN+1];
     int nwords[MAX_LEN+1];
     int max_len;
-    void read();
+    void read(const char* fname);
     void print_counts();
+    void shuffle();
 };
 
 extern WORDS words;
@@ -112,13 +103,14 @@ struct SLOT {
     bool usable_letter_checked[MAX_LEN][26];
     bool usable_letter_ok[MAX_LEN][26];
 
-    void init() {
-        strcpy(filled_pattern, NULL_PATTERN);
-        filled_pattern[len] = 0;
-    }
+    // create SLOT; you may increase len later
     SLOT(int _len=0) {
         len = _len;
-        init();
+        strcpy(filled_pattern, NULL_PATTERN);
+    }
+    // when final len is known, call this
+    void set_len() {
+        filled_pattern[len] = 0;
     }
     inline void clear_usable_letter_checked() {
         memset(usable_letter_checked, 0, sizeof(usable_letter_checked));
@@ -136,7 +128,7 @@ struct SLOT {
 
     void print_usable();
     void add_link(int this_pos, SLOT* other_slot, int other_pos);
-    void print_state();
+    void print_state(bool show_links);
     void words_init();
     bool find_next_usable_word(GRID*);
     bool letter_compatible(int pos, char c);
@@ -150,6 +142,8 @@ struct GRID {
     vector<SLOT*> slots;
     vector<SLOT*> filled_slots;
     int npreset_slots;
+        // number of preset slots.
+        // these are marked as filled but not pushed on the filled stack
 
     SLOT* add_slot(SLOT* slot) {
         slot->num = slot_num++;
@@ -174,14 +168,14 @@ struct GRID {
             printf("%d: %s\n", slot->num, slot->current_word);
         }
     }
-    void print_state() {
-        printf("------- state ----------\n");
+    void print_state(bool show_links = false) {
+        printf("------- grid state ----------\n");
         for (SLOT *slot: filled_slots) {
-            slot->print_state();
+            slot->print_state(show_links);
         }
         for (SLOT *slot: slots) {
             if (slot->filled) continue;
-            slot->print_state();
+            slot->print_state(show_links);
         }
         printf("\n------- end ----------\n");
     }
@@ -189,9 +183,6 @@ struct GRID {
     // call this after adding slots, presets, and links
     //
     void prepare() {
-#if CURSES
-        initscr();
-#endif
         npreset_slots = 0;
         for (SLOT *s: slots) {
             s->words_init();
@@ -204,6 +195,6 @@ struct GRID {
 
     bool fill_next_slot();
     bool backtrack();
-    bool fill();
     void fill_slot(SLOT*);
+    bool find_solutions(bool curses, double period);
 };

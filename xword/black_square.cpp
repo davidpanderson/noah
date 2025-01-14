@@ -3,25 +3,33 @@
 
 #include "xw.h"
 
-// fill a black-square grid.
+// fill a black-square grid, described by a 'grid file'
+// usage:
+// black_square [options] filename
+//
 // options:
-// --mirror: 2n+1 rows are given; append the 180 deg rotation of the first 2n
-// --wrap_row, --wrap_col: words can wrap around in the x or y directions
-// --twist_row, --twist_col: if wrap, apply a twist (Klein bottle)
+// --mirror
+//      2n+1 rows are given; append the 180 deg rotation of the first 2n
+// --wrap_row, --wrap_col
+//      words wrap around in the x or y directions
+// --twist_row, --twist_col
+//      if wrap, apply a twist (e.g. Klein bottle)
 
 #define MAX_SIZE 22
     // NYT sunday is 21x21
 
-// file format for black-square grids:
+// grid file format:
 //
 //  **...........**
 //  *.............*
 //  ...............
 //  table***...*...
 // etc.
-// * = a black square.
-// a = any letter (can hard-code entries)
-//      or . or space (blank cell)
+//
+// * represents a black square.
+// other cells can have
+// - an ASCII lower-case char (can hard-code entries)
+// - . or space (blank cell)
 //
 // By convention there are no unchecked squares,
 // so to print a grid you can just print the acrosses.
@@ -133,14 +141,33 @@ bool is_next_black(int (&c)[2], int coord) {
     }
 }
 
-void read_file(FILE *f) {
+// read file into chars array
+//
+void read_grid_file(FILE *f) {
     int i, j, k, start, len;
     char buf[256];
     int nrows=0, ncols=0;
 
     // read file into chars array
+    // check for flags
     //
     while (fgets(buf, sizeof(buf), f)) {
+        if (!strcmp(buf, "mirror\n")) {
+            mirror = true;
+            continue;
+        } else if (!strcmp(buf, "wrap_row\n")) {
+            wrap[0] = true;
+            continue;
+        } else if (!strcmp(buf, "wrap_col\n")) {
+            wrap[1] = true;
+            continue;
+        } else if (!strcmp(buf, "twist_row\n")) {
+            twist[0] = true;
+            continue;
+        } else if (!strcmp(buf, "twist_col\n")) {
+            twist[1] = true;
+            continue;
+        }
         int nc = strlen(buf)-1;
         if (ncols) {
             if (nc != ncols) {
@@ -173,6 +200,8 @@ void read_file(FILE *f) {
     size[1] = ncols;
 }
 
+// scan chars array in both directions, finding and linking slots
+//
 void find_slots(GRID &grid) {
     int i, j;
     // make across slots
@@ -305,17 +334,17 @@ void find_slots(GRID &grid) {
     // add slots to grid
     //
     for (SLOT *slot: across_slots_list) {
-        slot->init();
+        slot->set_len();
         grid.add_slot(slot);
     }
     for (SLOT *slot: down_slots_list) {
-        slot->init();
+        slot->set_len();
         grid.add_slot(slot);
     }
 }
 
-void print_grid(GRID &grid, bool) {
-    char chars[MAX_SIZE][MAX_SIZE];
+void print_grid(GRID &grid, bool curses) {
+    char chars[MAX_SIZE][MAX_SIZE*2];
     int i, j;
     for (i=0; i<size[1]; i++) {
         for (j=0; j<size[0]; j++) {
@@ -323,64 +352,37 @@ void print_grid(GRID &grid, bool) {
             if (slot) {
                 int pos = across_pos[i][j];
                 if (slot->filled) {
-                    chars[i][j] = slot->current_word[pos];
+                    chars[i][j*2] = slot->current_word[pos];
                 } else {
-                    chars[i][j] = slot->filled_pattern[pos];
+                    chars[i][j*2] = slot->filled_pattern[pos];
                 }
             } else {
-                chars[i][j] = '*';
+                chars[i][j*2] = '*';
             }
+            chars[i][j*2+1] = ' ';
         }
-        chars[i][size[0]] = 0;
+        chars[i][size[0]*2] = 0;
     }
-    for (i=0; i<size[1]; i++) {
-#if CURSES
-        move(i, 0);
-        printw("%s", &(chars[i][0]));
-#else
-        printf("%s\n", &(chars[i][0]));
-#endif
+    if (curses) {
+        for (i=0; i<size[1]; i++) {
+            move(i, 0);
+            printw("%s", &(chars[i][0]));
+        }
+        refresh();
+    } else {
+        for (i=0; i<size[1]; i++) {
+            printf("%s\n", &(chars[i][0]));
+        }
     }
-#if CURSES
-    refresh();
-#endif
 }
 
-int main(int argc, char** argv) {
-    GRID grid;
-    words.read();
-    init_pattern_cache();
-    const char *fname = "bs_11_1";
-    for (int i=1; i<argc; i++) {
-        if (!strcmp(argv[i], "--mirror")) {
-            mirror = true;
-        } else if (!strcmp(argv[i], "--wrap_row")) {
-            wrap[0] = true;
-        } else if (!strcmp(argv[i], "--wrap_col")) {
-            wrap[1] = true;
-        } else if (!strcmp(argv[i], "--twist_row")) {
-            twist[0] = true;
-        } else if (!strcmp(argv[i], "--twist_col")) {
-            twist[1] = true;
-        } else {
-            fname = argv[i];
-        }
-    }
+int make_grid(const char* fname, GRID &grid) {
+    if (!fname) fname = "bs_11_1";
     FILE *f = fopen(fname, "r");
     if (!f) {
-        printf("no file %s\n", fname);
+        printf("no grid file %s\n", fname);
         exit(1);
     }
-    read_file(f);
+    read_grid_file(f);
     find_slots(grid);
-    grid.prepare();
-    grid.print_state();
-#if 1
-    if (grid.fill()) {
-        // grid.print_solution();
-        print_grid(grid, true);
-    } else {
-        printf("no solution\n");
-    }
-#endif
 }

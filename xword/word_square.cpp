@@ -1,3 +1,7 @@
+// fill a word square.
+
+// DEPRECATED: this is a special case of either line or black-square grids
+
 #include <cstdio>
 
 #include "xw.h"

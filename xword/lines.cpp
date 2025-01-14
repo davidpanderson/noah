@@ -48,19 +48,7 @@ void read_line_grid(FILE* f, GRID& grid) {
 void print_grid(GRID &grid, bool is_solution) {
 }
 
-int main(int argc, char** argv) {
-    GRID grid;
-    words.read();
-    init_pattern_cache();
-    FILE *f = fopen(argv[1], "r");
+int make_grid(const char* fname, GRID &grid) {
+    FILE *f = fopen(fname, "r");
     read_line_grid(f, grid); 
-    grid.prepare();
-#if CURSES
-    initscr();
-#endif
-    if (grid.fill()) {
-        grid.print_solution();
-    } else {
-        printf("no solution\n");
-    }
 }

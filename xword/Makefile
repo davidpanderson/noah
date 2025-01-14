@@ -1,4 +1,4 @@
-all: xword word_square lines black_square xwtest
+all: lines black_square
 
 SRC = xw.cpp
 HDR = xw.h
