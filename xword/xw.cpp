@@ -5,36 +5,25 @@
 
 #include "xw.h"
 
-// xw: library for filling generalized crossword puzzle grids
 // copyright (C) 2025 David P. Anderson
 
-// A 'grid' is a set of 'slots',
-// each of which holds a word of a fixed length.
-// A 'cell' (letter space) in a slot can be linked to a cell in another slot,
-// in which case the 2 cells must contain the same letter.
-// Use add_slot() and add_link() to describe this.
-//
-// This structure can represent
-// - conventional 2D grids (black-square, lined style, etc.)
-// - grids on tori or Klein bottles
-// - other weird things
-//
-// Note: currently a cell can be shared by at most 2 slots,
-// so we can't represent e.g. 3D grids.
-// But this shouldn't be hard to add.
-//
+// xw: fill generalized crossword puzzle grids
 // This program enumerates all solutions for a given grid.
 
-// Other terms
-// 'pattern': a word in which some or all positions are undetermined
-// (represented by _)
+// This function must be linked with code that exports the following.
 
-
-// functions supplied by grid type code
-extern void print_grid(GRID&, bool curses);
 extern void make_grid(const char* filename, GRID&);
+    // read the given file and populate the GRID structure.
+    // We supply two variants:
+    // black-square format (NYT type puzzles)
+    // line-grid format (Atlantic cryptic type puzzles)
+extern void print_grid(GRID&, bool curses);
+    // print the (partially-filled) grid
 
 ///////////// WORD LISTS AND PATTERNS //////////////
+
+// 'pattern': a word in which some or all positions are undetermined
+// (represented by _)
 
 WORDS words;
 
@@ -42,6 +31,10 @@ WORDS words;
 //
 void WORDS::read(const char* fname) {
     FILE* f = fopen(fname, "r");
+    if (!f) {
+        printf("no word list %s\n", fname);
+        exit(1);
+    }
     char buf[256];
     while (fgets(buf, 256, f)) {
         int len = strlen(buf)-1;
@@ -466,6 +459,7 @@ int SLOT::top_affecting_level() {
     int max_level=-1;
     if (dup_stack_level >= 0) {
         max_level = dup_stack_level;
+        if (max_level == stack_level-1) return max_level;
     }
     for (int i=0; i<len; i++) {
         LINK &link = links[i];
@@ -474,6 +468,7 @@ int SLOT::top_affecting_level() {
         if (slot2->filled) {
             if (slot2->stack_level > max_level) {
                 max_level = slot2->stack_level;
+                if (max_level == stack_level-1) return max_level;
             }
         } else {
             for (int j=0; j<slot2->len; j++) {
@@ -483,6 +478,7 @@ int SLOT::top_affecting_level() {
                 if (slot3->filled) {
                     if (slot3->stack_level > max_level) {
                         max_level = slot3->stack_level;
+                        if (max_level == stack_level-1) return max_level;
                     }
                 }
             }
@@ -551,6 +547,7 @@ bool GRID::backtrack() {
 }
 
 bool GRID::find_solutions(bool curses, double period) {
+    static int count = 0;
     while (1) {
         if (filled_slots.size() + npreset_slots == slots.size()) {
             // we have a solution
@@ -564,6 +561,8 @@ bool GRID::find_solutions(bool curses, double period) {
             printf("enter:\n"
                 "s filename to save solution to file\n"
                 "<CR> to continue to next solution\n"
+                "v word to add word to veto list\n> "
+                "r to reset\n> "
                 "q to quit\n> "
             );
             char buf[256];
@@ -580,7 +579,9 @@ bool GRID::find_solutions(bool curses, double period) {
                 break;
             }
         }
-        if (period >= 0) {
+        count++;
+        if (count == 10000) {
+            count = 0;
             print_grid(*this, curses);
         }
 #if VERBOSE_STEP_STATE

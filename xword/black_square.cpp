@@ -376,7 +376,7 @@ void print_grid(GRID &grid, bool curses) {
     }
 }
 
-int make_grid(const char* fname, GRID &grid) {
+void make_grid(const char* fname, GRID &grid) {
     if (!fname) fname = "bs_11_1";
     FILE *f = fopen(fname, "r");
     if (!f) {

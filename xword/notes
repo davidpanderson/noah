@@ -295,4 +295,3 @@ when get a solution:
 
 functions provided by grid type code
     make_grid(argc, argv, GRID&)
-    print_grid(GRID&, bool curses)

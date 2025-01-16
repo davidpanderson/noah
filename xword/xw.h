@@ -11,17 +11,17 @@ using namespace std;
 #define NO_DUPS     1
     // don't allow duplicate words
 
-#define VERBOSE_INIT            0
+#define VERBOSE_INIT            1
     // initialization of grid
-#define VERBOSE_STEP_STATE      0
+#define VERBOSE_STEP_STATE      1
     // show detailed state after each step
-#define VERBOSE_NEXT_USABLE     0
+#define VERBOSE_NEXT_USABLE     1
     // SLOT::find_next_usable_word()
-#define VERBOSE_FILL_NEXT_SLOT  0
+#define VERBOSE_FILL_NEXT_SLOT  1
     // GRID::fill_next_slot()
-#define VERBOSE_FILL_SLOT       0
+#define VERBOSE_FILL_SLOT       1
     // GRID::fill_slot()
-#define VERBOSE_BACKTRACK       0
+#define VERBOSE_BACKTRACK       1
     // GRID::backtrack()
 
 #define CHECK_ASSERTS           0
@@ -121,9 +121,6 @@ struct SLOT {
     //
     void preset_char(int pos, char c) {
         filled_pattern[pos] = c;
-    }
-    void preset(char *p) {
-        strcpy(filled_pattern, p);
     }
 
     void print_usable();
