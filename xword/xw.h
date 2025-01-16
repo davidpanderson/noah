@@ -11,17 +11,17 @@ using namespace std;
 #define NO_DUPS     1
     // don't allow duplicate words
 
-#define VERBOSE_INIT            1
+#define VERBOSE_INIT            0
     // initialization of grid
-#define VERBOSE_STEP_STATE      1
+#define VERBOSE_STEP_STATE      0
     // show detailed state after each step
-#define VERBOSE_NEXT_USABLE     1
+#define VERBOSE_NEXT_USABLE     0
     // SLOT::find_next_usable_word()
-#define VERBOSE_FILL_NEXT_SLOT  1
+#define VERBOSE_FILL_NEXT_SLOT  0
     // GRID::fill_next_slot()
-#define VERBOSE_FILL_SLOT       1
+#define VERBOSE_FILL_SLOT       0
     // GRID::fill_slot()
-#define VERBOSE_BACKTRACK       1
+#define VERBOSE_BACKTRACK       0
     // GRID::backtrack()
 
 #define CHECK_ASSERTS           0
