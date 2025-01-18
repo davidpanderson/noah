@@ -45,6 +45,7 @@ mirror
 ....*.....*....
 ```
 This describes the upper half of the grid;
+asterisks are black squares.
 `mirror` says to duplicate this, rotated, for the lower half.
 
 Now run
@@ -70,12 +71,13 @@ c s t * e l d * * e n l a c e
 o t i c * i r r a d i a t e d
 r e n o * e a t s * e r o d e
 e d g y * r y e s * s e m e n
-enter:
-    <CR>        continue to next solution
-    s filename  save solution to file
-    q           quit
-
 ```
+You can then
+* save this to a file
+* ask for the solution in sequence (this will usually be a small change).
+* restart with a different random seed to get a completely different solution.
+* if you don't like one of the words, add it to the 'veto' list and start over.
+
 Now let's try a generalized grid, using this grid file:
 ```
 mirror
@@ -149,36 +151,52 @@ a t e m * c a l l n u m b e r
 g o e r * k l a s * s e r r a
 o r d s * s c s i * e n t s y
 ```
-(Note: you need a large word list to solve this;
-there are some funky words).
+(Note: you need a large word list to solve this,
+and there are some funky words).
 
 ## Black-square grids
 
 A 'black square' grid is a 2D array in which
 some cells are black, indicating word boundaries.
 These are used for traditional crosswords
-(e.g. NYT puzzles) and some cryptics
-(e.g. Out of Left Field).
+(e.g. NYT puzzles) and some cryptics (e.g. Out of Left Field).
 
 The above examples show the basic file format
 used by XW to represent black-square grids.
 
-`mirror`: the top half of the grid is specified.
-The bottom half is the same pattern rotated 180 deg.
-If an odd number N of rows is specified,
-only the first N-1 are copied.
+By convention, black-square grids have no unchecked cells
+and no words shorter than 3 letters.
+XW doesn't enforce these conventions.
+Unchecked cells are not treated as 1-letter slots.
 
-`wrap_row`: words that reach the right edge of the grid
+The grid options (one per line at the start of the file) are:
+
+`mirror`
+
+Only the top half of the grid is specified.
+The bottom half is the same pattern rotated 180 deg.
+If an odd number N of rows is given,
+the first N-1 are copied.
+
+`wrap_row`
+
+Slots that reach the right edge of the grid
 wrap around to the left edge and continue.
 
-`wrap_col`: same, for columns.
+`wrap_col`
 
-`twist_row`: assumes `wrap_row`. If a word in row *i* wraps around,
+same, for columns.
+
+`twist_row`
+
+If `wrap_row` is specified, and a slot in row *i* wraps around,
 it continues in row *N-i-1*, where *N* is the number of rows.
-In other words, the left and right edges are identified,
+In other words, the grid's left and right edges are identified,
 but with a twist.
 
-`twist_col`: same, for columns.
+`twist_col`
+
+same, for columns.
 
 Different combinations of options correspond
 to grids on different 2-manifolds:
@@ -193,18 +211,46 @@ to grids on different 2-manifolds:
 
 `wrap_row + twist_row + wrap_col + twist_col`: Projective plane
 
-## Line grids
+## Barrier grids
 
-A 'line grid' is a 2D array in which
+A 'barrier grid' is a 2D array in which
 
 * Every cell has a letter (no black squares)
 * Barriers between adjacent cells (represented by thick lines)
 indicate word boundaries.
 
 This format is used in some cryptic puzzles,
-e.g. Cox and Rathvon puzzles from The Atlantic.
+e.g.  puzzles from The Atlantic by Emily Cox and Henry Rathvon.
 
-## Make your own grids
+A barrier grids is represented by a file of the form:
+```
+-------------------------
+|. . . .|. . . . . . . .|
+   -   -   -       -
+|.|.|. . . . . . . . . .|
+       -   -       -
+|. . . . . .|. . . . . .|
+... etc.
+-------------------------
+
+```
+where
+
+* `-` represents a horizontal barrier
+* `|` represents a vertical barrier
+* `.` represents a cell
+* A lower-case alpha character represents a preset cell
+
+Unlike black-square grids, you must specify barriers
+on the outer edges of the grid.
+
+Barrier grids can have the same options
+(`mirror` etc.) as black-square grids.
+If you specify `row_wrap`, a slot wraps around
+if the rightmost cell has no right barrier and the
+corresponding leftmost cell has no left barrier.
+
+## Make arbitrary grids
 
 XW provides an API for creating arbitrary grids.
 This API involves two structs, `SLOT` and `GRID`.

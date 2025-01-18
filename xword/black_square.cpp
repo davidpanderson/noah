@@ -41,15 +41,18 @@ bool wrap[2];   // [wrap columns?, wrap rows?]
 bool twist[2];  // whether to twist when wrap
 int size[2];    // [#cols, #rows]
 
+// file contents
+// first coord is row, 2nd is col
 char chars[MAX_SIZE][MAX_SIZE];
-    // file contents
-    // X/Y coords: first coord is col, 2nd is row
+
+// for each cell, the across and down slots if any
 SLOT *across_slots[MAX_SIZE][MAX_SIZE];
 SLOT *down_slots[MAX_SIZE][MAX_SIZE];
-    // for each cell, the across and down slots if any
+
+// and the position in that slot
 int across_pos[MAX_SIZE][MAX_SIZE];
 int down_pos[MAX_SIZE][MAX_SIZE];
-    // and the position in that slot
+
 vector<SLOT*> across_slots_list;
 vector<SLOT*> down_slots_list;
 
@@ -178,7 +181,6 @@ void read_grid_file(FILE *f) {
             ncols = nc;
         }
         strncpy(chars[nrows], buf, ncols);
-        //chars[nrows][ncols] = '*';
         nrows++;
     }
 
@@ -187,28 +189,21 @@ void read_grid_file(FILE *f) {
             for (j=0; j<ncols; j++) {
                 chars[nrows+i][j] = chars[nrows-i-2][ncols-j-1];
             }
-            //chars[nrows+i][ncols] = '*';
         }
         nrows += (nrows-1);
     }
 
-    // add a row of * at bottom
-    for (j=0; j<ncols; j++) {
-        //chars[nrows][j] = '*';
-    }
     size[0] = nrows;
     size[1] = ncols;
 }
 
-// scan chars array in both directions, finding and linking slots
+// scan chars array in both row and col directions, finding and linking slots
 //
 void find_slots(GRID &grid) {
-    int i, j;
-    // make across slots
-    // scan each row.
+
+    // loop over rows; make across slots
     //
-    for (i=0; i<size[1]; i++) {
-        int row = i;
+    for (int row=0; row<size[0]; row++) {
         int col = 0;
         SLOT *slot = NULL;
         bool wrapped = false;
@@ -241,7 +236,7 @@ void find_slots(GRID &grid) {
                     }
                 }
             }
-            if (col == size[0]-1) {
+            if (col == size[1]-1) {
                 if (slot && wrap[0]) {
                     int c[2]={row, col}, d[2];
                     next(c, 0, d);
@@ -259,9 +254,8 @@ void find_slots(GRID &grid) {
 
     // make down slots
     //
-    for (j=0; j<size[1]; j++) {
+    for (int col=0; col<size[1]; col++) {
         int row = 0;
-        int col = j;
         SLOT *slot = NULL;
         bool wrapped = false;
         while (1) {
@@ -293,7 +287,7 @@ void find_slots(GRID &grid) {
                     }
                 }
             }
-            if (row == size[1]-1) {
+            if (row == size[0]-1) {
                 if (slot && wrap[1]) {
                     int c[2]={row, col}, d[2];
                     next(c, 1, d);
@@ -311,14 +305,18 @@ void find_slots(GRID &grid) {
 
     // link slots and add preset chars
     //
-    for (i=0; i<size[0]; i++) {
-        for (j=0; j<size[1]; j++) {
+    for (int i=0; i<size[0]; i++) {
+        for (int j=0; j<size[1]; j++) {
             char c = chars[i][j];
             if (c == '*') {
                 continue;
             }
             SLOT *aslot = across_slots[i][j];
             SLOT *dslot = down_slots[i][j];
+            if (!aslot || !dslot) {
+                fprintf(stderr, "unchecked cell at %d %d\n", i, j);
+                exit(1);
+            }
             int apos = across_pos[i][j];
             int dpos = down_pos[i][j];
             if (c == '.') {
@@ -346,8 +344,8 @@ void find_slots(GRID &grid) {
 void print_grid(GRID &grid, bool curses) {
     char chars[MAX_SIZE][MAX_SIZE*2];
     int i, j;
-    for (i=0; i<size[1]; i++) {
-        for (j=0; j<size[0]; j++) {
+    for (i=0; i<size[0]; i++) {
+        for (j=0; j<size[1]; j++) {
             SLOT *slot = across_slots[i][j];
             if (slot) {
                 int pos = across_pos[i][j];
@@ -361,16 +359,16 @@ void print_grid(GRID &grid, bool curses) {
             }
             chars[i][j*2+1] = ' ';
         }
-        chars[i][size[0]*2] = 0;
+        chars[i][size[1]*2] = 0;
     }
     if (curses) {
-        for (i=0; i<size[1]; i++) {
+        for (i=0; i<size[0]; i++) {
             move(i, 0);
             printw("%s", &(chars[i][0]));
         }
         refresh();
     } else {
-        for (i=0; i<size[1]; i++) {
+        for (i=0; i<size[0]; i++) {
             printf("%s\n", &(chars[i][0]));
         }
     }
