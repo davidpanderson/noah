@@ -10,9 +10,9 @@
 //
 //  -------------------------
 //  |. . . .|. . . . . . . .|
-//      -   -   -       -
+//     -   -   -       -
 //  |.|.|. . . . . . . . . .|
-//          -   -       -
+//         -   -       -
 //  |. . . . . .|. . . . . .|
 // etc.
 //
@@ -21,7 +21,12 @@
 //
 //
 
+char file_chars[MAX_SIZE*2+1][MAX_SIZE*2+1];
+    // chars from the grid file (with barriers)
+int file_nrows=0, file_ncols=0;   // file chars, not grid
+
 char chars[MAX_SIZE][MAX_SIZE];
+    // chars without barriers
 bool bar_right[MAX_SIZE][MAX_SIZE];
 bool bar_left[MAX_SIZE][MAX_SIZE];
 bool bar_above[MAX_SIZE][MAX_SIZE];
@@ -74,9 +79,7 @@ void next(int (&c)[2], int coord, int (&d)[2]) {
 // read the file; populate chars and bar_* arrays
 //
 void read_grid_file(FILE* f, GRID& grid) {
-    char file_chars[MAX_SIZE*2+1][MAX_SIZE*2+1];
     char buf[256];
-    int nrows=0, ncols=0;   // file chars, not grid
     bool mirror = false;
 
     // read file into file_chars array
@@ -100,37 +103,37 @@ void read_grid_file(FILE* f, GRID& grid) {
             continue;
         }
         int nc = strlen(buf)-1;
-        if (ncols) {
-            if (nc != ncols) {
+        if (file_ncols) {
+            if (nc != file_ncols) {
                 fprintf(stderr, "size mismatch in %s\n", buf);
                 exit(1);
             }
         } else {
-            ncols = nc;
+            file_ncols = nc;
         }
-        strncpy(file_chars[nrows], buf, ncols);
-        nrows++;
+        strncpy(file_chars[file_nrows], buf, file_ncols);
+        file_nrows++;
     }
 
     if (mirror) {
-        for (int i=0; i<nrows-1; i++) {
-            for (int j=0; j<ncols; j++) {
-                file_chars[nrows+i][j] = file_chars[nrows-i-2][ncols-j-1];
+        for (int i=0; i<file_nrows-1; i++) {
+            for (int j=0; j<file_ncols; j++) {
+                file_chars[file_nrows+i][j] = file_chars[file_nrows-i-2][file_ncols-j-1];
             }
         }
-        nrows += (nrows-1);
+        file_nrows += (file_nrows-1);
     }
 
-    if (nrows%2 == 0) {
+    if (file_nrows%2 == 0) {
         fprintf(stderr, "nrows must be odd\n");
         exit(1);
     }
-    if (ncols%2 == 0) {
+    if (file_ncols%2 == 0) {
         fprintf(stderr, "ncols must be odd\n");
         exit(1);
     }
-    size[0] = nrows/2;
-    size[1] = ncols/2;
+    size[0] = file_nrows/2;
+    size[1] = file_ncols/2;
 
     for (int i=0; i<size[0]; i++) {
         for (int j=0; j<size[1]; j++) {
@@ -248,9 +251,11 @@ void find_slots(GRID &grid) {
             SLOT *dslot = down_slots[i][j];
             int apos = across_pos[i][j];
             int dpos = down_pos[i][j];
-            if (c == ' ' && aslot && dslot) {
-                aslot->add_link(apos, dslot, dpos);
-                dslot->add_link(dpos, aslot, apos);
+            if (c == ' ') {
+                if (aslot && dslot) {
+                    aslot->add_link(apos, dslot, dpos);
+                    dslot->add_link(dpos, aslot, apos);
+                }
             } else {
                 if (aslot) aslot->preset_char(apos, c);
                 if (dslot) dslot->preset_char(dpos, c);
@@ -261,11 +266,9 @@ void find_slots(GRID &grid) {
     // add slots to grid
     //
     for (SLOT *slot: across_slots_list) {
-        slot->set_len();
         grid.add_slot(slot);
     }
     for (SLOT *slot: down_slots_list) {
-        slot->set_len();
         grid.add_slot(slot);
     }
 }
@@ -274,10 +277,49 @@ void find_slots(GRID &grid) {
 // suffice to print just the across entries
 //
 void print_grid(GRID &grid, bool curses) {
+    char c;
+    for (int i=0; i<size[0]; i++) {
+        for (int j=0; j<size[1]; j++) {
+            SLOT *slot = across_slots[i][j];
+            int pos = across_pos[i][j];
+            if (!slot) {
+                slot = down_slots[i][j];
+                if (!slot) {
+                    printf("no slot at %d %d\n", i, j);
+                    exit(1);
+                }
+                pos = down_pos[i][j];
+            }
+            if (slot->filled) {
+                c = slot->current_word[pos];
+            } else {
+                c = slot->filled_pattern[pos];
+            }
+            file_chars[i*2+1][j*2+1] = c;
+        }
+    }
+    if (curses) {
+        for (int i=0; i<file_nrows; i++) {
+            move(i, 0);
+            printw("%s", &(file_chars[i][0]));
+        }
+    } else {
+        for (int i=0; i<file_nrows; i++) {
+            printf("%s\n", &(file_chars[i][0]));
+        }
+    }
 }
 
 int make_grid(const char* fname, GRID &grid) {
+    if (!fname) {
+        fprintf(stderr, "no grid file specified\n");
+        exit(1);
+    }
     FILE *f = fopen(fname, "r");
+    if (!f) {
+        fprintf(stderr, "can't open %s\n", fname);
+        exit(1);
+    }
     read_grid_file(f, grid); 
     find_slots(grid);
 }

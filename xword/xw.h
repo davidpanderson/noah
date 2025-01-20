@@ -78,7 +78,9 @@ struct SLOT {
     bool filled;
         // is this slot filled?
     char filled_pattern[MAX_LEN];
-        // pattern of letters from crossing filled slots lower on stack
+        // letters from crossing filled slots lower on stack
+    char preset_pattern[MAX_LEN];
+        // preset letters
     ILIST *compatible_words;
         // words compatible with this pattern
     int next_word_index;
@@ -106,27 +108,25 @@ struct SLOT {
     // create SLOT; you may increase len later
     SLOT(int _len=0) {
         len = _len;
-        strcpy(filled_pattern, NULL_PATTERN);
+        strcpy(preset_pattern, NULL_PATTERN);
     }
-    // when final len is known, call this
-    void set_len() {
-        filled_pattern[len] = 0;
+    void add_link(int this_pos, SLOT* other_slot, int other_pos);
+
+    // specify preset cell
+    // NOTE: if there's a crossing slot, you must set it there too
+    //
+    void preset_char(int pos, char c) {
+        preset_pattern[pos] = c;
     }
+
+    void prepare_slot();
+
     inline void clear_usable_letter_checked() {
         memset(usable_letter_checked, 0, sizeof(usable_letter_checked));
     }
 
-    // fix a particular cell
-    // NOTE: if there's a crossing slot, you must set it there too
-    //
-    void preset_char(int pos, char c) {
-        filled_pattern[pos] = c;
-    }
-
     void print_usable();
-    void add_link(int this_pos, SLOT* other_slot, int other_pos);
     void print_state(bool show_links);
-    void words_init();
     bool find_next_usable_word(GRID*);
     bool letter_compatible(int pos, char c);
     bool check_pattern(char* mp);
@@ -179,10 +179,10 @@ struct GRID {
 
     // call this after adding slots, presets, and links
     //
-    void prepare() {
+    void prepare_grid() {
         npreset_slots = 0;
         for (SLOT *s: slots) {
-            s->words_init();
+            s->prepare_slot();
                 // this sets filled if needed
             if (s->filled) {
                 npreset_slots++;

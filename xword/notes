@@ -297,18 +297,26 @@ functions provided by grid type code
     make_grid(FILE*, GRID&)
     print_grid(GRID&, curses)
 ---------------
-wall grids
-in the file, every 2nd line is an alternation of (vertical) walls and cells,
-starting with a wall.
-Other lines, starting with the first, are (horizontal) 'wall lines'
-in which the odd positions can be - (wall) or blank.
+barrier grids
+in the file, every 2nd line is an alternation of (vertical) barriers and cells,
+starting with a barrier.
+Other lines, starting with the first, are (horizontal) 'barrier lines'
+in which the odd positions can be - (barrier) or blank.
 
 Scan the file and make the following arrays (nrows x ncols):
 chars: preset chars
-wall_above
-wall_below
-wall_right
-wall_left
+bar_above
+bar_below
+bar_right
+bar_left
+---------------
+grid reset
 
-scan rows
-make a slot if find wall_left
+(need to store 'preset pattern' separately from filled_pattern)
+
+for each slot
+    filled_pattern = preset_pattern
+reshuffle words
+clear_pattern_cache()
+filled_slots.clear();
+prepare()

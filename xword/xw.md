@@ -1,8 +1,7 @@
 # XW: a filler for generalized crossword grids
 
 XW is a program that, given a word list and a crossword puzzle grid,
-finds all the ways the grid can be filled
-with words from the list.
+finds all the ways the grid can be filled with words from the list.
 
 ## Generalized grids
 
@@ -12,20 +11,20 @@ A 'cell' (letter space) in one slot can be 'linked' to a cell in another slot,
 in which case the 2 cells must contain the same letter.
 
 This structure can represent
-* conventional 2D grids (black-square, lined style, etc.)
+* conventional 2D grids (black-square, barrier style, etc.)
 * grids on tori or Klein bottles
 * a variety of other planar and non-planar forms.
 
-Note: currently a cell can be shared by at most 2 slots,
+Note: in the current version of XW a cell can be shared by at most 2 slots,
 so XW can't represent e.g. 3D grids.
-This ability shouldn't be hard to add; let me know if you want it.
+Removing this limitation
+wouldn't be hard to add; let me know if you want this.
 
 XW provides several ways to describe grids, which are detailed below.
 
 ## Example
 
-XW is written in C++ and runs on Unix-like systems
-with g++ and make.
+XW is written in C++ and runs on Unix-like systems with g++ and make.
 Download the source code and type `make`.
 You may have to install the `ncurses` library first.
 
@@ -156,8 +155,9 @@ and there are some funky words).
 
 ## Black-square grids
 
-A 'black square' grid is a 2D array in which
-some cells are black, indicating word boundaries.
+The above examples are 'black square' grids.
+These are 2D arrays in which some cells are black,
+indicating word boundaries.
 These are used for traditional crosswords
 (e.g. NYT puzzles) and some cryptics (e.g. Out of Left Field).
 
@@ -173,8 +173,8 @@ The grid options (one per line at the start of the file) are:
 
 `mirror`
 
-Only the top half of the grid is specified.
-The bottom half is the same pattern rotated 180 deg.
+The file specifies only the top half of the grid.
+The bottom half is a copy of the same pattern, rotated 180 degrees.
 If an odd number N of rows is given,
 the first N-1 are copied.
 
@@ -250,7 +250,7 @@ If you specify `row_wrap`, a slot wraps around
 if the rightmost cell has no right barrier and the
 corresponding leftmost cell has no left barrier.
 
-## Make arbitrary grids
+## Arbitrary grids
 
 XW provides an API for creating arbitrary grids.
 This API involves two structs, `SLOT` and `GRID`.
@@ -286,7 +286,7 @@ struct GRID {
 `add_link()` links a cell in one slot to a cell in another one.
 A given cell can be shared by at most two slots.
 
-You must supply two functions and link them
+You must supply the following functions and link them
 with the XW main program (in xw.cpp).
 ```
 void make_grid(const char* fname, GRID &grid);

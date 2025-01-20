@@ -105,6 +105,9 @@ struct PATTERN_CACHE {
             return it->second;
         }
     }
+    void clear() {
+        map.clear();
+    }
 };
 
 // for each word len, cache of pattern -> ILIST pairs
@@ -117,10 +120,20 @@ void init_pattern_cache() {
     }
 }
 
+void clear_pattern_cache() {
+    for (int i=1; i<=MAX_LEN; i++) {
+        pattern_cache[i].clear();
+    }
+}
+
+// finalize a slot.
 // get initial list of compatible words.
 // If slot is preset, mark as filled
 //
-void SLOT::words_init() {
+void SLOT::prepare_slot() {
+    preset_pattern[len] = 0;
+    strcpy(filled_pattern, preset_pattern);
+
     if (strchr(filled_pattern, '_')) {
         compatible_words = pattern_cache[len].get_list(filled_pattern);
         filled = false;
@@ -616,7 +629,7 @@ int main(int argc, char** argv) {
     words.shuffle();
     init_pattern_cache();
     make_grid(grid_file, grid);
-    grid.prepare();
+    grid.prepare_grid();
     if (show_grid) {
         grid.print_state(true);
         exit(0);

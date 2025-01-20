@@ -332,11 +332,9 @@ void find_slots(GRID &grid) {
     // add slots to grid
     //
     for (SLOT *slot: across_slots_list) {
-        slot->set_len();
         grid.add_slot(slot);
     }
     for (SLOT *slot: down_slots_list) {
-        slot->set_len();
         grid.add_slot(slot);
     }
 }
