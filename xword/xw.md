@@ -1,6 +1,6 @@
 # XW: a filler for generalized crossword grids
 
-XW is a program that, given a word list and a crossword puzzle grid,
+XW is a C++ library that, given a word list and a crossword puzzle grid,
 finds all the ways the grid can be filled with words from the list.
 
 ## Generalized grids
@@ -12,19 +12,23 @@ in which case the 2 cells must contain the same letter.
 
 This structure can represent
 * conventional 2D grids (black-square, barrier style, etc.)
+* the puzzles (I forget the name)
+occasionally featured in the NYT Sunday Magazine
+where pairs of slots share leading and trailing letters.
 * grids on tori or Klein bottles
 * a variety of other planar and non-planar forms.
 
-Note: in the current version of XW a cell can be shared by at most 2 slots,
+In the current version of XW, a cell can be shared by at most 2 slots,
 so XW can't represent e.g. 3D grids.
-Removing this limitation
-wouldn't be hard to add; let me know if you want this.
+Removing this limitation wouldn't be hard;
+let me know if you want this.
 
 XW provides several ways to describe grids, which are detailed below.
 
 ## Example
 
-XW is written in C++ and runs on Unix-like systems with g++ and make.
+XW is written in C++.
+As distributed, it runs on Unix-like systems with g++ and make.
 Download the source code and type `make`.
 You may have to install the `ncurses` library first.
 
@@ -52,7 +56,7 @@ Now run
 black_square --grid_file bs_15_1
 ```
 
-After a few seconds it will find a solution, such as
+After a second or so it will find a solution, such as
 ```
 Solution found:
 p l a t e * c y s t * e r r s
@@ -72,10 +76,11 @@ r e n o * e a t s * e r o d e
 e d g y * r y e s * s e m e n
 ```
 You can then
-* save this to a file
-* ask for the solution in sequence (this will usually be a small change).
-* restart with a different random seed to get a completely different solution.
-* if you don't like one of the words, add it to the 'veto' list and start over.
+* Save this solution to a file.
+* Ask for the next solution in sequence (this will usually be a small change).
+* Restart with a different random seed
+(this will usually produce a completely different solution).
+* Add a word to the 'veto' list.
 
 Now let's try a generalized grid, using this grid file:
 ```
@@ -152,6 +157,122 @@ o r d s * s c s i * e n t s y
 ```
 (Note: you need a large word list to solve this,
 and there are some funky words).
+
+## Word lists and veto lists
+
+When you run XW you must supply a 'word list'.
+This is a file with
+* one word per line
+* words are lowercase
+* no additional text after words
+* words are unique (but not necessarily sorted).
+
+XW comes with a word list, `words`, with about 109K words
+and a few abbreviations.
+
+You can import word lists from other sources;
+see for example,
+https://www.spreadthewordlist.com/wordlist
+
+Many of these lists contain phrases,
+brand names etc. as well as words.
+
+Some of these word lists have the following format:
+```
+RISKS;50
+SURI;80
+KEYS;85
+SLUT;30
+FIVESECONDRULE;100
+```
+where the number is a 0..100 'score' indicating
+(I guess) the word's merit in a crossword puzzle.
+People seem to have wildly different interpretations of this;
+e.g. I don't know why 'five second rule' is better than 'slut',
+or why 'suri' has merit.
+
+XW includes a script `wlist.php` that takes such a file,
+skips words below a given score,
+and outputs the words in lower case.
+
+You can combine word lists by concatenating them
+and piping through `sort` and `uniq.
+
+A 'veto list' is a list of words that may not be used in a solution.
+It has same format as word lists.
+
+## The XW software
+
+The XW software is structured as:
+* A main program (`wx.cpp`) which provides a command-line interface
+and includes the grid-filling logic.
+* A module, for a particular type of grid, that creates grids
+(typically by reading a file describing the grid)
+and prints a formatted representation of a partially or fully filled grid.
+XW comes with modules for two grid types:
+generalized black-square grids (`black_square.cpp`)
+and generalized barrier grids (`barrier.cpp`).
+You can write modules for other types; see below.
+
+Link the main program to a grid module to produce 
+a type-specific executable (e.g. `black_square` and `barrier`).
+
+The main program has the following command-line arguments:
+
+`--word_list <filename>'
+
+Use the word list contained in the given file.  Default `words`.
+
+`--veto_file <filename>`
+
+`--grid_file <filename>`
+
+Use the given grid description file
+(optional; grid modules might not use description files).
+
+`--interactive [0|1]'
+
+If 1 (default) pause after each solution and get user command.
+
+`--show_grid`
+
+Print a description of the grid and exit
+(for debugging grid modules).
+
+`--curses [0|1]`
+
+If 1 (default) periodically show the state of the grid
+in the upper-left corner of the screen, using `curses`.
+
+`--reverse`
+
+Include the reverse of each word in the word list.
+Use this for puzzles in which the solver must figure
+out the direction of words.
+
+If `--interactive` is 1 (or omitted) then
+XW will request a user command after each solution is found.
+Commands are:
+
+`<CR>`:
+
+Find the next solution in sequence.
+This will usually differ only slightly from the current solution.
+
+`s`:
+
+Append this solution to the output file.
+
+`v <word>`:
+
+Add the given word to the veto file.
+
+`r`:
+
+Randomly reshuffle the word list and restart.
+This will usually find a solution that's completely different
+from the current solution.
+
 
 ## Black-square grids
 

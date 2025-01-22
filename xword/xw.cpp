@@ -559,6 +559,7 @@ bool GRID::backtrack() {
     }
 }
 
+j
 bool GRID::find_solutions(bool curses, double period) {
     static int count = 0;
     while (1) {
@@ -571,12 +572,12 @@ bool GRID::find_solutions(bool curses, double period) {
             }
             printf("\nSolution found:\n");
             print_grid(*this, false);
-            printf("enter:\n"
-                "s filename to save solution to file\n"
-                "<CR> to continue to next solution\n"
-                "v word to add word to veto list\n> "
-                "r to reset\n> "
-                "q to quit\n> "
+            printf("enter command\n"
+                "s filename: append solution to file (default 'solutions')\n"
+                "<CR>: next solution\n"
+                "v word: add word to veto list\n> "
+                "r: restart with new random word order\n> "
+                "q: quit\n> "
             );
             char buf[256];
             fgets(buf, sizeof(buf), stdin);
